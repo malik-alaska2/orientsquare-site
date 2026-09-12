@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Блок №1 — планировки и квартиры | OrientSquare</title>
+<meta name="description" content="Интерактивный план блока №1: 82 квартиры, 4 этажа и подвальный уровень. Выберите квартиру на плане, посмотрите планировку и 360° тур.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F57C00' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='16' height='20' x='4' y='2' rx='2' ry='2'/%3E%3Cpath d='M9 22v-4h6v4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+<style>
+html{font-family:ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"}
+body{padding-top:64px}
+:root{
+  --p:#F57C00;--p6:#FB8C00;--p7:#EF6C00;--p1:#FFE0B2;--p05:#FFF3E0;
+  --g9:#333;--g7:#616161;--g6:#757575;--g5:#9E9E9E;--g3:#E0E0E0;--g2:#EEE;--g1:#F5F5F5;--g05:#FAFAFA;
+  --ok:#2E7D32;--ok-bg:#E8F5E9;--res:#F9A825;--res-bg:#FFF8E1;--sold:#9E9E9E;--sold-bg:#F5F5F5;
+  --sh:0 1px 2px rgba(0,0,0,.05);--sh2:0 10px 30px -12px rgba(0,0,0,.18);
+}
+.bl{color:var(--g9);}
+.bl *{box-sizing:border-box}
+.wrap{max-width:80rem;margin:0 auto;padding:0 1rem}
+@media(min-width:640px){.wrap{padding:0 1.5rem}}
+@media(min-width:1024px){.wrap{padding:0 2rem}}
+@media(max-width:700px){.planhint{display:none}}
+
+/* ---------- hero ---------- */
+.hero{background:linear-gradient(135deg,#FFF3E0 0%,#fff 55%,#FFF8F2 100%);border-bottom:1px solid var(--g2)}
+.hero-in{display:flex;flex-wrap:wrap;gap:1.5rem;align-items:flex-end;justify-content:space-between;padding:1.5rem 0 2rem}
+.badge{display:inline-flex;align-items:center;gap:.4rem;background:var(--p);color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .6rem;border-radius:999px}
+h1.t{font-size:1.9rem;line-height:1.15;font-weight:700;margin:.6rem 0 .35rem}
+@media(min-width:640px){h1.t{font-size:2.6rem}}
+.sub{color:var(--g6);font-size:1rem;max-width:44rem}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem;width:100%}
+@media(min-width:640px){.stats{grid-template-columns:repeat(4,minmax(0,1fr));width:auto}}
+.stat{background:#fff;border:1px solid var(--g2);border-radius:.9rem;padding:.7rem .9rem;box-shadow:var(--sh);min-width:7.5rem}
+.stat b{display:block;font-size:1.35rem;line-height:1.2;font-weight:700}
+.stat span{font-size:.72rem;color:var(--g6);text-transform:uppercase;letter-spacing:.04em}
+
+/* ---------- toolbar ---------- */
+.panel{background:#fff;border:1px solid var(--g2);border-radius:1rem;box-shadow:var(--sh)}
+.bar{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:.75rem}
+.seg{display:inline-flex;background:var(--g1);border-radius:.7rem;padding:.2rem;gap:.2rem}
+.seg button{border:0;background:transparent;color:var(--g7);font-size:.82rem;font-weight:600;padding:.45rem .8rem;border-radius:.55rem;cursor:pointer;white-space:nowrap}
+.seg button[aria-pressed=true]{background:#fff;color:var(--p7);box-shadow:var(--sh)}
+.sel,.inp{border:1px solid var(--g3);border-radius:.6rem;padding:.45rem .6rem;font-size:.82rem;color:var(--g7);background:#fff}
+.lbl{font-size:.72rem;color:var(--g5);text-transform:uppercase;letter-spacing:.05em;margin-right:.15rem}
+.link-btn{border:0;background:none;color:var(--p7);font-size:.8rem;font-weight:600;cursor:pointer;padding:.35rem .2rem;text-decoration:underline}
+
+/* ---------- floor tabs ---------- */
+.floors{display:flex;gap:.4rem;overflow-x:auto;padding:.2rem 0 .5rem;-webkit-overflow-scrolling:touch}
+.ftab{flex:0 0 auto;border:1px solid var(--g3);background:#fff;border-radius:.7rem;padding:.5rem .85rem;cursor:pointer;text-align:left;min-width:8.5rem}
+.ftab b{display:block;font-size:.9rem;font-weight:700}
+.ftab span{font-size:.72rem;color:var(--g6)}
+.ftab[aria-pressed=true]{border-color:var(--p);background:var(--p05);box-shadow:0 0 0 1px var(--p) inset}
+
+/* ---------- plan viewer ---------- */
+.planbox{position:relative;background:#fff;border-radius:1rem;border:1px solid var(--g2);overflow:hidden}
+.planscroll{overflow:auto;-webkit-overflow-scrolling:touch;background:#fff}
+.planinner{position:relative;margin:0 auto;transform-origin:0 0}
+.planinner img{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}
+.planinner canvas{position:absolute;inset:0;width:100%;height:100%}
+.planhint{position:absolute;left:.6rem;bottom:.6rem;max-width:calc(100% - 1.2rem);background:rgba(255,255,255,.92);border:1px solid var(--g2);border-radius:.5rem;font-size:.72rem;color:var(--g6);padding:.3rem .5rem;pointer-events:none}
+.zoomer{position:absolute;right:.6rem;top:.6rem;display:flex;gap:.25rem;background:rgba(255,255,255,.94);border:1px solid var(--g2);border-radius:.6rem;padding:.2rem}
+.zoomer button{border:0;background:transparent;width:1.9rem;height:1.9rem;border-radius:.4rem;cursor:pointer;font-size:1rem;font-weight:700;color:var(--g7)}
+.zoomer button:hover{background:var(--g1)}
+.tip{position:fixed;z-index:60;pointer-events:none;background:#222;color:#fff;border-radius:.5rem;padding:.4rem .55rem;font-size:.75rem;line-height:1.35;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;transition:opacity .12s}
+.tip b{color:#FFD08A}
+
+/* ---------- grid (шахматка) ---------- */
+.chess{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:.25rem}
+.crow{display:flex;gap:.35rem;align-items:stretch;margin-bottom:.35rem}
+.cflab{flex:0 0 5.6rem;position:sticky;left:0;background:#fff;z-index:2;display:flex;flex-direction:column;justify-content:center;padding:.2rem .4rem;border-right:1px solid var(--g2)}
+.cflab b{font-size:.82rem}
+.cflab span{font-size:.66rem;color:var(--g5)}
+.cell{flex:0 0 4.6rem;border:1px solid var(--g3);border-radius:.5rem;padding:.35rem .3rem;cursor:pointer;text-align:left;background:#fff;transition:transform .08s,box-shadow .08s;position:relative}
+.cell:hover{transform:translateY(-2px);box-shadow:var(--sh2);z-index:1}
+.cell b{display:block;font-size:.78rem;font-weight:700;line-height:1.1}
+.cell i{display:block;font-style:normal;font-size:.66rem;color:var(--g6)}
+.cell em{position:absolute;right:.22rem;top:.22rem;font-style:normal;font-size:.56rem;font-weight:700;color:var(--g5)}
+.cell.s-available{background:var(--ok-bg);border-color:#A5D6A7}
+.cell.s-reserved{background:var(--res-bg);border-color:#FFE082}
+.cell.s-sold{background:var(--sold-bg);border-color:var(--g3);opacity:.62}
+.cell.k-shop{background:#FFE9CC;border-color:#FFCC80}
+.cell.k-storage{background:#EDE7F6;border-color:#D1C4E9}
+.cell.k-tech{background:var(--g1);border-color:var(--g3);color:var(--g5);cursor:default}
+.cell.dim{opacity:.22}
+.cell.sel{outline:2px solid var(--p);outline-offset:1px}
+
+/* ---------- legend ---------- */
+.legend{display:flex;flex-wrap:wrap;gap:.5rem .9rem;padding:.75rem;font-size:.75rem;color:var(--g6);align-items:center}
+.dot{display:inline-block;width:.7rem;height:.7rem;border-radius:.2rem;margin-right:.3rem;vertical-align:-1px;border:1px solid rgba(0,0,0,.12)}
+
+/* ---------- detail drawer ---------- */
+.ov{position:fixed;inset:0;background:rgba(20,16,12,.55);z-index:70;opacity:0;pointer-events:none;transition:opacity .2s}
+.ov.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;z-index:71;right:0;top:0;bottom:0;width:min(30rem,100%);background:#fff;box-shadow:-20px 0 60px rgba(0,0,0,.25);transform:translateX(100%);transition:transform .26s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}
+.drawer.on{transform:none}
+.dhead{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;padding:1rem 1rem .75rem;border-bottom:1px solid var(--g2)}
+.dhead h2{font-size:1.35rem;font-weight:700;line-height:1.2}
+.dhead p{font-size:.82rem;color:var(--g6);margin-top:.15rem}
+.x{border:0;background:var(--g1);width:2.1rem;height:2.1rem;border-radius:.6rem;cursor:pointer;font-size:1.1rem;color:var(--g7);flex:0 0 auto}
+.dbody{overflow-y:auto;padding:1rem;flex:1}
+.cropbox{background:#fff;border:1px solid var(--g2);border-radius:.75rem;overflow:hidden}
+.cropbox canvas{display:block;width:100%;height:auto}
+.kv{display:grid;grid-template-columns:1fr auto;gap:.1rem .75rem;margin-top:.9rem}
+.kv div{padding:.42rem 0;border-bottom:1px dashed var(--g2);font-size:.85rem}
+.kv div:nth-child(odd){color:var(--g6)}
+.kv div:nth-child(even){text-align:right;font-weight:600}
+.price{margin-top:1rem;background:var(--p05);border:1px solid var(--p1);border-radius:.75rem;padding:.8rem .9rem}
+.price b{display:block;font-size:1.5rem;font-weight:700;color:var(--p7)}
+.price span{font-size:.75rem;color:var(--g6)}
+.acts{display:grid;gap:.5rem;margin-top:1rem}
+.btn{display:flex;align-items:center;justify-content:center;gap:.5rem;border:0;border-radius:.7rem;padding:.75rem 1rem;font-size:.9rem;font-weight:600;cursor:pointer;text-decoration:none}
+.btn-p{background:var(--p);color:#fff}.btn-p:hover{background:var(--p6)}
+.btn-o{background:#fff;color:var(--g9);border:1px solid var(--g3)}.btn-o:hover{background:var(--g05)}
+.chip{display:inline-flex;align-items:center;gap:.3rem;font-size:.7rem;font-weight:700;padding:.22rem .5rem;border-radius:999px;text-transform:uppercase;letter-spacing:.04em}
+.chip.s-available{background:var(--ok-bg);color:var(--ok)}
+.chip.s-reserved{background:var(--res-bg);color:#8D6E00}
+.chip.s-sold{background:var(--sold-bg);color:var(--g6)}
+.note{font-size:.72rem;color:var(--g5);line-height:1.5;margin-top:1rem;border-top:1px solid var(--g2);padding-top:.75rem}
+
+/* ---------- tour modal ---------- */
+.tourwrap{position:fixed;inset:0;z-index:80;background:#0d0f13;display:none}
+.tourwrap.on{display:block}
+.tourwrap iframe{width:100%;height:100%;border:0;display:block}
+.tclose{position:absolute;right:1rem;top:1rem;z-index:81;border:0;background:rgba(255,255,255,.92);width:2.5rem;height:2.5rem;border-radius:999px;cursor:pointer;font-size:1.2rem;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+
+/* ---------- summary cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:.75rem}
+.card{background:#fff;border:1px solid var(--g2);border-radius:.9rem;padding:.9rem;box-shadow:var(--sh)}
+.card h3{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--g5);font-weight:700}
+.card b{display:block;font-size:1.5rem;font-weight:700;margin-top:.25rem}
+.card span{font-size:.78rem;color:var(--g6)}
+.sect-t{font-size:1.25rem;font-weight:700;margin:2rem 0 .35rem}
+.sect-s{font-size:.88rem;color:var(--g6);margin-bottom:.8rem}
+.srow{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin:2rem 0 .8rem;flex-wrap:wrap}
+</style>
+</head>
+<body class="antialiased">
+<header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <a href="index.html" class="flex items-center space-x-2">
+        <div class="bg-primary-500 text-white p-2 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg></div>
+      </a>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="index.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Home</span></a>
+        <a href="properties.html" class="flex items-center space-x-1 text-primary-500 font-medium transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg><span>Real Estate</span></a>
+        <a href="news.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg><span>News</span></a>
+        <a href="sold.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span>Sold Projects</span></a>
+        <a href="favorites.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg><span>Favorites</span></a>
+        <a href="about.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>About Us</span></a>
+        <a href="index.html#contact" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Contact</span></a>
+      </nav>
+      <div class="md:hidden">
+        <button type="button" id="menuBtn" class="text-gray-700 hover:text-primary-500 transition-colors p-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></button>
+      </div>
+      <div class="hidden md:flex items-center space-x-4">
+        <div class="relative group">
+          <button type="button" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg><span class="text-sm">&#127482;&#127480;</span></button>
+          <div class="absolute right-0 mt-2 w-32 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <button type="button" class="w-full px-3 py-2 text-left text-sm hover:bg-gray-50 first:rounded-t-lg last:rounded-b-lg bg-primary-50 text-primary-600">&#127482;&#127480; English</button>
+            <button type="button" class="w-full px-3 py-2 text-left text-sm hover:bg-gray-50 first:rounded-t-lg last:rounded-b-lg text-gray-700">&#127481;&#127479; T&uuml;rk&ccedil;e</button>
+            <button type="button" class="w-full px-3 py-2 text-left text-sm hover:bg-gray-50 first:rounded-t-lg last:rounded-b-lg text-gray-700">&#127479;&#127482; &#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;</button>
+          </div>
+        </div>
+        <a href="auth.html" class="flex items-center space-x-1 bg-primary-500 text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" x2="3" y1="12" y2="12"/></svg><span>Sign In</span></a>
+      </div>
+    </div>
+    <div id="mobileMenu" class="md:hidden hidden border-t border-gray-200 py-4 space-y-2">
+      <a href="index.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Home</a>
+      <a href="properties.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Real Estate</a>
+      <a href="news.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">News</a>
+      <a href="sold.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Sold Projects</a>
+      <a href="favorites.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Favorites</a>
+      <a href="about.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">About Us</a>
+      <a href="auth.html" class="block mx-2 mt-2 text-center bg-primary-500 text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors">Sign In</a>
+    </div>
+  </div>
+</header>
+<div class="min-h-screen bg-white bl">
+<main>
+
+<section class="hero">
+  <div class="wrap">
+    <nav class="flex items-center space-x-2 text-sm overflow-x-auto" style="padding-top:1rem">
+      <ol class="flex items-center space-x-2">
+        <li class="flex items-center whitespace-nowrap"><a href="index.html" class="text-gray-500 hover:text-primary-600 font-medium">Home</a></li>
+        <li class="flex items-center whitespace-nowrap"><span class="text-gray-400 mx-2">/</span><a href="properties.html" class="text-gray-500 hover:text-primary-600 font-medium">Properties</a></li>
+        <li class="flex items-center whitespace-nowrap"><span class="text-gray-400 mx-2">/</span><span class="text-gray-900 font-semibold" data-i18n="crumb">Блок №1</span></li>
+      </ol>
+    </nav>
+    <div class="hero-in">
+      <div>
+        <span class="badge" data-i18n="badgeSale">В продаже</span>
+        <h1 class="t" data-i18n="h1">Блок №1 — выбор квартиры</h1>
+        <p class="sub" data-i18n="sub">Кликните по квартире на плане этажа или в шахматке — откроется планировка, площади и 360° тур по квартире.</p>
+      </div>
+      <div class="stats" id="heroStats"></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap" style="padding-bottom:3rem">
+
+  <!-- toolbar -->
+  <div class="panel" style="margin-top:1.25rem">
+    <div class="bar">
+      <div class="seg" role="group" id="viewSeg">
+        <button type="button" data-view="plan" aria-pressed="true" data-i18n="vPlan">План этажа</button>
+        <button type="button" data-view="grid" aria-pressed="false" data-i18n="vGrid">Шахматка</button>
+        <button type="button" data-view="list" aria-pressed="false" data-i18n="vList">Список</button>
+      </div>
+      <span style="flex:1"></span>
+      <span class="lbl" data-i18n="fType">Тип</span>
+      <select class="sel" id="fType"></select>
+      <span class="lbl" data-i18n="fArea">Площадь</span>
+      <select class="sel" id="fArea"></select>
+      <button type="button" class="link-btn" id="fReset" data-i18n="reset">Сбросить</button>
+      <div class="seg" role="group" id="langSeg">
+        <button type="button" data-lang="ru" aria-pressed="true">RU</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+    <div class="legend" id="legend"></div>
+  </div>
+
+  <!-- floors -->
+  <div class="floors" id="floorTabs" style="margin-top:1rem"></div>
+
+  <!-- plan view -->
+  <div id="viewPlan">
+    <div class="planbox">
+      <div class="planscroll" id="planScroll">
+        <div class="planinner" id="planInner">
+          <img id="planImg" alt="План этажа" draggable="false">
+          <canvas id="planCv"></canvas>
+        </div>
+      </div>
+      <div class="zoomer">
+        <button type="button" id="zOut" title="-">&minus;</button>
+        <button type="button" id="zFit" title="fit" style="font-size:.7rem">FIT</button>
+        <button type="button" id="zIn" title="+">+</button>
+      </div>
+      <div class="planhint" id="planHint"></div>
+    </div>
+  </div>
+
+  <!-- grid view -->
+  <div id="viewGrid" hidden>
+    <div class="panel chess" id="chess"></div>
+  </div>
+
+  <!-- list view -->
+  <div id="viewList" hidden>
+    <div class="panel" style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:.85rem" id="listTbl"></table>
+    </div>
+  </div>
+
+  <!-- summary -->
+  <div class="srow">
+    <div>
+      <div class="sect-t" data-i18n="sumT">Состав блока</div>
+      <div class="sect-s" data-i18n="sumS">Данные взяты из рабочих планов этажей проекта.</div>
+    </div>
+  </div>
+  <div class="cards" id="summary"></div>
+
+  <div class="panel" style="margin-top:1.5rem;padding:1rem">
+    <div class="sect-t" style="margin-top:0" data-i18n="methT">Как читать данные</div>
+    <p style="font-size:.85rem;color:var(--g6);line-height:1.6" data-i18n="methS"></p>
+  </div>
+</div>
+</main>
+
+<!-- drawer -->
+<div class="ov" id="ov"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="dhead">
+    <div>
+      <span class="chip s-available" id="dChip">В продаже</span>
+      <h2 id="dTitle">—</h2>
+      <p id="dSubtitle">—</p>
+    </div>
+    <button type="button" class="x" id="dClose" aria-label="Close">&times;</button>
+  </div>
+  <div class="dbody">
+    <div class="cropbox"><canvas id="dCrop"></canvas></div>
+    <div class="kv" id="dKv"></div>
+    <div class="price" id="dPrice"></div>
+    <div class="acts">
+      <button type="button" class="btn btn-p" id="dTour">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M2 12h20"/><path d="M12 2a14.5 14.5 0 0 1 0 20 14.5 14.5 0 0 1 0-20"/></svg>
+        <span data-i18n="tourBtn">360° тур по квартире</span>
+      </button>
+      <a class="btn btn-o" id="dAsk" href="index.html#contact">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.94.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.87.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span data-i18n="askBtn">Запросить эту квартиру</span>
+      </a>
+      <button type="button" class="btn btn-o" id="dFav">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+        <span id="dFavTxt" data-i18n="favAdd">В избранное</span>
+      </button>
+    </div>
+    <p class="note" id="dNote"></p>
+  </div>
+</aside>
+
+<div class="tip" id="tip"></div>
+
+<!-- 360 tour -->
+<div class="tourwrap" id="tourWrap">
+  <button type="button" class="tclose" id="tClose" aria-label="Close">&times;</button>
+  <iframe id="tourFrame" title="360" allowfullscreen></iframe>
+</div>
+
+<footer class="bg-gray-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="col-span-1 md:col-span-2">
+        <div class="flex items-center space-x-2 mb-4">
+          <div class="bg-primary-500 text-white p-2 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg></div>
+          <span class="text-xl font-bold">OrientSquare</span>
+        </div>
+        <p class="text-gray-300 mb-6 max-w-md">Your trusted partner in finding the perfect property. We specialize in premium real estate solutions</p>
+        <div class="flex space-x-4">
+          <a href="#" class="text-gray-400 hover:text-primary-500 transition-colors" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" class="text-gray-400 hover:text-primary-500 transition-colors" aria-label="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg></a>
+          <a href="https://www.instagram.com/orient.square?igsh=Ym4zNm5ocjRlcmpj" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary-500 transition-colors" aria-label="Follow us on Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
+          <a href="#" class="text-gray-400 hover:text-primary-500 transition-colors" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="https://www.tiktok.com/@orient.square?_t=ZS-90FDbRoWzlw&amp;_r=1" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary-500 transition-colors" aria-label="Follow us on TikTok"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="text-gray-300 hover:text-primary-500 transition-colors">Home</a></li>
+          <li><a href="properties.html" class="text-gray-300 hover:text-primary-500 transition-colors">Properties</a></li>
+          <li><a href="news.html" class="text-gray-300 hover:text-primary-500 transition-colors">News</a></li>
+          <li><a href="sold.html" class="text-gray-300 hover:text-primary-500 transition-colors">Sold Projects</a></li>
+          <li><a href="about.html" class="text-gray-300 hover:text-primary-500 transition-colors">About Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Contact Info</h3>
+        <div class="space-y-3">
+          <div class="flex items-center space-x-3">
+            <span class="text-primary-500 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <span class="text-gray-300 text-sm">Maslak mah. Maslak meydan sk. Beybi Giz Plaza A Blok No: 1/55, Sar&#305;yer, Istanbul 34485, Turkey</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <span class="text-primary-500 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            <a href="tel:+90 546 199 7101" class="text-gray-300 text-sm hover:text-primary-400 transition-colors">+90 546 199 7101</a>
+          </div>
+          <div class="flex items-center space-x-3">
+            <span class="text-primary-500 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+            <a href="mailto:info@orientsquare.com" class="text-gray-300 text-sm hover:text-primary-400 transition-colors">info@orientsquare.com</a>
+          </div>
+          <div class="flex items-center space-x-3">
+            <span class="text-primary-500 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+            <span class="text-gray-300 text-sm">Mon-Fri 9AM-6PM, Sat 10AM-4PM</span>
+          </div>
+        </div>
+        <a href="index.html#contact" class="inline-block mt-4 bg-primary-500 text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors">Send Message</a>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+      <p class="text-gray-400 text-sm">&copy; 2024 OrientSquare Real Estate - Istanbul, Turkey. All rights reserved.</p>
+      <div class="flex space-x-6 mt-4 md:mt-0">
+        <a href="#" class="text-gray-400 hover:text-primary-500 text-sm transition-colors">Privacy Policy</a>
+        <a href="#" class="text-gray-400 hover:text-primary-500 text-sm transition-colors">Terms of Service</a>
+        <a href="#" class="text-gray-400 hover:text-primary-500 text-sm transition-colors">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<button type="button" id="chatBtn" class="fixed bottom-6 right-6 bg-primary-500 hover:bg-primary-600 text-white p-4 rounded-full shadow-lg z-40 transition-colors" aria-label="Open chat"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></button>
+<div id="chatBox" class="hidden fixed bottom-24 right-6 w-80 max-w-[calc(100vw-3rem)] bg-white rounded-2xl shadow-2xl border border-gray-200 z-40 overflow-hidden">
+  <div class="bg-primary-500 text-white px-4 py-3 flex items-center justify-between">
+    <span class="font-semibold">OrientSquare Support</span>
+    <button type="button" id="chatClose" class="text-white/80 hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+  </div>
+  <div class="p-4 space-y-3">
+    <div class="bg-gray-100 text-gray-700 text-sm rounded-xl rounded-tl-none px-3 py-2">Hello! How can we help you find your property today?</div>
+    <div class="flex gap-2">
+      <input type="text" placeholder="Type your message..." class="flex-1 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+      <button type="button" class="bg-primary-500 text-white px-3 rounded-lg hover:bg-primary-600 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></button>
+    </div>
+  </div>
+</div>
+<script>
+document.getElementById('menuBtn').addEventListener('click',function(){document.getElementById('mobileMenu').classList.toggle('hidden');});
+document.getElementById('chatBtn').addEventListener('click',function(){document.getElementById('chatBox').classList.toggle('hidden');});
+document.getElementById('chatClose').addEventListener('click',function(){document.getElementById('chatBox').classList.add('hidden');});
+
+</script>
+</div>
+
+<script>
+/* ============================================================
+   BLOCK 1 — interactive unit picker
+   Данные квартир получены из рабочих планов (PDF, 5 листов).
+   ------------------------------------------------------------
+   НАСТРОЙКИ: правь только блок CONFIG ниже.
+   ============================================================ */
+var CONFIG = {
+  blockName:   {ru:'Блок №1', en:'Block 1'},
+  address:     {ru:'Адрес уточняется', en:'Address on request'},
+  /* Цены. null => «Цена по запросу».
+     Чтобы включить цены — поставь цену за м² по этажам, например 1:850, 2:900 */
+  pricePerM2:  {0:null, 1:null, 2:null, 3:null, 4:null},
+  currency:    'USD',
+  /* Статусы: 'sold' | 'reserved'. Ключ — "этаж-номер", например '2-XIV': 'sold' */
+  statusOverrides: {},
+  tourFile: 'tour-360.html'
+};
+
+var FLOORS = {"0":{"f":0,"ru":"Подвальный этаж","en":"Basement","lvl":"-3,450","kind":"storage","w":2100,"h":638,"units":[{"id":1,"n":"I","a":59.7,"row":"n","bb":[0.09499,0.23743,0.09597,0.22781],"p":7.0,"k":"storage"},{"id":2,"n":"II","a":61.6,"row":"n","bb":[0.21763,0.23743,0.09889,0.22781],"p":7.2,"k":"storage"},{"id":3,"n":"III","a":42.8,"row":"n","bb":[0.34873,0.20535,0.06506,0.28877],"p":4.6,"k":"storage"},{"id":4,"n":"IV","a":59.7,"row":"n","bb":[0.41249,0.20535,0.09597,0.25989],"p":7.0,"k":"storage"},{"id":5,"n":"V","a":61.6,"row":"n","bb":[0.53513,0.20535,0.09889,0.25989],"p":7.2,"k":"storage"},{"id":6,"n":"VI","a":61.6,"row":"n","bb":[0.69681,0.20535,0.09889,0.25989],"p":7.2,"k":"storage"},{"id":7,"n":"VII","a":59.7,"row":"n","bb":[0.82238,0.20535,0.09629,0.25989],"p":7.0,"k":"storage"},{"id":8,"n":"VIII","a":46.9,"row":"n","bb":[0.91705,0.20535,0.07775,0.28877],"p":4.8,"k":"storage"},{"id":9,"n":"IX","a":46.9,"row":"s","bb":[0.91705,0.48984,0.07775,0.28877],"p":5.0,"k":"storage"},{"id":10,"n":"X","a":59.1,"row":"s","bb":[0.82368,0.51872,0.09499,0.25989],"p":7.0,"k":"storage"},{"id":11,"n":"XI","a":38.6,"row":"s","bb":[0.76187,0.51872,0.06311,0.25989],"p":4.5,"k":"storage"},{"id":12,"n":"XII","a":98.5,"row":"s","bb":[0.66461,0.20535,0.09889,0.57326],"p":9.5,"k":"storage"},{"id":13,"n":"XIII","a":98.5,"row":"s","bb":[0.56766,0.20535,0.09889,0.57326],"p":9.5,"k":"storage"},{"id":14,"n":"XIV","a":38.6,"row":"s","bb":[0.50586,0.51872,0.06344,0.25989],"p":4.5,"k":"storage"},{"id":15,"n":"XV","a":59.1,"row":"s","bb":[0.41249,0.51872,0.09499,0.25989],"p":7.0,"k":"storage"},{"id":16,"n":"XVI","a":42.8,"row":"s","bb":[0.34841,0.48984,0.06539,0.28877],"p":4.8,"k":"storage"},{"id":17,"n":"XVII","a":96.1,"row":"s","bb":[0.24984,0.20428,0.09759,0.57433],"p":9.3,"k":"storage"},{"id":18,"n":"XVIII","a":38.6,"row":"s","bb":[0.18835,0.51872,0.06344,0.25989],"p":4.5,"k":"storage"},{"id":19,"n":"XIX","a":64.8,"row":"s","bb":[0.09466,0.45989,0.09532,0.31872],"p":7.2,"k":"storage"},{"id":20,"n":"XX","a":106.6,"row":"s","bb":[0.0283,0.20428,0.10475,0.57433],"p":3.8,"k":"tech"}]},"1":{"f":1,"ru":"1-й этаж","en":"1st floor","lvl":"±0.000","kind":"flat","w":2100,"h":644,"units":[{"id":1,"n":"I","a":57.1,"row":"n","bb":[0.09553,0.21225,0.09618,0.25871],"r":2,"b":3.4,"k":"flat"},{"id":2,"n":"II","a":58.8,"row":"n","bb":[0.21794,0.21014,0.09877,0.26082],"r":2,"b":3.4,"k":"flat"},{"id":3,"n":"III","a":44.5,"row":"n","bb":[0.34812,0.21542,0.06574,0.28511],"r":2,"k":"flat"},{"id":4,"n":"IV","a":57.1,"row":"n","bb":[0.41224,0.21225,0.09585,0.25871],"r":2,"b":3.4,"k":"flat"},{"id":5,"n":"V","a":58.8,"row":"n","bb":[0.53433,0.21225,0.09877,0.25871],"r":2,"b":3.4,"k":"flat"},{"id":6,"n":"VI","a":58.8,"row":"n","bb":[0.6956,0.21225,0.09877,0.25871],"r":2,"b":3.4,"k":"flat"},{"id":7,"n":"VII","a":57.1,"row":"n","bb":[0.8206,0.21225,0.09585,0.25871],"r":2,"b":3.4,"k":"flat"},{"id":8,"n":"VIII","a":48.9,"row":"n","bb":[0.91483,0.21542,0.0774,0.28511],"r":2,"k":"flat"},{"id":9,"n":"IX","a":44.9,"row":"s","bb":[0.91483,0.49525,0.0774,0.25871],"r":2,"k":"flat"},{"id":10,"n":"X","a":59.8,"row":"s","bb":[0.82124,0.52376,0.09683,0.25977],"r":2,"b":1.5,"k":"flat"},{"id":11,"n":"XI","a":37.2,"row":"s","bb":[0.76004,0.52376,0.06347,0.25977],"r":2,"b":1.5,"k":"flat"},{"id":12,"n":"XII","a":97.0,"row":"s","bb":[0.66354,0.21542,0.09845,0.56494],"r":3,"k":"flat"},{"id":13,"n":"XIII","a":97.0,"row":"s","bb":[0.56671,0.21542,0.09877,0.56494],"r":3,"k":"flat"},{"id":14,"n":"XIV","a":37.2,"row":"s","bb":[0.50486,0.52376,0.0638,0.25977],"r":2,"b":1.5,"k":"flat"},{"id":15,"n":"XV","a":59.8,"row":"s","bb":[0.41062,0.52376,0.0965,0.25977],"r":2,"b":1.5,"k":"flat"},{"id":16,"n":"XVI","a":39.9,"row":"s","bb":[0.34812,0.49525,0.06574,0.25871],"r":2,"k":"flat"},{"id":17,"n":"XVII","a":95.1,"row":"s","bb":[0.25032,0.21542,0.09715,0.56494],"r":3,"k":"flat"},{"id":18,"n":"XVIII","a":37.2,"row":"s","bb":[0.18847,0.52376,0.0638,0.26188],"r":2,"b":1.5,"k":"flat"},{"id":19,"n":"XIX","a":59.8,"row":"s","bb":[0.09424,0.52376,0.0965,0.25977],"r":2,"b":1.5,"k":"flat"},{"id":20,"n":"XX","a":116.3,"row":"s","bb":[0.02008,0.21859,0.11399,0.55333],"k":"shop"}]},"2":{"f":2,"ru":"2-й этаж","en":"2nd floor","lvl":"+3.450","kind":"flat","w":2100,"h":600,"units":[{"id":1,"n":"I","a":53.0,"row":"n","bb":[0.0075,0.23717,0.07823,0.30901],"r":2,"k":"flat"},{"id":2,"n":"II","a":62.4,"row":"n","bb":[0.08409,0.23261,0.09713,0.28164],"r":2,"b":3.4,"k":"flat"},{"id":3,"n":"III","a":64.5,"row":"n","bb":[0.20795,0.23261,0.10007,0.28164],"r":2,"b":3.4,"k":"flat"},{"id":4,"n":"IV","a":48.7,"row":"n","bb":[0.33996,0.23717,0.06649,0.30901],"r":2,"k":"flat"},{"id":5,"n":"V","a":62.4,"row":"n","bb":[0.40482,0.23261,0.09681,0.28164],"r":2,"b":3.4,"k":"flat"},{"id":6,"n":"VI","a":64.5,"row":"n","bb":[0.52868,0.23261,0.09974,0.28164],"r":2,"b":3.4,"k":"flat"},{"id":7,"n":"VII","a":64.5,"row":"n","bb":[0.69198,0.23261,0.09974,0.28164],"r":2,"b":3.4,"k":"flat"},{"id":8,"n":"VIII","a":62.4,"row":"n","bb":[0.81877,0.23261,0.09681,0.28164],"r":2,"b":3.4,"k":"flat"},{"id":9,"n":"IX","a":53.0,"row":"n","bb":[0.91428,0.23717,0.07823,0.30901],"r":2,"k":"flat"},{"id":10,"n":"X","a":48.0,"row":"s","bb":[0.91428,0.54048,0.07823,0.31813],"r":2,"b":1.3,"k":"flat"},{"id":11,"n":"XI","a":65.0,"row":"s","bb":[0.81943,0.57241,0.09778,0.28164],"r":2,"b":1.5,"k":"flat"},{"id":12,"n":"XII","a":41.5,"row":"s","bb":[0.7575,0.57241,0.06421,0.28164],"r":2,"b":1.5,"k":"flat"},{"id":13,"n":"XIII","a":102.3,"row":"s","bb":[0.65939,0.23717,0.09941,0.62144],"r":3,"b":1.3,"k":"flat"},{"id":14,"n":"XIV","a":102.3,"row":"s","bb":[0.5616,0.23717,0.09941,0.62372],"r":3,"b":1.3,"k":"flat"},{"id":15,"n":"XV","a":41.5,"row":"s","bb":[0.4987,0.57241,0.06454,0.28164],"r":2,"b":1.5,"k":"flat"},{"id":16,"n":"XVI","a":65.0,"row":"s","bb":[0.40352,0.57241,0.09746,0.28164],"r":2,"b":1.5,"k":"flat"},{"id":17,"n":"XVII","a":44.1,"row":"s","bb":[0.33996,0.54048,0.06649,0.32041],"r":2,"b":1.3,"k":"flat"},{"id":18,"n":"XVIII","a":100.4,"row":"s","bb":[0.24087,0.23717,0.09844,0.62144],"r":3,"b":1.3,"k":"flat"},{"id":19,"n":"XIX","a":41.5,"row":"s","bb":[0.17829,0.57241,0.06421,0.28164],"r":2,"b":1.5,"k":"flat"},{"id":20,"n":"XX","a":65.0,"row":"s","bb":[0.08279,0.57241,0.09778,0.28164],"r":2,"b":1.5,"k":"flat"},{"id":21,"n":"XXI","a":48.0,"row":"s","bb":[0.0075,0.54048,0.07823,0.31813],"r":2,"b":1.3,"k":"flat"}]},"3":{"f":3,"ru":"3-й этаж","en":"3rd floor","lvl":"+6.900","kind":"flat","w":2100,"h":603,"units":[{"id":1,"n":"I","a":53.0,"row":"n","bb":[0.00739,0.23977,0.07829,0.30877],"r":2,"k":"flat"},{"id":2,"n":"II","a":62.4,"row":"n","bb":[0.08401,0.23626,0.09711,0.2807],"r":2,"b":3.4,"k":"flat"},{"id":3,"n":"III","a":64.5,"row":"n","bb":[0.20766,0.23626,0.10013,0.2807],"r":2,"b":3.4,"k":"flat"},{"id":4,"n":"IV","a":48.7,"row":"n","bb":[0.33972,0.23977,0.06653,0.30877],"r":2,"k":"flat"},{"id":5,"n":"V","a":62.4,"row":"n","bb":[0.40457,0.23626,0.09711,0.2807],"r":2,"b":3.4,"k":"flat"},{"id":6,"n":"VI","a":64.5,"row":"n","bb":[0.52823,0.23626,0.10013,0.2807],"r":2,"b":3.4,"k":"flat"},{"id":7,"n":"VII","a":64.5,"row":"n","bb":[0.69187,0.23626,0.0998,0.2807],"r":2,"b":3.4,"k":"flat"},{"id":8,"n":"VIII","a":62.4,"row":"n","bb":[0.81855,0.23626,0.09711,0.2807],"r":2,"b":3.4,"k":"flat"},{"id":9,"n":"IX","a":53.0,"row":"n","bb":[0.91398,0.23977,0.07829,0.3076],"r":2,"k":"flat"},{"id":10,"n":"X","a":48.0,"row":"s","bb":[0.91398,0.54269,0.07829,0.31813],"r":2,"b":1.3,"k":"flat"},{"id":11,"n":"XI","a":65.0,"row":"s","bb":[0.81922,0.5731,0.09778,0.2807],"r":2,"b":1.5,"k":"flat"},{"id":12,"n":"XII","a":41.5,"row":"s","bb":[0.75739,0.5731,0.06418,0.2807],"r":2,"b":1.5,"k":"flat"},{"id":13,"n":"XIII","a":102.3,"row":"s","bb":[0.65927,0.23977,0.09946,0.62105],"r":3,"b":1.3,"k":"flat"},{"id":14,"n":"XIV","a":102.3,"row":"s","bb":[0.56149,0.23977,0.09946,0.62105],"r":3,"b":1.3,"k":"flat"},{"id":15,"n":"XV","a":41.5,"row":"s","bb":[0.49866,0.5731,0.06452,0.2807],"r":2,"b":1.5,"k":"flat"},{"id":16,"n":"XVI","a":65.0,"row":"s","bb":[0.40323,0.5731,0.09778,0.2807],"r":2,"b":1.5,"k":"flat"},{"id":17,"n":"XVII","a":44.1,"row":"s","bb":[0.33972,0.54269,0.06653,0.31813],"r":2,"b":1.3,"k":"flat"},{"id":18,"n":"XVIII","a":100.4,"row":"s","bb":[0.24059,0.23977,0.09879,0.62105],"r":3,"b":1.3,"k":"flat"},{"id":19,"n":"XIX","a":41.5,"row":"s","bb":[0.17809,0.5731,0.06418,0.2807],"r":2,"b":1.5,"k":"flat"},{"id":20,"n":"XX","a":65.0,"row":"s","bb":[0.08266,0.5731,0.09778,0.2807],"r":2,"b":1.5,"k":"flat"},{"id":21,"n":"XXI","a":48.0,"row":"s","bb":[0.00739,0.54269,0.07829,0.31813],"r":2,"b":1.3,"k":"flat"}]},"4":{"f":4,"ru":"4-й этаж","en":"4th floor","lvl":"+10.350","kind":"flat","w":2100,"h":615,"units":[{"id":1,"n":"I","a":49.5,"row":"n","bb":[0.00824,0.27672,0.07814,0.28234],"r":2,"k":"flat"},{"id":2,"n":"II","a":60.9,"row":"n","bb":[0.08473,0.24972,0.09693,0.28009],"r":2,"b":3.4,"k":"flat"},{"id":3,"n":"III","a":62.8,"row":"n","bb":[0.20837,0.25309,0.09957,0.27672],"r":2,"b":3.4,"k":"flat"},{"id":4,"n":"IV","a":45.5,"row":"n","bb":[0.33993,0.27672,0.06627,0.28121],"r":2,"k":"flat"},{"id":5,"n":"V","a":62.4,"row":"n","bb":[0.40488,0.25309,0.0966,0.27672],"r":2,"b":3.4,"k":"flat"},{"id":6,"n":"VI","a":62.8,"row":"n","bb":[0.52852,0.25309,0.09957,0.27672],"r":2,"b":3.4,"k":"flat"},{"id":7,"n":"VII","a":62.8,"row":"n","bb":[0.69139,0.25309,0.09957,0.27672],"r":2,"b":3.4,"k":"flat"},{"id":8,"n":"VIII","a":60.9,"row":"n","bb":[0.818,0.25309,0.0966,0.27672],"r":2,"b":3.4,"k":"flat"},{"id":9,"n":"IX","a":49.5,"row":"n","bb":[0.91329,0.27672,0.07814,0.28121],"r":2,"k":"flat"},{"id":10,"n":"X","a":48.0,"row":"s","bb":[0.91329,0.55343,0.07814,0.27334],"r":2,"k":"flat"},{"id":11,"n":"XI","a":61.8,"row":"s","bb":[0.81866,0.58268,0.09594,0.27559],"r":2,"b":1.7,"k":"flat"},{"id":12,"n":"XII","a":49.9,"row":"s","bb":[0.75668,0.58268,0.06429,0.27559],"r":2,"b":1.7,"k":"flat"},{"id":13,"n":"XIII","a":99.1,"row":"s","bb":[0.65908,0.27672,0.09924,0.56355],"r":3,"k":"flat"},{"id":14,"n":"XIV","a":99.1,"row":"s","bb":[0.56116,0.27672,0.09924,0.56355],"r":3,"k":"flat"},{"id":15,"n":"XV","a":39.9,"row":"s","bb":[0.49852,0.58268,0.06429,0.27559],"r":2,"b":1.7,"k":"flat"},{"id":16,"n":"XVI","a":61.8,"row":"s","bb":[0.40488,0.58268,0.09594,0.27559],"r":2,"b":1.7,"k":"flat"},{"id":17,"n":"XVII","a":44.0,"row":"s","bb":[0.33993,0.55343,0.06627,0.27334],"r":2,"k":"flat"},{"id":18,"n":"XVIII","a":97.3,"row":"s","bb":[0.24102,0.27672,0.09858,0.56355],"r":3,"k":"flat"},{"id":19,"n":"XIX","a":39.9,"row":"s","bb":[0.1787,0.58268,0.06396,0.27559],"r":2,"b":1.7,"k":"flat"},{"id":20,"n":"XX","a":61.8,"row":"s","bb":[0.08473,0.58268,0.09627,0.27559],"r":2,"b":1.7,"k":"flat"},{"id":21,"n":"XXI","a":48.0,"row":"s","bb":[0.00824,0.55343,0.07814,0.27334],"r":2,"k":"flat"}]}};
+
+var I18N = {
+ ru:{crumb:'Блок №1',badgeSale:'В продаже',h1:'Блок №1 — выбор квартиры',
+  sub:'Кликните по квартире на плане этажа или в шахматке — откроется планировка, площади и 360° тур по квартире.',
+  vPlan:'План этажа',vGrid:'Шахматка',vList:'Список',fType:'Тип',fArea:'Площадь',reset:'Сбросить',
+  sumT:'Состав блока',sumS:'Данные взяты из рабочих планов этажей проекта.',
+  methT:'Как читать данные',
+  methS:'Площади, нумерация квартир (римские цифры), площади балконов (Б) и кладовых (П), а также отметки уровней взяты напрямую с рабочих планов этажей проекта. Границы кликабельных зон построены по цветовой заливке помещений на этих же планах, поэтому подсветка квартиры совпадает с чертежом. 360° тур — это схематичная 3D-визуализация, построенная по площади и типу квартиры: она показывает соотношение комнат, окна и вид, но не является фотографией готовой отделки. Цены и статусы продажи задаются в блоке CONFIG в коде страницы.',
+  tourBtn:'360° тур по квартире',askBtn:'Запросить эту квартиру',favAdd:'В избранное',favRem:'В избранном',
+  all:'Все',flat:'Квартира',shop:'Магазин',storage:'Кладовая',tech:'Техпомещение',
+  r1:'Студия',r2:'2-комнатная',r3:'3-комнатная',
+  available:'В продаже',reserved:'Забронирована',sold:'Продана',
+  onRequest:'Цена по запросу',perM2:'за м²',
+  kFloor:'Этаж',kUnit:'Номер по плану',kType:'Тип',kArea:'Общая площадь',kBalc:'Балкон',kStore:'Кладовая (П)',kLevel:'Отметка уровня',kSide:'Расположение на плане',kTotal:'Итого с балконом',
+  north:'верхний ряд',south:'нижний ряд',
+  hintDesk:'Наведите на квартиру — подсветится, клик — детали',hintTouch:'Нажмите на квартиру на плане',
+  cFlats:'Квартир в блоке',cFloors:'Этажей',cRange:'Площади квартир',cStore:'Кладовых в подвале',
+  sum2:'2-комнатных',sum3:'3-комнатных',sumShop:'Коммерция',sumStore:'Кладовые',sumAvgTitle:'Средняя площадь',
+  noteD:'Планировка показана фрагментом рабочего плана этажа. Итоговые площади уточняются по обмеру БТИ после сдачи.',
+  thN:'№',thFloor:'Этаж',thType:'Тип',thArea:'Площадь',thBalc:'Балкон',thStatus:'Статус',thAct:'',view:'Открыть',
+  m2:'м²',fl:'эт.',basement:'Подвал'},
+ en:{crumb:'Block 1',badgeSale:'For sale',h1:'Block 1 — pick your apartment',
+  sub:'Click an apartment on the floor plan or in the availability grid — you will get the layout, areas and a 360° tour.',
+  vPlan:'Floor plan',vGrid:'Availability',vList:'List',fType:'Type',fArea:'Area',reset:'Reset',
+  sumT:'What is inside the block',sumS:'All figures are taken from the project working drawings.',
+  methT:'How to read this data',
+  methS:'Areas, apartment numbering (roman numerals), balcony (Б) and storage (П) areas and floor levels are taken directly from the project working floor plans. The clickable hotspots are generated from the colour fills of the same drawings, so the highlight matches the blueprint exactly. The 360° tour is a schematic 3D visualisation derived from the apartment area and type — it shows room proportions, windows and the view, but it is not a photo of a finished interior. Prices and sales status are set in the CONFIG block in the page source.',
+  tourBtn:'360° apartment tour',askBtn:'Request this apartment',favAdd:'Add to favourites',favRem:'In favourites',
+  all:'All',flat:'Apartment',shop:'Retail unit',storage:'Storage',tech:'Technical room',
+  r1:'Studio',r2:'2-room',r3:'3-room',
+  available:'Available',reserved:'Reserved',sold:'Sold',
+  onRequest:'Price on request',perM2:'per m²',
+  kFloor:'Floor',kUnit:'Unit on plan',kType:'Type',kArea:'Total area',kBalc:'Balcony',kStore:'Storage (П)',kLevel:'Level',kSide:'Position on plan',kTotal:'With balcony',
+  north:'upper row',south:'lower row',
+  hintDesk:'Hover an apartment to highlight it, click for details',hintTouch:'Tap an apartment on the plan',
+  cFlats:'Apartments',cFloors:'Floors',cRange:'Apartment areas',cStore:'Storage rooms',
+  sum2:'2-room',sum3:'3-room',sumShop:'Retail',sumStore:'Storage',sumAvgTitle:'Average area',
+  noteD:'The layout is shown as a fragment of the working floor plan. Final areas are confirmed by the official measurement after completion.',
+  thN:'No.',thFloor:'Floor',thType:'Type',thArea:'Area',thBalc:'Balcony',thStatus:'Status',thAct:'',view:'Open',
+  m2:'m²',fl:'fl.',basement:'Basement'}
+};
+
+var lang = (localStorage.getItem('os_lang')==='en') ? 'en' : 'ru';
+var T = function(k){ return (I18N[lang][k]!==undefined?I18N[lang][k]:k); };
+var ORDER = [4,3,2,1,0];
+var curFloor = 1, curView = 'plan', hoverId = 0, selKey = null;
+var filters = {type:'all', area:'all'};
+var favs = JSON.parse(localStorage.getItem('os_favs')||'[]');
+
+/* ---------- helpers ---------- */
+function keyOf(f,u){ return f+'-'+u.n; }
+function kindOf(u){ return u.k; }
+function typeKey(u){
+  if(u.k==='shop') return 'shop';
+  if(u.k==='storage') return 'storage';
+  if(u.k==='tech') return 'tech';
+  return 'r'+(u.r||2);
+}
+function typeName(u){ return T(typeKey(u)); }
+function statusOf(f,u){
+  if(u.k==='tech') return 'tech';
+  var s = CONFIG.statusOverrides[keyOf(f,u)];
+  return s || 'available';
+}
+function floorName(f){ return lang==='ru'?FLOORS[f].ru:FLOORS[f].en; }
+function fmt(n){ return (Math.round(n*10)/10).toFixed(1).replace('.0',''); }
+function money(v){
+  var s = Math.round(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ');
+  return (CONFIG.currency==='USD'?'$':'') + s + (CONFIG.currency!=='USD'?(' '+CONFIG.currency):'');
+}
+function priceOf(f,u){
+  var ppm = CONFIG.pricePerM2[f];
+  if(!ppm) return null;
+  return {total: u.a*ppm, ppm: ppm};
+}
+function allUnits(){
+  var r=[]; ORDER.forEach(function(f){ FLOORS[f].units.forEach(function(u){ r.push({f:f,u:u}); }); }); return r;
+}
+function passFilter(f,u){
+  if(filters.type!=='all' && typeKey(u)!==filters.type) return false;
+  if(filters.area!=='all'){
+    var p=filters.area.split('-'), lo=+p[0], hi=+p[1];
+    if(!(u.a>=lo && u.a<hi)) return false;
+  }
+  return true;
+}
+
+/* ---------- hero + summary ---------- */
+function renderHero(){
+  var flats = allUnits().filter(function(x){return x.u.k==='flat';});
+  var areas = flats.map(function(x){return x.u.a;});
+  var stores = allUnits().filter(function(x){return x.u.k==='storage';}).length;
+  var st=[[flats.length,T('cFlats')],[4+' + '+T('basement').toLowerCase(),T('cFloors')],
+          [fmt(Math.min.apply(null,areas))+'–'+fmt(Math.max.apply(null,areas))+' '+T('m2'),T('cRange')],
+          [stores,T('cStore')]];
+  document.getElementById('heroStats').innerHTML = st.map(function(s){
+    return '<div class="stat"><b>'+s[0]+'</b><span>'+s[1]+'</span></div>';}).join('');
+}
+function renderSummary(){
+  var u=allUnits(), f2=0,f3=0,shop=0,store=0,sum=0,cnt=0;
+  u.forEach(function(x){
+    if(x.u.k==='flat'){ if(x.u.r===3) f3++; else f2++; sum+=x.u.a; cnt++; }
+    if(x.u.k==='shop') shop++;
+    if(x.u.k==='storage') store++;
+  });
+  var flats=u.filter(function(x){return x.u.k==='flat';});
+  var min2=Math.min.apply(null,flats.filter(function(x){return x.u.r!==3;}).map(function(x){return x.u.a;}));
+  var max2=Math.max.apply(null,flats.filter(function(x){return x.u.r!==3;}).map(function(x){return x.u.a;}));
+  var min3=Math.min.apply(null,flats.filter(function(x){return x.u.r===3;}).map(function(x){return x.u.a;}));
+  var max3=Math.max.apply(null,flats.filter(function(x){return x.u.r===3;}).map(function(x){return x.u.a;}));
+  var cards=[
+    [T('sum2'),f2,fmt(min2)+'–'+fmt(max2)+' '+T('m2')],
+    [T('sum3'),f3,fmt(min3)+'–'+fmt(max3)+' '+T('m2')],
+    [T('sumShop'),shop,'116.3 '+T('m2')],
+    [T('sumStore'),store,'38.6–106.6 '+T('m2')],
+    [T('sumAvgTitle'),fmt(sum/cnt)+' '+T('m2'),T('cFlats')+': '+cnt]
+  ];
+  document.getElementById('summary').innerHTML = cards.map(function(c){
+    return '<div class="card"><h3>'+c[0]+'</h3><b>'+c[1]+'</b><span>'+c[2]+'</span></div>';}).join('');
+}
+
+/* ---------- legend / filters ---------- */
+function renderLegend(){
+  var items=[['s-available',T('available')],['s-reserved',T('reserved')],['s-sold',T('sold')],
+             ['k-shop',T('shop')],['k-storage',T('storage')]];
+  document.getElementById('legend').innerHTML = items.map(function(i){
+    return '<span><span class="dot '+i[0]+'"></span>'+i[1]+'</span>';
+  }).join('');
+  // dots need background from the class => inline map
+  var colors={'s-available':'#E8F5E9','s-reserved':'#FFF8E1','s-sold':'#F5F5F5','k-shop':'#FFE9CC','k-storage':'#EDE7F6'};
+  Array.prototype.forEach.call(document.querySelectorAll('#legend .dot'),function(d){
+    for(var c in colors){ if(d.classList.contains(c)) d.style.background=colors[c]; }
+  });
+}
+function renderFilters(){
+  var t=document.getElementById('fType');
+  t.innerHTML='<option value="all">'+T('all')+'</option>'
+    +['r2','r3','shop','storage'].map(function(k){return '<option value="'+k+'">'+T(k)+'</option>';}).join('');
+  t.value=filters.type;
+  var a=document.getElementById('fArea');
+  var ranges=[['all',T('all')],['30-45','30–45 '+T('m2')],['45-60','45–60 '+T('m2')],['60-80','60–80 '+T('m2')],['80-130','80+ '+T('m2')]];
+  a.innerHTML=ranges.map(function(r){return '<option value="'+r[0]+'">'+r[1]+'</option>';}).join('');
+  a.value=filters.area;
+}
+
+/* ---------- floor tabs ---------- */
+function renderFloors(){
+  var el=document.getElementById('floorTabs');
+  el.innerHTML = ORDER.map(function(f){
+    var fl=FLOORS[f], n=fl.units.filter(function(u){return u.k==='flat';}).length;
+    var s = n? n+' '+(lang==='ru'?'кв.':'apt') : T('storage');
+    return '<button type="button" class="ftab" data-f="'+f+'" aria-pressed="'+(f===curFloor)+'">'
+      +'<b>'+floorName(f)+'</b><span>'+s+' · '+fl.lvl+'</span></button>';
+  }).join('');
+  Array.prototype.forEach.call(el.querySelectorAll('.ftab'),function(b){
+    b.addEventListener('click',function(){ curFloor=+b.dataset.f; renderFloors(); loadPlan(); });
+  });
+}
+
+/* ---------- plan viewer with pixel-perfect hit test ---------- */
+var planImg=document.getElementById('planImg'), planCv=document.getElementById('planCv');
+var maskData={}, maskCanvas={}, planZoom=(window.innerWidth<700?3:1), loadedFloor=-1;
+function loadPlan(){
+  var fl=FLOORS[curFloor];
+  planImg.src='assets/plan-'+curFloor+'.png';
+  planCv.width=fl.w; planCv.height=fl.h;
+  document.getElementById('planInner').style.aspectRatio=fl.w+' / '+fl.h;
+  loadedFloor=curFloor;
+  if(maskData[curFloor]){ paintPlan(); applyZoom(); return; }
+  var m=new Image();
+  m.onload=function(){
+    var c=document.createElement('canvas'); c.width=fl.w; c.height=fl.h;
+    var x=c.getContext('2d',{willReadFrequently:true}); x.drawImage(m,0,0);
+    maskData[curFloor]=x.getImageData(0,0,fl.w,fl.h);
+    paintPlan();
+  };
+  m.onerror=function(){ document.getElementById('planHint').textContent='assets/mask-'+curFloor+'.png не найден'; };
+  m.src='assets/mask-'+curFloor+'.png';
+  applyZoom();
+}
+function idAt(px,py){
+  var md=maskData[curFloor]; if(!md) return 0;
+  if(px<0||py<0||px>=md.width||py>=md.height) return 0;
+  var r=md.data[(py*md.width+px)*4];
+  return Math.round(r/8);
+}
+function unitById(f,id){
+  var us=FLOORS[f].units;
+  for(var i=0;i<us.length;i++) if(us[i].id===id) return us[i];
+  return null;
+}
+/* paint highlight for hovered + selected + filter dimming */
+function paintPlan(){
+  var fl=FLOORS[curFloor], md=maskData[curFloor];
+  var ctx=planCv.getContext('2d');
+  ctx.clearRect(0,0,fl.w,fl.h);
+  if(!md) return;
+  var out=ctx.createImageData(fl.w,fl.h), o=out.data, d=md.data;
+  var selId = 0;
+  if(selKey && selKey.indexOf(curFloor+'-')===0){
+    var su=FLOORS[curFloor].units.filter(function(u){return keyOf(curFloor,u)===selKey;})[0];
+    if(su) selId=su.id;
+  }
+  var anyFilter = filters.type!=='all' || filters.area!=='all';
+  var paint={};
+  fl.units.forEach(function(u){
+    var ok = passFilter(curFloor,u);
+    var st = statusOf(curFloor,u);
+    var col=null;
+    if(u.id===selId) col=[245,124,0,120];
+    else if(u.id===hoverId) col=[245,124,0,64];
+    else if(anyFilter && !ok) col=[255,255,255,165];
+    else if(st==='sold') col=[120,120,120,60];
+    else if(st==='reserved') col=[249,168,37,45];
+    if(col) paint[u.id]=col;
+  });
+  for(var i=0,p=0;i<d.length;i+=4,p+=4){
+    var id=Math.round(d[i]/8);
+    var c=paint[id];
+    if(c){ o[p]=c[0];o[p+1]=c[1];o[p+2]=c[2];o[p+3]=c[3]; }
+  }
+  ctx.putImageData(out,0,0);
+  // outline hovered/selected
+  [[hoverId,'rgba(239,108,0,.9)',2],[selId,'rgba(239,108,0,1)',3]].forEach(function(h){
+    var u=h[0]?unitById(curFloor,h[0]):null; if(!u) return;
+    ctx.strokeStyle=h[1]; ctx.lineWidth=h[2];
+    ctx.strokeRect(u.bb[0]*fl.w,u.bb[1]*fl.h,u.bb[2]*fl.w,u.bb[3]*fl.h);
+  });
+}
+planImg.addEventListener('load',function(){ applyZoom(); });
+function applyZoom(keepCenter){
+  var inner=document.getElementById('planInner'), scroll=document.getElementById('planScroll');
+  var fl=FLOORS[curFloor];
+  var prevW=parseFloat(inner.style.width)||0;
+  var ratio=prevW? (scroll.scrollLeft+scroll.clientWidth/2)/prevW : 0.5;
+  var base=scroll.clientWidth||600;
+  var w=base*planZoom, h=w*fl.h/fl.w;
+  inner.style.width=w+'px'; inner.style.height=h+'px';
+  var maxH=Math.min(Math.max(240,window.innerHeight*0.62),560);
+  scroll.style.height=Math.min(maxH,h+2)+'px';
+  if(planZoom>1) scroll.scrollLeft=Math.max(0, ratio*w - scroll.clientWidth/2);
+}
+function planCoords(ev){
+  var r=planImg.getBoundingClientRect(), fl=FLOORS[curFloor];
+  return [Math.floor((ev.clientX-r.left)/r.width*fl.w), Math.floor((ev.clientY-r.top)/r.height*fl.h)];
+}
+var tip=document.getElementById('tip');
+document.getElementById('planInner').addEventListener('mousemove',function(ev){
+  var c=planCoords(ev), id=idAt(c[0],c[1]);
+  if(id!==hoverId){ hoverId=id; paintPlan(); }
+  var u=id?unitById(curFloor,id):null;
+  if(u){
+    tip.style.opacity=1;
+    tip.innerHTML='<b>№ '+u.n+'</b> · '+floorName(curFloor)+'<br>'+typeName(u)+' · '+fmt(u.a)+' '+T('m2')
+      +(u.b?('<br>'+T('kBalc')+' '+fmt(u.b)+' '+T('m2')):'')
+      +(u.p?('<br>'+T('kStore')+' '+fmt(u.p)+' '+T('m2')):'');
+    var x=Math.min(ev.clientX+14,window.innerWidth-190), y=Math.max(8,ev.clientY-70);
+    tip.style.left=x+'px'; tip.style.top=y+'px';
+    document.getElementById('planInner').style.cursor='pointer';
+  } else { tip.style.opacity=0; document.getElementById('planInner').style.cursor='default'; }
+});
+document.getElementById('planInner').addEventListener('mouseleave',function(){
+  hoverId=0; tip.style.opacity=0; paintPlan();
+});
+document.getElementById('planInner').addEventListener('click',function(ev){
+  var c=planCoords(ev), id=idAt(c[0],c[1]);
+  var u=id?unitById(curFloor,id):null;
+  if(u && u.k!=='tech') openUnit(curFloor,u);
+});
+document.getElementById('zIn').addEventListener('click',function(){ planZoom=Math.min(4,planZoom*1.5); applyZoom(); });
+document.getElementById('zOut').addEventListener('click',function(){ planZoom=Math.max(1,planZoom/1.5); applyZoom(); });
+document.getElementById('zFit').addEventListener('click',function(){ planZoom=1; applyZoom(); });
+window.addEventListener('resize',applyZoom);
+
+/* ---------- chess grid ---------- */
+function renderChess(){
+  var html='';
+  ORDER.forEach(function(f){
+    var fl=FLOORS[f];
+    html+='<div class="crow"><div class="cflab"><b>'+floorName(f)+'</b><span>'+fl.lvl+'</span></div>';
+    fl.units.forEach(function(u){
+      var st=statusOf(f,u), cls='cell';
+      if(u.k==='flat') cls+=' s-'+st; else cls+=' k-'+u.k;
+      if(!passFilter(f,u)) cls+=' dim';
+      if(selKey===keyOf(f,u)) cls+=' sel';
+      var badge = u.k==='flat' ? (u.r===3?'3К':'2К') : (u.k==='shop'?'🏪':(u.k==='tech'?'⚙':'📦'));
+      html+='<button type="button" class="'+cls+'" data-f="'+f+'" data-id="'+u.id+'">'
+        +'<em>'+badge+'</em><b>'+u.n+'</b><i>'+fmt(u.a)+' '+T('m2')+'</i></button>';
+    });
+    html+='</div>';
+  });
+  var el=document.getElementById('chess'); el.innerHTML=html;
+  Array.prototype.forEach.call(el.querySelectorAll('.cell'),function(b){
+    b.addEventListener('click',function(){
+      var f=+b.dataset.f, u=unitById(f,+b.dataset.id);
+      if(u && u.k!=='tech'){ curFloor=f; renderFloors(); loadPlan(); openUnit(f,u); }
+    });
+  });
+}
+
+/* ---------- list ---------- */
+function renderList(){
+  var rows=allUnits().filter(function(x){return x.u.k!=='tech' && passFilter(x.f,x.u);});
+  rows.sort(function(a,b){ return a.u.a-b.u.a; });
+  var h='<thead><tr style="text-align:left;border-bottom:1px solid var(--g2);color:var(--g5);font-size:.72rem;text-transform:uppercase;letter-spacing:.04em">'
+   +['thN','thFloor','thType','thArea','thBalc','thStatus','thAct'].map(function(k){return '<th style="padding:.6rem .7rem;white-space:nowrap">'+T(k)+'</th>';}).join('')
+   +'</tr></thead><tbody>';
+  rows.forEach(function(x){
+    var st=statusOf(x.f,x.u);
+    h+='<tr style="border-bottom:1px solid var(--g1)">'
+      +'<td style="padding:.55rem .7rem;font-weight:700">'+x.u.n+'</td>'
+      +'<td style="padding:.55rem .7rem;white-space:nowrap">'+floorName(x.f)+'</td>'
+      +'<td style="padding:.55rem .7rem;white-space:nowrap">'+typeName(x.u)+'</td>'
+      +'<td style="padding:.55rem .7rem;white-space:nowrap">'+fmt(x.u.a)+' '+T('m2')+'</td>'
+      +'<td style="padding:.55rem .7rem;white-space:nowrap">'+(x.u.b?fmt(x.u.b)+' '+T('m2'):'—')+'</td>'
+      +'<td style="padding:.55rem .7rem"><span class="chip s-'+st+'">'+T(st)+'</span></td>'
+      +'<td style="padding:.55rem .7rem"><button type="button" class="link-btn" data-f="'+x.f+'" data-id="'+x.u.id+'">'+T('view')+'</button></td>'
+      +'</tr>';
+  });
+  h+='</tbody>';
+  var t=document.getElementById('listTbl'); t.innerHTML=h;
+  Array.prototype.forEach.call(t.querySelectorAll('.link-btn'),function(b){
+    b.addEventListener('click',function(){
+      var f=+b.dataset.f, u=unitById(f,+b.dataset.id);
+      curFloor=f; renderFloors(); loadPlan(); openUnit(f,u);
+    });
+  });
+}
+
+/* ---------- drawer ---------- */
+var drawer=document.getElementById('drawer'), ov=document.getElementById('ov');
+var curUnit=null;
+function openUnit(f,u){
+  curUnit={f:f,u:u}; selKey=keyOf(f,u);
+  var st=statusOf(f,u);
+  var chip=document.getElementById('dChip');
+  chip.className='chip s-'+(st==='tech'?'sold':st); chip.textContent=T(st==='tech'?'tech':st);
+  document.getElementById('dTitle').textContent='№ '+u.n+' · '+typeName(u);
+  document.getElementById('dSubtitle').textContent=floorName(f)+' · '+CONFIG.blockName[lang]+' · '+T('kLevel')+' '+FLOORS[f].lvl;
+  var side = u.row==='n'? T('north') : T('south');
+  var kv=[[T('kFloor'),floorName(f)],[T('kUnit'),u.n],[T('kType'),typeName(u)],
+          [T('kArea'),fmt(u.a)+' '+T('m2')]];
+  if(u.b) kv.push([T('kBalc'),fmt(u.b)+' '+T('m2')],[T('kTotal'),fmt(u.a+u.b)+' '+T('m2')]);
+  if(u.p) kv.push([T('kStore'),fmt(u.p)+' '+T('m2')]);
+  kv.push([T('kSide'),side],[T('kLevel'),FLOORS[f].lvl]);
+  document.getElementById('dKv').innerHTML=kv.map(function(r){return '<div>'+r[0]+'</div><div>'+r[1]+'</div>';}).join('');
+  var pr=priceOf(f,u), pe=document.getElementById('dPrice');
+  if(pr) pe.innerHTML='<b>'+money(pr.total)+'</b><span>'+money(pr.ppm)+' '+T('perM2')+'</span>';
+  else pe.innerHTML='<b style="font-size:1.15rem">'+T('onRequest')+'</b><span>'+T('askBtn')+'</span>';
+  document.getElementById('dNote').textContent=T('noteD');
+  syncFav();
+  drawCrop(f,u);
+  drawer.classList.add('on'); drawer.setAttribute('aria-hidden','false'); ov.classList.add('on');
+  paintPlan(); if(curView==='grid') renderChess();
+}
+function closeDrawer(){
+  drawer.classList.remove('on'); drawer.setAttribute('aria-hidden','true'); ov.classList.remove('on');
+  selKey=null; curUnit=null; paintPlan(); if(curView==='grid') renderChess();
+}
+document.getElementById('dClose').addEventListener('click',closeDrawer);
+ov.addEventListener('click',closeDrawer);
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ closeDrawer(); closeTour(); } });
+
+function drawCrop(f,u){
+  var fl=FLOORS[f], cv=document.getElementById('dCrop');
+  var pad=0.012;
+  var sx=Math.max(0,(u.bb[0]-pad))*fl.w, sy=Math.max(0,(u.bb[1]-pad))*fl.h;
+  var sw=Math.min(1,(u.bb[2]+pad*2))*fl.w, sh=Math.min(1,(u.bb[3]+pad*2))*fl.h;
+  var W=880, H=Math.round(W*sh/sw); cv.width=W; cv.height=H;
+  var ctx=cv.getContext('2d');
+  ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H);
+  var img=new Image();
+  img.onload=function(){
+    ctx.drawImage(img,sx,sy,sw,sh,0,0,W,H);
+    var md=maskData[f];
+    if(md){
+      var tmp=document.createElement('canvas'); tmp.width=fl.w; tmp.height=fl.h;
+      var tc=tmp.getContext('2d'); var out=tc.createImageData(fl.w,fl.h), o=out.data, d=md.data;
+      for(var i=0,p=0;i<d.length;i+=4,p+=4){
+        if(Math.round(d[i]/8)!==u.id){ o[p]=255;o[p+1]=255;o[p+2]=255;o[p+3]=212; }
+      }
+      tc.putImageData(out,0,0);
+      ctx.drawImage(tmp,sx,sy,sw,sh,0,0,W,H);
+    }
+    ctx.strokeStyle='rgba(239,108,0,.85)'; ctx.lineWidth=3;
+    ctx.strokeRect((u.bb[0]*fl.w-sx)/sw*W,(u.bb[1]*fl.h-sy)/sh*H,u.bb[2]*fl.w/sw*W,u.bb[3]*fl.h/sh*H);
+  };
+  img.src='assets/plan-'+f+'.png';
+}
+
+/* favourites */
+function syncFav(){
+  var k=selKey, on=favs.indexOf(k)>=0;
+  document.getElementById('dFavTxt').textContent=T(on?'favRem':'favAdd');
+  document.getElementById('dFav').style.borderColor= on?'var(--p)':'var(--g3)';
+}
+document.getElementById('dFav').addEventListener('click',function(){
+  var i=favs.indexOf(selKey);
+  if(i>=0) favs.splice(i,1); else favs.push(selKey);
+  localStorage.setItem('os_favs',JSON.stringify(favs)); syncFav();
+});
+
+/* ---------- 360 tour ---------- */
+function openTour(){
+  if(!curUnit) return;
+  var u=curUnit.u, f=curUnit.f;
+  var q='?lang='+lang+'&unit='+encodeURIComponent(u.n)+'&floor='+f+'&floorName='+encodeURIComponent(floorName(f))
+       +'&area='+u.a+'&rooms='+(u.r||(u.k==='shop'?0:1))+'&balcony='+(u.b||0)+'&kind='+u.k
+       +'&side='+(u.row==='n'?'court':'street')+'&block='+encodeURIComponent(CONFIG.blockName[lang]);
+  document.getElementById('tourFrame').src=CONFIG.tourFile+q;
+  document.getElementById('tourWrap').classList.add('on');
+  document.body.style.overflow='hidden';
+}
+function closeTour(){
+  document.getElementById('tourWrap').classList.remove('on');
+  document.getElementById('tourFrame').src='about:blank';
+  document.body.style.overflow='';
+}
+document.getElementById('dTour').addEventListener('click',openTour);
+document.getElementById('tClose').addEventListener('click',closeTour);
+window.addEventListener('message',function(e){ if(e.data==='closeTour') closeTour(); });
+
+/* ---------- view switch / i18n ---------- */
+function setView(v){
+  curView=v;
+  Array.prototype.forEach.call(document.querySelectorAll('#viewSeg button'),function(b){
+    b.setAttribute('aria-pressed', String(b.dataset.view===v)); });
+  document.getElementById('viewPlan').hidden = v!=='plan';
+  document.getElementById('viewGrid').hidden = v!=='grid';
+  document.getElementById('viewList').hidden = v!=='list';
+  if(v==='grid') renderChess();
+  if(v==='list') renderList();
+  if(v==='plan') applyZoom();
+}
+Array.prototype.forEach.call(document.querySelectorAll('#viewSeg button'),function(b){
+  b.addEventListener('click',function(){ setView(b.dataset.view); });
+});
+Array.prototype.forEach.call(document.querySelectorAll('#langSeg button'),function(b){
+  b.addEventListener('click',function(){
+    lang=b.dataset.lang; localStorage.setItem('os_lang',lang);
+    Array.prototype.forEach.call(document.querySelectorAll('#langSeg button'),function(x){
+      x.setAttribute('aria-pressed',String(x.dataset.lang===lang)); });
+    document.documentElement.lang=lang;
+    applyI18n();
+  });
+});
+document.getElementById('fType').addEventListener('change',function(e){ filters.type=e.target.value; refresh(); });
+document.getElementById('fArea').addEventListener('change',function(e){ filters.area=e.target.value; refresh(); });
+document.getElementById('fReset').addEventListener('click',function(){ filters={type:'all',area:'all'}; renderFilters(); refresh(); });
+function refresh(){ paintPlan(); if(curView==='grid') renderChess(); if(curView==='list') renderList(); }
+
+function applyI18n(){
+  Array.prototype.forEach.call(document.querySelectorAll('[data-i18n]'),function(el){
+    var v=I18N[lang][el.dataset.i18n]; if(v!==undefined) el.textContent=v; });
+  document.title = CONFIG.blockName[lang]+' — '+(lang==='ru'?'планировки и квартиры':'apartments and layouts')+' | OrientSquare';
+  document.getElementById('planHint').textContent = matchMedia('(hover:hover)').matches?T('hintDesk'):T('hintTouch');
+  renderHero(); renderSummary(); renderLegend(); renderFilters(); renderFloors();
+  refresh();
+  if(curUnit && drawer.classList.contains('on')) openUnit(curUnit.f,curUnit.u);
+}
+
+/* ---------- init ---------- */
+Array.prototype.forEach.call(document.querySelectorAll('#langSeg button'),function(x){
+  x.setAttribute('aria-pressed',String(x.dataset.lang===lang)); });
+document.documentElement.lang=lang;
+applyI18n();
+loadPlan();
+setView('plan');
+
+/* deep link: block-1.html#2-XIV */
+(function(){
+  var h=decodeURIComponent(location.hash.replace('#',''));
+  if(!h) return;
+  var p=h.split('-'); var f=+p[0];
+  if(FLOORS[f]){
+    var u=FLOORS[f].units.filter(function(x){return x.n===p[1];})[0];
+    if(u){ curFloor=f; renderFloors(); loadPlan(); setTimeout(function(){ openUnit(f,u); },400); }
+  }
+})();
+</script>
+</body>
+</html>
