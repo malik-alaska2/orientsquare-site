@@ -771,10 +771,15 @@ function openUnit(f,u){
   drawCrop(f,u);
   drawer.classList.add('on'); drawer.setAttribute('aria-hidden','false'); ov.classList.add('on');
   paintPlan(); if(curView==='grid') renderChess();
+  try{ history.replaceState(null,'','#'+selKey); }catch(e){}
+  var ask=document.getElementById('dAsk');
+  if(ask) ask.href='index.html?unit='+encodeURIComponent(u.n)+'&floor='+f
+        +'&area='+u.a+'&type='+encodeURIComponent(typeName(u))+'&block=1&lang='+lang+'#contact';
 }
 function closeDrawer(){
   drawer.classList.remove('on'); drawer.setAttribute('aria-hidden','true'); ov.classList.remove('on');
   selKey=null; curUnit=null; paintPlan(); if(curView==='grid') renderChess();
+  try{ history.replaceState(null,'',location.pathname+location.search); }catch(e){}
 }
 document.getElementById('dClose').addEventListener('click',closeDrawer);
 ov.addEventListener('click',closeDrawer);
@@ -813,10 +818,20 @@ function syncFav(){
   document.getElementById('dFavTxt').textContent=T(on?'favRem':'favAdd');
   document.getElementById('dFav').style.borderColor= on?'var(--p)':'var(--g3)';
 }
+function favMeta(){ try{ return JSON.parse(localStorage.getItem('os_favs_data')||'{}'); }catch(e){ return {}; } }
 document.getElementById('dFav').addEventListener('click',function(){
-  var i=favs.indexOf(selKey);
-  if(i>=0) favs.splice(i,1); else favs.push(selKey);
-  localStorage.setItem('os_favs',JSON.stringify(favs)); syncFav();
+  if(!curUnit) return;
+  var i=favs.indexOf(selKey), meta=favMeta();
+  if(i>=0){ favs.splice(i,1); delete meta[selKey]; }
+  else {
+    favs.push(selKey);
+    var u=curUnit.u, f=curUnit.f;
+    meta[selKey]={f:f,n:u.n,a:u.a,b:u.b||0,p:u.p||0,r:u.r||0,k:u.k,
+                  lvl:FLOORS[f].lvl,row:u.row,block:CONFIG.blockName,page:'block-1.html',ts:Date.now()};
+  }
+  localStorage.setItem('os_favs',JSON.stringify(favs));
+  localStorage.setItem('os_favs_data',JSON.stringify(meta));
+  syncFav();
 });
 
 /* ---------- 360 tour ---------- */

@@ -226,6 +226,23 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
             </div>
             <button type="submit" class="w-full flex items-center justify-center space-x-2 bg-primary-500 text-white px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-lg hover:bg-primary-600 transition-colors font-medium"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg><span>Send Message</span></button>
           </form>
+<script>
+/* Prefill the contact form when a visitor clicks "Request this apartment" on block-1.html */
+(function(){
+  var q=new URLSearchParams(location.search);
+  var unit=q.get('unit'); if(!unit) return;
+  var ru = (q.get('lang')||localStorage.getItem('os_lang')||'ru')!=='en';
+  var floor=q.get('floor'), area=q.get('area'), type=q.get('type')||'', block=q.get('block')||'1';
+  var fname = floor==='0' ? (ru?'подвальный этаж':'basement') : (ru? floor+'-й этаж' : 'floor '+floor);
+  var txt = ru
+    ? 'Здравствуйте! Меня интересует квартира № '+unit+' ('+type+(area?', '+area+' м²':'')+'), '+fname+', блок №'+block+'. Прошу прислать цену и условия.'
+    : 'Hello! I am interested in apartment No. '+unit+' ('+type+(area?', '+area+' m²':'')+'), '+fname+', block '+block+'. Please send me the price and terms.';
+  var ta=document.querySelector('#contact textarea[name="message"]');
+  if(ta){ ta.value=txt; }
+  var sec=document.getElementById('contact');
+  if(sec) setTimeout(function(){ sec.scrollIntoView({behavior:'smooth',block:'start'}); },120);
+})();
+</script>
       </div>
     </div>
   </section>

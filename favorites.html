@@ -57,18 +57,112 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
 </header>
 <div class="min-h-screen bg-gray-50">
 <main>
-<div class="min-h-screen flex items-center justify-center bg-gray-50">
-  <div class="text-center">
-    <div class="bg-white p-8 rounded-2xl shadow-lg max-w-md">
-      <div class="text-primary-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-16 w-16 mx-auto"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
-      <h1 class="text-2xl font-bold text-gray-900 mb-4">Please sign in to add favorites</h1>
-      <p class="text-gray-600 mb-6">Sign in to save your favorite properties and access them anytime</p>
-      <a href="auth.html" class="inline-flex items-center space-x-2 bg-primary-500 text-white px-6 py-3 rounded-xl hover:bg-primary-600 transition-colors">
-        <span>Sign In</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </a>
+<section class="bg-gray-50 min-h-screen py-10">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-end justify-between flex-wrap gap-3 mb-6">
+      <div>
+        <h1 id="favTitle" class="text-2xl sm:text-3xl font-bold text-gray-900">Favorites</h1>
+        <p id="favSub" class="text-gray-600 text-sm mt-1">Apartments you saved on the interactive floor plan</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <button type="button" id="favLangRu" class="px-3 py-1.5 text-sm rounded-lg border border-gray-300 bg-white hover:border-primary-500">RU</button>
+        <button type="button" id="favLangEn" class="px-3 py-1.5 text-sm rounded-lg border border-gray-300 bg-white hover:border-primary-500">EN</button>
+        <a href="block-1.html" id="favOpenPlan" class="px-4 py-1.5 text-sm rounded-lg bg-primary-500 text-white hover:bg-primary-600 transition-colors">Floor plan</a>
+      </div>
+    </div>
+    <div id="favGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    <div id="favEmpty" class="hidden bg-white rounded-2xl shadow-sm border border-gray-100 p-10 text-center">
+      <div class="text-primary-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-14 w-14 mx-auto"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
+      <h2 id="favEmptyT" class="text-xl font-bold text-gray-900 mb-2">No saved apartments yet</h2>
+      <p id="favEmptyS" class="text-gray-600 mb-6">Open the interactive plan of Block 1, pick an apartment and tap the heart.</p>
+      <a href="block-1.html" id="favEmptyBtn" class="inline-flex items-center space-x-2 bg-primary-500 text-white px-6 py-3 rounded-xl hover:bg-primary-600 transition-colors"><span>Open the interactive plan</span></a>
     </div>
   </div>
-</div>
+</section>
+<script>
+/* Favourites saved on block-1.html (localStorage: os_favs + os_favs_data) */
+(function(){
+  var L={
+    ru:{title:'Избранное',sub:'Квартиры, которые вы сохранили на интерактивном плане',plan:'План этажа',
+        emptyT:'Пока ничего не сохранено',emptyS:'Откройте интерактивный план Блока №1, выберите квартиру и нажмите на сердечко.',
+        emptyB:'Открыть интерактивный план',open:'Открыть',remove:'Убрать',ask:'Запросить',
+        m2:'м²',balc:'Балкон',store:'Кладовая',basement:'Подвальный этаж',floor:'-й этаж',
+        r2:'2-комнатная',r3:'3-комнатная',shop:'Магазин',storage:'Кладовая',flat:'Квартира',count:'Сохранено квартир'},
+    en:{title:'Favorites',sub:'Apartments you saved on the interactive floor plan',plan:'Floor plan',
+        emptyT:'No saved apartments yet',emptyS:'Open the interactive plan of Block 1, pick an apartment and tap the heart.',
+        emptyB:'Open the interactive plan',open:'Open',remove:'Remove',ask:'Request',
+        m2:'m²',balc:'Balcony',store:'Storage',basement:'Basement',floor:' floor',
+        r2:'2-room',r3:'3-room',shop:'Retail unit',storage:'Storage',flat:'Apartment',count:'Saved apartments'}
+  };
+  var lang=(localStorage.getItem('os_lang')==='en')?'en':'ru';
+  function T(k){ return L[lang][k]; }
+  function read(k,d){ try{ return JSON.parse(localStorage.getItem(k)||d); }catch(e){ return JSON.parse(d); } }
+  function floorName(f){ if(f===0||f==='0') return T('basement'); return lang==='ru' ? f+T('floor') : f+'th'+T('floor'); }
+  function typeName(m){
+    if(m.k==='shop') return T('shop');
+    if(m.k==='storage'||m.k==='tech') return T('storage');
+    if(m.r===3) return T('r3');
+    if(m.r===2) return T('r2');
+    return T('flat');
+  }
+  function fmt(n){ return (Math.round(n*10)/10).toString().replace('.',','); }
+  function render(){
+    var keys=read('os_favs','[]'), meta=read('os_favs_data','{}');
+    document.getElementById('favTitle').textContent=T('title');
+    document.getElementById('favSub').textContent=T('sub');
+    document.getElementById('favOpenPlan').textContent=T('plan');
+    document.getElementById('favEmptyT').textContent=T('emptyT');
+    document.getElementById('favEmptyS').textContent=T('emptyS');
+    document.getElementById('favEmptyBtn').textContent=T('emptyB');
+    document.title=T('title')+' | OrientSquare';
+    var grid=document.getElementById('favGrid'), empty=document.getElementById('favEmpty');
+    grid.innerHTML='';
+    if(!keys.length){ empty.classList.remove('hidden'); return; }
+    empty.classList.add('hidden');
+    keys.forEach(function(key){
+      var m=meta[key]||{};
+      var f=(m.f!==undefined)?m.f:parseInt(key.split('-')[0],10);
+      var n=m.n||key.split('-')[1];
+      var rows='';
+      if(m.a) rows+='<div class="flex justify-between py-1 border-b border-gray-100"><span class="text-gray-500">'+T('flat')+'</span><span class="font-medium">'+fmt(m.a)+' '+T('m2')+'</span></div>';
+      if(m.b) rows+='<div class="flex justify-between py-1 border-b border-gray-100"><span class="text-gray-500">'+T('balc')+'</span><span class="font-medium">'+fmt(m.b)+' '+T('m2')+'</span></div>';
+      if(m.p) rows+='<div class="flex justify-between py-1 border-b border-gray-100"><span class="text-gray-500">'+T('store')+'</span><span class="font-medium">'+fmt(m.p)+' '+T('m2')+'</span></div>';
+      var ask='index.html?unit='+encodeURIComponent(n)+'&floor='+f+(m.a?'&area='+m.a:'')
+             +'&type='+encodeURIComponent(typeName(m))+'&block=1&lang='+lang+'#contact';
+      var card=document.createElement('div');
+      card.className='bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex flex-col';
+      card.innerHTML=
+        '<div class="flex items-start justify-between mb-2">'+
+          '<div><p class="text-lg font-bold text-gray-900">&#8470; '+n+'</p>'+
+          '<p class="text-sm text-gray-500">'+floorName(f)+' &middot; '+(m.block?(m.block[lang]||m.block.ru||'Block 1'):'Block 1')+'</p></div>'+
+          '<span class="text-xs px-2 py-1 rounded-full bg-primary-50 text-primary-600 font-medium">'+typeName(m)+'</span>'+
+        '</div>'+
+        '<div class="text-sm mb-4">'+rows+'</div>'+
+        '<div class="mt-auto flex flex-wrap gap-2">'+
+          '<a href="block-1.html#'+key+'" class="flex-1 text-center bg-primary-500 text-white px-3 py-2 rounded-lg text-sm hover:bg-primary-600 transition-colors">'+T('open')+'</a>'+
+          '<a href="'+ask+'" class="flex-1 text-center border border-gray-300 px-3 py-2 rounded-lg text-sm hover:border-primary-500 transition-colors">'+T('ask')+'</a>'+
+          '<button type="button" data-key="'+key+'" class="favDel px-3 py-2 rounded-lg text-sm text-gray-500 hover:text-primary-600" aria-label="'+T('remove')+'">&#10005;</button>'+
+        '</div>';
+      grid.appendChild(card);
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.favDel'),function(b){
+      b.addEventListener('click',function(){
+        var keys=read('os_favs','[]'), meta=read('os_favs_data','{}'), k=b.dataset.key;
+        var i=keys.indexOf(k); if(i>=0) keys.splice(i,1);
+        delete meta[k];
+        localStorage.setItem('os_favs',JSON.stringify(keys));
+        localStorage.setItem('os_favs_data',JSON.stringify(meta));
+        render();
+      });
+    });
+  }
+  function setLang(l){ lang=l; localStorage.setItem('os_lang',l); document.documentElement.lang=l; render(); }
+  document.getElementById('favLangRu').addEventListener('click',function(){ setLang('ru'); });
+  document.getElementById('favLangEn').addEventListener('click',function(){ setLang('en'); });
+  document.documentElement.lang=lang;
+  render();
+})();
+</script>
 </main>
 <footer class="bg-gray-900 text-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
