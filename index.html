@@ -234,9 +234,10 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
   var ru = (q.get('lang')||localStorage.getItem('os_lang')||'ru')!=='en';
   var floor=q.get('floor'), area=q.get('area'), type=q.get('type')||'', block=q.get('block')||'1';
   var fname = floor==='0' ? (ru?'подвальный этаж':'basement') : (ru? floor+'-й этаж' : 'floor '+floor);
+  var areaTxt = area ? (ru ? String(area).replace('.', ',') : String(area)) : '';
   var txt = ru
-    ? 'Здравствуйте! Меня интересует квартира № '+unit+' ('+type+(area?', '+area+' м²':'')+'), '+fname+', блок №'+block+'. Прошу прислать цену и условия.'
-    : 'Hello! I am interested in apartment No. '+unit+' ('+type+(area?', '+area+' m²':'')+'), '+fname+', block '+block+'. Please send me the price and terms.';
+    ? 'Здравствуйте! Меня интересует квартира № '+unit+' ('+type+(areaTxt?', '+areaTxt+' м²':'')+'), '+fname+', блок №'+block+'. Прошу прислать цену и условия.'
+    : 'Hello! I am interested in apartment No. '+unit+' ('+type+(areaTxt?', '+areaTxt+' m²':'')+'), '+fname+', block '+block+'. Please send me the price and terms.';
   var ta=document.querySelector('#contact textarea[name="message"]');
   if(ta){ ta.value=txt; }
   var sec=document.getElementById('contact');
