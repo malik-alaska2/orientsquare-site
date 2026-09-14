@@ -447,34 +447,6 @@ footer.ds a{color:var(--brass);text-decoration:none}
       <span class="btn btn-onDark" style="background:var(--espresso)">На тёмном</span>
     </div>
 
-    <h3 style="font-size:var(--t-h3);margin-bottom:var(--s3)">Уведомления (toast)</h3>
-    <p style="margin-bottom:var(--s3);max-width:62ch">Всплывающие уведомления в правом нижнем углу. Стек: видны последние три, остальные складываются под ними; при наведении стек раскрывается, а автозакрытие (3&nbsp;с) ставится на паузу. Подключается одной строкой <code>&lt;script src="toast.js" defer&gt;&lt;/script&gt;</code> и доступен на всех страницах как <code>Toast</code>.</p>
-    <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:var(--s3)">
-      <button type="button" class="btn btn-gho" onclick="Toast.message('Черновик объекта сохранён.')">message</button>
-      <button type="button" class="btn btn-gho" onclick="Toast.success('Квартира 4B забронирована.')">success</button>
-      <button type="button" class="btn btn-gho" onclick="Toast.warning('Цена за м² ещё не указана.')">warning</button>
-      <button type="button" class="btn btn-gho" onclick="Toast.error('Не удалось загрузить объявления.')">error</button>
-      <button type="button" class="btn btn-gho" onclick="Toast.message({text:'Удалено из избранного.',onUndoAction:function(){Toast.success('Возвращено в избранное.')}})">с отменой</button>
-      <button type="button" class="btn btn-act" onclick="Toast.message({text:'Забронировать квартиру 4B для клиента?',preserve:true,action:'Забронировать',dismissLabel:'Отмена',onAction:function(){Toast.success('Бронь создана.')}})">с действием</button>
-    </div>
-    <div class="codeblk"><pre>Toast.success("Квартира 4B забронирована.");
-Toast.error("Не удалось загрузить объявления.");
-
-// с кнопкой «отменить»
-Toast.message({
-  text: "Удалено из избранного.",
-  onUndoAction: function () { restoreFavorite(id); }
-});
-
-// с действием, без автозакрытия
-Toast.message({
-  text: "Забронировать квартиру 4B?",
-  preserve: true,
-  action: "Забронировать",
-  onAction: function () { reserve(id); }
-});</pre></div>
-    <div style="height:var(--s6)"></div>
-
     <h3 style="font-size:var(--t-h3);margin-bottom:var(--s3)">Карточка с иконкой и карточка с номером</h3>
     <div class="grid g2" style="margin-bottom:var(--s6)">
       <article class="card">
@@ -640,6 +612,5 @@ Toast.message({
 })();
 </script>
 
-<script src="toast.js" defer></script>
 </body>
 </html>
