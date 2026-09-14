@@ -26,7 +26,7 @@
 }
 
 /* ---------- Шрифты ---------- */
-html{font-family:Geist,Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"}
+html:root,html:root body{font-family:Geist,Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"}
 body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;letter-spacing:-.011em;color:var(--ds-gray-1000)}
 h1[class],h2[class],h3[class],h4[class],h5[class]{font-weight:600;letter-spacing:-.032em}
 h1[class]{letter-spacing:-.042em}
