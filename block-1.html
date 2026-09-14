@@ -102,6 +102,10 @@ h1.t{font-size:1.9rem;line-height:1.15;font-weight:700;margin:.6rem 0 .35rem}
 .dbody{overflow-y:auto;padding:1rem;flex:1}
 .cropbox{background:#fff;border:1px solid var(--g2);border-radius:.75rem;overflow:hidden}
 .cropbox canvas{display:block;width:100%;height:auto}
+.interior{margin-top:.75rem;border-radius:.75rem;overflow:hidden;border:1px solid var(--g2);position:relative}
+.interior img{display:block;width:100%;height:auto}
+.interior span{position:absolute;left:0;right:0;bottom:0;padding:.5rem .7rem;font-size:.68rem;color:#fff;
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.65));letter-spacing:.02em}
 .kv{display:grid;grid-template-columns:1fr auto;gap:.1rem .75rem;margin-top:.9rem}
 .kv div{padding:.42rem 0;border-bottom:1px dashed var(--g2);font-size:.85rem}
 .kv div:nth-child(odd){color:var(--g6)}
@@ -289,6 +293,10 @@ h1.t{font-size:1.9rem;line-height:1.15;font-weight:700;margin:.6rem 0 .35rem}
   </div>
   <div class="dbody">
     <div class="cropbox"><canvas id="dCrop"></canvas></div>
+    <div class="interior" id="dInterior" hidden>
+      <img src="assets/renders/interior-living.jpg" alt="Пример интерьера отделки" loading="lazy">
+      <span id="dInteriorCap">Пример интерьера отделки</span>
+    </div>
     <div class="kv" id="dKv"></div>
     <div class="price" id="dPrice"></div>
     <div class="acts">
@@ -325,7 +333,7 @@ h1.t{font-size:1.9rem;line-height:1.15;font-weight:700;margin:.6rem 0 .35rem}
           <div class="bg-primary-500 text-white p-2 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg></div>
           <span class="text-xl font-bold">OrientSquare</span>
         </div>
-        <p class="text-gray-300 mb-6 max-w-md">Your trusted partner in finding the perfect property. We specialize in premium real estate solutions</p>
+        <p class="text-gray-300 mb-6 max-w-md">Your trusted partner in finding the perfect property. We specialize in premium real estate solutions.</p>
         <div class="flex space-x-4">
           <a href="#" class="text-gray-400 hover:text-primary-500 transition-colors" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
           <a href="#" class="text-gray-400 hover:text-primary-500 transition-colors" aria-label="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg></a>
@@ -369,7 +377,7 @@ h1.t{font-size:1.9rem;line-height:1.15;font-weight:700;margin:.6rem 0 .35rem}
       </div>
     </div>
     <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-      <p class="text-gray-400 text-sm">&copy; 2024 OrientSquare Real Estate - Istanbul, Turkey. All rights reserved.</p>
+      <p class="text-gray-400 text-sm">&copy; 2026 OrientSquare Real Estate - Istanbul, Turkey. All rights reserved.</p>
       <div class="flex space-x-6 mt-4 md:mt-0">
         <a href="#" class="text-gray-400 hover:text-primary-500 text-sm transition-colors">Privacy Policy</a>
         <a href="#" class="text-gray-400 hover:text-primary-500 text-sm transition-colors">Terms of Service</a>
@@ -429,6 +437,7 @@ var I18N = {
   methT:'Как читать данные',
   methS:'Площади, нумерация квартир (римские цифры), площади балконов (Б) и кладовых (П), а также отметки уровней взяты напрямую с рабочих планов этажей проекта. Границы кликабельных зон построены по цветовой заливке помещений на этих же планах, поэтому подсветка квартиры совпадает с чертежом. 360° тур — это схематичная 3D-визуализация, построенная по площади и типу квартиры: она показывает соотношение комнат, окна и вид, но не является фотографией готовой отделки. Цены и статусы продажи задаются в блоке CONFIG в коде страницы.',
   tourBtn:'360° тур по квартире',askBtn:'Запросить эту квартиру',favAdd:'В избранное',favRem:'В избранном',
+  interiorCap:'Пример отделки — иллюстрация, не фото конкретной квартиры',
   all:'Все',flat:'Квартира',shop:'Магазин',storage:'Кладовая',tech:'Техпомещение',
   r1:'Студия',r2:'2-комнатная',r3:'3-комнатная',
   available:'В продаже',reserved:'Забронирована',sold:'Продана',
@@ -448,6 +457,7 @@ var I18N = {
   methT:'How to read this data',
   methS:'Areas, apartment numbering (roman numerals), balcony (Б) and storage (П) areas and floor levels are taken directly from the project working floor plans. The clickable hotspots are generated from the colour fills of the same drawings, so the highlight matches the blueprint exactly. The 360° tour is a schematic 3D visualisation derived from the apartment area and type — it shows room proportions, windows and the view, but it is not a photo of a finished interior. Prices and sales status are set in the CONFIG block in the page source.',
   tourBtn:'360° apartment tour',askBtn:'Request this apartment',favAdd:'Add to favourites',favRem:'In favourites',
+  interiorCap:'Sample finish — illustrative, not a photo of this specific apartment',
   all:'All',flat:'Apartment',shop:'Retail unit',storage:'Storage',tech:'Technical room',
   r1:'Studio',r2:'2-room',r3:'3-room',
   available:'Available',reserved:'Reserved',sold:'Sold',
@@ -770,6 +780,9 @@ function openUnit(f,u){
   if(pr) pe.innerHTML='<b>'+money(pr.total)+'</b><span>'+money(pr.ppm)+' '+T('perM2')+'</span>';
   else pe.innerHTML='<b style="font-size:1.15rem">'+T('onRequest')+'</b><span>'+T('askBtn')+'</span>';
   document.getElementById('dNote').textContent=T('noteD');
+  var interior=document.getElementById('dInterior');
+  interior.hidden = (u.k!=='flat');
+  document.getElementById('dInteriorCap').textContent = T('interiorCap');
   syncFav();
   drawCrop(f,u);
   drawer.classList.add('on'); drawer.setAttribute('aria-hidden','false'); ov.classList.add('on');
