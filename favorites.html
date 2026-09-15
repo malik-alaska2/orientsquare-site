@@ -124,25 +124,28 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
     empty.classList.add('hidden');
     keys.forEach(function(key){
       var m=meta[key]||{};
-      var f=(m.f!==undefined)?m.f:parseInt(key.split('-')[0],10);
-      var n=m.n||key.split('-')[1];
+      var hash=(key.indexOf(':')>=0)?key.split(':').pop():key;   /* 'b2:2-XIV' -> '2-XIV' */
+      var page=m.page||'block-1.html';
+      var blockNo=(page==='block-2.html')?2:1;
+      var f=(m.f!==undefined)?m.f:parseInt(hash.split('-')[0],10);
+      var n=m.n||hash.split('-')[1];
       var rows='';
       if(m.a) rows+='<div class="flex justify-between py-1 border-b border-gray-100"><span class="text-gray-500">'+T('area')+'</span><span class="font-medium">'+fmt(m.a)+' '+T('m2')+'</span></div>';
       if(m.b) rows+='<div class="flex justify-between py-1 border-b border-gray-100"><span class="text-gray-500">'+T('balc')+'</span><span class="font-medium">'+fmt(m.b)+' '+T('m2')+'</span></div>';
       if(m.p) rows+='<div class="flex justify-between py-1 border-b border-gray-100"><span class="text-gray-500">'+T('store')+'</span><span class="font-medium">'+fmt(m.p)+' '+T('m2')+'</span></div>';
       var ask='index.html?unit='+encodeURIComponent(n)+'&floor='+f+(m.a?'&area='+m.a:'')
-             +'&type='+encodeURIComponent(typeName(m))+'&block=1&lang='+lang+'#contact';
+             +'&type='+encodeURIComponent(typeName(m))+'&block='+blockNo+'&lang='+lang+'#contact';
       var card=document.createElement('div');
       card.className='bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex flex-col';
       card.innerHTML=
         '<div class="flex items-start justify-between mb-2">'+
           '<div><p class="text-lg font-bold text-gray-900">&#8470; '+n+'</p>'+
-          '<p class="text-sm text-gray-500">'+floorName(f)+' &middot; '+(m.block?(m.block[lang]||m.block.ru||'Block 1'):'Block 1')+'</p></div>'+
+          '<p class="text-sm text-gray-500">'+floorName(f)+' &middot; '+(m.block?(m.block[lang]||m.block.ru||('Block '+blockNo)):('Block '+blockNo))+'</p></div>'+
           '<span class="text-xs px-2 py-1 rounded-full bg-primary-50 text-primary-600 font-medium">'+typeName(m)+'</span>'+
         '</div>'+
         '<div class="text-sm mb-4">'+rows+'</div>'+
         '<div class="mt-auto flex flex-wrap gap-2">'+
-          '<a href="block-1.html#'+key+'" class="flex-1 text-center bg-primary-500 text-white px-3 py-2 rounded-lg text-sm hover:bg-primary-600 transition-colors">'+T('open')+'</a>'+
+          '<a href="'+page+'#'+hash+'" class="flex-1 text-center bg-primary-500 text-white px-3 py-2 rounded-lg text-sm hover:bg-primary-600 transition-colors">'+T('open')+'</a>'+
           '<a href="'+ask+'" class="flex-1 text-center border border-gray-300 px-3 py-2 rounded-lg text-sm hover:border-primary-500 transition-colors">'+T('ask')+'</a>'+
           '<button type="button" data-key="'+key+'" class="favDel px-3 py-2 rounded-lg text-sm text-gray-500 hover:text-primary-600" aria-label="'+T('remove')+'">&#10005;</button>'+
         '</div>';
