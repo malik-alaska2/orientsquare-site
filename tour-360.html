@@ -595,8 +595,8 @@ var down=false,lx=0,ly=0,idle=0;
 function pdown(e){ down=true; cv.classList.add('drag'); lx=e.clientX; ly=e.clientY; idle=0; autoRot=false; syncAuto(); }
 function pmove(e){
   if(!down) return;
-  yaw   -= (e.clientX-lx)*0.0042;
-  pitch -= (e.clientY-ly)*0.0042;
+  yaw   += (e.clientX-lx)*0.0042;
+  pitch += (e.clientY-ly)*0.0042;
   pitch=Math.max(-0.85,Math.min(0.75,pitch));
   lx=e.clientX; ly=e.clientY; hideHint();
 }
