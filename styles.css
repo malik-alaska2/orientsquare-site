@@ -94,3 +94,16 @@ footer.bg-gray-900{
 .os-btn-purple{background:var(--os-purple);color:#fff}
 .os-btn-purple:hover{background:var(--os-purple-600)}
 .os-cream-section{background:var(--os-cream-soft)}
+
+/* Шапка: логотип-локап шире прежней иконки — ужимаем меню на средних экранах */
+header nav.space-x-8 > :not([hidden]) ~ :not([hidden]){white-space:nowrap}
+header a[href="auth.html"]{white-space:nowrap}
+@media(min-width:768px) and (max-width:1535px){
+  .os-logo{height:30px}
+  header nav.space-x-8 > :not([hidden]) ~ :not([hidden]){margin-left:14px}
+  header nav.space-x-8 a span{font-size:14px}
+}
+@media(min-width:1536px){
+  .os-logo{height:36px}
+  header nav.space-x-8 > :not([hidden]) ~ :not([hidden]){margin-left:20px}
+}
