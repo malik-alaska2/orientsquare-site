@@ -62,3 +62,35 @@ button[type="submit"][class]:not([class*="rounded-full"]){
 }
 /* круглые элементы остаются круглыми */
 [class*="rounded-full"]{border-radius:9999px}
+
+/* =========================================================
+   Brand layer — Orient Square
+   Фирменные цвета из брендбука:
+   оранжевый #F07E01 · фиолетовый #70217A · кремовый #FFF8B9
+   ========================================================= */
+:root{
+  --os-orange:#F07E01;
+  --os-purple:#70217A;
+  --os-purple-600:#5A1A63;
+  --os-cream:#FFF8B9;
+  --os-cream-soft:#FFFCE6;
+}
+
+/* Логотип в шапке и подвале */
+.os-logo{height:36px;width:auto;display:block}
+@media(min-width:768px){.os-logo{height:42px}}
+.os-logo--footer{height:42px;margin-bottom:4px}
+
+/* Фирменная полоса над подвалом (оранжевый → фиолетовый) */
+footer.bg-gray-900{
+  background-image:linear-gradient(90deg,var(--os-orange) 0 58%,#9B32AD 58% 100%);
+  background-size:100% 3px;background-repeat:no-repeat;background-position:top left;
+}
+
+/* Фиолетовый как второй фирменный цвет */
+.os-accent{color:var(--os-purple)}
+.os-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;
+  background:var(--os-purple);color:#fff;font-size:12px;font-weight:600;letter-spacing:.02em}
+.os-btn-purple{background:var(--os-purple);color:#fff}
+.os-btn-purple:hover{background:var(--os-purple-600)}
+.os-cream-section{background:var(--os-cream-soft)}
