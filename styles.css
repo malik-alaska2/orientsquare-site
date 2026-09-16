@@ -107,3 +107,59 @@ header a[href="auth.html"]{white-space:nowrap}
   .os-logo{height:36px}
   header nav.space-x-8 > :not([hidden]) ~ :not([hidden]){margin-left:20px}
 }
+
+/* ======================================================================
+   МОБИЛЬНЫЙ СЛОЙ (телефоны, ≤768px)
+   Добавлено 16.09.2026: убираем горизонтальный сдвиг страницы,
+   делаем ряды-вкладки прокручиваемыми, карточку квартиры — на весь экран,
+   увеличиваем тап-таргеты. Десктоп не затрагивается.
+   ====================================================================== */
+@media (max-width:768px){
+
+  /* страница никогда не шире экрана */
+  html,body{max-width:100%;overflow-x:hidden}
+
+  /* 1. Переключатель блоков №1…№6 — горизонтальная прокрутка, отдельная строка */
+  .crumbrow{flex-wrap:wrap;row-gap:.5rem}
+  .crumbrow .bsw{order:2;width:100%;margin-left:0 !important;display:flex !important;
+    overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .bsw::-webkit-scrollbar{display:none}
+  .bsw a{flex:0 0 auto;display:inline-flex;align-items:center;min-height:38px}
+
+  /* 2. Панель фильтров на страницах блоков — в две колонки, без «слипшихся» подписей */
+  .bar:has(#viewSeg){display:grid !important;grid-template-columns:auto minmax(0,1fr);
+    gap:.5rem .6rem;align-items:center}
+  .bar:has(#viewSeg) > #viewSeg{grid-column:1 / -1;display:flex;width:100%}
+  .bar:has(#viewSeg) > #viewSeg button{flex:1;justify-content:center;text-align:center}
+  .bar:has(#viewSeg) > span[style*="flex"]{display:none}
+  .bar:has(#viewSeg) > .link-btn{grid-column:1;justify-self:start}
+  .bar:has(#viewSeg) > #langSeg{grid-column:2;justify-self:end}
+  .bar .sel{width:100%}
+
+  /* 3. Карточка квартиры (выдвижная панель) — на весь экран телефона */
+  .drawer{width:100% !important;max-width:100vw !important;left:0 !important;right:0 !important}
+  .dbody{padding-bottom:1.5rem;-webkit-overflow-scrolling:touch}
+
+  /* 4. Кнопки масштаба плана и крестики — под палец */
+  .zoomer{right:.5rem;top:.5rem}
+  .zoomer button{width:2.4rem;height:2.4rem;font-size:1.05rem}
+  .x,.tclose{width:2.6rem;height:2.6rem}
+  .seg button{min-height:40px;display:inline-flex;align-items:center}
+  .ftab{min-height:44px}
+
+  /* 5. Широкое содержимое не растягивает страницу */
+  img,svg,video,canvas,iframe{max-width:100%}
+  table{max-width:100%}
+  .scroll{overflow:auto;-webkit-overflow-scrolling:touch}
+  .chess,.floors{-webkit-overflow-scrolling:touch}
+
+  /* 6. Полноэкранный фон на странице Investment не вылезает вбок */
+  .ti-hero-bg{left:0 !important;right:0 !important;width:100% !important}
+
+  /* 7. График платежей: колонки не ломаются, таблица прокручивается вбок */
+  table.tb{font-size:.78rem}
+  table.tb th,table.tb td{white-space:nowrap}
+
+  /* 8. iOS не зумит страницу при фокусе на поле (нужен шрифт ≥16px) */
+  input,select,textarea{font-size:16px !important}
+}
