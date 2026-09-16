@@ -404,3 +404,66 @@
   } else { seedNotes(); mountBell(); }
 
 })(window);
+
+/* ==========================================================================
+   Выпадающие меню в шапке на тач-устройствах (добавлено 16.09.2026)
+   На компьютере меню «More» и выбор языка открываются по наведению мыши
+   (group-hover в Tailwind). На телефоне и планшете наведения нет, поэтому
+   меню не открывалось. Теперь оно открывается по тапу и закрывается
+   повторным тапом, тапом вне меню, клавишей Esc или при уходе со страницы.
+   Логика десктопа не затронута: hover продолжает работать как раньше.
+   ========================================================================== */
+(function () {
+  'use strict';
+
+  function init() {
+    var header = document.querySelector('header');
+    if (!header) return;
+
+    var groups = header.querySelectorAll('.relative.group');
+    if (!groups.length) return;
+
+    function closeAll() {
+      var open = header.querySelectorAll('.os-dd-open');
+      Array.prototype.forEach.call(open, function (g) {
+        g.classList.remove('os-dd-open');
+        var b = g.querySelector('button');
+        if (b) b.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    Array.prototype.forEach.call(groups, function (g) {
+      var btn = g.querySelector('button');
+      var panel = g.querySelector('.absolute');
+      if (!btn || !panel) return;
+
+      panel.classList.add('os-dd-panel');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-haspopup', 'true');
+
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var wasOpen = g.classList.contains('os-dd-open');
+        closeAll();
+        if (!wasOpen) {
+          g.classList.add('os-dd-open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+
+      /* тап внутри самого меню не должен его закрывать раньше перехода по ссылке */
+      panel.addEventListener('click', function (e) { e.stopPropagation(); });
+    });
+
+    document.addEventListener('click', closeAll);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' || e.keyCode === 27) closeAll();
+    });
+    window.addEventListener('pagehide', closeAll);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else { init(); }
+})();
