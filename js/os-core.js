@@ -467,3 +467,42 @@
     document.addEventListener('DOMContentLoaded', init);
   } else { init(); }
 })();
+
+/* ==========================================================================
+   Кнопка-бургер на телефоне (добавлено 16.09.2026)
+   На страницах «Калькулятор», «Акции», «Подбор», «Ход стройки» и «Кабинет»
+   в шапке была кнопка ☰ и разметка меню, но не было обработчика клика —
+   меню не открывалось. Здесь подключаем обработчик, но только если на
+   странице нет собственного (проверяем встроенный скрипт), чтобы на
+   остальных страницах меню не открывалось и сразу не закрывалось.
+   ========================================================================== */
+(function () {
+  'use strict';
+
+  function hasOwnHandler() {
+    return Array.prototype.some.call(document.scripts, function (s) {
+      return !s.src && s.textContent.indexOf("getElementById('menuBtn')") >= 0;
+    });
+  }
+
+  function init() {
+    var btn = document.getElementById('menuBtn');
+    var menu = document.getElementById('mobileMenu');
+    if (!btn || !menu || btn.dataset.osMenu === '1' || hasOwnHandler()) return;
+
+    btn.dataset.osMenu = '1';
+    btn.setAttribute('aria-controls', 'mobileMenu');
+    btn.setAttribute('aria-expanded', 'false');
+
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var open = menu.classList.toggle('hidden') === false;
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else { init(); }
+})();
