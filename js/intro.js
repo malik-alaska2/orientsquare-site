@@ -23,11 +23,23 @@
 
   var CFG = {
     once: 'session',      // 'session' — 1 раз за сессию | 'always' | 'once-ever'
-    minShow: 2600,        // мин. время показа, мс (длительность анимации)
+    minShow: 3000,        // мин. время показа, мс (= длина ролика)
     maxShow: 5000,        // жёсткий предел, мс
     fadeOut: 550,         // длительность ухода, мс
-    base: 'assets/brand/' // папка с логотипами
+    autoClose: true,      // false — заставка не закрывается сама (для записи ролика)
+    base: 'assets/brand/',// папка с логотипами
+    video: 'assets/intro/',// папка с роликом заставки ('' — выключить видео)
+    videoWait: 1200       // сколько ждём готовности видео, мс, потом — CSS-анимация
   };
+
+  // Переопределение настроек со страницы: window.OS_INTRO_CFG = { minShow: 3200, ... }
+  try {
+    if (window.OS_INTRO_CFG) {
+      for (var ck in window.OS_INTRO_CFG) {
+        if (Object.prototype.hasOwnProperty.call(window.OS_INTRO_CFG, ck)) CFG[ck] = window.OS_INTRO_CFG[ck];
+      }
+    }
+  } catch (e) {}
 
   var KEY = 'os_intro_seen_v1';
   var store = (CFG.once === 'once-ever') ? 'localStorage' : 'sessionStorage';
@@ -57,6 +69,7 @@
 
   /* ---- 2. Геометрия логотипа (координаты сняты с assets/brand/logo-full.png, 720×230) ---- */
   var LOGO_W = 720, LOGO_H = 230;
+  var VID_W = 800, VID_H = 400;   // кадр ролика заставки (assets/intro/intro.mp4)
   var MARK = { x: 2, y: 2, w: 223, h: 227 };
 
   // Буквы: [x, y, ширина, высота, задержка(мс), dx, dy, поворот(deg), стартовый масштаб]
@@ -127,6 +140,16 @@
     'mask:url("' + CFG.base + 'logo-full.png") no-repeat 0 0/' + LOGO_W + 'px ' + LOGO_H + 'px;',
     'background:linear-gradient(105deg,rgba(255,255,255,0) 38%,rgba(255,255,255,.9) 50%,rgba(255,255,255,0) 62%);',
     'background-size:260% 100%;animation:osi-shine 1.05s ease-out 1.85s forwards}',
+
+    /* ролик заставки (поверх CSS-анимации; если не запустится — покажется анимация) */
+    '#osIntro .osi-video{position:absolute;left:50%;top:50%;flex:0 0 auto;',
+    'width:' + VID_W + 'px;height:' + VID_H + 'px;margin:' + (-VID_H / 2) + 'px 0 0 ' + (-VID_W / 2) + 'px;',
+    'transform:scale(var(--osi-k,1));transform-origin:50% 50%;',
+    'max-width:none;max-height:none;min-width:0;object-fit:fill;',
+    'opacity:0;transition:opacity .2s ease;pointer-events:none;background:#FFF8B9;display:block}',
+    '#osIntro.osi-has-video{background:#FFF8B9}',
+    '#osIntro.osi-has-video .osi-video{opacity:1}',
+    '#osIntro.osi-has-video .osi-stage,#osIntro.osi-has-video .osi-glow{visibility:hidden}',
 
     /* полоса загрузки */
     '#osIntro .osi-bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(112,33,122,.12)}',
@@ -200,6 +223,12 @@
 
     parts.push('<div class="osi-shine"></div>');
     parts.push('</div>');
+    if (CFG.video && !reduced) {
+      parts.push('<video class="osi-video" muted playsinline autoplay preload="auto" ' +
+        'poster="' + CFG.video + 'intro-poster.jpg" aria-hidden="true">' +
+        '<source src="' + CFG.video + 'intro.webm" type="video/webm">' +
+        '<source src="' + CFG.video + 'intro.mp4" type="video/mp4"></video>');
+    }
     parts.push('<div class="osi-bar"><i></i></div>');
     parts.push('<div class="osi-skip">Orient Square Real Estate</div>');
 
@@ -216,6 +245,10 @@
     overlay.addEventListener('click', close);
     doc.addEventListener('keydown', onKey, true);
 
+    setupVideo();
+
+    if (!CFG.autoClose) return;   // режим записи ролика
+
     var wait = reduced ? 900 : CFG.minShow;
     setTimeout(function () {
       if (doc.readyState === 'complete') close();
@@ -224,12 +257,61 @@
     }, wait);
   }
 
+  /* Видео-заставка. Если ролик не загрузился / не запустился — молча
+     остаёмся на CSS-анимации, она уже играет под ним. */
+  function setupVideo() {
+    var v = overlay && overlay.querySelector('.osi-video');
+    if (!v) return;
+
+    // Сразу рассчитываем на ролик: CSS-анимация спрятана под ним.
+    overlay.classList.add('osi-has-video');
+
+    var settled = false;
+
+    function useVideo() {
+      if (settled) return; settled = true;
+    }
+
+    // Ролик не загрузился / браузер не дал автозапуск —
+    // возвращаем CSS-анимацию и перезапускаем её с нуля.
+    function useCss() {
+      if (settled) return; settled = true;
+      overlay.classList.remove('osi-has-video');
+      try { v.pause(); } catch (e) {}
+      if (v.parentNode) v.parentNode.removeChild(v);
+      var stage = overlay.querySelector('.osi-stage');
+      if (stage && stage.parentNode) {
+        var fresh = stage.cloneNode(true);       // клон перезапускает все CSS-анимации
+        stage.parentNode.replaceChild(fresh, stage);
+        fit();
+      }
+      var glow = overlay.querySelector('.osi-glow');
+      if (glow && glow.parentNode) {
+        glow.parentNode.replaceChild(glow.cloneNode(true), glow);
+      }
+    }
+
+    v.addEventListener('error', useCss, true);
+    v.addEventListener('playing', useVideo);
+    v.addEventListener('ended', function () { if (CFG.autoClose) close(); });
+
+    var pr = v.play();
+    if (pr && typeof pr['catch'] === 'function') pr['catch'](useCss);
+
+    setTimeout(function () {
+      if (settled) return;
+      if (v.currentTime > 0 && !v.paused && !v.ended) useVideo(); else useCss();
+    }, CFG.videoWait);
+  }
+
   function fit() {
     if (!overlay) return;
     var stage = overlay.querySelector('.osi-stage');
     if (!stage) return;
-    var k = Math.min(1, (window.innerWidth - 40) / LOGO_W, (window.innerHeight - 120) / LOGO_H);
-    stage.style.setProperty('--osi-k', Math.max(0.3, k));
+    var k = Math.max(0.3, Math.min(1, (window.innerWidth - 40) / LOGO_W, (window.innerHeight - 120) / LOGO_H));
+    stage.style.setProperty('--osi-k', k);
+    var v = overlay.querySelector('.osi-video');
+    if (v) v.style.setProperty('--osi-k', k);
   }
 
   function onKey(e) {
