@@ -37,7 +37,7 @@
     growthPct: 8,         /* ДЕМО: годовой рост стоимости, % */
 
     /* ДЕМО: срок сдачи */
-    delivery: { ru: 'IV квартал 2027', en: 'Q4 2027' },
+    delivery: { tr: '2027 4. çeyrek', en: 'Q4 2027' },
 
     /* Контакты для заявок */
     phone: '+905461997101',
@@ -49,10 +49,10 @@
     {
       id: 'launch',
       until: '2026-12-31',
-      badge: { ru: '-7%', en: '-7%' },
-      title: { ru: 'Старт продаж блоков №5 и №6', en: 'Sales launch: blocks 5 and 6' },
+      badge: { tr: '-7%', en: '-7%' },
+      title: { tr: '5 ve 6. blokların satış lansmanı', en: 'Sales launch: blocks 5 and 6' },
       text: {
-        ru: 'Скидка 7% на все квартиры блоков №5 и №6 при полной оплате в течение 30 дней после брони.',
+        tr: 'Rezervasyondan sonraki 30 gün içinde peşin ödemede 5 ve 6. blokların tüm dairelerinde %7 indirim.',
         en: '7% off every apartment in blocks 5 and 6 when paid in full within 30 days of booking.'
       },
       blocks: [5, 6],
@@ -61,10 +61,10 @@
     {
       id: 'zero',
       until: '2026-11-30',
-      badge: { ru: '0%', en: '0%' },
-      title: { ru: 'Рассрочка 0% на 3 года', en: '0% installment for 3 years' },
+      badge: { tr: '0%', en: '0%' },
+      title: { tr: '3 yıl %0 faizli taksit', en: '0% installment for 3 years' },
       text: {
-        ru: 'Первый взнос 30%, остаток — равными платежами 36 месяцев без процентов.',
+        tr: '%30 peşinat, kalan tutar 36 ay eşit taksitle ve faizsiz.',
         en: '30% down payment, the rest in 36 equal monthly instalments with no interest.'
       },
       blocks: [1, 2, 3, 4, 5, 6],
@@ -73,10 +73,10 @@
     {
       id: 'storage',
       until: '2026-10-31',
-      badge: { ru: 'Подарок', en: 'Gift' },
-      title: { ru: 'Кладовая в подарок', en: 'Free storage room' },
+      badge: { tr: 'Hediye', en: 'Gift' },
+      title: { tr: 'Depo hediye', en: 'Free storage room' },
       text: {
-        ru: 'При покупке 3-комнатной квартиры в блоках №1–№4 кладовая в подвале передаётся бесплатно.',
+        tr: '1–4. bloklarda 3 odalı daire alımında bodrumdaki depo ücretsiz verilir.',
         en: 'Buy a 3-room apartment in blocks 1–4 and get a basement storage room for free.'
       },
       blocks: [1, 2, 3, 4],
@@ -85,10 +85,10 @@
     {
       id: 'corner',
       until: '2026-12-15',
-      badge: { ru: '-4%', en: '-4%' },
-      title: { ru: 'Угловые квартиры 4-го этажа', en: 'Corner units on the 4th floor' },
+      badge: { tr: '-4%', en: '-4%' },
+      title: { tr: '4. katın köşe daireleri', en: 'Corner units on the 4th floor' },
       text: {
-        ru: 'Скидка 4% на угловые квартиры верхнего этажа во всех блоках — осталось ограниченное количество.',
+        tr: 'Tüm bloklarda üst kat köşe dairelerinde %4 indirim — sınırlı sayıda.',
         en: '4% off top-floor corner apartments in all blocks — limited availability.'
       },
       blocks: [1, 2, 3, 4, 5, 6],
@@ -100,27 +100,27 @@
   var PROGRESS = {
     updated: '2026-09-01',
     blocks: [
-      { b: 1, pct: 82, stage: { ru: 'Внутренняя отделка', en: 'Interior finishing' } },
-      { b: 2, pct: 74, stage: { ru: 'Фасадные работы',    en: 'Facade works' } },
-      { b: 3, pct: 61, stage: { ru: 'Фасадные работы',    en: 'Facade works' } },
-      { b: 4, pct: 48, stage: { ru: 'Кладка и перекрытия', en: 'Masonry and slabs' } },
-      { b: 5, pct: 35, stage: { ru: 'Каркас',             en: 'Structural frame' } },
-      { b: 6, pct: 22, stage: { ru: 'Фундамент и цоколь', en: 'Foundation and basement' } }
+      { b: 1, pct: 82, stage: { tr: 'İç imalatlar', en: 'Interior finishing' } },
+      { b: 2, pct: 74, stage: { tr: 'Cephe işleri',    en: 'Facade works' } },
+      { b: 3, pct: 61, stage: { tr: 'Cephe işleri',    en: 'Facade works' } },
+      { b: 4, pct: 48, stage: { tr: 'Duvar ve döşemeler', en: 'Masonry and slabs' } },
+      { b: 5, pct: 35, stage: { tr: 'Karkas',             en: 'Structural frame' } },
+      { b: 6, pct: 22, stage: { tr: 'Temel ve subasman', en: 'Foundation and basement' } }
     ],
     stages: [
-      { key: 'found',  ru: 'Фундамент',          en: 'Foundation',     done: '2025-06' },
-      { key: 'frame',  ru: 'Каркас',             en: 'Structure',      done: '2025-12' },
-      { key: 'walls',  ru: 'Кладка и перекрытия', en: 'Masonry',       done: '2026-05' },
-      { key: 'facade', ru: 'Фасад и окна',       en: 'Facade',         done: '2026-09' },
-      { key: 'fit',    ru: 'Инженерия и отделка', en: 'MEP & finishing', done: '2027-06' },
-      { key: 'keys',   ru: 'Сдача и ключи',      en: 'Handover',       done: '2027-12' }
+      { key: 'found',  tr: 'Temel',          en: 'Foundation',     done: '2025-06' },
+      { key: 'frame',  tr: 'Karkas',             en: 'Structure',      done: '2025-12' },
+      { key: 'walls',  tr: 'Duvar ve döşemeler', en: 'Masonry',       done: '2026-05' },
+      { key: 'facade', tr: 'Cephe ve pencereler',       en: 'Facade',         done: '2026-09' },
+      { key: 'fit',    tr: 'Mekanik ve iç imalatlar', en: 'MEP & finishing', done: '2027-06' },
+      { key: 'keys',   tr: 'Teslim ve anahtar',      en: 'Handover',       done: '2027-12' }
     ]
   };
 
   /* ---------- язык ---------- */
-  function lang() { return localStorage.getItem('os_lang') === 'en' ? 'en' : 'ru'; }
-  function setLang(l) { localStorage.setItem('os_lang', l === 'en' ? 'en' : 'ru'); }
-  function L(o) { return o ? (o[lang()] !== undefined ? o[lang()] : o.ru) : ''; }
+  function lang() { return localStorage.getItem('os_lang') === 'en' ? 'en' : 'tr'; }
+  function setLang(l) { localStorage.setItem('os_lang', l === 'en' ? 'en' : 'tr'); }
+  function L(o) { return o ? (o[lang()] !== undefined ? o[lang()] : o.tr) : ''; }
 
   /* ---------- формат ---------- */
   function money(v) {
@@ -274,7 +274,7 @@
             fl.units.forEach(function (u) {
               var p = priceOf(+b, fl.f, u.a, u.b);
               flat.push({
-                block: +b, f: fl.f, floorRu: fl.ru, floorEn: fl.en, lvl: fl.lvl,
+                block: +b, f: fl.f, floorTr: fl.tr, floorEn: fl.en, lvl: fl.lvl,
                 n: u.n, a: u.a, r: u.r || 0, b: u.b || 0, p: u.p || 0, k: u.k,
                 row: u.row, price: p ? p.total : 0, ppm: p ? p.ppm : 0,
                 page: 'block-' + b + '.html', hash: fl.f + '-' + u.n
@@ -297,10 +297,10 @@
     b.push(unit);
     write('os_bookings', b);
     notify({
-      ru: 'Заявка на бронь отправлена',
+      tr: 'Rezervasyon talebi gönderildi',
       en: 'Booking request sent'
     }, {
-      ru: 'Квартира № ' + unit.n + ', ' + unit.title + '. Менеджер свяжется с вами в течение рабочего дня.',
+      tr: 'Daire No ' + unit.n + ', ' + unit.title + '. Danışmanımız bir iş günü içinde sizinle iletişime geçecek.',
       en: 'Apartment ' + unit.n + ', ' + unit.title + '. A manager will contact you within one business day.'
     });
     return true;
@@ -328,14 +328,14 @@
     if (localStorage.getItem('os_notes_seed')) return;
     localStorage.setItem('os_notes_seed', '1');
     var base = [
-      [{ ru: 'Новая акция: рассрочка 0% на 3 года', en: 'New offer: 0% installment for 3 years' },
-       { ru: 'Первый взнос 30%, остаток — 36 месяцев без процентов. Действует до 30.11.2026.',
+      [{ tr: 'Yeni kampanya: 3 yıl %0 faizli taksit', en: 'New offer: 0% installment for 3 years' },
+       { tr: '%30 peşinat, kalan 36 ay faizsiz. 30.11.2026 tarihine kadar geçerli.',
          en: '30% down, 36 months with no interest. Valid until 30.11.2026.' }],
-      [{ ru: 'Блок №6 открыт для продаж', en: 'Block 6 is now on sale' },
-       { ru: '84 квартиры и 21 кладовая. Планировка отличается от остальных блоков.',
+      [{ tr: '6. blok satışa açıldı', en: 'Block 6 is now on sale' },
+       { tr: '84 daire ve 21 depo. Yerleşim diğer bloklardan farklı.',
          en: '84 apartments and 21 storage rooms. Layout differs from the other blocks.' }],
-      [{ ru: 'Отчёт по стройке за сентябрь', en: 'September construction report' },
-       { ru: 'Блок №1 — 82% готовности, начата внутренняя отделка.',
+      [{ tr: 'Eylül ayı inşaat raporu', en: 'September construction report' },
+       { tr: '1. blok %82 seviyesinde, iç imalatlara başlandı.',
          en: 'Block 1 is 82% complete, interior finishing has started.' }]
     ];
     var n = base.map(function (b, i) {
