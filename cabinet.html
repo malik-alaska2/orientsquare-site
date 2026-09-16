@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Личный кабинет | OrientSquare</title>
+<meta name="description" content="Избранные квартиры, брони, график платежей, документы и уведомления клиента OrientSquare.">
+<link rel="icon" type="image/png" href="assets/brand/favicon.png">
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<link rel="stylesheet" href="styles.css">
+<style>
+html{font-family:ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"}
+body{padding-top:64px}
+:root{
+  --p:#F57C00;--p6:#FB8C00;--p7:#EF6C00;--p1:#FFE0B2;--p05:#FFF3E0;
+  --v:#70217A;--cream:#FFF8B9;
+  --g9:#333;--g7:#616161;--g6:#757575;--g5:#9E9E9E;--g3:#E0E0E0;--g2:#EEE;--g1:#F5F5F5;--g05:#FAFAFA;
+  --ok:#2E7D32;--ok-bg:#E8F5E9;--res:#F9A825;--res-bg:#FFF8E1;--sold:#9E9E9E;--sold-bg:#F5F5F5;
+  --sh:0 1px 2px rgba(0,0,0,.05);--sh2:0 10px 30px -12px rgba(0,0,0,.18);
+}
+.os{color:var(--g9);background:var(--g05);min-height:100vh}
+.os *{box-sizing:border-box}
+.wrap{max-width:80rem;margin:0 auto;padding:0 1rem}
+@media(min-width:640px){.wrap{padding:0 1.5rem}}
+@media(min-width:1024px){.wrap{padding:0 2rem}}
+.hero{background:linear-gradient(135deg,#FFF3E0 0%,#fff 55%,#FFF8F2 100%);border-bottom:1px solid var(--g2)}
+.hero-in{padding-top:2rem;padding-bottom:2.25rem}
+.badge{display:inline-flex;align-items:center;gap:.4rem;background:var(--p);color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .6rem;border-radius:999px}
+.badge.v{background:var(--v)}
+h1.t{font-size:1.8rem;line-height:1.15;font-weight:700;margin:.6rem 0 .4rem}
+@media(min-width:640px){h1.t{font-size:2.4rem}}
+.sub{color:var(--g6);font-size:1rem;max-width:46rem}
+.panel{background:#fff;border:1px solid var(--g2);border-radius:1rem;box-shadow:var(--sh)}
+.pad{padding:1.1rem}
+@media(min-width:640px){.pad{padding:1.4rem}}
+.h2{font-size:1.15rem;font-weight:700;margin:0 0 .25rem}
+.muted{color:var(--g6);font-size:.85rem}
+.grid{display:grid;gap:1rem}
+.g2{grid-template-columns:1fr}
+@media(min-width:900px){.g2{grid-template-columns:1fr 1fr}}
+.g3{grid-template-columns:1fr}
+@media(min-width:640px){.g3{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.g3{grid-template-columns:repeat(3,1fr)}}
+.g4{grid-template-columns:repeat(2,1fr)}
+@media(min-width:900px){.g4{grid-template-columns:repeat(4,1fr)}}
+.sec{padding:1.75rem 0}
+.row{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.lbl{display:block;font-size:.72rem;color:var(--g5);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem}
+.inp,.sel{width:100%;border:1px solid var(--g3);border-radius:.6rem;padding:.55rem .7rem;font-size:.95rem;color:var(--g9);background:#fff;font-family:inherit}
+.inp:focus,.sel:focus{outline:2px solid var(--p1);border-color:var(--p)}
+.field{margin-bottom:.9rem}
+.seg{display:inline-flex;background:var(--g1);border-radius:.7rem;padding:.2rem;gap:.2rem;flex-wrap:wrap}
+.seg button{border:0;background:transparent;color:var(--g7);font-size:.82rem;font-weight:600;padding:.45rem .85rem;border-radius:.55rem;cursor:pointer;white-space:nowrap;font-family:inherit}
+.seg button[aria-pressed=true]{background:#fff;color:var(--p7);box-shadow:var(--sh)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;border:0;background:var(--p);color:#fff;font-weight:600;font-size:.9rem;padding:.6rem 1.1rem;border-radius:.7rem;cursor:pointer;text-decoration:none;font-family:inherit}
+.btn:hover{background:var(--p7)}
+.btn.ghost{background:#fff;color:var(--g7);border:1px solid var(--g3)}
+.btn.ghost:hover{border-color:var(--p);color:var(--p7)}
+.btn.sm{font-size:.82rem;padding:.45rem .8rem;border-radius:.6rem}
+.kpi{background:#fff;border:1px solid var(--g2);border-radius:.9rem;padding:.85rem 1rem;box-shadow:var(--sh)}
+.kpi b{display:block;font-size:1.5rem;font-weight:700;line-height:1.2;color:var(--p7)}
+.kpi span{font-size:.72rem;color:var(--g6);text-transform:uppercase;letter-spacing:.04em}
+.kpi.v b{color:var(--v)}
+table.tb{width:100%;border-collapse:collapse;font-size:.85rem}
+table.tb th{text-align:left;font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;color:var(--g5);padding:.5rem .6rem;border-bottom:1px solid var(--g2);position:sticky;top:0;background:#fff}
+table.tb td{padding:.45rem .6rem;border-bottom:1px solid var(--g1)}
+table.tb tr:hover td{background:var(--p05)}
+.scroll{max-height:22rem;overflow:auto;border:1px solid var(--g2);border-radius:.8rem;background:#fff}
+.chip{display:inline-flex;align-items:center;gap:.3rem;font-size:.72rem;font-weight:700;padding:.25rem .55rem;border-radius:999px;background:var(--p05);color:var(--p7)}
+.chip.ok{background:var(--ok-bg);color:var(--ok)}
+.chip.g{background:var(--g1);color:var(--g6)}
+.note{background:var(--p05);border:1px solid var(--p1);border-radius:.8rem;padding:.8rem 1rem;font-size:.82rem;color:var(--g7)}
+.demo{display:inline-flex;align-items:center;gap:.35rem;font-size:.7rem;font-weight:700;color:#8a5a00;background:#FFF8E1;border:1px solid #FFE082;padding:.2rem .5rem;border-radius:999px}
+.card{background:#fff;border:1px solid var(--g2);border-radius:1rem;box-shadow:var(--sh);padding:1rem;display:flex;flex-direction:column}
+.card h3{font-size:1rem;font-weight:700;margin:0 0 .2rem}
+.kv{display:grid;grid-template-columns:1fr auto;gap:.2rem .8rem;font-size:.85rem;margin:.6rem 0}
+.kv div:nth-child(odd){color:var(--g6)}
+.kv div:nth-child(even){font-weight:600;text-align:right}
+.bar{height:.5rem;border-radius:999px;background:var(--g2);overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--p),var(--p6));border-radius:999px}
+.tabs{display:flex;gap:.3rem;overflow-x:auto;border-bottom:1px solid var(--g2);margin-bottom:1.2rem}
+.tabs button{flex:0 0 auto;border:0;background:none;font-family:inherit;font-size:.9rem;font-weight:600;color:var(--g6);padding:.7rem .9rem;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs button[aria-selected=true]{color:var(--p7);border-bottom-color:var(--p)}
+.empty{text-align:center;padding:2.5rem 1rem;color:var(--g6)}
+.rng{width:100%;accent-color:var(--p)}
+.langsw{display:inline-flex;gap:.3rem}
+.langsw button{border:1px solid var(--g3);background:#fff;border-radius:.5rem;padding:.3rem .6rem;font-size:.78rem;font-weight:600;color:var(--g7);cursor:pointer;font-family:inherit}
+.langsw button[aria-pressed=true]{border-color:var(--p);color:var(--p7);background:var(--p05)}
+
+.note-item{display:flex;gap:.8rem;padding:.9rem 0;border-bottom:1px solid var(--g1)}
+.note-item:last-child{border-bottom:0}
+.dot{flex:0 0 auto;width:.55rem;height:.55rem;border-radius:999px;background:var(--p);margin-top:.45rem}
+.dot.off{background:var(--g3)}
+.doc{display:flex;align-items:center;gap:.8rem;padding:.8rem;border:1px solid var(--g2);border-radius:.8rem;background:#fff;margin-bottom:.6rem}
+.doc b{display:block;font-size:.92rem}
+.doc span{font-size:.78rem;color:var(--g6)}
+</style>
+</head>
+<body class="antialiased">
+<header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <a href="index.html" class="flex items-center space-x-2">
+        <img src="assets/brand/logo-full.png" alt="Orient Square Real Estate" class="os-logo" width="720" height="230">
+      </a>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="index.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Home</span></a>
+        <a href="properties.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg><span>Real Estate</span></a>
+        <a href="news.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg><span>News</span></a>
+        <a href="sold.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span>Sold Projects</span></a>
+        <a href="investment.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><span>Investment</span></a>
+        <a href="favorites.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg><span>Favorites</span></a>
+        <a href="about.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>About Us</span></a>
+        <a href="index.html#contact" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Contact</span></a>
+      <div class="relative group" id="osMore"><button type="button" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg><span>More</span></button><div class="absolute left-0 mt-2 w-44 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"><a href="calculator.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 first:rounded-t-lg last:rounded-b-lg transition-colors">Calculator</a><a href="offers.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 first:rounded-t-lg last:rounded-b-lg transition-colors">Offers</a><a href="request.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 first:rounded-t-lg last:rounded-b-lg transition-colors">Find my home</a><a href="progress.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 first:rounded-t-lg last:rounded-b-lg transition-colors">Construction</a><a href="cabinet.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 first:rounded-t-lg last:rounded-b-lg transition-colors">My cabinet</a></div></div></nav>
+      <div class="md:hidden">
+        <button type="button" id="menuBtn" class="text-gray-700 hover:text-primary-500 transition-colors p-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></button>
+      </div>
+      <div class="hidden md:flex items-center space-x-4">
+        <div class="relative group">
+          <button type="button" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg><span class="text-sm">&#127482;&#127480;</span></button>
+          <div class="absolute right-0 mt-2 w-32 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <button type="button" class="w-full px-3 py-2 text-left text-sm hover:bg-gray-50 first:rounded-t-lg last:rounded-b-lg bg-primary-50 text-primary-600">&#127482;&#127480; English</button>
+            <button type="button" class="w-full px-3 py-2 text-left text-sm hover:bg-gray-50 first:rounded-t-lg last:rounded-b-lg text-gray-700">&#127481;&#127479; T&uuml;rk&ccedil;e</button>
+            <button type="button" class="w-full px-3 py-2 text-left text-sm hover:bg-gray-50 first:rounded-t-lg last:rounded-b-lg text-gray-700">&#127479;&#127482; &#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;</button>
+          </div>
+        </div>
+        <a href="auth.html" class="flex items-center space-x-1 bg-primary-500 text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" x2="3" y1="12" y2="12"/></svg><span>Sign In</span></a>
+      </div>
+    </div>
+    <div id="mobileMenu" class="md:hidden hidden border-t border-gray-200 py-4 space-y-2">
+      <a href="index.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Home</a>
+      <a href="properties.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Real Estate</a>
+      <a href="news.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">News</a>
+      <a href="sold.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Sold Projects</a>
+      <a href="investment.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Investment</a>
+      <a href="favorites.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Favorites</a>
+      <a href="about.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">About Us</a><a href="calculator.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Calculator</a><a href="offers.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Offers</a><a href="request.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Find my home</a><a href="progress.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Construction</a><a href="cabinet.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">My cabinet</a>
+      <a href="auth.html" class="block mx-2 mt-2 text-center bg-primary-500 text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors">Sign In</a>
+    </div>
+  </div>
+</header>
+<div class="os">
+<main>
+
+<section class="hero"><div class="wrap hero-in">
+  <div class="row" style="justify-content:space-between;align-items:flex-start">
+    <div>
+      <span class="badge" data-t="badge">Кабинет</span>
+      <h1 class="t" id="hi" data-t="h1">Личный кабинет</h1>
+      <p class="sub" data-t="sub">Избранное, брони, график платежей, документы и уведомления — всё в одном месте.</p>
+    </div>
+    <div class="langsw"><button type="button" id="lRu" aria-pressed="true">RU</button><button type="button" id="lEn">EN</button></div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <div class="tabs" role="tablist">
+    <button type="button" data-p="over" aria-selected="true" data-t="tOver">Обзор</button>
+    <button type="button" data-p="favs" aria-selected="false" data-t="tFavs">Избранное</button>
+    <button type="button" data-p="book" aria-selected="false" data-t="tBook">Брони</button>
+    <button type="button" data-p="pay" aria-selected="false" data-t="tPay">Платежи</button>
+    <button type="button" data-p="docs" aria-selected="false" data-t="tDocs">Документы</button>
+    <button type="button" data-p="notes" aria-selected="false" data-t="tNotes">Уведомления</button>
+  </div>
+
+  <!-- ОБЗОР -->
+  <div data-pane="over">
+    <div class="grid g2">
+      <div class="panel pad">
+        <h2 class="h2" data-t="profT">Профиль</h2>
+        <p class="muted" style="margin:0 0 1rem" data-t="profS">Профиль хранится только в этом браузере — пароль не нужен.</p>
+        <div class="field"><label class="lbl" data-t="pName">Имя</label><input class="inp" id="pName" type="text" placeholder="—"></div>
+        <div class="field"><label class="lbl" data-t="pPhone">Телефон или Telegram</label><input class="inp" id="pPhone" type="text" placeholder="+998 ..."></div>
+        <div class="field"><label class="lbl" data-t="pMail">E-mail</label><input class="inp" id="pMail" type="text" placeholder="—"></div>
+        <button type="button" class="btn" id="pSave" data-t="pSave">Сохранить</button>
+      </div>
+      <div>
+        <div class="grid g2" style="gap:.7rem">
+          <div class="kpi"><b id="sFav">0</b><span data-t="sFav">В избранном</span></div>
+          <div class="kpi"><b id="sBook">0</b><span data-t="sBook">Брони</span></div>
+          <div class="kpi v"><b id="sBudget">—</b><span data-t="sBudget">Средний бюджет</span></div>
+          <div class="kpi v"><b id="sRooms">—</b><span data-t="sRooms">Чаще смотрите</span></div>
+        </div>
+        <div class="panel pad" style="margin-top:.7rem">
+          <h2 class="h2" style="font-size:1rem" data-t="reqT">Ваш запрос на подбор</h2>
+          <div class="kv" id="reqKv"></div>
+          <a class="btn ghost sm" href="request.html" data-t="reqBtn">Изменить условия</a>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="h2" style="margin:1.6rem 0 .4rem" data-t="simT">Похожие на ваш выбор</h2>
+    <p class="muted" style="margin:0 0 .9rem" data-t="simS">Подобрано по квартирам, которые вы открывали и добавляли в избранное.</p>
+    <div class="grid g3" id="simGrid"></div>
+    <div class="empty panel" id="simEmpty" hidden><p data-t="simE">Откройте несколько квартир на планах блоков — и здесь появятся похожие варианты.</p></div>
+  </div>
+
+  <!-- ИЗБРАННОЕ -->
+  <div data-pane="favs" hidden>
+    <div class="grid g3" id="favGrid"></div>
+    <div class="empty panel" id="favEmpty" hidden><p data-t="favE">В избранном пусто. Откройте план блока и нажмите на сердечко.</p></div>
+  </div>
+
+  <!-- БРОНИ -->
+  <div data-pane="book" hidden>
+    <div class="grid g3" id="bookGrid"></div>
+    <div class="empty panel" id="bookEmpty" hidden><p data-t="bookE">Броней нет. Забронировать можно из раздела «Избранное» — это заявка, а не оплата.</p></div>
+  </div>
+
+  <!-- ПЛАТЕЖИ -->
+  <div data-pane="pay" hidden>
+    <div id="payWrap"></div>
+    <div class="empty panel" id="payEmpty" hidden><p data-t="payE">График платежей появится после первой брони.</p></div>
+  </div>
+
+  <!-- ДОКУМЕНТЫ -->
+  <div data-pane="docs" hidden>
+    <div class="panel pad">
+      <h2 class="h2" data-t="docsT">Документы по броням</h2>
+      <p class="muted" style="margin:0 0 1rem" data-t="docsS">Черновики формируются прямо в браузере из данных брони — их можно открыть, распечатать или сохранить в PDF.</p>
+      <div id="docsList"></div>
+      <div class="empty" id="docsEmpty" hidden><p data-t="docsE">Документы появятся после брони квартиры.</p></div>
+    </div>
+  </div>
+
+  <!-- УВЕДОМЛЕНИЯ -->
+  <div data-pane="notes" hidden>
+    <div class="panel pad">
+      <div class="row" style="justify-content:space-between;margin-bottom:.5rem">
+        <h2 class="h2" data-t="notesT">Уведомления</h2>
+        <button type="button" class="btn ghost sm" id="btnRead" data-t="readAll">Отметить прочитанными</button>
+      </div>
+      <div id="notesList"></div>
+      <div class="empty" id="notesEmpty" hidden><p data-t="notesE">Уведомлений пока нет.</p></div>
+    </div>
+  </div>
+</div></section>
+
+</main>
+</div>
+<footer class="bg-gray-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="col-span-1 md:col-span-2">
+        <div class="flex items-center space-x-2 mb-4">
+          <img src="assets/brand/logo-full-light.png" alt="Orient Square Real Estate" class="os-logo os-logo--footer" width="720" height="230">
+        </div>
+        <p class="text-gray-300 mb-6 max-w-md">Your trusted partner in finding the perfect property. We specialize in premium real estate solutions.</p>
+        <div class="flex space-x-4">
+          <a href="#" class="text-gray-400 hover:text-primary-500 transition-colors" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" class="text-gray-400 hover:text-primary-500 transition-colors" aria-label="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg></a>
+          <a href="https://www.instagram.com/orient.square?igsh=Ym4zNm5ocjRlcmpj" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary-500 transition-colors" aria-label="Follow us on Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
+          <a href="#" class="text-gray-400 hover:text-primary-500 transition-colors" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="https://www.tiktok.com/@orient.square?_t=ZS-90FDbRoWzlw&amp;_r=1" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary-500 transition-colors" aria-label="Follow us on TikTok"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="text-gray-300 hover:text-primary-500 transition-colors">Home</a></li>
+          <li><a href="properties.html" class="text-gray-300 hover:text-primary-500 transition-colors">Properties</a></li>
+          <li><a href="news.html" class="text-gray-300 hover:text-primary-500 transition-colors">News</a></li>
+          <li><a href="sold.html" class="text-gray-300 hover:text-primary-500 transition-colors">Sold Projects</a></li>
+          <li><a href="investment.html" class="text-gray-300 hover:text-primary-500 transition-colors">Tashkent Investment</a></li>
+          <li><a href="about.html" class="text-gray-300 hover:text-primary-500 transition-colors">About Us</a></li><li><a href="calculator.html" class="text-gray-300 hover:text-primary-500 transition-colors">Calculator</a></li><li><a href="offers.html" class="text-gray-300 hover:text-primary-500 transition-colors">Offers</a></li><li><a href="progress.html" class="text-gray-300 hover:text-primary-500 transition-colors">Construction</a></li><li><a href="cabinet.html" class="text-gray-300 hover:text-primary-500 transition-colors">My cabinet</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Contact Info</h3>
+        <div class="space-y-3">
+          <div class="flex items-center space-x-3">
+            <span class="text-primary-500 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <span class="text-gray-300 text-sm">Maslak mah. Maslak meydan sk. Beybi Giz Plaza A Blok No: 1/55, Sar&#305;yer, Istanbul 34485, Turkey</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <span class="text-primary-500 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            <a href="tel:+90 546 199 7101" class="text-gray-300 text-sm hover:text-primary-400 transition-colors">+90 546 199 7101</a>
+          </div>
+          <div class="flex items-center space-x-3">
+            <span class="text-primary-500 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+            <a href="mailto:info@orientsquare.com" class="text-gray-300 text-sm hover:text-primary-400 transition-colors">info@orientsquare.com</a>
+          </div>
+          <div class="flex items-center space-x-3">
+            <span class="text-primary-500 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+            <span class="text-gray-300 text-sm">Mon-Fri 9AM-6PM, Sat 10AM-4PM</span>
+          </div>
+        </div>
+        <a href="index.html#contact" class="inline-block mt-4 bg-primary-500 text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors">Send Message</a>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+      <p class="text-gray-400 text-sm">&copy; 2026 OrientSquare Real Estate - Istanbul, Turkey. All rights reserved.</p>
+      <div class="flex space-x-6 mt-4 md:mt-0">
+        <a href="#" class="text-gray-400 hover:text-primary-500 text-sm transition-colors">Privacy Policy</a>
+        <a href="#" class="text-gray-400 hover:text-primary-500 text-sm transition-colors">Terms of Service</a>
+        <a href="#" class="text-gray-400 hover:text-primary-500 text-sm transition-colors">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="js/os-core.js"></script>
+<script>
+
+var T={
+ ru:{badge:'Кабинет',h1:'Личный кабинет',sub:'Избранное, брони, график платежей, документы и уведомления — всё в одном месте.',
+  tOver:'Обзор',tFavs:'Избранное',tBook:'Брони',tPay:'Платежи',tDocs:'Документы',tNotes:'Уведомления',
+  profT:'Профиль',profS:'Профиль хранится только в этом браузере — пароль не нужен.',
+  pName:'Имя',pPhone:'Телефон или Telegram',pMail:'E-mail',pSave:'Сохранить',saved:'Сохранено',
+  sFav:'В избранном',sBook:'Брони',sBudget:'Средний бюджет',sRooms:'Чаще смотрите',
+  reqT:'Ваш запрос на подбор',reqBtn:'Изменить условия',reqNone:'Запроса пока нет',
+  simT:'Похожие на ваш выбор',simS:'Подобрано по квартирам, которые вы открывали и добавляли в избранное.',
+  simE:'Откройте несколько квартир на планах блоков — и здесь появятся похожие варианты.',
+  favE:'В избранном пусто. Откройте план блока и нажмите на сердечко.',
+  bookE:'Броней нет. Забронировать можно из раздела «Избранное» — это заявка, а не оплата.',
+  payE:'График платежей появится после первой брони.',
+  docsT:'Документы по броням',docsS:'Черновики формируются прямо в браузере из данных брони — их можно открыть, распечатать или сохранить в PDF.',
+  docsE:'Документы появятся после брони квартиры.',
+  notesT:'Уведомления',readAll:'Отметить прочитанными',notesE:'Уведомлений пока нет.',
+  open:'Открыть',book:'Забронировать',booked:'Забронировано',cancel:'Отменить бронь',remove:'Убрать',
+  m2:'м²',rooms:'-комн.',floor:'этаж',block:'Блок №',price:'Цена',area:'Площадь',plan:'Рассрочка',mo:'/мес',
+  cBudget:'Бюджет до',cRooms:'Комнат',cArea:'Площадь от',cBlock:'Блок',cWhen:'Срок',any:'не важно',
+  schT:'График платежей',month:'Месяц',pay:'Платёж',status:'Статус',paid:'Оплачен',wait:'Ожидается',
+  down:'Первый взнос',dContract:'Договор бронирования',dInvoice:'Счёт на первый взнос',dSchedule:'График платежей',
+  dOpen:'Открыть',draft:'черновик',
+  bookedT:'Заявка на бронь отправлена',
+  total:'Итого',ask:'Написать менеджеру'},
+ en:{badge:'Cabinet',h1:'Your cabinet',sub:'Favorites, bookings, payment schedule, documents and notifications in one place.',
+  tOver:'Overview',tFavs:'Favorites',tBook:'Bookings',tPay:'Payments',tDocs:'Documents',tNotes:'Notifications',
+  profT:'Profile',profS:'The profile is stored in this browser only — no password needed.',
+  pName:'Name',pPhone:'Phone or Telegram',pMail:'E-mail',pSave:'Save',saved:'Saved',
+  sFav:'Saved',sBook:'Bookings',sBudget:'Average budget',sRooms:'Most viewed',
+  reqT:'Your matching request',reqBtn:'Change criteria',reqNone:'No request yet',
+  simT:'Similar to your choices',simS:'Based on the apartments you opened and saved.',
+  simE:'Open a few apartments on the block plans and similar options will show up here.',
+  favE:'Nothing saved yet. Open a block plan and tap the heart.',
+  bookE:'No bookings. You can book from the Favorites tab — it is a request, not a payment.',
+  payE:'The payment schedule appears after your first booking.',
+  docsT:'Documents for your bookings',docsS:'Drafts are generated in your browser from the booking data — open, print or save them as PDF.',
+  docsE:'Documents appear after you book an apartment.',
+  notesT:'Notifications',readAll:'Mark all as read',notesE:'No notifications yet.',
+  open:'Open',book:'Book',booked:'Booked',cancel:'Cancel booking',remove:'Remove',
+  m2:'m²',rooms:'-room',floor:'floor',block:'Block ',price:'Price',area:'Area',plan:'Instalment',mo:'/mo',
+  cBudget:'Budget up to',cRooms:'Rooms',cArea:'Area from',cBlock:'Block',cWhen:'Timing',any:'any',
+  schT:'Payment schedule',month:'Month',pay:'Payment',status:'Status',paid:'Paid',wait:'Upcoming',
+  down:'Down payment',dContract:'Booking agreement',dInvoice:'Down payment invoice',dSchedule:'Payment schedule',
+  dOpen:'Open',draft:'draft',
+  bookedT:'Booking request sent',
+  total:'Total',ask:'Message a manager'}
+};
+var lang=OS.lang(), UN=[];
+function t(k){return T[lang][k];}
+function $(id){return document.getElementById(id);}
+
+function i18n(){
+  document.querySelectorAll('[data-t]').forEach(function(e){var k=e.getAttribute('data-t');if(T[lang][k]!==undefined)e.textContent=T[lang][k];});
+  document.documentElement.lang=lang;
+  $('lRu').setAttribute('aria-pressed',lang==='ru');
+  $('lEn').setAttribute('aria-pressed',lang==='en');
+}
+$('lRu').addEventListener('click',function(){lang='ru';OS.setLang('ru');renderAll();});
+$('lEn').addEventListener('click',function(){lang='en';OS.setLang('en');renderAll();});
+
+/* вкладки */
+document.querySelectorAll('.tabs button').forEach(function(b){
+  b.addEventListener('click',function(){ show(b.dataset.p); });
+});
+function show(p){
+  document.querySelectorAll('.tabs button').forEach(function(b){b.setAttribute('aria-selected',b.dataset.p===p);});
+  document.querySelectorAll('[data-pane]').forEach(function(d){d.hidden=d.getAttribute('data-pane')!==p;});
+  if(p!=='over') location.hash='#'+p; else location.hash='';
+}
+
+/* профиль */
+function prof(){ return OS.read('os_profile','{}'); }
+$('pSave').addEventListener('click',function(){
+  OS.write('os_profile',{name:$('pName').value.trim(),phone:$('pPhone').value.trim(),mail:$('pMail').value.trim()});
+  this.textContent=t('saved');
+  var b=this; setTimeout(function(){b.textContent=t('pSave');},1500);
+  renderAll();
+});
+
+function unitTitle(m,b){ return t('block')+b+' · № '+m.n+' · '+OS.num(m.a)+' '+t('m2'); }
+function blockOf(m){ return m.page?+String(m.page).replace(/\D+/g,''):1; }
+function priceOf(m,b){ var p=OS.priceOf(b,m.f,m.a,m.b); return p?p.total:0; }
+
+/* ---------- избранное ---------- */
+function renderFavs(){
+  var keys=OS.favs(), meta=OS.favData(), g=$('favGrid'), bk=OS.bookings();
+  g.innerHTML=''; $('favEmpty').hidden=keys.length>0;
+  keys.forEach(function(k){
+    var m=meta[k]||{}, b=blockOf(m), price=priceOf(m,b), p=OS.plan(price,30,10,9);
+    var isBooked=bk.some(function(x){return x.id===k;});
+    var el=document.createElement('div'); el.className='card';
+    el.innerHTML='<h3>№ '+m.n+'</h3>'+
+      '<p class="muted" style="margin:.1rem 0 .3rem">'+t('block')+b+' · '+m.f+' '+t('floor')+(m.r?' · '+m.r+t('rooms'):'')+'</p>'+
+      '<div class="kv"><div>'+t('area')+'</div><div>'+OS.num(m.a)+' '+t('m2')+'</div>'+
+      '<div>'+t('price')+'</div><div>'+OS.money(price)+'</div>'+
+      '<div>'+t('plan')+'</div><div>'+OS.money(p.monthly)+t('mo')+'</div></div>'+
+      '<div class="row" style="margin-top:auto">'+
+        '<a class="btn sm" href="'+(m.page||'block-1.html')+'#'+m.f+'-'+m.n+'">'+t('open')+'</a>'+
+        '<button type="button" class="btn ghost sm bookBtn" data-k="'+k+'"'+(isBooked?' disabled':'')+'>'+(isBooked?t('booked'):t('book'))+'</button>'+
+      '</div>';
+    g.appendChild(el);
+  });
+  document.querySelectorAll('.bookBtn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var k=btn.dataset.k, m=OS.favData()[k]||{}, b=blockOf(m);
+      OS.book({id:k,n:m.n,f:m.f,a:m.a,r:m.r||0,block:b,title:unitTitle(m,b),price:priceOf(m,b),ts:Date.now()});
+      renderAll(); show('book');
+    });
+  });
+}
+
+/* ---------- брони ---------- */
+function renderBook(){
+  var bk=OS.bookings(), g=$('bookGrid'); g.innerHTML=''; $('bookEmpty').hidden=bk.length>0;
+  bk.forEach(function(x){
+    var p=OS.plan(x.price,30,10,9);
+    var el=document.createElement('div'); el.className='card';
+    el.innerHTML='<div class="row" style="justify-content:space-between"><h3>№ '+x.n+'</h3><span class="chip ok">'+t('booked')+'</span></div>'+
+      '<p class="muted" style="margin:.1rem 0 .3rem">'+t('block')+x.block+' · '+x.f+' '+t('floor')+'</p>'+
+      '<div class="kv"><div>'+t('price')+'</div><div>'+OS.money(x.price)+'</div>'+
+      '<div>'+t('down')+'</div><div>'+OS.money(p.down)+'</div>'+
+      '<div>'+t('plan')+'</div><div>'+OS.money(p.monthly)+t('mo')+'</div></div>'+
+      '<div class="row" style="margin-top:auto">'+
+        '<a class="btn sm" target="_blank" rel="noopener" href="'+OS.requestLink((lang==='ru'?'Здравствуйте! Бронь: ':'Hello! Booking: ')+x.title)+'">'+t('ask')+'</a>'+
+        '<button type="button" class="btn ghost sm delBook" data-k="'+x.id+'">'+t('cancel')+'</button></div>';
+    g.appendChild(el);
+  });
+  document.querySelectorAll('.delBook').forEach(function(b){
+    b.addEventListener('click',function(){ OS.unbook(b.dataset.k); renderAll(); });
+  });
+}
+
+/* ---------- платежи ---------- */
+function renderPay(){
+  var bk=OS.bookings(), w=$('payWrap'); w.innerHTML=''; $('payEmpty').hidden=bk.length>0;
+  bk.forEach(function(x){
+    var p=OS.plan(x.price,30,10,9), rows=OS.schedule(p).slice(0,12);
+    var d=new Date();
+    var h='<div class="panel pad" style="margin-bottom:1rem">'+
+      '<div class="row" style="justify-content:space-between;margin-bottom:.6rem">'+
+      '<div><h2 class="h2">'+x.title+'</h2><p class="muted" style="margin:0">'+t('down')+': '+OS.money(p.down)+' · '+p.months+' × '+OS.money(p.monthly)+'</p></div>'+
+      '<span class="chip">'+t('total')+': '+OS.money(p.total)+'</span></div>'+
+      '<div class="scroll"><table class="tb"><thead><tr><th>'+t('month')+'</th><th>'+t('pay')+'</th><th>'+t('status')+'</th></tr></thead><tbody>';
+    h+='<tr><td>0</td><td>'+OS.money(p.down)+'</td><td><span class="chip ok">'+t('paid')+'</span></td></tr>';
+    rows.forEach(function(r,i){
+      var dd=new Date(d.getFullYear(),d.getMonth()+r.m,5);
+      var done=i<1;
+      h+='<tr><td>'+('0'+(dd.getMonth()+1)).slice(-2)+'.'+dd.getFullYear()+'</td><td>'+OS.money(r.pay)+'</td>'+
+         '<td><span class="chip '+(done?'ok':'g')+'">'+(done?t('paid'):t('wait'))+'</span></td></tr>';
+    });
+    h+='</tbody></table></div></div>';
+    w.innerHTML+=h;
+  });
+}
+
+/* ---------- документы ---------- */
+function docHtml(title,x,p){
+  var pr=prof();
+  var rows=OS.schedule(p).slice(0,12).map(function(r){
+    return '<tr><td>'+r.m+'</td><td>'+OS.money(r.pay)+'</td><td>'+OS.money(r.balance)+'</td></tr>';
+  }).join('');
+  return '<!DOCTYPE html><html lang="'+lang+'"><head><meta charset="utf-8"><title>'+title+'</title>'+
+  '<style>body{font-family:system-ui,sans-serif;color:#333;max-width:820px;margin:2rem auto;padding:0 1.5rem;line-height:1.55}'+
+  'h1{font-size:1.4rem;border-bottom:3px solid #F57C00;padding-bottom:.5rem}'+
+  'table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.9rem}'+
+  'th,td{border:1px solid #E0E0E0;padding:.45rem .6rem;text-align:left}th{background:#FFF3E0}'+
+  '.mark{display:inline-block;background:#FFF8E1;border:1px solid #FFE082;color:#8a5a00;font-size:.75rem;font-weight:700;padding:.2rem .5rem;border-radius:99px}'+
+  '.kv{display:grid;grid-template-columns:1fr 1fr;gap:.3rem;font-size:.92rem}</style></head><body>'+
+  '<span class="mark">'+t('draft').toUpperCase()+'</span>'+
+  '<h1>OrientSquare Real Estate — '+title+'</h1>'+
+  '<div class="kv">'+
+   '<div>'+t('block')+'</div><div>'+x.block+'</div>'+
+   '<div>№</div><div>'+x.n+'</div>'+
+   '<div>'+t('area')+'</div><div>'+OS.num(x.a)+' '+t('m2')+'</div>'+
+   '<div>'+t('price')+'</div><div>'+OS.money(x.price)+'</div>'+
+   '<div>'+t('down')+'</div><div>'+OS.money(p.down)+'</div>'+
+   '<div>'+t('pName')+'</div><div>'+(pr.name||'—')+'</div>'+
+   '<div>'+t('pPhone')+'</div><div>'+(pr.phone||'—')+'</div>'+
+   '<div>'+t('pMail')+'</div><div>'+(pr.mail||'—')+'</div>'+
+   '<div>'+(lang==='ru'?'Дата':'Date')+'</div><div>'+new Date().toLocaleDateString()+'</div>'+
+  '</div><h2 style="font-size:1.05rem">'+t('schT')+'</h2>'+
+  '<table><thead><tr><th>'+t('month')+'</th><th>'+t('pay')+'</th><th>'+(lang==='ru'?'Остаток':'Balance')+'</th></tr></thead><tbody>'+rows+'</tbody></table>'+
+  '<p style="font-size:.82rem;color:#757575">'+(lang==='ru'
+    ?'Документ сформирован на сайте как черновик и не является договором. Юридическую силу имеет только подписанный экземпляр.'
+    :'This document is generated on the website as a draft and is not a contract. Only a signed copy is legally binding.')+'</p>'+
+  '<p style="font-size:.82rem;color:#757575">Maslak mah. Maslak meydan sk. Beybi Giz Plaza A Blok No: 1/55, Sarıyer, Istanbul · +90 546 199 7101 · info@orientsquare.com</p>'+
+  '</body></html>';
+}
+function openDoc(title,x){
+  var p=OS.plan(x.price,30,10,9);
+  var w=window.open('','_blank');
+  if(!w) return;
+  w.document.write(docHtml(title,x,p)); w.document.close();
+}
+function renderDocs(){
+  var bk=OS.bookings(), l=$('docsList'); l.innerHTML=''; $('docsEmpty').hidden=bk.length>0;
+  bk.forEach(function(x,idx){
+    [['dContract',t('dContract')],['dInvoice',t('dInvoice')],['dSchedule',t('dSchedule')]].forEach(function(d,j){
+      var el=document.createElement('div'); el.className='doc';
+      el.innerHTML='<span style="color:var(--p)"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>'+
+        '<div style="flex:1"><b>'+d[1]+'</b><span>'+x.title+' · '+t('draft')+'</span></div>'+
+        '<button type="button" class="btn ghost sm docBtn" data-i="'+idx+'" data-n="'+d[1]+'">'+t('dOpen')+'</button>';
+      l.appendChild(el);
+    });
+  });
+  document.querySelectorAll('.docBtn').forEach(function(b){
+    b.addEventListener('click',function(){ openDoc(b.dataset.n, OS.bookings()[+b.dataset.i]); });
+  });
+}
+
+/* ---------- уведомления ---------- */
+function renderNotes(){
+  var n=OS.notes(), l=$('notesList'); l.innerHTML=''; $('notesEmpty').hidden=n.length>0;
+  n.forEach(function(x){
+    var d=new Date(x.ts);
+    l.innerHTML+='<div class="note-item"><span class="dot'+(x.read?' off':'')+'"></span><div>'+
+      '<b style="font-size:.95rem">'+OS.L(x.t)+'</b>'+
+      '<p class="muted" style="margin:.15rem 0 .2rem">'+OS.L(x.x)+'</p>'+
+      '<span class="muted" style="font-size:.75rem">'+d.toLocaleDateString()+' '+('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2)+'</span>'+
+      '</div></div>';
+  });
+}
+$('btnRead').addEventListener('click',function(){ OS.readAll(); renderNotes(); });
+
+/* ---------- обзор ---------- */
+function renderOver(){
+  var pr=prof();
+  $('pName').value=pr.name||''; $('pPhone').value=pr.phone||''; $('pMail').value=pr.mail||'';
+  $('hi').textContent=pr.name?(lang==='ru'?('Кабинет · '+pr.name):('Cabinet · '+pr.name)):t('h1');
+  var keys=OS.favs(), meta=OS.favData(), bk=OS.bookings();
+  $('sFav').textContent=keys.length; $('sBook').textContent=bk.length;
+  var p=OS.profile();
+  var prices=keys.map(function(k){var m=meta[k]||{};return priceOf(m,blockOf(m));}).filter(Boolean);
+  var avg=prices.length?prices.reduce(function(a,b){return a+b;},0)/prices.length:0;
+  $('sBudget').textContent=avg?OS.money(avg):'—';
+  $('sRooms').textContent=(p&&p.rooms)?(p.rooms+t('rooms')):'—';
+
+  var r=OS.read('os_request','null');
+  $('reqKv').innerHTML = r ?
+    ('<div>'+t('cBudget')+'</div><div>'+OS.money(r.c.budget)+'</div>'+
+     '<div>'+t('cRooms')+'</div><div>'+(r.c.rooms||t('any'))+'</div>'+
+     '<div>'+t('cArea')+'</div><div>'+(lang==='ru'?'от ':'from ')+r.c.area+' '+t('m2')+'</div>'+
+     '<div>'+t('cBlock')+'</div><div>'+(r.c.block?('№'+r.c.block):t('any'))+'</div>')
+    : ('<div>'+t('reqNone')+'</div><div>—</div>');
+
+  var base=null, v=OS.viewed();
+  if(keys.length){ var m=meta[keys[keys.length-1]]||{}; base={block:blockOf(m),f:m.f,n:m.n,a:m.a,r:m.r,b:m.b}; }
+  else if(v.length){ base=v[0]; }
+  var g=$('simGrid'); g.innerHTML='';
+  if(!base||!UN.length){ $('simEmpty').hidden=false; return; }
+  var sim=OS.similar(base,UN,6);
+  $('simEmpty').hidden=sim.length>0;
+  sim.forEach(function(u){
+    var pl=OS.plan(u.price,30,10,9);
+    g.innerHTML+='<div class="card"><h3>№ '+u.n+'</h3>'+
+      '<p class="muted" style="margin:.1rem 0 .3rem">'+t('block')+u.block+' · '+u.f+' '+t('floor')+(u.r?' · '+u.r+t('rooms'):'')+'</p>'+
+      '<div class="kv"><div>'+t('area')+'</div><div>'+OS.num(u.a)+' '+t('m2')+'</div>'+
+      '<div>'+t('price')+'</div><div>'+OS.money(u.price)+'</div>'+
+      '<div>'+t('plan')+'</div><div>'+OS.money(pl.monthly)+t('mo')+'</div></div>'+
+      '<a class="btn sm" style="margin-top:auto" href="block-'+u.block+'.html#'+u.hash+'">'+t('open')+'</a></div>';
+  });
+}
+
+function renderAll(){ i18n(); renderOver(); renderFavs(); renderBook(); renderPay(); renderDocs(); renderNotes(); }
+renderAll();
+OS.loadUnits(function(list){ UN=list; renderOver(); });
+var h=(location.hash||'').replace('#','');
+if(['favs','book','pay','docs','notes'].indexOf(h)>=0) show(h);
+
+</script>
+</body>
+</html>

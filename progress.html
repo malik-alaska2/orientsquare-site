@@ -1,19 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Latest News | OrientSquare</title>
-<meta name="description" content="Latest real estate news and insights">
+<title>Ход строительства | OrientSquare</title>
+<meta name="description" content="Готовность блоков, этапы работ, фотоотчёт и срок сдачи проекта OrientSquare.">
 <link rel="icon" type="image/png" href="assets/brand/favicon.png">
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
 <link rel="stylesheet" href="styles.css">
 <style>
-@font-face{font-family:Inter;font-style:normal;font-weight:400;font-display:swap;src:local("Inter Regular"),local("Inter-Regular")}
-html{font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";}
-body{transition:opacity ease-in .2s; padding-top:64px;}
+html{font-family:ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"}
+body{padding-top:64px}
+:root{
+  --p:#F57C00;--p6:#FB8C00;--p7:#EF6C00;--p1:#FFE0B2;--p05:#FFF3E0;
+  --v:#70217A;--cream:#FFF8B9;
+  --g9:#333;--g7:#616161;--g6:#757575;--g5:#9E9E9E;--g3:#E0E0E0;--g2:#EEE;--g1:#F5F5F5;--g05:#FAFAFA;
+  --ok:#2E7D32;--ok-bg:#E8F5E9;--res:#F9A825;--res-bg:#FFF8E1;--sold:#9E9E9E;--sold-bg:#F5F5F5;
+  --sh:0 1px 2px rgba(0,0,0,.05);--sh2:0 10px 30px -12px rgba(0,0,0,.18);
+}
+.os{color:var(--g9);background:var(--g05);min-height:100vh}
+.os *{box-sizing:border-box}
+.wrap{max-width:80rem;margin:0 auto;padding:0 1rem}
+@media(min-width:640px){.wrap{padding:0 1.5rem}}
+@media(min-width:1024px){.wrap{padding:0 2rem}}
+.hero{background:linear-gradient(135deg,#FFF3E0 0%,#fff 55%,#FFF8F2 100%);border-bottom:1px solid var(--g2)}
+.hero-in{padding-top:2rem;padding-bottom:2.25rem}
+.badge{display:inline-flex;align-items:center;gap:.4rem;background:var(--p);color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .6rem;border-radius:999px}
+.badge.v{background:var(--v)}
+h1.t{font-size:1.8rem;line-height:1.15;font-weight:700;margin:.6rem 0 .4rem}
+@media(min-width:640px){h1.t{font-size:2.4rem}}
+.sub{color:var(--g6);font-size:1rem;max-width:46rem}
+.panel{background:#fff;border:1px solid var(--g2);border-radius:1rem;box-shadow:var(--sh)}
+.pad{padding:1.1rem}
+@media(min-width:640px){.pad{padding:1.4rem}}
+.h2{font-size:1.15rem;font-weight:700;margin:0 0 .25rem}
+.muted{color:var(--g6);font-size:.85rem}
+.grid{display:grid;gap:1rem}
+.g2{grid-template-columns:1fr}
+@media(min-width:900px){.g2{grid-template-columns:1fr 1fr}}
+.g3{grid-template-columns:1fr}
+@media(min-width:640px){.g3{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.g3{grid-template-columns:repeat(3,1fr)}}
+.g4{grid-template-columns:repeat(2,1fr)}
+@media(min-width:900px){.g4{grid-template-columns:repeat(4,1fr)}}
+.sec{padding:1.75rem 0}
+.row{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.lbl{display:block;font-size:.72rem;color:var(--g5);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem}
+.inp,.sel{width:100%;border:1px solid var(--g3);border-radius:.6rem;padding:.55rem .7rem;font-size:.95rem;color:var(--g9);background:#fff;font-family:inherit}
+.inp:focus,.sel:focus{outline:2px solid var(--p1);border-color:var(--p)}
+.field{margin-bottom:.9rem}
+.seg{display:inline-flex;background:var(--g1);border-radius:.7rem;padding:.2rem;gap:.2rem;flex-wrap:wrap}
+.seg button{border:0;background:transparent;color:var(--g7);font-size:.82rem;font-weight:600;padding:.45rem .85rem;border-radius:.55rem;cursor:pointer;white-space:nowrap;font-family:inherit}
+.seg button[aria-pressed=true]{background:#fff;color:var(--p7);box-shadow:var(--sh)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;border:0;background:var(--p);color:#fff;font-weight:600;font-size:.9rem;padding:.6rem 1.1rem;border-radius:.7rem;cursor:pointer;text-decoration:none;font-family:inherit}
+.btn:hover{background:var(--p7)}
+.btn.ghost{background:#fff;color:var(--g7);border:1px solid var(--g3)}
+.btn.ghost:hover{border-color:var(--p);color:var(--p7)}
+.btn.sm{font-size:.82rem;padding:.45rem .8rem;border-radius:.6rem}
+.kpi{background:#fff;border:1px solid var(--g2);border-radius:.9rem;padding:.85rem 1rem;box-shadow:var(--sh)}
+.kpi b{display:block;font-size:1.5rem;font-weight:700;line-height:1.2;color:var(--p7)}
+.kpi span{font-size:.72rem;color:var(--g6);text-transform:uppercase;letter-spacing:.04em}
+.kpi.v b{color:var(--v)}
+table.tb{width:100%;border-collapse:collapse;font-size:.85rem}
+table.tb th{text-align:left;font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;color:var(--g5);padding:.5rem .6rem;border-bottom:1px solid var(--g2);position:sticky;top:0;background:#fff}
+table.tb td{padding:.45rem .6rem;border-bottom:1px solid var(--g1)}
+table.tb tr:hover td{background:var(--p05)}
+.scroll{max-height:22rem;overflow:auto;border:1px solid var(--g2);border-radius:.8rem;background:#fff}
+.chip{display:inline-flex;align-items:center;gap:.3rem;font-size:.72rem;font-weight:700;padding:.25rem .55rem;border-radius:999px;background:var(--p05);color:var(--p7)}
+.chip.ok{background:var(--ok-bg);color:var(--ok)}
+.chip.g{background:var(--g1);color:var(--g6)}
+.note{background:var(--p05);border:1px solid var(--p1);border-radius:.8rem;padding:.8rem 1rem;font-size:.82rem;color:var(--g7)}
+.demo{display:inline-flex;align-items:center;gap:.35rem;font-size:.7rem;font-weight:700;color:#8a5a00;background:#FFF8E1;border:1px solid #FFE082;padding:.2rem .5rem;border-radius:999px}
+.card{background:#fff;border:1px solid var(--g2);border-radius:1rem;box-shadow:var(--sh);padding:1rem;display:flex;flex-direction:column}
+.card h3{font-size:1rem;font-weight:700;margin:0 0 .2rem}
+.kv{display:grid;grid-template-columns:1fr auto;gap:.2rem .8rem;font-size:.85rem;margin:.6rem 0}
+.kv div:nth-child(odd){color:var(--g6)}
+.kv div:nth-child(even){font-weight:600;text-align:right}
+.bar{height:.5rem;border-radius:999px;background:var(--g2);overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--p),var(--p6));border-radius:999px}
+.tabs{display:flex;gap:.3rem;overflow-x:auto;border-bottom:1px solid var(--g2);margin-bottom:1.2rem}
+.tabs button{flex:0 0 auto;border:0;background:none;font-family:inherit;font-size:.9rem;font-weight:600;color:var(--g6);padding:.7rem .9rem;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs button[aria-selected=true]{color:var(--p7);border-bottom-color:var(--p)}
+.empty{text-align:center;padding:2.5rem 1rem;color:var(--g6)}
+.rng{width:100%;accent-color:var(--p)}
+.langsw{display:inline-flex;gap:.3rem}
+.langsw button{border:1px solid var(--g3);background:#fff;border-radius:.5rem;padding:.3rem .6rem;font-size:.78rem;font-weight:600;color:var(--g7);cursor:pointer;font-family:inherit}
+.langsw button[aria-pressed=true]{border-color:var(--p);color:var(--p7);background:var(--p05)}
+
+.tl{position:relative;padding-left:1.6rem}
+.tl:before{content:'';position:absolute;left:.44rem;top:.3rem;bottom:.3rem;width:2px;background:var(--g2)}
+.tl li{list-style:none;position:relative;padding:0 0 1.1rem 0}
+.tl li:before{content:'';position:absolute;left:-1.34rem;top:.25rem;width:.72rem;height:.72rem;border-radius:999px;background:#fff;border:2px solid var(--g3)}
+.tl li.done:before{background:var(--p);border-color:var(--p)}
+.tl b{display:block;font-size:.95rem}
+.tl span{font-size:.8rem;color:var(--g6)}
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem}
+@media(min-width:700px){.gal{grid-template-columns:repeat(4,1fr)}}
+.gal a{display:block;border-radius:.8rem;overflow:hidden;border:1px solid var(--g2);background:var(--g1)}
+.gal img{display:block;width:100%;height:9rem;object-fit:cover}
 </style>
-<script src="js/os-core.js"></script>
 </head>
 <body class="antialiased">
 <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
@@ -25,7 +110,7 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
       <nav class="hidden md:flex items-center space-x-8">
         <a href="index.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Home</span></a>
         <a href="properties.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg><span>Real Estate</span></a>
-        <a href="news.html" class="flex items-center space-x-1 text-primary-500 font-medium transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg><span>News</span></a>
+        <a href="news.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg><span>News</span></a>
         <a href="sold.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span>Sold Projects</span></a>
         <a href="investment.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><span>Investment</span></a>
         <a href="favorites.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg><span>Favorites</span></a>
@@ -59,34 +144,50 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
     </div>
   </div>
 </header>
-<div class="min-h-screen bg-gray-50">
+<div class="os">
 <main>
-<div class="min-h-screen bg-gray-50 py-8">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <nav class="flex items-center space-x-2 text-sm overflow-x-auto mb-6">
-      <ol class="flex items-center space-x-2">
-        <li class="flex items-center whitespace-nowrap">
-          <span class="text-gray-500 mr-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
-          <a href="index.html" class="text-gray-500 hover:text-primary-600 transition-colors font-medium whitespace-nowrap">Home</a>
-        </li>
-        <li class="flex items-center whitespace-nowrap">
-          <span class="text-gray-400 mx-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m9 18 6-6-6-6"/></svg></span>
-          <span class="text-gray-900 font-semibold whitespace-nowrap">News</span>
-        </li>
-      </ol>
-    </nav>
-    <div class="text-center mb-12">
-      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Latest News</h1>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto">Stay updated with the latest news and insights from the real estate world</p>
+
+<section class="hero"><div class="wrap hero-in">
+  <div class="row" style="justify-content:space-between;align-items:flex-start">
+    <div>
+      <span class="badge" data-t="badge">Стройка</span>
+      <h1 class="t" data-t="h1">Ход строительства</h1>
+      <p class="sub" data-t="sub">Готовность каждого блока, текущий этап работ, фотоотчёт и срок сдачи. Обновляется раз в месяц.</p>
     </div>
-    <div class="text-center py-12">
-      <div class="text-gray-400 mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-16 w-16 mx-auto"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-      <h3 class="text-xl font-semibold text-gray-900 mb-2">No news articles yet</h3>
-      <p class="text-gray-500">Check back later for the latest updates</p>
+    <div class="langsw"><button type="button" id="lRu" aria-pressed="true">RU</button><button type="button" id="lEn">EN</button></div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <div class="grid g4">
+    <div class="kpi"><b id="kAvg">—</b><span data-t="kAvg">Средняя готовность</span></div>
+    <div class="kpi"><b id="kBlocks">6</b><span data-t="kBlocks">Блоков в работе</span></div>
+    <div class="kpi v"><b id="kDeliv">—</b><span data-t="kDeliv">Срок сдачи</span></div>
+    <div class="kpi"><b id="kUpd">—</b><span data-t="kUpd">Данные на</span></div>
+  </div>
+
+  <h2 class="h2" style="margin:1.6rem 0 .8rem" data-t="byBlock">По блокам</h2>
+  <div class="grid g3" id="blkGrid"></div>
+
+  <div class="grid g2" style="margin-top:1.5rem">
+    <div class="panel pad">
+      <h2 class="h2" data-t="stagesT">Этапы проекта</h2>
+      <p class="muted" style="margin:0 0 1rem" data-t="stagesS">Пройденные этапы отмечены оранжевым.</p>
+      <ul class="tl" id="tl"></ul>
+    </div>
+    <div class="panel pad">
+      <h2 class="h2" data-t="galT">Фотоотчёт</h2>
+      <p class="muted" style="margin:0 0 1rem" data-t="galS">Съёмка площадки и визуализации проекта.</p>
+      <div class="gal" id="gal"></div>
+      <a class="btn ghost sm" href="investment.html" style="margin-top:.8rem" data-t="more">Все материалы проекта</a>
     </div>
   </div>
-</div>
+
+  <div class="note" style="margin-top:1.5rem" data-t="note">Проценты готовности и даты — демонстрационные. Реальные значения ставятся в одном месте: js/os-core.js → PROGRESS.</div>
+</div></section>
+
 </main>
+</div>
 <footer class="bg-gray-900 text-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -147,25 +248,76 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
     </div>
   </div>
 </footer>
-</div>
-<button type="button" id="chatBtn" class="fixed bottom-6 right-6 bg-primary-500 hover:bg-primary-600 text-white p-4 rounded-full shadow-lg z-40 transition-colors" aria-label="Open chat"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></button>
-<div id="chatBox" class="hidden fixed bottom-24 right-6 w-80 max-w-[calc(100vw-3rem)] bg-white rounded-2xl shadow-2xl border border-gray-200 z-40 overflow-hidden">
-  <div class="bg-primary-500 text-white px-4 py-3 flex items-center justify-between">
-    <span class="font-semibold">OrientSquare Support</span>
-    <button type="button" id="chatClose" class="text-white/80 hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
-  </div>
-  <div class="p-4 space-y-3">
-    <div class="bg-gray-100 text-gray-700 text-sm rounded-xl rounded-tl-none px-3 py-2">Hello! How can we help you find your property today?</div>
-    <div class="flex gap-2">
-      <input type="text" placeholder="Type your message..." class="flex-1 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
-      <button type="button" class="bg-primary-500 text-white px-3 rounded-lg hover:bg-primary-600 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></button>
-    </div>
-  </div>
-</div>
+<script src="js/os-core.js"></script>
 <script>
-document.getElementById('menuBtn').addEventListener('click',function(){document.getElementById('mobileMenu').classList.toggle('hidden');});
-document.getElementById('chatBtn').addEventListener('click',function(){document.getElementById('chatBox').classList.toggle('hidden');});
-document.getElementById('chatClose').addEventListener('click',function(){document.getElementById('chatBox').classList.add('hidden');});
+
+var T={
+ ru:{badge:'Стройка',h1:'Ход строительства',sub:'Готовность каждого блока, текущий этап работ, фотоотчёт и срок сдачи. Обновляется раз в месяц.',
+  kAvg:'Средняя готовность',kBlocks:'Блоков в работе',kDeliv:'Срок сдачи',kUpd:'Данные на',
+  byBlock:'По блокам',stagesT:'Этапы проекта',stagesS:'Пройденные этапы отмечены оранжевым.',
+  galT:'Фотоотчёт',galS:'Съёмка площадки и визуализации проекта.',more:'Все материалы проекта',
+  note:'Проценты готовности и даты — демонстрационные. Реальные значения ставятся в одном месте: js/os-core.js → PROGRESS.',
+  block:'Блок №',ready:'готовность',stage:'Этап',open:'Открыть блок',ask:'Узнать подробнее',
+  msg:'Здравствуйте! Хочу узнать о ходе строительства '},
+ en:{badge:'Construction',h1:'Construction progress',sub:'Completion of each block, the current stage, photo updates and the handover date. Updated monthly.',
+  kAvg:'Average completion',kBlocks:'Blocks under way',kDeliv:'Handover',kUpd:'Data as of',
+  byBlock:'By block',stagesT:'Project stages',stagesS:'Completed stages are marked orange.',
+  galT:'Photo updates',galS:'Site photography and project renders.',more:'All project materials',
+  note:'Completion percentages and dates are demo values. Real ones are set in a single place: js/os-core.js → PROGRESS.',
+  block:'Block ',ready:'complete',stage:'Stage',open:'Open the block',ask:'Ask for details',
+  msg:'Hello! I would like to know about construction progress of '}
+};
+var lang=OS.lang();
+function t(k){return T[lang][k];}
+var PHOTOS=['facade-night','street-facade','courtyard-playground','drive-aerial','green-arch','lobby-drive','boulevard','gate-aerial'];
+
+function render(){
+  document.querySelectorAll('[data-t]').forEach(function(e){var k=e.getAttribute('data-t');if(T[lang][k]!==undefined)e.textContent=T[lang][k];});
+  document.documentElement.lang=lang;
+  document.getElementById('lRu').setAttribute('aria-pressed',lang==='ru');
+  document.getElementById('lEn').setAttribute('aria-pressed',lang==='en');
+
+  var P=OS.PROGRESS;
+  var avg=P.blocks.reduce(function(a,b){return a+b.pct;},0)/P.blocks.length;
+  document.getElementById('kAvg').textContent=Math.round(avg)+'%';
+  document.getElementById('kBlocks').textContent=P.blocks.length;
+  document.getElementById('kDeliv').textContent=OS.L(OS.CFG.delivery);
+  var u=P.updated.split('-');
+  document.getElementById('kUpd').textContent=u[2]+'.'+u[1]+'.'+u[0];
+
+  var g=document.getElementById('blkGrid'); g.innerHTML='';
+  P.blocks.forEach(function(b){
+    var el=document.createElement('div'); el.className='card';
+    el.innerHTML=
+      '<div class="row" style="justify-content:space-between">'+
+        '<h3>'+t('block')+b.b+'</h3>'+
+        '<span class="chip'+(b.pct>=70?' ok':'')+'">'+b.pct+'% '+t('ready')+'</span></div>'+
+      '<div class="bar" style="margin:.7rem 0 .5rem"><i style="width:'+b.pct+'%"></i></div>'+
+      '<p class="muted" style="margin:0 0 .8rem">'+t('stage')+': '+OS.L(b.stage)+'</p>'+
+      '<div class="row" style="margin-top:auto">'+
+        '<a class="btn sm" href="block-'+b.b+'.html">'+t('open')+'</a>'+
+        '<a class="btn ghost sm" target="_blank" rel="noopener" href="'+OS.requestLink(t('msg')+t('block')+b.b)+'">'+t('ask')+'</a>'+
+      '</div>';
+    g.appendChild(el);
+  });
+
+  var now=new Date(), tl=document.getElementById('tl'); tl.innerHTML='';
+  P.stages.forEach(function(s){
+    var d=new Date(s.done+'-01'), done=d<=now;
+    var li=document.createElement('li'); if(done) li.className='done';
+    var p=s.done.split('-');
+    li.innerHTML='<b>'+(lang==='ru'?s.ru:s.en)+'</b><span>'+p[1]+'.'+p[0]+(done?(lang==='ru'?' · выполнено':' · done'):(lang==='ru'?' · план':' · planned'))+'</span>';
+    tl.appendChild(li);
+  });
+
+  var gal=document.getElementById('gal'); gal.innerHTML='';
+  PHOTOS.forEach(function(n){
+    gal.innerHTML+='<a href="assets/renders/'+n+'.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/renders/thumbs/'+n+'.jpg" alt="'+n+'"></a>';
+  });
+}
+document.getElementById('lRu').addEventListener('click',function(){lang='ru';OS.setLang('ru');render();});
+document.getElementById('lEn').addEventListener('click',function(){lang='en';OS.setLang('en');render();});
+render();
 
 </script>
 </body>

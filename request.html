@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Индивидуальный подбор квартиры | OrientSquare</title>
+<meta name="description" content="Укажите бюджет, количество комнат и район — и получите подходящие квартиры проекта OrientSquare.">
+<link rel="icon" type="image/png" href="assets/brand/favicon.png">
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<link rel="stylesheet" href="styles.css">
+<style>
+html{font-family:ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"}
+body{padding-top:64px}
+:root{
+  --p:#F57C00;--p6:#FB8C00;--p7:#EF6C00;--p1:#FFE0B2;--p05:#FFF3E0;
+  --v:#70217A;--cream:#FFF8B9;
+  --g9:#333;--g7:#616161;--g6:#757575;--g5:#9E9E9E;--g3:#E0E0E0;--g2:#EEE;--g1:#F5F5F5;--g05:#FAFAFA;
+  --ok:#2E7D32;--ok-bg:#E8F5E9;--res:#F9A825;--res-bg:#FFF8E1;--sold:#9E9E9E;--sold-bg:#F5F5F5;
+  --sh:0 1px 2px rgba(0,0,0,.05);--sh2:0 10px 30px -12px rgba(0,0,0,.18);
+}
+.os{color:var(--g9);background:var(--g05);min-height:100vh}
+.os *{box-sizing:border-box}
+.wrap{max-width:80rem;margin:0 auto;padding:0 1rem}
+@media(min-width:640px){.wrap{padding:0 1.5rem}}
+@media(min-width:1024px){.wrap{padding:0 2rem}}
+.hero{background:linear-gradient(135deg,#FFF3E0 0%,#fff 55%,#FFF8F2 100%);border-bottom:1px solid var(--g2)}
+.hero-in{padding-top:2rem;padding-bottom:2.25rem}
+.badge{display:inline-flex;align-items:center;gap:.4rem;background:var(--p);color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .6rem;border-radius:999px}
+.badge.v{background:var(--v)}
+h1.t{font-size:1.8rem;line-height:1.15;font-weight:700;margin:.6rem 0 .4rem}
+@media(min-width:640px){h1.t{font-size:2.4rem}}
+.sub{color:var(--g6);font-size:1rem;max-width:46rem}
+.panel{background:#fff;border:1px solid var(--g2);border-radius:1rem;box-shadow:var(--sh)}
+.pad{padding:1.1rem}
+@media(min-width:640px){.pad{padding:1.4rem}}
+.h2{font-size:1.15rem;font-weight:700;margin:0 0 .25rem}
+.muted{color:var(--g6);font-size:.85rem}
+.grid{display:grid;gap:1rem}
+.g2{grid-template-columns:1fr}
+@media(min-width:900px){.g2{grid-template-columns:1fr 1fr}}
+.g3{grid-template-columns:1fr}
+@media(min-width:640px){.g3{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.g3{grid-template-columns:repeat(3,1fr)}}
+.g4{grid-template-columns:repeat(2,1fr)}
+@media(min-width:900px){.g4{grid-template-columns:repeat(4,1fr)}}
+.sec{padding:1.75rem 0}
+.row{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.lbl{display:block;font-size:.72rem;color:var(--g5);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem}
+.inp,.sel{width:100%;border:1px solid var(--g3);border-radius:.6rem;padding:.55rem .7rem;font-size:.95rem;color:var(--g9);background:#fff;font-family:inherit}
+.inp:focus,.sel:focus{outline:2px solid var(--p1);border-color:var(--p)}
+.field{margin-bottom:.9rem}
+.seg{display:inline-flex;background:var(--g1);border-radius:.7rem;padding:.2rem;gap:.2rem;flex-wrap:wrap}
+.seg button{border:0;background:transparent;color:var(--g7);font-size:.82rem;font-weight:600;padding:.45rem .85rem;border-radius:.55rem;cursor:pointer;white-space:nowrap;font-family:inherit}
+.seg button[aria-pressed=true]{background:#fff;color:var(--p7);box-shadow:var(--sh)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;border:0;background:var(--p);color:#fff;font-weight:600;font-size:.9rem;padding:.6rem 1.1rem;border-radius:.7rem;cursor:pointer;text-decoration:none;font-family:inherit}
+.btn:hover{background:var(--p7)}
+.btn.ghost{background:#fff;color:var(--g7);border:1px solid var(--g3)}
+.btn.ghost:hover{border-color:var(--p);color:var(--p7)}
+.btn.sm{font-size:.82rem;padding:.45rem .8rem;border-radius:.6rem}
+.kpi{background:#fff;border:1px solid var(--g2);border-radius:.9rem;padding:.85rem 1rem;box-shadow:var(--sh)}
+.kpi b{display:block;font-size:1.5rem;font-weight:700;line-height:1.2;color:var(--p7)}
+.kpi span{font-size:.72rem;color:var(--g6);text-transform:uppercase;letter-spacing:.04em}
+.kpi.v b{color:var(--v)}
+table.tb{width:100%;border-collapse:collapse;font-size:.85rem}
+table.tb th{text-align:left;font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;color:var(--g5);padding:.5rem .6rem;border-bottom:1px solid var(--g2);position:sticky;top:0;background:#fff}
+table.tb td{padding:.45rem .6rem;border-bottom:1px solid var(--g1)}
+table.tb tr:hover td{background:var(--p05)}
+.scroll{max-height:22rem;overflow:auto;border:1px solid var(--g2);border-radius:.8rem;background:#fff}
+.chip{display:inline-flex;align-items:center;gap:.3rem;font-size:.72rem;font-weight:700;padding:.25rem .55rem;border-radius:999px;background:var(--p05);color:var(--p7)}
+.chip.ok{background:var(--ok-bg);color:var(--ok)}
+.chip.g{background:var(--g1);color:var(--g6)}
+.note{background:var(--p05);border:1px solid var(--p1);border-radius:.8rem;padding:.8rem 1rem;font-size:.82rem;color:var(--g7)}
+.demo{display:inline-flex;align-items:center;gap:.35rem;font-size:.7rem;font-weight:700;color:#8a5a00;background:#FFF8E1;border:1px solid #FFE082;padding:.2rem .5rem;border-radius:999px}
+.card{background:#fff;border:1px solid var(--g2);border-radius:1rem;box-shadow:var(--sh);padding:1rem;display:flex;flex-direction:column}
+.card h3{font-size:1rem;font-weight:700;margin:0 0 .2rem}
+.kv{display:grid;grid-template-columns:1fr auto;gap:.2rem .8rem;font-size:.85rem;margin:.6rem 0}
+.kv div:nth-child(odd){color:var(--g6)}
+.kv div:nth-child(even){font-weight:600;text-align:right}
+.bar{height:.5rem;border-radius:999px;background:var(--g2);overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--p),var(--p6));border-radius:999px}
+.tabs{display:flex;gap:.3rem;overflow-x:auto;border-bottom:1px solid var(--g2);margin-bottom:1.2rem}
+.tabs button{flex:0 0 auto;border:0;background:none;font-family:inherit;font-size:.9rem;font-weight:600;color:var(--g6);padding:.7rem .9rem;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs button[aria-selected=true]{color:var(--p7);border-bottom-color:var(--p)}
+.empty{text-align:center;padding:2.5rem 1rem;color:var(--g6)}
+.rng{width:100%;accent-color:var(--p)}
+.langsw{display:inline-flex;gap:.3rem}
+.langsw button{border:1px solid var(--g3);background:#fff;border-radius:.5rem;padding:.3rem .6rem;font-size:.78rem;font-weight:600;color:var(--g7);cursor:pointer;font-family:inherit}
+.langsw button[aria-pressed=true]{border-color:var(--p);color:var(--p7);background:var(--p05)}
+</style>
+</head>
+<body class="antialiased">
+<header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <a href="index.html" class="flex items-center space-x-2">
+        <img src="assets/brand/logo-full.png" alt="Orient Square Real Estate" class="os-logo" width="720" height="230">
+      </a>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="index.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Home</span></a>
+        <a href="properties.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg><span>Real Estate</span></a>
+        <a href="news.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg><span>News</span></a>
+        <a href="sold.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span>Sold Projects</span></a>
+        <a href="investment.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><span>Investment</span></a>
+        <a href="favorites.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg><span>Favorites</span></a>
+        <a href="about.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>About Us</span></a>
+        <a href="index.html#contact" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Contact</span></a>
+      <div class="relative group" id="osMore"><button type="button" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg><span>More</span></button><div class="absolute left-0 mt-2 w-44 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"><a href="calculator.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 first:rounded-t-lg last:rounded-b-lg transition-colors">Calculator</a><a href="offers.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 first:rounded-t-lg last:rounded-b-lg transition-colors">Offers</a><a href="request.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 first:rounded-t-lg last:rounded-b-lg transition-colors">Find my home</a><a href="progress.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 first:rounded-t-lg last:rounded-b-lg transition-colors">Construction</a><a href="cabinet.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 first:rounded-t-lg last:rounded-b-lg transition-colors">My cabinet</a></div></div></nav>
+      <div class="md:hidden">
+        <button type="button" id="menuBtn" class="text-gray-700 hover:text-primary-500 transition-colors p-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></button>
+      </div>
+      <div class="hidden md:flex items-center space-x-4">
+        <div class="relative group">
+          <button type="button" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg><span class="text-sm">&#127482;&#127480;</span></button>
+          <div class="absolute right-0 mt-2 w-32 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <button type="button" class="w-full px-3 py-2 text-left text-sm hover:bg-gray-50 first:rounded-t-lg last:rounded-b-lg bg-primary-50 text-primary-600">&#127482;&#127480; English</button>
+            <button type="button" class="w-full px-3 py-2 text-left text-sm hover:bg-gray-50 first:rounded-t-lg last:rounded-b-lg text-gray-700">&#127481;&#127479; T&uuml;rk&ccedil;e</button>
+            <button type="button" class="w-full px-3 py-2 text-left text-sm hover:bg-gray-50 first:rounded-t-lg last:rounded-b-lg text-gray-700">&#127479;&#127482; &#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;</button>
+          </div>
+        </div>
+        <a href="auth.html" class="flex items-center space-x-1 bg-primary-500 text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" x2="3" y1="12" y2="12"/></svg><span>Sign In</span></a>
+      </div>
+    </div>
+    <div id="mobileMenu" class="md:hidden hidden border-t border-gray-200 py-4 space-y-2">
+      <a href="index.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Home</a>
+      <a href="properties.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Real Estate</a>
+      <a href="news.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">News</a>
+      <a href="sold.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Sold Projects</a>
+      <a href="investment.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Investment</a>
+      <a href="favorites.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Favorites</a>
+      <a href="about.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">About Us</a><a href="calculator.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Calculator</a><a href="offers.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Offers</a><a href="request.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Find my home</a><a href="progress.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Construction</a><a href="cabinet.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">My cabinet</a>
+      <a href="auth.html" class="block mx-2 mt-2 text-center bg-primary-500 text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors">Sign In</a>
+    </div>
+  </div>
+</header>
+<div class="os">
+<main>
+
+<section class="hero"><div class="wrap hero-in">
+  <div class="row" style="justify-content:space-between;align-items:flex-start">
+    <div>
+      <span class="badge" data-t="badge">Подбор</span>
+      <h1 class="t" data-t="h1">Индивидуальный подбор квартиры</h1>
+      <p class="sub" data-t="sub">Опишите, что вам нужно — система сразу покажет подходящие квартиры из 494 в проекте и отправит запрос менеджеру.</p>
+    </div>
+    <div class="langsw"><button type="button" id="lRu" aria-pressed="true">RU</button><button type="button" id="lEn">EN</button></div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <div class="grid" style="grid-template-columns:1fr">
+    <div class="panel pad">
+      <h2 class="h2" data-t="formT">Ваши условия</h2>
+      <p class="muted" style="margin:0 0 1.1rem" data-t="formS">Заполните то, что важно. Остальное оставьте «не важно».</p>
+
+      <div class="grid g3">
+        <div class="field">
+          <label class="lbl" data-t="fGoal">Цель покупки</label>
+          <select class="sel" id="fGoal">
+            <option value="live" data-t="gLive">Для жизни</option>
+            <option value="invest" data-t="gInvest">Для инвестиции</option>
+            <option value="rent" data-t="gRent">Под сдачу в аренду</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="lbl" data-t="fRooms">Комнат</label>
+          <select class="sel" id="fRooms">
+            <option value="0" data-t="any">Не важно</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="lbl" data-t="fBlock">Блок</label>
+          <select class="sel" id="fBlock">
+            <option value="0" data-t="any2">Не важно</option>
+            <option value="1">№1</option><option value="2">№2</option><option value="3">№3</option>
+            <option value="4">№4</option><option value="5">№5</option><option value="6">№6</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="lbl" data-t="fFloor">Этаж</label>
+          <select class="sel" id="fFloor">
+            <option value="0" data-t="any3">Не важно</option>
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="lbl" data-t="fSide">Вид из окна</label>
+          <select class="sel" id="fSide">
+            <option value="" data-t="any4">Не важно</option>
+            <option value="n" data-t="sYard">Во двор</option>
+            <option value="s" data-t="sStreet">На улицу</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="lbl" data-t="fWhen">Когда планируете покупку</label>
+          <select class="sel" id="fWhen">
+            <option value="now" data-t="wNow">В ближайший месяц</option>
+            <option value="3m" data-t="w3">В течение 3 месяцев</option>
+            <option value="year" data-t="wYear">В течение года</option>
+            <option value="look" data-t="wLook">Пока смотрю</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid g2">
+        <div class="field">
+          <label class="lbl"><span data-t="fBudget">Бюджет до</span> — <b id="outBudget">$80 000</b></label>
+          <input class="rng" id="rngBudget" type="range" min="20000" max="200000" step="2500" value="80000">
+        </div>
+        <div class="field">
+          <label class="lbl"><span data-t="fArea">Площадь от</span> — <b id="outArea">40 м²</b></label>
+          <input class="rng" id="rngArea" type="range" min="35" max="110" step="1" value="40">
+        </div>
+      </div>
+
+      <div class="grid g3">
+        <div class="field"><label class="lbl" data-t="fName">Имя</label><input class="inp" id="fName" type="text" placeholder="—"></div>
+        <div class="field"><label class="lbl" data-t="fPhone">Телефон или Telegram</label><input class="inp" id="fPhone" type="text" placeholder="+998 ..."></div>
+        <div class="field" style="display:flex;align-items:flex-end">
+          <button type="button" class="btn" id="btnFind" style="width:100%" data-t="find">Подобрать варианты</button>
+        </div>
+      </div>
+      <p class="muted" style="margin:0" data-t="privacy">Имя и телефон никуда не отправляются автоматически — они только подставляются в сообщение менеджеру, которое вы отправляете сами.</p>
+    </div>
+  </div>
+
+  <div id="resWrap" hidden style="margin-top:1.5rem">
+    <div class="row" style="justify-content:space-between;margin-bottom:.8rem">
+      <div><h2 class="h2" id="resT">Подходящие варианты</h2><p class="muted" id="resS" style="margin:0"></p></div>
+      <a class="btn" id="btnSend" href="#" target="_blank" rel="noopener" data-t="send">Отправить запрос менеджеру</a>
+    </div>
+    <div class="grid g3" id="resGrid"></div>
+    <div class="empty panel" id="resEmpty" hidden><p data-t="none">Под эти условия ничего не нашлось. Попробуйте увеличить бюджет или убрать ограничение по этажу.</p></div>
+  </div>
+</div></section>
+
+</main>
+</div>
+<footer class="bg-gray-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="col-span-1 md:col-span-2">
+        <div class="flex items-center space-x-2 mb-4">
+          <img src="assets/brand/logo-full-light.png" alt="Orient Square Real Estate" class="os-logo os-logo--footer" width="720" height="230">
+        </div>
+        <p class="text-gray-300 mb-6 max-w-md">Your trusted partner in finding the perfect property. We specialize in premium real estate solutions.</p>
+        <div class="flex space-x-4">
+          <a href="#" class="text-gray-400 hover:text-primary-500 transition-colors" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" class="text-gray-400 hover:text-primary-500 transition-colors" aria-label="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg></a>
+          <a href="https://www.instagram.com/orient.square?igsh=Ym4zNm5ocjRlcmpj" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary-500 transition-colors" aria-label="Follow us on Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
+          <a href="#" class="text-gray-400 hover:text-primary-500 transition-colors" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="https://www.tiktok.com/@orient.square?_t=ZS-90FDbRoWzlw&amp;_r=1" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary-500 transition-colors" aria-label="Follow us on TikTok"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="text-gray-300 hover:text-primary-500 transition-colors">Home</a></li>
+          <li><a href="properties.html" class="text-gray-300 hover:text-primary-500 transition-colors">Properties</a></li>
+          <li><a href="news.html" class="text-gray-300 hover:text-primary-500 transition-colors">News</a></li>
+          <li><a href="sold.html" class="text-gray-300 hover:text-primary-500 transition-colors">Sold Projects</a></li>
+          <li><a href="investment.html" class="text-gray-300 hover:text-primary-500 transition-colors">Tashkent Investment</a></li>
+          <li><a href="about.html" class="text-gray-300 hover:text-primary-500 transition-colors">About Us</a></li><li><a href="calculator.html" class="text-gray-300 hover:text-primary-500 transition-colors">Calculator</a></li><li><a href="offers.html" class="text-gray-300 hover:text-primary-500 transition-colors">Offers</a></li><li><a href="progress.html" class="text-gray-300 hover:text-primary-500 transition-colors">Construction</a></li><li><a href="cabinet.html" class="text-gray-300 hover:text-primary-500 transition-colors">My cabinet</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Contact Info</h3>
+        <div class="space-y-3">
+          <div class="flex items-center space-x-3">
+            <span class="text-primary-500 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <span class="text-gray-300 text-sm">Maslak mah. Maslak meydan sk. Beybi Giz Plaza A Blok No: 1/55, Sar&#305;yer, Istanbul 34485, Turkey</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <span class="text-primary-500 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            <a href="tel:+90 546 199 7101" class="text-gray-300 text-sm hover:text-primary-400 transition-colors">+90 546 199 7101</a>
+          </div>
+          <div class="flex items-center space-x-3">
+            <span class="text-primary-500 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+            <a href="mailto:info@orientsquare.com" class="text-gray-300 text-sm hover:text-primary-400 transition-colors">info@orientsquare.com</a>
+          </div>
+          <div class="flex items-center space-x-3">
+            <span class="text-primary-500 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+            <span class="text-gray-300 text-sm">Mon-Fri 9AM-6PM, Sat 10AM-4PM</span>
+          </div>
+        </div>
+        <a href="index.html#contact" class="inline-block mt-4 bg-primary-500 text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors">Send Message</a>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+      <p class="text-gray-400 text-sm">&copy; 2026 OrientSquare Real Estate - Istanbul, Turkey. All rights reserved.</p>
+      <div class="flex space-x-6 mt-4 md:mt-0">
+        <a href="#" class="text-gray-400 hover:text-primary-500 text-sm transition-colors">Privacy Policy</a>
+        <a href="#" class="text-gray-400 hover:text-primary-500 text-sm transition-colors">Terms of Service</a>
+        <a href="#" class="text-gray-400 hover:text-primary-500 text-sm transition-colors">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="js/os-core.js"></script>
+<script>
+
+var T={
+ ru:{badge:'Подбор',h1:'Индивидуальный подбор квартиры',sub:'Опишите, что вам нужно — система сразу покажет подходящие квартиры из 494 в проекте и отправит запрос менеджеру.',
+  formT:'Ваши условия',formS:'Заполните то, что важно. Остальное оставьте «не важно».',
+  fGoal:'Цель покупки',gLive:'Для жизни',gInvest:'Для инвестиции',gRent:'Под сдачу в аренду',
+  fRooms:'Комнат',fBlock:'Блок',fFloor:'Этаж',fSide:'Вид из окна',fWhen:'Когда планируете покупку',
+  any:'Не важно',any2:'Не важно',any3:'Не важно',any4:'Не важно',sYard:'Во двор',sStreet:'На улицу',
+  wNow:'В ближайший месяц',w3:'В течение 3 месяцев',wYear:'В течение года',wLook:'Пока смотрю',
+  fBudget:'Бюджет до',fArea:'Площадь от',fName:'Имя',fPhone:'Телефон или Telegram',
+  find:'Подобрать варианты',send:'Отправить запрос менеджеру',
+  privacy:'Имя и телефон никуда не отправляются автоматически — они только подставляются в сообщение менеджеру, которое вы отправляете сами.',
+  none:'Под эти условия ничего не нашлось. Попробуйте увеличить бюджет или убрать ограничение по этажу.',
+  resT:'Подходящие варианты',found:'Найдено',of:'из',match:'совпадение',
+  m2:'м²',rooms:'-комн.',floor:'этаж',block:'Блок №',from:'от',mo:'/мес',
+  open:'Открыть',fav:'В избранное',faved:'В избранном',
+  msgT:'Здравствуйте! Подбираю квартиру.',
+  cGoal:'Цель',cBudget:'Бюджет до',cRooms:'Комнат',cArea:'Площадь от',cBlock:'Блок',cFloor:'Этаж',cWhen:'Срок',cName:'Имя',cPhone:'Контакт',cLiked:'Понравились',
+  saved:'Заявка на подбор сохранена',savedX:'Менеджер получит ваши условия и предложит варианты. Условия сохранены в личном кабинете.'},
+ en:{badge:'Matching',h1:'Personal apartment matching',sub:'Tell us what you need — the site instantly shows matching apartments out of 494 in the project and sends a request to a manager.',
+  formT:'Your criteria',formS:'Fill in what matters. Leave the rest as “any”.',
+  fGoal:'Purpose',gLive:'To live in',gInvest:'As an investment',gRent:'To rent out',
+  fRooms:'Rooms',fBlock:'Block',fFloor:'Floor',fSide:'View',fWhen:'Purchase timing',
+  any:'Any',any2:'Any',any3:'Any',any4:'Any',sYard:'Courtyard',sStreet:'Street',
+  wNow:'Within a month',w3:'Within 3 months',wYear:'Within a year',wLook:'Just looking',
+  fBudget:'Budget up to',fArea:'Area from',fName:'Name',fPhone:'Phone or Telegram',
+  find:'Find matches',send:'Send the request',
+  privacy:'Your name and phone are not sent anywhere automatically — they are only inserted into the message you send to a manager yourself.',
+  none:'Nothing matches these criteria. Try raising the budget or removing the floor filter.',
+  resT:'Matching apartments',found:'Found',of:'of',match:'match',
+  m2:'m²',rooms:'-room',floor:'floor',block:'Block ',from:'from',mo:'/mo',
+  open:'Open',fav:'Save',faved:'Saved',
+  msgT:'Hello! I am looking for an apartment.',
+  cGoal:'Purpose',cBudget:'Budget up to',cRooms:'Rooms',cArea:'Area from',cBlock:'Block',cFloor:'Floor',cWhen:'Timing',cName:'Name',cPhone:'Contact',cLiked:'Shortlist',
+  saved:'Matching request saved',savedX:'A manager will receive your criteria and suggest options. The criteria are saved in your cabinet.'}
+};
+var lang=OS.lang(), UN=[], last=[];
+function t(k){return T[lang][k];}
+function i18n(){
+  document.querySelectorAll('[data-t]').forEach(function(e){var k=e.getAttribute('data-t');if(T[lang][k]!==undefined)e.textContent=T[lang][k];});
+  document.documentElement.lang=lang;
+  document.getElementById('lRu').setAttribute('aria-pressed',lang==='ru');
+  document.getElementById('lEn').setAttribute('aria-pressed',lang==='en');
+  document.getElementById('resT').textContent=t('resT');
+  sliders();
+}
+function sliders(){
+  document.getElementById('outBudget').textContent=OS.money(+document.getElementById('rngBudget').value);
+  document.getElementById('outArea').textContent=document.getElementById('rngArea').value+' '+t('m2');
+}
+['rngBudget','rngArea'].forEach(function(id){document.getElementById(id).addEventListener('input',sliders);});
+document.getElementById('lRu').addEventListener('click',function(){lang='ru';OS.setLang('ru');i18n();if(last.length)find();});
+document.getElementById('lEn').addEventListener('click',function(){lang='en';OS.setLang('en');i18n();if(last.length)find();});
+
+function criteria(){
+  return {
+    goal:document.getElementById('fGoal').value,
+    rooms:+document.getElementById('fRooms').value,
+    block:+document.getElementById('fBlock').value,
+    floor:+document.getElementById('fFloor').value,
+    side:document.getElementById('fSide').value,
+    when:document.getElementById('fWhen').value,
+    budget:+document.getElementById('rngBudget').value,
+    area:+document.getElementById('rngArea').value,
+    name:document.getElementById('fName').value.trim(),
+    phone:document.getElementById('fPhone').value.trim()
+  };
+}
+/* вес: бюджет 4, комнаты 3, площадь 2, блок 1, этаж 1, сторона 1 */
+function score(u,c){
+  if(u.k!=='flat') return -1;
+  var s=0;
+  if(!u.price||u.price<=c.budget) s+=4; else if(u.price<=c.budget*1.1) s+=2; else return -1;
+  if(!c.rooms||u.r===c.rooms) s+=3;
+  if(u.a>=c.area) s+=2; else if(u.a>=c.area*0.9) s+=1;
+  if(!c.block||u.block===c.block) s+=1;
+  if(!c.floor||u.f===c.floor) s+=1;
+  if(!c.side||u.row===c.side) s+=1;
+  return s;
+}
+function find(){
+  var c=criteria();
+  OS.write('os_request',{c:c,ts:Date.now()});
+  var scored=UN.map(function(u){u._s=score(u,c);return u;})
+               .filter(function(u){return u._s>=6;})
+               .sort(function(a,b){return b._s-a._s||a.price-b.price;});
+  last=scored.slice(0,12);
+  var w=document.getElementById('resWrap'); w.hidden=false;
+  document.getElementById('resEmpty').hidden=last.length>0;
+  document.getElementById('resS').textContent=t('found')+': '+scored.length+' '+t('of')+' '+UN.filter(function(u){return u.k==='flat';}).length;
+  var g=document.getElementById('resGrid'); g.innerHTML='';
+  var favs=OS.favs();
+  last.forEach(function(u){
+    var p=OS.plan(u.price,30,10,9);
+    var key='b'+u.block+':'+u.hash;
+    var el=document.createElement('div'); el.className='card';
+    el.innerHTML=
+      '<div class="row" style="justify-content:space-between">'+
+        '<h3>№ '+u.n+'</h3><span class="chip ok">'+Math.min(100,Math.round(u._s/12*100))+'% '+t('match')+'</span></div>'+
+      '<p class="muted" style="margin:.1rem 0 .3rem">'+t('block')+u.block+' · '+u.f+' '+t('floor')+(u.r?' · '+u.r+t('rooms'):'')+'</p>'+
+      '<div class="kv">'+
+        '<div>'+t('m2')+'</div><div>'+OS.num(u.a)+'</div>'+
+        '<div>'+(lang==='ru'?'Цена':'Price')+'</div><div>'+OS.money(u.price)+'</div>'+
+        '<div>'+(lang==='ru'?'Рассрочка':'Instalment')+'</div><div>'+t('from')+' '+OS.money(p.monthly)+t('mo')+'</div>'+
+      '</div>'+
+      '<div class="row" style="margin-top:auto">'+
+        '<a class="btn sm" href="block-'+u.block+'.html#'+u.hash+'">'+t('open')+'</a>'+
+        '<button type="button" class="btn ghost sm favBtn" data-k="'+key+'" data-b="'+u.block+'" data-f="'+u.f+'" data-n="'+u.n+'" data-a="'+u.a+'" data-r="'+(u.r||0)+'">'+
+          (favs.indexOf(key)>=0?t('faved'):t('fav'))+'</button>'+
+      '</div>';
+    g.appendChild(el);
+  });
+  document.querySelectorAll('.favBtn').forEach(function(b){
+    b.addEventListener('click',function(){
+      var k=b.dataset.k, f=OS.favs(), m=OS.favData();
+      if(f.indexOf(k)>=0){ f.splice(f.indexOf(k),1); delete m[k]; b.textContent=t('fav'); }
+      else {
+        f.push(k);
+        m[k]={f:+b.dataset.f,n:b.dataset.n,a:+b.dataset.a,r:+b.dataset.r,k:'flat',
+              block:{ru:'Блок №'+b.dataset.b,en:'Block '+b.dataset.b},page:'block-'+b.dataset.b+'.html',ts:Date.now()};
+        b.textContent=t('faved');
+      }
+      OS.write('os_favs',f); OS.write('os_favs_data',m);
+    });
+  });
+  var lines=[t('msgT'),
+    t('cGoal')+': '+document.getElementById('fGoal').selectedOptions[0].textContent,
+    t('cBudget')+': '+OS.money(c.budget),
+    t('cRooms')+': '+(c.rooms||t('any')),
+    t('cArea')+': '+c.area+' '+t('m2'),
+    t('cBlock')+': '+(c.block?('№'+c.block):t('any')),
+    t('cFloor')+': '+(c.floor||t('any')),
+    t('cWhen')+': '+document.getElementById('fWhen').selectedOptions[0].textContent];
+  if(c.name) lines.push(t('cName')+': '+c.name);
+  if(c.phone) lines.push(t('cPhone')+': '+c.phone);
+  if(last.length) lines.push(t('cLiked')+': '+last.slice(0,5).map(function(u){return '#'+u.n+' ('+t('block')+u.block+')';}).join(', '));
+  document.getElementById('btnSend').href=OS.requestLink(lines.join('\n'));
+  OS.notify({ru:T.ru.saved,en:T.en.saved},{ru:T.ru.savedX,en:T.en.savedX});
+  document.getElementById('resWrap').scrollIntoView({behavior:'smooth',block:'start'});
+}
+document.getElementById('btnFind').addEventListener('click',find);
+i18n();
+OS.loadUnits(function(list){UN=list;});
+
+</script>
+</body>
+</html>

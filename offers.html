@@ -1,19 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Latest News | OrientSquare</title>
-<meta name="description" content="Latest real estate news and insights">
+<title>Акции и спецпредложения | OrientSquare</title>
+<meta name="description" content="Действующие скидки, беспроцентная рассрочка и подарки по квартирам проекта OrientSquare.">
 <link rel="icon" type="image/png" href="assets/brand/favicon.png">
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
 <link rel="stylesheet" href="styles.css">
 <style>
-@font-face{font-family:Inter;font-style:normal;font-weight:400;font-display:swap;src:local("Inter Regular"),local("Inter-Regular")}
-html{font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";}
-body{transition:opacity ease-in .2s; padding-top:64px;}
+html{font-family:ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"}
+body{padding-top:64px}
+:root{
+  --p:#F57C00;--p6:#FB8C00;--p7:#EF6C00;--p1:#FFE0B2;--p05:#FFF3E0;
+  --v:#70217A;--cream:#FFF8B9;
+  --g9:#333;--g7:#616161;--g6:#757575;--g5:#9E9E9E;--g3:#E0E0E0;--g2:#EEE;--g1:#F5F5F5;--g05:#FAFAFA;
+  --ok:#2E7D32;--ok-bg:#E8F5E9;--res:#F9A825;--res-bg:#FFF8E1;--sold:#9E9E9E;--sold-bg:#F5F5F5;
+  --sh:0 1px 2px rgba(0,0,0,.05);--sh2:0 10px 30px -12px rgba(0,0,0,.18);
+}
+.os{color:var(--g9);background:var(--g05);min-height:100vh}
+.os *{box-sizing:border-box}
+.wrap{max-width:80rem;margin:0 auto;padding:0 1rem}
+@media(min-width:640px){.wrap{padding:0 1.5rem}}
+@media(min-width:1024px){.wrap{padding:0 2rem}}
+.hero{background:linear-gradient(135deg,#FFF3E0 0%,#fff 55%,#FFF8F2 100%);border-bottom:1px solid var(--g2)}
+.hero-in{padding-top:2rem;padding-bottom:2.25rem}
+.badge{display:inline-flex;align-items:center;gap:.4rem;background:var(--p);color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .6rem;border-radius:999px}
+.badge.v{background:var(--v)}
+h1.t{font-size:1.8rem;line-height:1.15;font-weight:700;margin:.6rem 0 .4rem}
+@media(min-width:640px){h1.t{font-size:2.4rem}}
+.sub{color:var(--g6);font-size:1rem;max-width:46rem}
+.panel{background:#fff;border:1px solid var(--g2);border-radius:1rem;box-shadow:var(--sh)}
+.pad{padding:1.1rem}
+@media(min-width:640px){.pad{padding:1.4rem}}
+.h2{font-size:1.15rem;font-weight:700;margin:0 0 .25rem}
+.muted{color:var(--g6);font-size:.85rem}
+.grid{display:grid;gap:1rem}
+.g2{grid-template-columns:1fr}
+@media(min-width:900px){.g2{grid-template-columns:1fr 1fr}}
+.g3{grid-template-columns:1fr}
+@media(min-width:640px){.g3{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.g3{grid-template-columns:repeat(3,1fr)}}
+.g4{grid-template-columns:repeat(2,1fr)}
+@media(min-width:900px){.g4{grid-template-columns:repeat(4,1fr)}}
+.sec{padding:1.75rem 0}
+.row{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.lbl{display:block;font-size:.72rem;color:var(--g5);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem}
+.inp,.sel{width:100%;border:1px solid var(--g3);border-radius:.6rem;padding:.55rem .7rem;font-size:.95rem;color:var(--g9);background:#fff;font-family:inherit}
+.inp:focus,.sel:focus{outline:2px solid var(--p1);border-color:var(--p)}
+.field{margin-bottom:.9rem}
+.seg{display:inline-flex;background:var(--g1);border-radius:.7rem;padding:.2rem;gap:.2rem;flex-wrap:wrap}
+.seg button{border:0;background:transparent;color:var(--g7);font-size:.82rem;font-weight:600;padding:.45rem .85rem;border-radius:.55rem;cursor:pointer;white-space:nowrap;font-family:inherit}
+.seg button[aria-pressed=true]{background:#fff;color:var(--p7);box-shadow:var(--sh)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;border:0;background:var(--p);color:#fff;font-weight:600;font-size:.9rem;padding:.6rem 1.1rem;border-radius:.7rem;cursor:pointer;text-decoration:none;font-family:inherit}
+.btn:hover{background:var(--p7)}
+.btn.ghost{background:#fff;color:var(--g7);border:1px solid var(--g3)}
+.btn.ghost:hover{border-color:var(--p);color:var(--p7)}
+.btn.sm{font-size:.82rem;padding:.45rem .8rem;border-radius:.6rem}
+.kpi{background:#fff;border:1px solid var(--g2);border-radius:.9rem;padding:.85rem 1rem;box-shadow:var(--sh)}
+.kpi b{display:block;font-size:1.5rem;font-weight:700;line-height:1.2;color:var(--p7)}
+.kpi span{font-size:.72rem;color:var(--g6);text-transform:uppercase;letter-spacing:.04em}
+.kpi.v b{color:var(--v)}
+table.tb{width:100%;border-collapse:collapse;font-size:.85rem}
+table.tb th{text-align:left;font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;color:var(--g5);padding:.5rem .6rem;border-bottom:1px solid var(--g2);position:sticky;top:0;background:#fff}
+table.tb td{padding:.45rem .6rem;border-bottom:1px solid var(--g1)}
+table.tb tr:hover td{background:var(--p05)}
+.scroll{max-height:22rem;overflow:auto;border:1px solid var(--g2);border-radius:.8rem;background:#fff}
+.chip{display:inline-flex;align-items:center;gap:.3rem;font-size:.72rem;font-weight:700;padding:.25rem .55rem;border-radius:999px;background:var(--p05);color:var(--p7)}
+.chip.ok{background:var(--ok-bg);color:var(--ok)}
+.chip.g{background:var(--g1);color:var(--g6)}
+.note{background:var(--p05);border:1px solid var(--p1);border-radius:.8rem;padding:.8rem 1rem;font-size:.82rem;color:var(--g7)}
+.demo{display:inline-flex;align-items:center;gap:.35rem;font-size:.7rem;font-weight:700;color:#8a5a00;background:#FFF8E1;border:1px solid #FFE082;padding:.2rem .5rem;border-radius:999px}
+.card{background:#fff;border:1px solid var(--g2);border-radius:1rem;box-shadow:var(--sh);padding:1rem;display:flex;flex-direction:column}
+.card h3{font-size:1rem;font-weight:700;margin:0 0 .2rem}
+.kv{display:grid;grid-template-columns:1fr auto;gap:.2rem .8rem;font-size:.85rem;margin:.6rem 0}
+.kv div:nth-child(odd){color:var(--g6)}
+.kv div:nth-child(even){font-weight:600;text-align:right}
+.bar{height:.5rem;border-radius:999px;background:var(--g2);overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--p),var(--p6));border-radius:999px}
+.tabs{display:flex;gap:.3rem;overflow-x:auto;border-bottom:1px solid var(--g2);margin-bottom:1.2rem}
+.tabs button{flex:0 0 auto;border:0;background:none;font-family:inherit;font-size:.9rem;font-weight:600;color:var(--g6);padding:.7rem .9rem;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs button[aria-selected=true]{color:var(--p7);border-bottom-color:var(--p)}
+.empty{text-align:center;padding:2.5rem 1rem;color:var(--g6)}
+.rng{width:100%;accent-color:var(--p)}
+.langsw{display:inline-flex;gap:.3rem}
+.langsw button{border:1px solid var(--g3);background:#fff;border-radius:.5rem;padding:.3rem .6rem;font-size:.78rem;font-weight:600;color:var(--g7);cursor:pointer;font-family:inherit}
+.langsw button[aria-pressed=true]{border-color:var(--p);color:var(--p7);background:var(--p05)}
 </style>
-<script src="js/os-core.js"></script>
 </head>
 <body class="antialiased">
 <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
@@ -25,7 +98,7 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
       <nav class="hidden md:flex items-center space-x-8">
         <a href="index.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Home</span></a>
         <a href="properties.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg><span>Real Estate</span></a>
-        <a href="news.html" class="flex items-center space-x-1 text-primary-500 font-medium transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg><span>News</span></a>
+        <a href="news.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg><span>News</span></a>
         <a href="sold.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span>Sold Projects</span></a>
         <a href="investment.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><span>Investment</span></a>
         <a href="favorites.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg><span>Favorites</span></a>
@@ -59,34 +132,38 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
     </div>
   </div>
 </header>
-<div class="min-h-screen bg-gray-50">
+<div class="os">
 <main>
-<div class="min-h-screen bg-gray-50 py-8">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <nav class="flex items-center space-x-2 text-sm overflow-x-auto mb-6">
-      <ol class="flex items-center space-x-2">
-        <li class="flex items-center whitespace-nowrap">
-          <span class="text-gray-500 mr-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
-          <a href="index.html" class="text-gray-500 hover:text-primary-600 transition-colors font-medium whitespace-nowrap">Home</a>
-        </li>
-        <li class="flex items-center whitespace-nowrap">
-          <span class="text-gray-400 mx-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m9 18 6-6-6-6"/></svg></span>
-          <span class="text-gray-900 font-semibold whitespace-nowrap">News</span>
-        </li>
-      </ol>
-    </nav>
-    <div class="text-center mb-12">
-      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Latest News</h1>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto">Stay updated with the latest news and insights from the real estate world</p>
+
+<section class="hero"><div class="wrap hero-in">
+  <div class="row" style="justify-content:space-between;align-items:flex-start">
+    <div>
+      <span class="badge" data-t="badge">Акции</span>
+      <h1 class="t" data-t="h1">Акции и спецпредложения</h1>
+      <p class="sub" data-t="sub">Действующие скидки, беспроцентная рассрочка и подарки по проекту. Предложение исчезает со страницы в день окончания.</p>
     </div>
-    <div class="text-center py-12">
-      <div class="text-gray-400 mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-16 w-16 mx-auto"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-      <h3 class="text-xl font-semibold text-gray-900 mb-2">No news articles yet</h3>
-      <p class="text-gray-500">Check back later for the latest updates</p>
+    <div class="langsw"><button type="button" id="lRu" aria-pressed="true">RU</button><button type="button" id="lEn">EN</button></div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <div class="grid g2" id="offGrid"></div>
+  <div class="empty panel" id="offEmpty" hidden><p data-t="empty">Сейчас активных акций нет. Оставьте заявку — сообщим о следующей первыми.</p></div>
+
+  <div class="panel pad" style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between">
+    <div>
+      <h2 class="h2" data-t="ctaT">Не хотите пропустить следующую акцию?</h2>
+      <p class="muted" style="margin:0" data-t="ctaS">Включите уведомления — новые скидки и старты продаж появятся в вашем кабинете.</p>
+    </div>
+    <div class="row">
+      <button type="button" class="btn ghost" id="btnSub" data-t="sub2">Включить уведомления</button>
+      <a class="btn" id="btnAsk" href="#" target="_blank" rel="noopener" data-t="ask">Написать менеджеру</a>
     </div>
   </div>
-</div>
+</div></section>
+
 </main>
+</div>
 <footer class="bg-gray-900 text-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -147,25 +224,76 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
     </div>
   </div>
 </footer>
-</div>
-<button type="button" id="chatBtn" class="fixed bottom-6 right-6 bg-primary-500 hover:bg-primary-600 text-white p-4 rounded-full shadow-lg z-40 transition-colors" aria-label="Open chat"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></button>
-<div id="chatBox" class="hidden fixed bottom-24 right-6 w-80 max-w-[calc(100vw-3rem)] bg-white rounded-2xl shadow-2xl border border-gray-200 z-40 overflow-hidden">
-  <div class="bg-primary-500 text-white px-4 py-3 flex items-center justify-between">
-    <span class="font-semibold">OrientSquare Support</span>
-    <button type="button" id="chatClose" class="text-white/80 hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
-  </div>
-  <div class="p-4 space-y-3">
-    <div class="bg-gray-100 text-gray-700 text-sm rounded-xl rounded-tl-none px-3 py-2">Hello! How can we help you find your property today?</div>
-    <div class="flex gap-2">
-      <input type="text" placeholder="Type your message..." class="flex-1 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
-      <button type="button" class="bg-primary-500 text-white px-3 rounded-lg hover:bg-primary-600 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></button>
-    </div>
-  </div>
-</div>
+<script src="js/os-core.js"></script>
 <script>
-document.getElementById('menuBtn').addEventListener('click',function(){document.getElementById('mobileMenu').classList.toggle('hidden');});
-document.getElementById('chatBtn').addEventListener('click',function(){document.getElementById('chatBox').classList.toggle('hidden');});
-document.getElementById('chatClose').addEventListener('click',function(){document.getElementById('chatBox').classList.add('hidden');});
+
+var T={
+ ru:{badge:'Акции',h1:'Акции и спецпредложения',sub:'Действующие скидки, беспроцентная рассрочка и подарки по проекту. Предложение исчезает со страницы в день окончания.',
+  empty:'Сейчас активных акций нет. Оставьте заявку — сообщим о следующей первыми.',
+  ctaT:'Не хотите пропустить следующую акцию?',ctaS:'Включите уведомления — новые скидки и старты продаж появятся в вашем кабинете.',
+  sub2:'Включить уведомления',ask:'Написать менеджеру',
+  until:'Действует до',left:'осталось',days:'дн.',blocks:'Блоки',all:'Все блоки',
+  see:'Смотреть квартиры',calc:'Посчитать платёж',get:'Получить условия',
+  on:'Уведомления включены',msg:'Здравствуйте! Интересует акция: '},
+ en:{badge:'Offers',h1:'Offers and special deals',sub:'Current discounts, interest-free instalments and gifts. Each offer disappears from this page on its closing date.',
+  empty:'No active offers right now. Leave a request and we will tell you about the next one first.',
+  ctaT:'Do not want to miss the next offer?',ctaS:'Turn on notifications — new discounts and sales launches will appear in your cabinet.',
+  sub2:'Turn on notifications',ask:'Message a manager',
+  until:'Valid until',left:'left',days:'days',blocks:'Blocks',all:'All blocks',
+  see:'Browse apartments',calc:'Calculate payment',get:'Get the terms',
+  on:'Notifications are on',msg:'Hello! I am interested in this offer: '}
+};
+var lang=OS.lang();
+function t(k){return T[lang][k];}
+function i18n(){
+  document.querySelectorAll('[data-t]').forEach(function(e){var k=e.getAttribute('data-t');if(T[lang][k]!==undefined)e.textContent=T[lang][k];});
+  document.documentElement.lang=lang;
+  document.getElementById('lRu').setAttribute('aria-pressed',lang==='ru');
+  document.getElementById('lEn').setAttribute('aria-pressed',lang==='en');
+}
+function daysLeft(d){ return Math.max(0,Math.ceil((new Date(d)-new Date())/86400000)); }
+function fmtDate(d){ var p=d.split('-'); return p[2]+'.'+p[1]+'.'+p[0]; }
+
+function render(){
+  i18n();
+  var list=OS.offers(), g=document.getElementById('offGrid');
+  document.getElementById('offEmpty').hidden=list.length>0;
+  g.innerHTML='';
+  list.forEach(function(o){
+    var blocks=o.blocks.length===6?t('all'):(t('blocks')+' '+o.blocks.map(function(b){return '№'+b;}).join(', '));
+    var d=daysLeft(o.until);
+    var el=document.createElement('div');
+    el.className='card';
+    el.innerHTML=
+      '<div class="row" style="justify-content:space-between;margin-bottom:.5rem">'+
+        '<span class="badge'+(o.kind==='gift'?' v':'')+'">'+OS.L(o.badge)+'</span>'+
+        '<span class="chip'+(d<=14?'':' g')+'">'+t('left')+' '+d+' '+t('days')+'</span>'+
+      '</div>'+
+      '<h3>'+OS.L(o.title)+'</h3>'+
+      '<p class="muted" style="margin:.2rem 0 .6rem">'+OS.L(o.text)+'</p>'+
+      '<div class="kv">'+
+        '<div>'+t('blocks')+'</div><div>'+blocks+'</div>'+
+        '<div>'+t('until')+'</div><div>'+fmtDate(o.until)+'</div>'+
+      '</div>'+
+      '<div class="row" style="margin-top:auto">'+
+        '<a class="btn sm" href="block-'+o.blocks[0]+'.html">'+t('see')+'</a>'+
+        '<a class="btn ghost sm" href="calculator.html">'+t('calc')+'</a>'+
+        '<a class="btn ghost sm" target="_blank" rel="noopener" href="'+OS.requestLink(t('msg')+OS.L(o.title))+'">'+t('get')+'</a>'+
+      '</div>';
+    g.appendChild(el);
+  });
+  document.getElementById('btnAsk').href=OS.requestLink(t('msg'));
+}
+document.getElementById('lRu').addEventListener('click',function(){lang='ru';OS.setLang('ru');render();});
+document.getElementById('lEn').addEventListener('click',function(){lang='en';OS.setLang('en');render();});
+document.getElementById('btnSub').addEventListener('click',function(){
+  OS.write('os_subscribe',true);
+  OS.notify({ru:'Уведомления включены',en:'Notifications are on'},
+            {ru:'Мы сообщим о новых акциях, стартах продаж и изменениях цен по избранным квартирам.',
+             en:'We will let you know about new offers, sales launches and price changes on your saved apartments.'});
+  this.textContent=t('on'); this.disabled=true;
+});
+render();
 
 </script>
 </body>

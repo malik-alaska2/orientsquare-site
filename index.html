@@ -18,6 +18,36 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
 @media(min-width:768px){.os-inv-stats{grid-template-columns:repeat(4,1fr)}}
 
 </style>
+<script src="js/os-core.js"></script>
+
+<style>
+.osx{--p:#F57C00;--p7:#EF6C00;--v:#70217A;--g2:#EEE;--g6:#757575;--g3:#E0E0E0}
+.osx-wrap{max-width:80rem;margin:0 auto;padding:0 1rem}
+@media(min-width:640px){.osx-wrap{padding:0 1.5rem}}
+@media(min-width:1024px){.osx-wrap{padding:0 2rem}}
+.osx-grid{display:grid;gap:1rem;grid-template-columns:1fr}
+@media(min-width:700px){.osx-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1050px){.osx-grid{grid-template-columns:repeat(4,1fr)}}
+.osx-card{background:#fff;border:1px solid var(--g2);border-radius:1rem;padding:1rem;box-shadow:0 1px 2px rgba(0,0,0,.05);display:flex;flex-direction:column;text-align:left}
+.osx-card h3{font-size:1rem;font-weight:700;margin:.15rem 0 .2rem;color:#333}
+.osx-card p{font-size:.86rem;color:var(--g6);margin:0 0 .7rem}
+.osx-badge{display:inline-flex;align-items:center;gap:.35rem;background:var(--p);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.22rem .55rem;border-radius:999px;align-self:flex-start}
+.osx-badge.v{background:var(--v)}
+.osx-link{margin-top:auto;font-size:.85rem;font-weight:600;color:var(--p7);text-decoration:none}
+.osx-link:hover{text-decoration:underline}
+.osx-tool{display:flex;gap:.7rem;align-items:flex-start;background:#fff;border:1px solid var(--g2);border-radius:1rem;padding:1rem;text-decoration:none;color:inherit;box-shadow:0 1px 2px rgba(0,0,0,.05);text-align:left}
+.osx-tool:hover{border-color:var(--p)}
+.osx-tool svg{flex:0 0 auto;color:var(--p)}
+.osx-tool b{display:block;font-size:.95rem;color:#333}
+.osx-tool span{font-size:.82rem;color:var(--g6)}
+.osx-h2{font-size:1.5rem;font-weight:700;color:#111;margin:0 0 .3rem}
+.osx-sub{color:var(--g6);margin:0 0 1.2rem}
+.osx-unit{display:block;background:#fff;border:1px solid var(--g2);border-radius:1rem;padding:.9rem 1rem;text-decoration:none;color:inherit;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.osx-unit:hover{border-color:var(--p)}
+.osx-unit b{display:block;font-size:1rem}
+.osx-unit span{display:block;font-size:.8rem;color:var(--g6);margin:.1rem 0 .35rem}
+.osx-unit i{font-style:normal;font-weight:700;color:var(--p7)}
+</style>
 </head>
 <body class="antialiased">
 <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
@@ -35,7 +65,7 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
         <a href="favorites.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg><span>Favorites</span></a>
         <a href="about.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>About Us</span></a>
         <a href="index.html#contact" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Contact</span></a>
-      </nav>
+      <div class="relative group" id="osMore"><button type="button" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg><span>More</span></button><div class="absolute left-0 mt-2 w-44 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"><a href="calculator.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 first:rounded-t-lg last:rounded-b-lg transition-colors">Calculator</a><a href="offers.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 first:rounded-t-lg last:rounded-b-lg transition-colors">Offers</a><a href="request.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 first:rounded-t-lg last:rounded-b-lg transition-colors">Find my home</a><a href="progress.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 first:rounded-t-lg last:rounded-b-lg transition-colors">Construction</a><a href="cabinet.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 first:rounded-t-lg last:rounded-b-lg transition-colors">My cabinet</a></div></div></nav>
       <div class="md:hidden">
         <button type="button" id="menuBtn" class="text-gray-700 hover:text-primary-500 transition-colors p-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></button>
       </div>
@@ -58,7 +88,7 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
       <a href="sold.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Sold Projects</a>
       <a href="investment.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Investment</a>
       <a href="favorites.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Favorites</a>
-      <a href="about.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">About Us</a>
+      <a href="about.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">About Us</a><a href="calculator.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Calculator</a><a href="offers.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Offers</a><a href="request.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Find my home</a><a href="progress.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Construction</a><a href="cabinet.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">My cabinet</a>
       <a href="auth.html" class="block mx-2 mt-2 text-center bg-primary-500 text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors">Sign In</a>
     </div>
   </div>
@@ -109,6 +139,40 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
     </div>
   </section>
 
+
+  <section class="py-8 sm:py-12 lg:py-16 bg-white osx" id="osOffers" hidden>
+    <div class="osx-wrap">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:.8rem;margin-bottom:1.2rem">
+        <div>
+          <h2 class="osx-h2" id="osOffT">Акции и спецпредложения</h2>
+          <p class="osx-sub" style="margin:0" id="osOffS">Действующие скидки и условия рассрочки по проекту</p>
+        </div>
+        <a href="offers.html" class="osx-link" id="osOffAll">Все акции →</a>
+      </div>
+      <div class="osx-grid" id="osOffGrid"></div>
+    </div>
+  </section>
+
+  <section class="py-8 sm:py-12 lg:py-16 bg-gray-50 osx">
+    <div class="osx-wrap">
+      <h2 class="osx-h2" id="osToolT">Инструменты для покупателя</h2>
+      <p class="osx-sub" id="osToolS">Посчитайте платёж, подберите квартиру и следите за стройкой</p>
+      <div class="osx-grid">
+        <a class="osx-tool" href="calculator.html">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="8" x2="8" y1="10" y2="10"/><line x1="12" x2="12" y1="10" y2="10"/><line x1="16" x2="16" y1="10" y2="10"/><line x1="8" x2="8" y1="14" y2="14"/><line x1="12" x2="12" y1="14" y2="14"/><line x1="16" x2="16" y1="14" y2="18"/><line x1="8" x2="12" y1="18" y2="18"/></svg>
+          <span><b id="osT1">Калькулятор рассрочки</b><span id="osS1">Первый взнос, платёж в месяц и полный график</span></span></a>
+        <a class="osx-tool" href="request.html">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <span><b id="osT2">Индивидуальный подбор</b><span id="osS2">Бюджет, комнаты, этаж — и готовый список квартир</span></span></a>
+        <a class="osx-tool" href="progress.html">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>
+          <span><b id="osT3">Ход строительства</b><span id="osS3">Готовность блоков, этапы и фотоотчёт</span></span></a>
+        <a class="osx-tool" href="cabinet.html">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span><b id="osT4">Личный кабинет</b><span id="osS4">Избранное, брони, платежи и документы</span></span></a>
+      </div>
+    </div>
+  </section>
   <section class="py-8 sm:py-12 lg:py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
@@ -267,6 +331,14 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
     </div>
   </section>
 
+
+  <section class="py-8 sm:py-12 lg:py-16 bg-white osx" id="osSim" hidden>
+    <div class="osx-wrap">
+      <h2 class="osx-h2" id="osSimT">Вы смотрели — возможно, подойдёт</h2>
+      <p class="osx-sub" id="osSimS">Подобрано по квартирам, которые вы открывали на планах блоков</p>
+      <div class="osx-grid" id="osSimGrid"></div>
+    </div>
+  </section>
   <section id="contact" class="py-8 sm:py-12 lg:py-16 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="mb-12">
@@ -441,7 +513,7 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
           <li><a href="news.html" class="text-gray-300 hover:text-primary-500 transition-colors">News</a></li>
           <li><a href="sold.html" class="text-gray-300 hover:text-primary-500 transition-colors">Sold Projects</a></li>
           <li><a href="investment.html" class="text-gray-300 hover:text-primary-500 transition-colors">Tashkent Investment</a></li>
-          <li><a href="about.html" class="text-gray-300 hover:text-primary-500 transition-colors">About Us</a></li>
+          <li><a href="about.html" class="text-gray-300 hover:text-primary-500 transition-colors">About Us</a></li><li><a href="calculator.html" class="text-gray-300 hover:text-primary-500 transition-colors">Calculator</a></li><li><a href="offers.html" class="text-gray-300 hover:text-primary-500 transition-colors">Offers</a></li><li><a href="progress.html" class="text-gray-300 hover:text-primary-500 transition-colors">Construction</a></li><li><a href="cabinet.html" class="text-gray-300 hover:text-primary-500 transition-colors">My cabinet</a></li>
         </ul>
       </div>
       <div>
@@ -497,6 +569,58 @@ document.getElementById('menuBtn').addEventListener('click',function(){document.
 document.getElementById('chatBtn').addEventListener('click',function(){document.getElementById('chatBox').classList.toggle('hidden');});
 document.getElementById('chatClose').addEventListener('click',function(){document.getElementById('chatBox').classList.add('hidden');});
 
+</script>
+
+<script>
+(function(){
+  if(!window.OS) return;
+  var ru = OS.lang()==='ru';
+  function txt(id,r,e){ var el=document.getElementById(id); if(el) el.textContent = ru?r:e; }
+  txt('osOffT','Акции и спецпредложения','Offers and special deals');
+  txt('osOffS','Действующие скидки и условия рассрочки по проекту','Current discounts and instalment terms');
+  txt('osOffAll',ru?'Все акции →':'All offers →',ru?'Все акции →':'All offers →');
+  txt('osToolT','Инструменты для покупателя','Tools for buyers');
+  txt('osToolS','Посчитайте платёж, подберите квартиру и следите за стройкой','Calculate a payment, find your apartment and follow the construction');
+  txt('osT1','Калькулятор рассрочки','Instalment calculator');
+  txt('osS1','Первый взнос, платёж в месяц и полный график','Down payment, monthly instalment and the full schedule');
+  txt('osT2','Индивидуальный подбор','Personal matching');
+  txt('osS2','Бюджет, комнаты, этаж — и готовый список квартир','Budget, rooms, floor — and a ready shortlist');
+  txt('osT3','Ход строительства','Construction progress');
+  txt('osS3','Готовность блоков, этапы и фотоотчёт','Block completion, stages and photo updates');
+  txt('osT4','Личный кабинет','Your cabinet');
+  txt('osS4','Избранное, брони, платежи и документы','Favorites, bookings, payments and documents');
+  txt('osSimT','Вы смотрели — возможно, подойдёт','You viewed these — you may also like');
+  txt('osSimS','Подобрано по квартирам, которые вы открывали на планах блоков','Based on the apartments you opened on the block plans');
+
+  /* акции */
+  var offers = OS.offers().slice(0,4), g = document.getElementById('osOffGrid');
+  if(offers.length && g){
+    document.getElementById('osOffers').hidden = false;
+    g.innerHTML = offers.map(function(o){
+      return '<div class="osx-card"><span class="osx-badge'+(o.kind==='gift'?' v':'')+'">'+OS.L(o.badge)+'</span>'+
+             '<h3>'+OS.L(o.title)+'</h3><p>'+OS.L(o.text)+'</p>'+
+             '<a class="osx-link" href="offers.html">'+(ru?'Подробнее →':'Details →')+'</a></div>';
+    }).join('');
+  }
+
+  /* похожие на просмотренные */
+  var v = OS.viewed(), favs = OS.favs(), meta = OS.favData(), base = null;
+  if(v.length) base = v[0];
+  else if(favs.length){ var m = meta[favs[favs.length-1]]||{}; base = {block:+String(m.page||'1').replace(/\D+/g,'')||1,f:m.f,n:m.n,a:m.a,r:m.r,b:m.b}; }
+  if(!base) return;
+  OS.loadUnits(function(list){
+    var sim = OS.similar(base, list, 4), sg = document.getElementById('osSimGrid');
+    if(!sim.length || !sg) return;
+    document.getElementById('osSim').hidden = false;
+    sg.innerHTML = sim.map(function(u){
+      var p = OS.plan(u.price,30,10,9);
+      return '<a class="osx-unit" href="block-'+u.block+'.html#'+u.hash+'"><b>&#8470; '+u.n+'</b>'+
+             '<span>'+(ru?('Блок №'+u.block+' · '+u.f+' этаж'):('Block '+u.block+' · floor '+u.f))+
+             ' · '+OS.num(u.a)+' '+(ru?'м²':'m²')+'</span>'+
+             '<i>'+OS.money(u.price)+'</i> <span style="display:inline;color:#757575">· '+(ru?'от ':'from ')+OS.money(p.monthly)+(ru?'/мес':'/mo')+'</span></a>';
+    }).join('');
+  });
+})();
 </script>
 </body>
 </html>

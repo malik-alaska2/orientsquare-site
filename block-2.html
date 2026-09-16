@@ -144,7 +144,25 @@ h1.t{font-size:1.9rem;line-height:1.15;font-weight:700;margin:.6rem 0 .35rem}
 .sect-t{font-size:1.25rem;font-weight:700;margin:2rem 0 .35rem}
 .sect-s{font-size:.88rem;color:var(--g6);margin-bottom:.8rem}
 .srow{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin:2rem 0 .8rem;flex-wrap:wrap}
+
+/* --- план оплаты и похожие квартиры в карточке --- */
+.dplan{margin:.9rem 0 .2rem}
+.dplan h4,.dsim h4{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--g5);margin:0 0 .5rem;font-weight:700}
+.dplan .opts{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem}
+.dplan .opt{border:1px solid var(--g3);border-radius:.7rem;padding:.55rem .5rem;text-align:center;background:#fff}
+.dplan .opt b{display:block;font-size:.98rem;font-weight:700;color:var(--p7);line-height:1.2}
+.dplan .opt span{display:block;font-size:.68rem;color:var(--g6);margin-top:.15rem}
+.dplan .opt em{display:block;font-size:.66rem;color:var(--g5);font-style:normal}
+.dplan .more{display:inline-block;margin-top:.5rem;font-size:.78rem;color:var(--p7);font-weight:600}
+.dsim{margin:1rem 0 .2rem;border-top:1px solid var(--g2);padding-top:.9rem}
+.dsim .simrow{display:flex;gap:.5rem;overflow-x:auto;padding-bottom:.2rem}
+.dsim a.simc{flex:0 0 auto;min-width:8.6rem;border:1px solid var(--g3);border-radius:.7rem;padding:.5rem .6rem;text-decoration:none;color:inherit;background:#fff}
+.dsim a.simc:hover{border-color:var(--p)}
+.dsim a.simc b{display:block;font-size:.88rem}
+.dsim a.simc span{display:block;font-size:.72rem;color:var(--g6)}
+.dsim a.simc i{display:block;font-size:.8rem;font-style:normal;font-weight:700;color:var(--p7);margin-top:.15rem}
 </style>
+<script src="js/os-core.js"></script>
 </head>
 <body class="antialiased">
 <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
@@ -162,7 +180,7 @@ h1.t{font-size:1.9rem;line-height:1.15;font-weight:700;margin:.6rem 0 .35rem}
         <a href="favorites.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg><span>Favorites</span></a>
         <a href="about.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>About Us</span></a>
         <a href="index.html#contact" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Contact</span></a>
-      </nav>
+      <div class="relative group" id="osMore"><button type="button" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg><span>More</span></button><div class="absolute left-0 mt-2 w-44 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"><a href="calculator.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 first:rounded-t-lg last:rounded-b-lg transition-colors">Calculator</a><a href="offers.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 first:rounded-t-lg last:rounded-b-lg transition-colors">Offers</a><a href="request.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 first:rounded-t-lg last:rounded-b-lg transition-colors">Find my home</a><a href="progress.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 first:rounded-t-lg last:rounded-b-lg transition-colors">Construction</a><a href="cabinet.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 first:rounded-t-lg last:rounded-b-lg transition-colors">My cabinet</a></div></div></nav>
       <div class="md:hidden">
         <button type="button" id="menuBtn" class="text-gray-700 hover:text-primary-500 transition-colors p-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></button>
       </div>
@@ -185,7 +203,7 @@ h1.t{font-size:1.9rem;line-height:1.15;font-weight:700;margin:.6rem 0 .35rem}
       <a href="sold.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Sold Projects</a>
       <a href="investment.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Investment</a>
       <a href="favorites.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Favorites</a>
-      <a href="about.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">About Us</a>
+      <a href="about.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">About Us</a><a href="calculator.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Calculator</a><a href="offers.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Offers</a><a href="request.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Find my home</a><a href="progress.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Construction</a><a href="cabinet.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">My cabinet</a>
       <a href="auth.html" class="block mx-2 mt-2 text-center bg-primary-500 text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors">Sign In</a>
     </div>
   </div>
@@ -306,6 +324,8 @@ h1.t{font-size:1.9rem;line-height:1.15;font-weight:700;margin:.6rem 0 .35rem}
     </div>
     <div class="kv" id="dKv"></div>
     <div class="price" id="dPrice"></div>
+    <div class="dplan" id="dPlan" hidden></div>
+    <div class="dsim" id="dSim" hidden></div>
     <div class="acts">
       <button type="button" class="btn btn-p" id="dTour">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M2 12h20"/><path d="M12 2a14.5 14.5 0 0 1 0 20 14.5 14.5 0 0 1 0-20"/></svg>
@@ -356,7 +376,7 @@ h1.t{font-size:1.9rem;line-height:1.15;font-weight:700;margin:.6rem 0 .35rem}
           <li><a href="news.html" class="text-gray-300 hover:text-primary-500 transition-colors">News</a></li>
           <li><a href="sold.html" class="text-gray-300 hover:text-primary-500 transition-colors">Sold Projects</a></li>
           <li><a href="investment.html" class="text-gray-300 hover:text-primary-500 transition-colors">Tashkent Investment</a></li>
-          <li><a href="about.html" class="text-gray-300 hover:text-primary-500 transition-colors">About Us</a></li>
+          <li><a href="about.html" class="text-gray-300 hover:text-primary-500 transition-colors">About Us</a></li><li><a href="calculator.html" class="text-gray-300 hover:text-primary-500 transition-colors">Calculator</a></li><li><a href="offers.html" class="text-gray-300 hover:text-primary-500 transition-colors">Offers</a></li><li><a href="progress.html" class="text-gray-300 hover:text-primary-500 transition-colors">Construction</a></li><li><a href="cabinet.html" class="text-gray-300 hover:text-primary-500 transition-colors">My cabinet</a></li>
         </ul>
       </div>
       <div>
@@ -421,6 +441,7 @@ document.getElementById('chatClose').addEventListener('click',function(){documen
    ------------------------------------------------------------
    НАСТРОЙКИ: правь только блок CONFIG ниже.
    ============================================================ */
+var BLOCK_NO = 2;
 var CONFIG = {
   blockName:   {ru:'Блок №2', en:'Block 2'},
   assetPrefix: 'b2-',        /* assets/b2-plan-*.png, assets/b2-mask-*.png */
@@ -510,6 +531,10 @@ function money(v){
   return (CONFIG.currency==='USD'?'$':'') + s + (CONFIG.currency!=='USD'?(' '+CONFIG.currency):'');
 }
 function priceOf(f,u){
+  if(window.OS && OS.priceOf){
+    var p = OS.priceOf(BLOCK_NO,f,u.a,u.b||0);
+    if(p) return p;
+  }
   var ppm = CONFIG.pricePerM2[f];
   if(!ppm) return null;
   return {total: u.a*ppm, ppm: ppm};
@@ -802,6 +827,54 @@ function renderList(){
   });
 }
 
+
+/* ===== план оплаты, похожие квартиры и история просмотров (js/os-core.js) ===== */
+var SIMPOOL = [];
+if(window.OS && OS.loadUnits) OS.loadUnits(function(list){ SIMPOOL = list; if(typeof curUnit!=='undefined' && curUnit) renderSim(curUnit.f,curUnit.u); });
+
+function planLabel(y){
+  if(lang==='ru') return y===3 ? '3 года' : y+' лет';
+  return y+' years';
+}
+function renderPlan(f,u){
+  var box=document.getElementById('dPlan');
+  if(!box) return;
+  var pr=priceOf(f,u);
+  if(!pr || !window.OS || u.k!=='flat'){ box.hidden=true; return; }
+  box.hidden=false;
+  var h='<h4>'+(lang==='ru'?'Варианты рассрочки':'Instalment options')+'</h4><div class="opts">';
+  OS.CFG.terms.forEach(function(tm){
+    var p=OS.plan(pr.total,tm.minDown,tm.years,tm.rate);
+    h+='<div class="opt"><b>'+OS.money(p.monthly)+'</b>'+
+       '<span>'+(lang==='ru'?'в месяц':'per month')+'</span>'+
+       '<em>'+planLabel(tm.years)+' · '+tm.minDown+'%'+(tm.rate?(' · '+tm.rate+'%'):'')+'</em></div>';
+  });
+  h+='</div><a class="more" href="calculator.html">'+(lang==='ru'?'Открыть калькулятор и график платежей →':'Open the calculator and full schedule →')+'</a>';
+  box.innerHTML=h;
+}
+function renderSim(f,u){
+  var box=document.getElementById('dSim');
+  if(!box || !window.OS || !SIMPOOL.length || u.k!=='flat'){ if(box) box.hidden=true; return; }
+  var pr=priceOf(f,u);
+  var sim=OS.similar({block:BLOCK_NO,f:f,n:u.n,a:u.a,r:u.r,b:u.b||0,price:pr?pr.total:0},SIMPOOL,8);
+  if(!sim.length){ box.hidden=true; return; }
+  box.hidden=false;
+  var h='<h4>'+(lang==='ru'?'Похожие квартиры':'Similar apartments')+'</h4><div class="simrow">';
+  sim.forEach(function(s){
+    h+='<a class="simc" href="block-'+s.block+'.html#'+s.hash+'">'+
+       '<b>№ '+s.n+'</b>'+
+       '<span>'+(lang==='ru'?('Блок №'+s.block):('Block '+s.block))+' · '+fmt(s.a)+' '+T('m2')+'</span>'+
+       '<i>'+(s.price?OS.money(s.price):'')+'</i></a>';
+  });
+  box.innerHTML=h+'</div>';
+}
+function trackView(f,u){
+  if(!window.OS) return;
+  var pr=priceOf(f,u);
+  OS.pushViewed({key:'b'+BLOCK_NO+':'+keyOf(f,u),block:BLOCK_NO,f:f,n:u.n,a:u.a,r:u.r||0,b:u.b||0,
+                 k:u.k,price:pr?pr.total:0,page:'block-'+BLOCK_NO+'.html',hash:f+'-'+u.n});
+}
+
 /* ---------- drawer ---------- */
 var drawer=document.getElementById('drawer'), ov=document.getElementById('ov');
 var curUnit=null;
@@ -826,6 +899,7 @@ function openUnit(f,u){
   var interior=document.getElementById('dInterior');
   interior.hidden = (u.k!=='flat');
   document.getElementById('dInteriorCap').textContent = T('interiorCap');
+  renderPlan(f,u); renderSim(f,u); trackView(f,u);
   syncFav();
   drawCrop(f,u);
   drawer.classList.add('on'); drawer.setAttribute('aria-hidden','false'); ov.classList.add('on');
