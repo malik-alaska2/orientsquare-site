@@ -14,7 +14,8 @@ html{font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Seg
 body{transition:opacity ease-in .2s; padding-top:64px;}
 </style>
 <script src="js/os-core.js"></script>
-<script src="js/intro.js"></script>
+<script src="js/i18n-dict.js"></script>
+<script src="js/i18n.js"></script>
 </head>
 <body class="antialiased">
 <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
@@ -70,7 +71,7 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
         <p id="favSub" class="text-gray-600 text-sm mt-1">Apartments you saved on the interactive floor plan</p>
       </div>
       <div class="flex items-center gap-2">
-        <button type="button" id="favLangRu" class="px-3 py-1.5 text-sm rounded-lg border border-gray-300 bg-white hover:border-primary-500">RU</button>
+        <button type="button" id="favLangRu" class="px-3 py-1.5 text-sm rounded-lg border border-gray-300 bg-white hover:border-primary-500">TR</button>
         <button type="button" id="favLangEn" class="px-3 py-1.5 text-sm rounded-lg border border-gray-300 bg-white hover:border-primary-500">EN</button>
         <a href="block-1.html" id="favOpenPlan" class="px-4 py-1.5 text-sm rounded-lg bg-primary-500 text-white hover:bg-primary-600 transition-colors">Floor plan</a>
       </div>
@@ -88,21 +89,17 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
 /* Favourites saved on block-1.html (localStorage: os_favs + os_favs_data) */
 (function(){
   var L={
-    ru:{title:'Избранное',sub:'Квартиры, которые вы сохранили на интерактивном плане',plan:'План этажа',
-        emptyT:'Пока ничего не сохранено',emptyS:'Откройте интерактивный план Блока №1, выберите квартиру и нажмите на сердечко.',
-        emptyB:'Открыть интерактивный план',open:'Открыть',remove:'Убрать',ask:'Запросить',
-        m2:'м²',area:'Площадь',balc:'Балкон',store:'Кладовая',basement:'Подвальный этаж',floor:'-й этаж',
-        r2:'2-комнатная',r3:'3-комнатная',shop:'Магазин',storage:'Кладовая',flat:'Квартира',count:'Сохранено квартир'},
+    tr:{"title":"Favoriler","sub":"İnteraktif kat planında kaydettiğiniz daireler","plan":"Kat planı","emptyT":"Henüz kaydedilmiş daire yok","emptyS":"Blok 1’in interaktif planını açın, bir daire seçin ve kalp simgesine dokunun.","emptyB":"İnteraktif planı aç","open":"Aç","remove":"Kaldır","ask":"Sor","m2":"m²","area":"Alan","balc":"Balkon","store":"Depo","basement":"Bodrum kat","floor":". kat","r2":"2 odalı","r3":"3 odalı","shop":"Ticari birim","storage":"Depo","flat":"Daire","count":"Kaydedilen daire"},
     en:{title:'Favorites',sub:'Apartments you saved on the interactive floor plan',plan:'Floor plan',
         emptyT:'No saved apartments yet',emptyS:'Open the interactive plan of Block 1, pick an apartment and tap the heart.',
         emptyB:'Open the interactive plan',open:'Open',remove:'Remove',ask:'Request',
         m2:'m²',area:'Area',balc:'Balcony',store:'Storage',basement:'Basement',floor:' floor',
         r2:'2-room',r3:'3-room',shop:'Retail unit',storage:'Storage',flat:'Apartment',count:'Saved apartments'}
   };
-  var lang=(localStorage.getItem('os_lang')==='en')?'en':'ru';
+  var lang=(localStorage.getItem('os_lang')==='en')?'en':'tr';
   function T(k){ return L[lang][k]; }
   function read(k,d){ try{ return JSON.parse(localStorage.getItem(k)||d); }catch(e){ return JSON.parse(d); } }
-  function floorName(f){ if(f===0||f==='0') return T('basement'); return lang==='ru' ? f+T('floor') : f+'th'+T('floor'); }
+  function floorName(f){ if(f===0||f==='0') return T('basement'); return lang==='tr' ? f+T('floor') : f+'th'+T('floor'); }
   function typeName(m){
     if(m.k==='shop') return T('shop');
     if(m.k==='storage'||m.k==='tech') return T('storage');
@@ -142,7 +139,7 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
       card.innerHTML=
         '<div class="flex items-start justify-between mb-2">'+
           '<div><p class="text-lg font-bold text-gray-900">&#8470; '+n+'</p>'+
-          '<p class="text-sm text-gray-500">'+floorName(f)+' &middot; '+(m.block?(m.block[lang]||m.block.ru||('Block '+blockNo)):('Block '+blockNo))+'</p></div>'+
+          '<p class="text-sm text-gray-500">'+floorName(f)+' &middot; '+(m.block?(m.block[lang]||m.block.tr||('Block '+blockNo)):('Block '+blockNo))+'</p></div>'+
           '<span class="text-xs px-2 py-1 rounded-full bg-primary-50 text-primary-600 font-medium">'+typeName(m)+'</span>'+
         '</div>'+
         '<div class="text-sm mb-4">'+rows+'</div>'+
@@ -165,7 +162,7 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
     });
   }
   function setLang(l){ lang=l; localStorage.setItem('os_lang',l); document.documentElement.lang=l; render(); }
-  document.getElementById('favLangRu').addEventListener('click',function(){ setLang('ru'); });
+  document.getElementById('favLangRu').addEventListener('click',function(){ setLang('tr'); });
   document.getElementById('favLangEn').addEventListener('click',function(){ setLang('en'); });
   document.documentElement.lang=lang;
   render();

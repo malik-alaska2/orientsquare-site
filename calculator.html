@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Калькулятор рассрочки и ROI | OrientSquare</title>
-<meta name="description" content="Рассчитайте первый взнос, ежемесячный платёж и график рассрочки, а также доходность и окупаемость квартиры как инвестиции.">
+<title>Taksit ve ROI hesaplayıcısı | OrientSquare</title>
+<meta name="description" content="Peşinatı, aylık ödemeyi ve taksit planını hesaplayın; dairenin yatırım getirisini ve geri dönüş süresini görün.">
 <link rel="icon" type="image/png" href="assets/brand/favicon.png">
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
 <link rel="stylesheet" href="styles.css">
@@ -142,7 +142,7 @@ table.tb tr:hover td{background:var(--p05)}
       <h1 class="t" data-t="h1">Калькулятор рассрочки и инвестиций</h1>
       <p class="sub" data-t="sub">Выберите квартиру или введите свою сумму — и сразу увидите первый взнос, ежемесячный платёж и полный график.</p>
     </div>
-    <div class="langsw"><button type="button" id="lRu" aria-pressed="true">RU</button><button type="button" id="lEn">EN</button></div>
+    <div class="langsw"><button type="button" id="lRu" aria-pressed="true">TR</button><button type="button" id="lEn">EN</button></div>
   </div>
 </div></section>
 
@@ -318,26 +318,12 @@ table.tb tr:hover td{background:var(--p05)}
   </div>
 </footer>
 <script src="js/os-core.js"></script>
-<script src="js/intro.js"></script>
+<script src="js/i18n-dict.js"></script>
+<script src="js/i18n.js"></script>
 <script>
 
 var T={
- ru:{badge:'Калькулятор',h1:'Калькулятор рассрочки и инвестиций',sub:'Выберите квартиру или введите свою сумму — и сразу увидите первый взнос, ежемесячный платёж и полный график.',
-  tabPay:'Рассрочка',tabInv:'Инвестиция и ROI',pickT:'Объект',pickS:'Выберите квартиру из проекта — цена подставится автоматически.',
-  fBlock:'Блок',fFloor:'Этаж',fUnit:'Квартира',fPrice:'Стоимость, $',noteDemo:'Цены демонстрационные — считаются от цены за м² по этажу. После получения прайса они меняются в одном файле.',
-  condT:'Условия',condS:'Подвиньте ползунки — расчёт обновится сразу.',fDown:'Первый взнос',fTerm:'Срок',fRate:'Годовая ставка',
-  rateHint:'Демо-условия: 3 года — 0%, 5 лет — 6%, 10 лет — 9%.',yr:'года',yrs:'лет',yrs2:'лет',
-  kDown:'Первый взнос',kMonth:'Платёж в месяц',kOver:'Переплата',kTotal:'Итого к оплате',
-  schT:'График платежей',csv:'Скачать CSV',ask:'Отправить заявку',cM:'Месяц',cPay:'Платёж',cPrin:'Тело',cInt:'Проценты',cBal:'Остаток',
-  invT:'Параметры вложения',invS:'Считаем доход от аренды, годовую доходность, окупаемость и ROI.',
-  iPrice:'Стоимость, $',iArea:'Площадь, м²',iRent:'Аренда, $/м² в месяц',iOcc:'Загрузка, %',iOpex:'Расходы, % от аренды',iGrow:'Рост цены, % в год',iYears:'Горизонт',
-  invNote:'Ставка аренды и рост цены — демо-ориентиры. Замените на реальные цифры по району, и расчёт станет точным.',
-  rMonth:'Аренда в месяц',rNet:'Чистыми за год',rYield:'Годовая доходность',rBack:'Окупаемость',rFuture:'Стоимость в конце',rRoi:'ROI за период',
-  brT:'Из чего складывается прибыль',ask2:'Обсудить с менеджером',
-  disc:'Расчёт носит информационный характер и не является публичной офертой. Итоговые условия фиксируются в договоре.',
-  own:'Своя сумма',flat:'Квартира',m2:'м²',months:'мес.',yearsW:'г.',
-  brRent:'Аренда за период',brGrow:'Прирост стоимости',brProfit:'Итого прибыль',brIn:'Вложено',
-  msg:'Здравствуйте! Интересует рассрочка: '},
+ tr:{"badge":"Hesaplayıcı","h1":"Taksit ve yatırım hesaplayıcısı","sub":"Bir daire seçin veya kendi tutarınızı girin — peşinatı, aylık ödemeyi ve tam ödeme planını anında görün.","tabPay":"Taksit","tabInv":"Yatırım ve ROI","pickT":"Gayrimenkul","pickS":"Projeden bir daire seçin — fiyat otomatik gelir.","fBlock":"Blok","fFloor":"Kat","fUnit":"Daire","fPrice":"Fiyat, $","noteDemo":"Fiyatlar demo değerlerdir; kat bazında m² fiyatından hesaplanır. Gerçek fiyat listesi geldiğinde tek dosyadan değişir.","condT":"Koşullar","condS":"Sürgüleri kaydırın — hesap anında güncellenir.","fDown":"Peşinat","fTerm":"Vade","fRate":"Yıllık faiz","rateHint":"Demo koşullar: 3 yıl — %0, 5 yıl — %6, 10 yıl — %9.","yr":"yıl","yrs":"yıl","yrs2":"yıl","kDown":"Peşinat","kMonth":"Aylık ödeme","kOver":"Toplam faiz","kTotal":"Toplam ödeme","schT":"Ödeme planı","csv":"CSV indir","ask":"Talep gönder","cM":"Ay","cPay":"Ödeme","cPrin":"Anapara","cInt":"Faiz","cBal":"Kalan","invT":"Yatırım parametreleri","invS":"Kira geliri, yıllık getiri, geri dönüş süresi ve ROI hesaplanır.","iPrice":"Fiyat, $","iArea":"Alan, m²","iRent":"Kira, $/m² aylık","iOcc":"Doluluk, %","iOpex":"Giderler, kiranın %","iGrow":"Değer artışı, yıllık %","iYears":"Vade","invNote":"Kira ve değer artışı demo değerlerdir. Bölgenin gerçek rakamlarını girdiğinizde hesap kesinleşir.","rMonth":"Aylık kira","rNet":"Yıllık net","rYield":"Yıllık getiri","rBack":"Geri dönüş","rFuture":"Dönem sonu değer","rRoi":"Dönem ROI","brT":"Kâr neyden oluşuyor","ask2":"Danışmanla görüşün","disc":"Hesap bilgilendirme amaçlıdır, bağlayıcı teklif değildir. Nihai koşullar sözleşmede belirlenir.","own":"Kendi tutarım","flat":"Daire","m2":"m²","months":"ay","yearsW":"yıl","brRent":"Dönem kirası","brGrow":"Değer artışı","brProfit":"Toplam kâr","brIn":"Yatırılan","msg":"Merhaba! Taksit seçenekleriyle ilgileniyorum: "},
  en:{badge:'Calculator',h1:'Installment and investment calculator',sub:'Pick an apartment or type your own amount — you instantly see the down payment, the monthly instalment and the full schedule.',
   tabPay:'Installment',tabInv:'Investment & ROI',pickT:'Property',pickS:'Pick an apartment from the project — the price fills in automatically.',
   fBlock:'Block',fFloor:'Floor',fUnit:'Apartment',fPrice:'Price, $',noteDemo:'Prices are demo values derived from a price per m² per floor. Once the real price list arrives they change in a single file.',
@@ -360,10 +346,10 @@ function t(k){return T[lang][k];}
 function i18n(){
   document.querySelectorAll('[data-t]').forEach(function(e){var k=e.getAttribute('data-t'); if(T[lang][k]!==undefined) e.textContent=T[lang][k];});
   document.documentElement.lang=lang;
-  document.getElementById('lRu').setAttribute('aria-pressed',lang==='ru');
+  document.getElementById('lRu').setAttribute('aria-pressed',lang==='tr');
   document.getElementById('lEn').setAttribute('aria-pressed',lang==='en');
 }
-document.getElementById('lRu').addEventListener('click',function(){lang='ru';OS.setLang('ru');i18n();fillBlocks();calc();inv();});
+document.getElementById('lRu').addEventListener('click',function(){lang='tr';OS.setLang('tr');i18n();fillBlocks();calc();inv();});
 document.getElementById('lEn').addEventListener('click',function(){lang='en';OS.setLang('en');i18n();fillBlocks();calc();inv();});
 
 /* ---- вкладки ---- */
@@ -381,7 +367,7 @@ document.getElementById('tabInv').addEventListener('click',function(){tab('inv')
 /* ---- выбор объекта ---- */
 function fillBlocks(){
   var sb=document.getElementById('selBlock'); sb.innerHTML='';
-  for(var b=1;b<=6;b++){var o=document.createElement('option');o.value=b;o.textContent=(lang==='ru'?'Блок №':'Block ')+b;sb.appendChild(o);}
+  for(var b=1;b<=6;b++){var o=document.createElement('option');o.value=b;o.textContent=(lang==='tr'?'Blok ':'Block ')+b;sb.appendChild(o);}
   fillFloors();
 }
 function fillFloors(){
@@ -389,7 +375,7 @@ function fillFloors(){
   var seen={};
   UN.filter(function(u){return u.block===b&&u.k==='flat';}).forEach(function(u){
     if(seen[u.f])return; seen[u.f]=1;
-    var o=document.createElement('option');o.value=u.f;o.textContent=lang==='ru'?u.floorRu:u.floorEn;sf.appendChild(o);
+    var o=document.createElement('option');o.value=u.f;o.textContent=lang==='tr'?u.floorTr:u.floorEn;sf.appendChild(o);
   });
   fillUnits();
 }
@@ -399,7 +385,7 @@ function fillUnits(){
   var o0=document.createElement('option'); o0.value=''; o0.textContent=t('own'); su.appendChild(o0);
   UN.filter(function(u){return u.block===b&&u.f===f&&u.k==='flat';}).forEach(function(u){
     var o=document.createElement('option'); o.value=u.hash;
-    o.textContent='№ '+u.n+' · '+OS.num(u.a)+' '+t('m2')+(u.r?' · '+u.r+(lang==='ru'?'-комн.':'-room'):'');
+    o.textContent='№ '+u.n+' · '+OS.num(u.a)+' '+t('m2')+(u.r?' · '+u.r+(lang==='tr'?' odalı':'-room'):'');
     su.appendChild(o);
   });
   if(su.options.length>1){su.selectedIndex=1;pickUnit();}
@@ -439,13 +425,13 @@ function calc(){
   document.getElementById('kMonth').textContent=OS.money(p.monthly);
   document.getElementById('kOver').textContent=OS.money(p.overpay);
   document.getElementById('kTotal').textContent=OS.money(p.total);
-  document.getElementById('schSub').textContent=p.months+' '+t('months')+' · '+OS.money(p.body)+(lang==='ru'?' в рассрочку':' financed');
+  document.getElementById('schSub').textContent=p.months+' '+t('months')+' · '+OS.money(p.body)+(lang==='tr'?' taksitli':' financed');
   var tb=document.getElementById('schBody'), rows=OS.schedule(p), h='';
   rows.forEach(function(r){
     h+='<tr><td>'+r.m+'</td><td>'+OS.money(r.pay)+'</td><td>'+OS.money(r.principal)+'</td><td>'+OS.money(r.interest)+'</td><td>'+OS.money(r.balance)+'</td></tr>';
   });
   tb.innerHTML=h;
-  var name=cur?((lang==='ru'?'Блок №':'Block ')+cur.block+', '+t('flat')+' № '+cur.n+', '+OS.num(cur.a)+' '+t('m2')):(t('own'));
+  var name=cur?((lang==='tr'?'Blok ':'Block ')+cur.block+', '+t('flat')+' № '+cur.n+', '+OS.num(cur.a)+' '+t('m2')):(t('own'));
   var msg=t('msg')+name+'. '+OS.money(price)+', '+down+'% + '+p.months+' '+t('months')+' × '+OS.money(p.monthly)+'.';
   document.getElementById('btnAsk').href=OS.requestLink(msg);
 }
@@ -477,7 +463,7 @@ function inv(){
     '<div>'+t('brRent')+'</div><div>'+OS.money(r.rentSum)+'</div>'+
     '<div>'+t('brGrow')+'</div><div>'+OS.money(r.future-price)+'</div>'+
     '<div>'+t('brProfit')+'</div><div>'+OS.money(r.profit)+'</div>';
-  document.getElementById('invAsk').href=OS.requestLink((lang==='ru'?'Здравствуйте! Интересует инвестиция: ':'Hello! I am interested in investing: ')+OS.money(price)+', '+OS.num(area)+' '+t('m2')+', ROI '+OS.num(r.roi,0)+'%.');
+  document.getElementById('invAsk').href=OS.requestLink((lang==='tr'?'Merhaba! Yatırımla ilgileniyorum: ':'Hello! I am interested in investing: ')+OS.money(price)+', '+OS.num(area)+' '+t('m2')+', ROI '+OS.num(r.roi,0)+'%.');
 }
 ['iPrice','iArea','iRent','iOcc','iOpex','iGrow','rngYears'].forEach(function(id){
   document.getElementById(id).addEventListener('input',inv);

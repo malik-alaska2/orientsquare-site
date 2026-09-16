@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Индивидуальный подбор квартиры | OrientSquare</title>
-<meta name="description" content="Укажите бюджет, количество комнат и район — и получите подходящие квартиры проекта OrientSquare.">
+<title>Size özel daire seçimi | OrientSquare</title>
+<meta name="description" content="Bütçenizi, oda sayısını ve bloğu belirtin — OrientSquare projesinden size uygun daireleri görün.">
 <link rel="icon" type="image/png" href="assets/brand/favicon.png">
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
 <link rel="stylesheet" href="styles.css">
@@ -142,7 +142,7 @@ table.tb tr:hover td{background:var(--p05)}
       <h1 class="t" data-t="h1">Индивидуальный подбор квартиры</h1>
       <p class="sub" data-t="sub">Опишите, что вам нужно — система сразу покажет подходящие квартиры из 494 в проекте и отправит запрос менеджеру.</p>
     </div>
-    <div class="langsw"><button type="button" id="lRu" aria-pressed="true">RU</button><button type="button" id="lEn">EN</button></div>
+    <div class="langsw"><button type="button" id="lRu" aria-pressed="true">TR</button><button type="button" id="lEn">EN</button></div>
   </div>
 </div></section>
 
@@ -298,26 +298,12 @@ table.tb tr:hover td{background:var(--p05)}
   </div>
 </footer>
 <script src="js/os-core.js"></script>
-<script src="js/intro.js"></script>
+<script src="js/i18n-dict.js"></script>
+<script src="js/i18n.js"></script>
 <script>
 
 var T={
- ru:{badge:'Подбор',h1:'Индивидуальный подбор квартиры',sub:'Опишите, что вам нужно — система сразу покажет подходящие квартиры из 494 в проекте и отправит запрос менеджеру.',
-  formT:'Ваши условия',formS:'Заполните то, что важно. Остальное оставьте «не важно».',
-  fGoal:'Цель покупки',gLive:'Для жизни',gInvest:'Для инвестиции',gRent:'Под сдачу в аренду',
-  fRooms:'Комнат',fBlock:'Блок',fFloor:'Этаж',fSide:'Вид из окна',fWhen:'Когда планируете покупку',
-  any:'Не важно',any2:'Не важно',any3:'Не важно',any4:'Не важно',sYard:'Во двор',sStreet:'На улицу',
-  wNow:'В ближайший месяц',w3:'В течение 3 месяцев',wYear:'В течение года',wLook:'Пока смотрю',
-  fBudget:'Бюджет до',fArea:'Площадь от',fName:'Имя',fPhone:'Телефон или Telegram',
-  find:'Подобрать варианты',send:'Отправить запрос менеджеру',
-  privacy:'Имя и телефон никуда не отправляются автоматически — они только подставляются в сообщение менеджеру, которое вы отправляете сами.',
-  none:'Под эти условия ничего не нашлось. Попробуйте увеличить бюджет или убрать ограничение по этажу.',
-  resT:'Подходящие варианты',found:'Найдено',of:'из',match:'совпадение',
-  m2:'м²',rooms:'-комн.',floor:'этаж',block:'Блок №',from:'от',mo:'/мес',
-  open:'Открыть',fav:'В избранное',faved:'В избранном',
-  msgT:'Здравствуйте! Подбираю квартиру.',
-  cGoal:'Цель',cBudget:'Бюджет до',cRooms:'Комнат',cArea:'Площадь от',cBlock:'Блок',cFloor:'Этаж',cWhen:'Срок',cName:'Имя',cPhone:'Контакт',cLiked:'Понравились',
-  saved:'Заявка на подбор сохранена',savedX:'Менеджер получит ваши условия и предложит варианты. Условия сохранены в личном кабинете.'},
+ tr:{"badge":"Seçim","h1":"Size özel daire seçimi","sub":"Ne aradığınızı yazın — site projedeki 494 daire içinden uygun olanları anında gösterir ve danışmana talep iletir.","formT":"Kriterleriniz","formS":"Sizin için önemli olanları doldurun, diğerlerini “fark etmez” bırakın.","fGoal":"Alım amacı","gLive":"Oturmak için","gInvest":"Yatırım için","gRent":"Kiraya vermek için","fRooms":"Oda","fBlock":"Blok","fFloor":"Kat","fSide":"Manzara","fWhen":"Alım zamanı","any":"Fark etmez","any2":"Fark etmez","any3":"Fark etmez","any4":"Fark etmez","sYard":"Bahçeye","sStreet":"Caddeye","wNow":"Bu ay içinde","w3":"3 ay içinde","wYear":"Bu yıl içinde","wLook":"Şimdilik bakıyorum","fBudget":"Bütçe üst sınırı","fArea":"Alan en az","fName":"Ad","fPhone":"Telefon veya Telegram","find":"Uygun daireleri göster","send":"Talebi gönder","privacy":"Adınız ve telefonunuz otomatik olarak hiçbir yere gönderilmez — yalnızca sizin göndereceğiniz mesaja eklenir.","none":"Bu kriterlere uyan daire yok. Bütçeyi artırmayı veya kat filtresini kaldırmayı deneyin.","resT":"Uygun daireler","found":"Bulundu","of":"/","match":"uygun","m2":"m²","rooms":" odalı","floor":"kat","block":"Blok ","from":"başlangıç","mo":"/ay","open":"Aç","fav":"Kaydet","faved":"Kaydedildi","msgT":"Merhaba! Daire arıyorum.","cGoal":"Amaç","cBudget":"Bütçe üst sınırı","cRooms":"Oda","cArea":"Alan en az","cBlock":"Blok","cFloor":"Kat","cWhen":"Zaman","cName":"Ad","cPhone":"İletişim","cLiked":"Seçilenler","saved":"Talep kaydedildi","savedX":"Danışman kriterlerinizi görecek ve size uygun seçenekleri sunacak. Kriterler hesabınızda saklanır."},
  en:{badge:'Matching',h1:'Personal apartment matching',sub:'Tell us what you need — the site instantly shows matching apartments out of 494 in the project and sends a request to a manager.',
   formT:'Your criteria',formS:'Fill in what matters. Leave the rest as “any”.',
   fGoal:'Purpose',gLive:'To live in',gInvest:'As an investment',gRent:'To rent out',
@@ -340,7 +326,7 @@ function t(k){return T[lang][k];}
 function i18n(){
   document.querySelectorAll('[data-t]').forEach(function(e){var k=e.getAttribute('data-t');if(T[lang][k]!==undefined)e.textContent=T[lang][k];});
   document.documentElement.lang=lang;
-  document.getElementById('lRu').setAttribute('aria-pressed',lang==='ru');
+  document.getElementById('lRu').setAttribute('aria-pressed',lang==='tr');
   document.getElementById('lEn').setAttribute('aria-pressed',lang==='en');
   document.getElementById('resT').textContent=t('resT');
   sliders();
@@ -350,7 +336,7 @@ function sliders(){
   document.getElementById('outArea').textContent=document.getElementById('rngArea').value+' '+t('m2');
 }
 ['rngBudget','rngArea'].forEach(function(id){document.getElementById(id).addEventListener('input',sliders);});
-document.getElementById('lRu').addEventListener('click',function(){lang='ru';OS.setLang('ru');i18n();if(last.length)find();});
+document.getElementById('lRu').addEventListener('click',function(){lang='tr';OS.setLang('tr');i18n();if(last.length)find();});
 document.getElementById('lEn').addEventListener('click',function(){lang='en';OS.setLang('en');i18n();if(last.length)find();});
 
 function criteria(){
@@ -401,8 +387,8 @@ function find(){
       '<p class="muted" style="margin:.1rem 0 .3rem">'+t('block')+u.block+' · '+u.f+' '+t('floor')+(u.r?' · '+u.r+t('rooms'):'')+'</p>'+
       '<div class="kv">'+
         '<div>'+t('m2')+'</div><div>'+OS.num(u.a)+'</div>'+
-        '<div>'+(lang==='ru'?'Цена':'Price')+'</div><div>'+OS.money(u.price)+'</div>'+
-        '<div>'+(lang==='ru'?'Рассрочка':'Instalment')+'</div><div>'+t('from')+' '+OS.money(p.monthly)+t('mo')+'</div>'+
+        '<div>'+(lang==='tr'?'Fiyat':'Price')+'</div><div>'+OS.money(u.price)+'</div>'+
+        '<div>'+(lang==='tr'?'Taksit':'Instalment')+'</div><div>'+t('from')+' '+OS.money(p.monthly)+t('mo')+'</div>'+
       '</div>'+
       '<div class="row" style="margin-top:auto">'+
         '<a class="btn sm" href="block-'+u.block+'.html#'+u.hash+'">'+t('open')+'</a>'+
@@ -418,7 +404,7 @@ function find(){
       else {
         f.push(k);
         m[k]={f:+b.dataset.f,n:b.dataset.n,a:+b.dataset.a,r:+b.dataset.r,k:'flat',
-              block:{ru:'Блок №'+b.dataset.b,en:'Block '+b.dataset.b},page:'block-'+b.dataset.b+'.html',ts:Date.now()};
+              block:{tr:'Blok '+b.dataset.b,en:'Block '+b.dataset.b},page:'block-'+b.dataset.b+'.html',ts:Date.now()};
         b.textContent=t('faved');
       }
       OS.write('os_favs',f); OS.write('os_favs_data',m);
@@ -436,7 +422,7 @@ function find(){
   if(c.phone) lines.push(t('cPhone')+': '+c.phone);
   if(last.length) lines.push(t('cLiked')+': '+last.slice(0,5).map(function(u){return '#'+u.n+' ('+t('block')+u.block+')';}).join(', '));
   document.getElementById('btnSend').href=OS.requestLink(lines.join('\n'));
-  OS.notify({ru:T.ru.saved,en:T.en.saved},{ru:T.ru.savedX,en:T.en.savedX});
+  OS.notify({tr:T.tr.saved,en:T.en.saved},{tr:T.tr.savedX,en:T.en.savedX});
   document.getElementById('resWrap').scrollIntoView({behavior:'smooth',block:'start'});
 }
 document.getElementById('btnFind').addEventListener('click',find);

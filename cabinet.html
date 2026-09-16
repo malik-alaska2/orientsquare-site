@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Личный кабинет | OrientSquare</title>
-<meta name="description" content="Избранные квартиры, брони, график платежей, документы и уведомления клиента OrientSquare.">
+<title>Hesabım | OrientSquare</title>
+<meta name="description" content="OrientSquare müşterisi için favori daireler, rezervasyonlar, ödeme planı, belgeler ve bildirimler.">
 <link rel="icon" type="image/png" href="assets/brand/favicon.png">
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
 <link rel="stylesheet" href="styles.css">
@@ -150,7 +150,7 @@ table.tb tr:hover td{background:var(--p05)}
       <h1 class="t" id="hi" data-t="h1">Личный кабинет</h1>
       <p class="sub" data-t="sub">Избранное, брони, график платежей, документы и уведомления — всё в одном месте.</p>
     </div>
-    <div class="langsw"><button type="button" id="lRu" aria-pressed="true">RU</button><button type="button" id="lEn">EN</button></div>
+    <div class="langsw"><button type="button" id="lRu" aria-pressed="true">TR</button><button type="button" id="lEn">EN</button></div>
   </div>
 </div></section>
 
@@ -300,32 +300,12 @@ table.tb tr:hover td{background:var(--p05)}
   </div>
 </footer>
 <script src="js/os-core.js"></script>
-<script src="js/intro.js"></script>
+<script src="js/i18n-dict.js"></script>
+<script src="js/i18n.js"></script>
 <script>
 
 var T={
- ru:{badge:'Кабинет',h1:'Личный кабинет',sub:'Избранное, брони, график платежей, документы и уведомления — всё в одном месте.',
-  tOver:'Обзор',tFavs:'Избранное',tBook:'Брони',tPay:'Платежи',tDocs:'Документы',tNotes:'Уведомления',
-  profT:'Профиль',profS:'Профиль хранится только в этом браузере — пароль не нужен.',
-  pName:'Имя',pPhone:'Телефон или Telegram',pMail:'E-mail',pSave:'Сохранить',saved:'Сохранено',
-  sFav:'В избранном',sBook:'Брони',sBudget:'Средний бюджет',sRooms:'Чаще смотрите',
-  reqT:'Ваш запрос на подбор',reqBtn:'Изменить условия',reqNone:'Запроса пока нет',
-  simT:'Похожие на ваш выбор',simS:'Подобрано по квартирам, которые вы открывали и добавляли в избранное.',
-  simE:'Откройте несколько квартир на планах блоков — и здесь появятся похожие варианты.',
-  favE:'В избранном пусто. Откройте план блока и нажмите на сердечко.',
-  bookE:'Броней нет. Забронировать можно из раздела «Избранное» — это заявка, а не оплата.',
-  payE:'График платежей появится после первой брони.',
-  docsT:'Документы по броням',docsS:'Черновики формируются прямо в браузере из данных брони — их можно открыть, распечатать или сохранить в PDF.',
-  docsE:'Документы появятся после брони квартиры.',
-  notesT:'Уведомления',readAll:'Отметить прочитанными',notesE:'Уведомлений пока нет.',
-  open:'Открыть',book:'Забронировать',booked:'Забронировано',cancel:'Отменить бронь',remove:'Убрать',
-  m2:'м²',rooms:'-комн.',floor:'этаж',block:'Блок №',price:'Цена',area:'Площадь',plan:'Рассрочка',mo:'/мес',
-  cBudget:'Бюджет до',cRooms:'Комнат',cArea:'Площадь от',cBlock:'Блок',cWhen:'Срок',any:'не важно',
-  schT:'График платежей',month:'Месяц',pay:'Платёж',status:'Статус',paid:'Оплачен',wait:'Ожидается',
-  down:'Первый взнос',dContract:'Договор бронирования',dInvoice:'Счёт на первый взнос',dSchedule:'График платежей',
-  dOpen:'Открыть',draft:'черновик',
-  bookedT:'Заявка на бронь отправлена',
-  total:'Итого',ask:'Написать менеджеру'},
+ tr:{"badge":"Hesap","h1":"Hesabım","sub":"Favoriler, rezervasyonlar, ödeme planı, belgeler ve bildirimler tek yerde.","tOver":"Genel","tFavs":"Favoriler","tBook":"Rezervasyonlar","tPay":"Ödemeler","tDocs":"Belgeler","tNotes":"Bildirimler","profT":"Profil","profS":"Profil yalnızca bu tarayıcıda saklanır — şifre gerekmez.","pName":"Ad","pPhone":"Telefon veya Telegram","pMail":"E-posta","pSave":"Kaydet","saved":"Kaydedildi","sFav":"Kaydedilen","sBook":"Rezervasyon","sBudget":"Ortalama bütçe","sRooms":"En çok bakılan","reqT":"Daire seçim talebiniz","reqBtn":"Kriterleri değiştir","reqNone":"Henüz talep yok","simT":"Seçimlerinize benzer","simS":"Açtığınız ve kaydettiğiniz dairelere göre.","simE":"Blok planlarında birkaç daire açın, benzer seçenekler burada görünsün.","favE":"Henüz kayıt yok. Bir blok planını açıp kalp simgesine dokunun.","bookE":"Rezervasyon yok. Favoriler sekmesinden rezerve edebilirsiniz — bu bir ödeme değil, taleptir.","payE":"Ödeme planı ilk rezervasyondan sonra görünür.","docsT":"Rezervasyon belgeleriniz","docsS":"Taslaklar rezervasyon verilerinden tarayıcınızda oluşturulur — açın, yazdırın veya PDF olarak kaydedin.","docsE":"Belgeler bir daire rezerve ettikten sonra görünür.","notesT":"Bildirimler","readAll":"Tümünü okundu işaretle","notesE":"Henüz bildirim yok.","open":"Aç","book":"Rezerve et","booked":"Rezerve edildi","cancel":"Rezervasyonu iptal et","remove":"Kaldır","m2":"m²","rooms":" odalı","floor":"kat","block":"Blok ","price":"Fiyat","area":"Alan","plan":"Taksit","mo":"/ay","cBudget":"Bütçe üst sınırı","cRooms":"Oda","cArea":"Alan en az","cBlock":"Blok","cWhen":"Zaman","any":"fark etmez","schT":"Ödeme planı","month":"Ay","pay":"Ödeme","status":"Durum","paid":"Ödendi","wait":"Yaklaşan","down":"Peşinat","dContract":"Rezervasyon sözleşmesi","dInvoice":"Peşinat faturası","dSchedule":"Ödeme planı","dOpen":"Aç","draft":"taslak","bookedT":"Rezervasyon talebi gönderildi","total":"Toplam","ask":"Danışmana yaz"},
  en:{badge:'Cabinet',h1:'Your cabinet',sub:'Favorites, bookings, payment schedule, documents and notifications in one place.',
   tOver:'Overview',tFavs:'Favorites',tBook:'Bookings',tPay:'Payments',tDocs:'Documents',tNotes:'Notifications',
   profT:'Profile',profS:'The profile is stored in this browser only — no password needed.',
@@ -356,10 +336,10 @@ function $(id){return document.getElementById(id);}
 function i18n(){
   document.querySelectorAll('[data-t]').forEach(function(e){var k=e.getAttribute('data-t');if(T[lang][k]!==undefined)e.textContent=T[lang][k];});
   document.documentElement.lang=lang;
-  $('lRu').setAttribute('aria-pressed',lang==='ru');
+  $('lRu').setAttribute('aria-pressed',lang==='tr');
   $('lEn').setAttribute('aria-pressed',lang==='en');
 }
-$('lRu').addEventListener('click',function(){lang='ru';OS.setLang('ru');renderAll();});
+$('lRu').addEventListener('click',function(){lang='tr';OS.setLang('tr');renderAll();});
 $('lEn').addEventListener('click',function(){lang='en';OS.setLang('en');renderAll();});
 
 /* вкладки */
@@ -425,7 +405,7 @@ function renderBook(){
       '<div>'+t('down')+'</div><div>'+OS.money(p.down)+'</div>'+
       '<div>'+t('plan')+'</div><div>'+OS.money(p.monthly)+t('mo')+'</div></div>'+
       '<div class="row" style="margin-top:auto">'+
-        '<a class="btn sm" target="_blank" rel="noopener" href="'+OS.requestLink((lang==='ru'?'Здравствуйте! Бронь: ':'Hello! Booking: ')+x.title)+'">'+t('ask')+'</a>'+
+        '<a class="btn sm" target="_blank" rel="noopener" href="'+OS.requestLink((lang==='tr'?'Merhaba! Rezervasyon: ':'Hello! Booking: ')+x.title)+'">'+t('ask')+'</a>'+
         '<button type="button" class="btn ghost sm delBook" data-k="'+x.id+'">'+t('cancel')+'</button></div>';
     g.appendChild(el);
   });
@@ -463,7 +443,7 @@ function docHtml(title,x,p){
   var rows=OS.schedule(p).slice(0,12).map(function(r){
     return '<tr><td>'+r.m+'</td><td>'+OS.money(r.pay)+'</td><td>'+OS.money(r.balance)+'</td></tr>';
   }).join('');
-  return '<!DOCTYPE html><html lang="'+lang+'"><head><meta charset="utf-8"><title>'+title+'</title>'+
+  return '<!DOCTYPE html><html lang="'+lang+'"><head><meta charset="utf-8"><title>Hesabım | OrientSquare</title>'+
   '<style>body{font-family:system-ui,sans-serif;color:#333;max-width:820px;margin:2rem auto;padding:0 1.5rem;line-height:1.55}'+
   'h1{font-size:1.4rem;border-bottom:3px solid #F57C00;padding-bottom:.5rem}'+
   'table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.9rem}'+
@@ -481,11 +461,11 @@ function docHtml(title,x,p){
    '<div>'+t('pName')+'</div><div>'+(pr.name||'—')+'</div>'+
    '<div>'+t('pPhone')+'</div><div>'+(pr.phone||'—')+'</div>'+
    '<div>'+t('pMail')+'</div><div>'+(pr.mail||'—')+'</div>'+
-   '<div>'+(lang==='ru'?'Дата':'Date')+'</div><div>'+new Date().toLocaleDateString()+'</div>'+
+   '<div>'+(lang==='tr'?'Tarih':'Date')+'</div><div>'+new Date().toLocaleDateString()+'</div>'+
   '</div><h2 style="font-size:1.05rem">'+t('schT')+'</h2>'+
-  '<table><thead><tr><th>'+t('month')+'</th><th>'+t('pay')+'</th><th>'+(lang==='ru'?'Остаток':'Balance')+'</th></tr></thead><tbody>'+rows+'</tbody></table>'+
-  '<p style="font-size:.82rem;color:#757575">'+(lang==='ru'
-    ?'Документ сформирован на сайте как черновик и не является договором. Юридическую силу имеет только подписанный экземпляр.'
+  '<table><thead><tr><th>'+t('month')+'</th><th>'+t('pay')+'</th><th>'+(lang==='tr'?'Kalan':'Balance')+'</th></tr></thead><tbody>'+rows+'</tbody></table>'+
+  '<p style="font-size:.82rem;color:#757575">'+(lang==='tr'
+    ?'Bu belge sitede taslak olarak oluşturulmuştur ve sözleşme değildir. Yalnızca imzalı nüsha hukuki geçerlilik taşır.'
     :'This document is generated on the website as a draft and is not a contract. Only a signed copy is legally binding.')+'</p>'+
   '<p style="font-size:.82rem;color:#757575">Maslak mah. Maslak meydan sk. Beybi Giz Plaza A Blok No: 1/55, Sarıyer, Istanbul · +90 546 199 7101 · info@orientsquare.com</p>'+
   '</body></html>';
@@ -530,7 +510,7 @@ $('btnRead').addEventListener('click',function(){ OS.readAll(); renderNotes(); }
 function renderOver(){
   var pr=prof();
   $('pName').value=pr.name||''; $('pPhone').value=pr.phone||''; $('pMail').value=pr.mail||'';
-  $('hi').textContent=pr.name?(lang==='ru'?('Кабинет · '+pr.name):('Cabinet · '+pr.name)):t('h1');
+  $('hi').textContent=pr.name?(lang==='tr'?('Hesabım · '+pr.name):('Cabinet · '+pr.name)):t('h1');
   var keys=OS.favs(), meta=OS.favData(), bk=OS.bookings();
   $('sFav').textContent=keys.length; $('sBook').textContent=bk.length;
   var p=OS.profile();
@@ -543,7 +523,7 @@ function renderOver(){
   $('reqKv').innerHTML = r ?
     ('<div>'+t('cBudget')+'</div><div>'+OS.money(r.c.budget)+'</div>'+
      '<div>'+t('cRooms')+'</div><div>'+(r.c.rooms||t('any'))+'</div>'+
-     '<div>'+t('cArea')+'</div><div>'+(lang==='ru'?'от ':'from ')+r.c.area+' '+t('m2')+'</div>'+
+     '<div>'+t('cArea')+'</div><div>'+(lang==='tr'?'en az ':'from ')+r.c.area+' '+t('m2')+'</div>'+
      '<div>'+t('cBlock')+'</div><div>'+(r.c.block?('№'+r.c.block):t('any'))+'</div>')
     : ('<div>'+t('reqNone')+'</div><div>—</div>');
 

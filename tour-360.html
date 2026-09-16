@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>360° тур по квартире | OrientSquare</title>
-<meta name="description" content="Интерактивный 360° тур по квартире: осмотритесь внутри, посмотрите в окна, переходите между комнатами.">
+<title>360° daire turu | OrientSquare</title>
+<meta name="description" content="İnteraktif 360° daire turu: içeride dolaşın, pencerelerden bakın, odalar arasında geçin.">
 <link rel="icon" type="image/png" href="assets/brand/favicon.png">
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
 <style>
@@ -45,14 +45,13 @@ html,body{margin:0;height:100%;overflow:hidden;background:#0d0f13;
 @keyframes sp{to{transform:rotate(360deg)}}
 @media(max-width:640px){#mini{display:none}#disc{display:none}#top h1{font-size:.92rem}}
 </style>
-<script src="js/intro.js"></script>
 </head>
 <body>
 <canvas id="cv"></canvas>
 
 <div id="top" class="ui">
   <div class="info">
-    <span class="tag" id="tag">3D-визуализация</span>
+    <span class="tag" id="tag">3D görselleştirme</span>
     <h1 id="title">—</h1>
     <p id="meta">—</p>
   </div>
@@ -77,7 +76,7 @@ html,body{margin:0;height:100%;overflow:hidden;background:#0d0f13;
 <div id="mini"><canvas id="miniCv" width="200" height="150"></canvas><div class="cap" id="miniCap">plan</div></div>
 <div id="hint">—</div>
 <div id="disc"></div>
-<div id="loader"><span><span class="spin"></span><span id="loadTxt">Загрузка 3D…</span></span></div>
+<div id="loader"><span><span class="spin"></span><span id="loadTxt">3D yükleniyor…</span></span></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
@@ -89,16 +88,20 @@ html,body{margin:0;height:100%;overflow:hidden;background:#0d0f13;
    ========================================================================== */
 (function(){
 var Q = new URLSearchParams(location.search);
-var lang = Q.get('lang')==='en' ? 'en' : 'ru';
+var lang = Q.get('lang')==='en' ? 'en' : (Q.get('lang')==='tr' ? 'tr' : (function(){
+  try{ var st=localStorage.getItem('os_lang'); if(st==='en'||st==='tr') return st; }catch(e){}
+  var l=((navigator.languages&&navigator.languages[0])||navigator.language||'').toLowerCase();
+  return l.indexOf('en')===0 ? 'en' : 'tr';
+})());
 var L = {
- ru:{tag:'3D-визуализация',flat:'Квартира',shop:'Коммерческое помещение',storage:'Кладовая',
-   living:'Гостиная-кухня',bed:'Спальня',bed1:'Спальня 1',bed2:'Спальня 2',hall:'Прихожая',bath:'Санузел',
-   balcony:'Балкон',room:'Помещение',
-   hint:'Зажмите и тяните, чтобы осмотреться · колесо — зум · кнопки снизу — переход по комнатам',
-   hintTouch:'Проведите пальцем, чтобы осмотреться · кнопки снизу — переход по комнатам',
-   disc:'Схематичная 3D-визуализация, построенная по проектным площадям и типу квартиры. Расстановка мебели и отделка показаны условно.',
-   load:'Загрузка 3D…',err:'Не удалось загрузить 3D-движок. Проверьте подключение к интернету.',
-   m2:'м²',fl:'этаж',plan:'план',view_court:'вид из окон',view_street:'вид из окон'},
+ tr:{tag:'3D görselleştirme',flat:'Daire',shop:'Ticari birim',storage:'Depo',
+   living:'Salon-mutfak',bed:'Yatak odası',bed1:'Yatak odası 1',bed2:'Yatak odası 2',hall:'Antre',bath:'Banyo',
+   balcony:'Balkon',room:'Oda',
+   hint:'Basılı tutup sürükleyin · tekerlek ile yakınlaştırın · alttaki düğmelerle odalar arasında geçin',
+   hintTouch:'Bakmak için parmağınızı sürükleyin · alttaki düğmelerle odalar arasında geçin',
+   disc:'Proje alanlarına ve daire tipine göre hazırlanmış şematik 3D görselleştirme. Mobilya ve kaplamalar temsilidir.',
+   load:'3D yükleniyor…',err:'3D motoru yüklenemedi. İnternet bağlantınızı kontrol edin.',
+   m2:'m²',fl:'kat',plan:'plan',view_court:'pencere manzarası',view_street:'pencere manzarası'},
  en:{tag:'3D visualisation',flat:'Apartment',shop:'Retail unit',storage:'Storage room',
    living:'Living / kitchen',bed:'Bedroom',bed1:'Bedroom 1',bed2:'Bedroom 2',hall:'Entrance hall',bath:'Bathroom',
    balcony:'Balcony',room:'Room',
@@ -109,6 +112,7 @@ var L = {
    m2:'m²',fl:'floor',plan:'plan',view_court:'window view',view_street:'window view'}
 }[lang];
 function t(k){ return L[k]||k; }
+try{ document.documentElement.lang = lang; }catch(e){}
 
 var P = {
   unit: Q.get('unit')||'I',
@@ -131,7 +135,7 @@ document.getElementById('miniCap').textContent=t('plan');
 document.getElementById('title').textContent =
   (P.kind==='shop'?t('shop'):P.kind==='storage'?t('storage'):t('flat'))+' № '+P.unit+' · '+P.area.toFixed(1)+' '+t('m2');
 document.getElementById('meta').textContent =
-  [P.block, P.floorName, (P.rooms>=2? P.rooms+(lang==='ru'?'-комн.':'-room'):''), t(P.side==='court'?'view_court':'view_street')]
+  [P.block, P.floorName, (P.rooms>=2? P.rooms+(lang==='tr'?' odalı':'-room'):''), t(P.side==='court'?'view_court':'view_street')]
   .filter(Boolean).join(' · ');
 document.getElementById('bClose').addEventListener('click',function(){
   if(window.parent!==window) window.parent.postMessage('closeTour','*'); else history.back();

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ход строительства | OrientSquare</title>
-<meta name="description" content="Готовность блоков, этапы работ, фотоотчёт и срок сдачи проекта OrientSquare.">
+<title>İnşaat durumu | OrientSquare</title>
+<meta name="description" content="OrientSquare projesinde blokların tamamlanma oranı, etaplar, fotoğraflar ve teslim tarihi.">
 <link rel="icon" type="image/png" href="assets/brand/favicon.png">
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
 <link rel="stylesheet" href="styles.css">
@@ -154,7 +154,7 @@ table.tb tr:hover td{background:var(--p05)}
       <h1 class="t" data-t="h1">Ход строительства</h1>
       <p class="sub" data-t="sub">Готовность каждого блока, текущий этап работ, фотоотчёт и срок сдачи. Обновляется раз в месяц.</p>
     </div>
-    <div class="langsw"><button type="button" id="lRu" aria-pressed="true">RU</button><button type="button" id="lEn">EN</button></div>
+    <div class="langsw"><button type="button" id="lRu" aria-pressed="true">TR</button><button type="button" id="lEn">EN</button></div>
   </div>
 </div></section>
 
@@ -249,17 +249,12 @@ table.tb tr:hover td{background:var(--p05)}
   </div>
 </footer>
 <script src="js/os-core.js"></script>
-<script src="js/intro.js"></script>
+<script src="js/i18n-dict.js"></script>
+<script src="js/i18n.js"></script>
 <script>
 
 var T={
- ru:{badge:'Стройка',h1:'Ход строительства',sub:'Готовность каждого блока, текущий этап работ, фотоотчёт и срок сдачи. Обновляется раз в месяц.',
-  kAvg:'Средняя готовность',kBlocks:'Блоков в работе',kDeliv:'Срок сдачи',kUpd:'Данные на',
-  byBlock:'По блокам',stagesT:'Этапы проекта',stagesS:'Пройденные этапы отмечены оранжевым.',
-  galT:'Фотоотчёт',galS:'Съёмка площадки и визуализации проекта.',more:'Все материалы проекта',
-  note:'Проценты готовности и даты — демонстрационные. Реальные значения ставятся в одном месте: js/os-core.js → PROGRESS.',
-  block:'Блок №',ready:'готовность',stage:'Этап',open:'Открыть блок',ask:'Узнать подробнее',
-  msg:'Здравствуйте! Хочу узнать о ходе строительства '},
+ tr:{"badge":"İnşaat","h1":"İnşaat durumu","sub":"Her bloğun tamamlanma oranı, güncel etap, fotoğraflar ve teslim tarihi. Her ay güncellenir.","kAvg":"Ortalama tamamlanma","kBlocks":"Devam eden blok","kDeliv":"Teslim","kUpd":"Veri tarihi","byBlock":"Bloklara göre","stagesT":"Proje etapları","stagesS":"Tamamlanan etaplar turuncu işaretlidir.","galT":"Fotoğraflar","galS":"Şantiye fotoğrafları ve proje görselleri.","more":"Tüm proje materyalleri","note":"Tamamlanma oranları ve tarihler demo değerlerdir. Gerçek değerler tek yerden değişir: js/os-core.js → PROGRESS.","block":"Blok ","ready":"tamamlandı","stage":"Etap","open":"Bloğu aç","ask":"Detay sor","msg":"Merhaba! Şu bloğun inşaat durumunu öğrenmek istiyorum: "},
  en:{badge:'Construction',h1:'Construction progress',sub:'Completion of each block, the current stage, photo updates and the handover date. Updated monthly.',
   kAvg:'Average completion',kBlocks:'Blocks under way',kDeliv:'Handover',kUpd:'Data as of',
   byBlock:'By block',stagesT:'Project stages',stagesS:'Completed stages are marked orange.',
@@ -275,7 +270,7 @@ var PHOTOS=['facade-night','street-facade','courtyard-playground','drive-aerial'
 function render(){
   document.querySelectorAll('[data-t]').forEach(function(e){var k=e.getAttribute('data-t');if(T[lang][k]!==undefined)e.textContent=T[lang][k];});
   document.documentElement.lang=lang;
-  document.getElementById('lRu').setAttribute('aria-pressed',lang==='ru');
+  document.getElementById('lRu').setAttribute('aria-pressed',lang==='tr');
   document.getElementById('lEn').setAttribute('aria-pressed',lang==='en');
 
   var P=OS.PROGRESS;
@@ -307,7 +302,7 @@ function render(){
     var d=new Date(s.done+'-01'), done=d<=now;
     var li=document.createElement('li'); if(done) li.className='done';
     var p=s.done.split('-');
-    li.innerHTML='<b>'+(lang==='ru'?s.ru:s.en)+'</b><span>'+p[1]+'.'+p[0]+(done?(lang==='ru'?' · выполнено':' · done'):(lang==='ru'?' · план':' · planned'))+'</span>';
+    li.innerHTML='<b>'+(lang==='tr'?s.tr:s.en)+'</b><span>'+p[1]+'.'+p[0]+(done?(lang==='tr'?' · tamamlandı':' · done'):(lang==='tr'?' · planlanan':' · planned'))+'</span>';
     tl.appendChild(li);
   });
 
@@ -316,7 +311,7 @@ function render(){
     gal.innerHTML+='<a href="assets/renders/'+n+'.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/renders/thumbs/'+n+'.jpg" alt="'+n+'"></a>';
   });
 }
-document.getElementById('lRu').addEventListener('click',function(){lang='ru';OS.setLang('ru');render();});
+document.getElementById('lRu').addEventListener('click',function(){lang='tr';OS.setLang('tr');render();});
 document.getElementById('lEn').addEventListener('click',function(){lang='en';OS.setLang('en');render();});
 render();
 

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Акции и спецпредложения | OrientSquare</title>
-<meta name="description" content="Действующие скидки, беспроцентная рассрочка и подарки по квартирам проекта OrientSquare.">
+<title>Kampanyalar ve özel teklifler | OrientSquare</title>
+<meta name="description" content="OrientSquare projesindeki güncel indirimler, faizsiz taksit ve hediyeler.">
 <link rel="icon" type="image/png" href="assets/brand/favicon.png">
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
 <link rel="stylesheet" href="styles.css">
@@ -142,7 +142,7 @@ table.tb tr:hover td{background:var(--p05)}
       <h1 class="t" data-t="h1">Акции и спецпредложения</h1>
       <p class="sub" data-t="sub">Действующие скидки, беспроцентная рассрочка и подарки по проекту. Предложение исчезает со страницы в день окончания.</p>
     </div>
-    <div class="langsw"><button type="button" id="lRu" aria-pressed="true">RU</button><button type="button" id="lEn">EN</button></div>
+    <div class="langsw"><button type="button" id="lRu" aria-pressed="true">TR</button><button type="button" id="lEn">EN</button></div>
   </div>
 </div></section>
 
@@ -225,17 +225,12 @@ table.tb tr:hover td{background:var(--p05)}
   </div>
 </footer>
 <script src="js/os-core.js"></script>
-<script src="js/intro.js"></script>
+<script src="js/i18n-dict.js"></script>
+<script src="js/i18n.js"></script>
 <script>
 
 var T={
- ru:{badge:'Акции',h1:'Акции и спецпредложения',sub:'Действующие скидки, беспроцентная рассрочка и подарки по проекту. Предложение исчезает со страницы в день окончания.',
-  empty:'Сейчас активных акций нет. Оставьте заявку — сообщим о следующей первыми.',
-  ctaT:'Не хотите пропустить следующую акцию?',ctaS:'Включите уведомления — новые скидки и старты продаж появятся в вашем кабинете.',
-  sub2:'Включить уведомления',ask:'Написать менеджеру',
-  until:'Действует до',left:'осталось',days:'дн.',blocks:'Блоки',all:'Все блоки',
-  see:'Смотреть квартиры',calc:'Посчитать платёж',get:'Получить условия',
-  on:'Уведомления включены',msg:'Здравствуйте! Интересует акция: '},
+ tr:{"badge":"Kampanyalar","h1":"Kampanyalar ve özel teklifler","sub":"Güncel indirimler, faizsiz taksit ve hediyeler. Her kampanya bitiş tarihinde bu sayfadan kalkar.","empty":"Şu anda aktif kampanya yok. Talep bırakın, bir sonrakini ilk siz öğrenin.","ctaT":"Bir sonraki kampanyayı kaçırmak istemez misiniz?","ctaS":"Bildirimleri açın — yeni indirimler ve satış lansmanları hesabınıza düşsün.","sub2":"Bildirimleri aç","ask":"Danışmana yaz","until":"Son tarih","left":"kaldı","days":"gün","blocks":"Bloklar","all":"Tüm bloklar","see":"Daireleri gör","calc":"Ödemeyi hesapla","get":"Koşulları al","on":"Bildirimler açık","msg":"Merhaba! Bu kampanyayla ilgileniyorum: "},
  en:{badge:'Offers',h1:'Offers and special deals',sub:'Current discounts, interest-free instalments and gifts. Each offer disappears from this page on its closing date.',
   empty:'No active offers right now. Leave a request and we will tell you about the next one first.',
   ctaT:'Do not want to miss the next offer?',ctaS:'Turn on notifications — new discounts and sales launches will appear in your cabinet.',
@@ -249,7 +244,7 @@ function t(k){return T[lang][k];}
 function i18n(){
   document.querySelectorAll('[data-t]').forEach(function(e){var k=e.getAttribute('data-t');if(T[lang][k]!==undefined)e.textContent=T[lang][k];});
   document.documentElement.lang=lang;
-  document.getElementById('lRu').setAttribute('aria-pressed',lang==='ru');
+  document.getElementById('lRu').setAttribute('aria-pressed',lang==='tr');
   document.getElementById('lEn').setAttribute('aria-pressed',lang==='en');
 }
 function daysLeft(d){ return Math.max(0,Math.ceil((new Date(d)-new Date())/86400000)); }
@@ -285,12 +280,12 @@ function render(){
   });
   document.getElementById('btnAsk').href=OS.requestLink(t('msg'));
 }
-document.getElementById('lRu').addEventListener('click',function(){lang='ru';OS.setLang('ru');render();});
+document.getElementById('lRu').addEventListener('click',function(){lang='tr';OS.setLang('tr');render();});
 document.getElementById('lEn').addEventListener('click',function(){lang='en';OS.setLang('en');render();});
 document.getElementById('btnSub').addEventListener('click',function(){
   OS.write('os_subscribe',true);
-  OS.notify({ru:'Уведомления включены',en:'Notifications are on'},
-            {ru:'Мы сообщим о новых акциях, стартах продаж и изменениях цен по избранным квартирам.',
+  OS.notify({tr:'Bildirimler açıldı',en:'Notifications are on'},
+            {tr:'Yeni kampanyaları, satış lansmanlarını ve favori dairelerdeki fiyat değişikliklerini size bildireceğiz.',
              en:'We will let you know about new offers, sales launches and price changes on your saved apartments.'});
   this.textContent=t('on'); this.disabled=true;
 });
