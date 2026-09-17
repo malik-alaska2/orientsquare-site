@@ -112,6 +112,12 @@ h1.t{font-size:1.9rem;line-height:1.15;font-weight:700;margin:.6rem 0 .35rem}
 .interior img{display:block;width:100%;height:auto}
 .interior span{position:absolute;left:0;right:0;bottom:0;padding:.5rem .7rem;font-size:.68rem;color:#fff;
   background:linear-gradient(180deg,transparent,rgba(0,0,0,.65));letter-spacing:.02em}
+.interior.igal img{will-change:opacity}
+.igal-arrow{position:absolute;top:44%;transform:translateY(-50%);width:1.9rem;height:1.9rem;border-radius:999px;background:rgba(20,16,12,.55);color:#fff;border:0;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;transition:background .15s}
+.igal-arrow:hover{background:rgba(20,16,12,.85)}
+.igal-prev{left:.5rem}
+.igal-next{right:.5rem}
+.igal-count{position:absolute;top:.5rem;right:.6rem;z-index:2;background:rgba(20,16,12,.55);color:#fff;font-size:.68rem;font-weight:600;padding:.15rem .5rem;border-radius:999px;letter-spacing:.02em}
 .kv{display:grid;grid-template-columns:1fr auto;gap:.1rem .75rem;margin-top:.9rem}
 .kv div{padding:.42rem 0;border-bottom:1px dashed var(--g2);font-size:.85rem}
 .kv div:nth-child(odd){color:var(--g6)}
@@ -163,6 +169,7 @@ h1.t{font-size:1.9rem;line-height:1.15;font-weight:700;margin:.6rem 0 .35rem}
 .dsim a.simc i{display:block;font-size:.8rem;font-style:normal;font-weight:700;color:var(--p7);margin-top:.15rem}
 </style>
 <script src="js/os-core.js"></script>
+<script src="js/interior-gallery.js"></script>
 <script src="js/intro.js"></script>
 <script src="js/i18n-dict.js"></script>
 <script src="js/i18n.js"></script>
