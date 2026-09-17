@@ -95,6 +95,19 @@
       if (movedFar) { e.preventDefault(); e.stopPropagation(); movedFar = false; }
     }, true);
 
+    /* Колесо мыши крутит список по горизонтали (как трекпад/свайп).
+       Трекпадовый горизонтальный жест (deltaX уже больше deltaY) не трогаем —
+       он и так работает нативно. На границах списка отдаём прокрутку странице. */
+    track.addEventListener('wheel', function (e) {
+      if (e.ctrlKey) return;
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+      var atStart = track.scrollLeft <= 0;
+      var atEnd = track.scrollLeft >= track.scrollWidth - track.clientWidth - 1;
+      if ((atStart && e.deltaY < 0) || (atEnd && e.deltaY > 0)) return;
+      track.scrollLeft += e.deltaY;
+      e.preventDefault();
+    }, { passive: false });
+
     w.addEventListener('resize', update);
     update();
   }
