@@ -22,6 +22,7 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
 <script src="js/intro.js"></script>
 <script src="js/i18n-dict.js"></script>
 <script src="js/i18n.js"></script>
+<script src="js/carousel.js"></script>
 
 <style>
 .osx{--p:#F57C00;--p7:#EF6C00;--v:#70217A;--g2:#EEE;--g6:#757575;--g3:#E0E0E0}
@@ -50,6 +51,26 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
 .osx-unit b{display:block;font-size:1rem}
 .osx-unit span{display:block;font-size:.8rem;color:var(--g6);margin:.1rem 0 .35rem}
 .osx-unit i{font-style:normal;font-weight:700;color:var(--p7)}
+
+/* Карусель "пролистываемых" карточек (Featured Properties и т.п.) */
+.os-car{position:relative}
+.os-car-track{display:flex;gap:1.5rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:.25rem .25rem 1.25rem;cursor:grab;scroll-behavior:smooth}
+.os-car-track::-webkit-scrollbar{display:none}
+.os-car-track.os-car-dragging{cursor:grabbing;scroll-behavior:auto;scroll-snap-type:none;-webkit-user-select:none;user-select:none}
+.os-car-track>*{flex:0 0 calc(100% - 1.5rem);max-width:calc(100% - 1.5rem);scroll-snap-align:start}
+@media(min-width:700px){.os-car-track>*{flex:0 0 calc(50% - .75rem);max-width:calc(50% - .75rem)}}
+@media(min-width:1100px){.os-car-track>*{flex:0 0 calc(33.333% - 1rem);max-width:calc(33.333% - 1rem)}}
+.os-car-arrow{position:absolute;top:38%;transform:translateY(-50%);width:2.75rem;height:2.75rem;border-radius:999px;background:#fff;border:1px solid var(--g3);box-shadow:0 2px 10px rgba(0,0,0,.14);display:flex;align-items:center;justify-content:center;color:#333;z-index:5;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.os-car-arrow:hover{background:var(--p);color:#fff;border-color:var(--p)}
+.os-car-arrow[disabled]{opacity:.35;cursor:default;pointer-events:none}
+.os-car-prev{left:-.5rem}
+.os-car-next{right:-.5rem}
+@media(min-width:1024px){.os-car-prev{left:-1.375rem}.os-car-next{right:-1.375rem}}
+@media(max-width:639px){.os-car-arrow{display:none}}
+.os-car-dots{display:flex;justify-content:center;gap:.5rem;margin-top:-.25rem}
+.os-car-dot{width:.5rem;height:.5rem;border-radius:999px;background:var(--g3);border:0;padding:0;cursor:pointer;transition:background .15s,width .15s}
+.os-car-dot.active{background:var(--p);width:1.5rem}
+@media(prefers-reduced-motion:reduce){.os-car-track{scroll-behavior:auto}}
 </style>
 </head>
 <body class="antialiased">
@@ -182,7 +203,10 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
         <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Featured Properties</h2>
         <p class="text-lg sm:text-xl text-gray-600">Discover the perfect property for you and your family</p>
       </div>
-      <div class="mx-auto text-left" style="display:grid;gap:1.5rem;max-width:74rem;grid-template-columns:repeat(auto-fit,minmax(min(26rem,100%),1fr))">
+      <div class="os-car" data-os-car style="max-width:74rem;margin:0 auto">
+        <button type="button" class="os-car-arrow os-car-prev" data-car-prev aria-label="Previous"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <button type="button" class="os-car-arrow os-car-next" data-car-next aria-label="Next"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><polyline points="9 18 15 12 9 6"/></svg></button>
+        <div class="os-car-track" data-car-track>
         <div class="bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100">
         <a href="block-1.html" class="block bg-gradient-to-br from-primary-50 to-white p-4">
           <img src="assets/plan-2.png" alt="Block 1 interactive floor plan" class="w-full rounded-xl">
@@ -309,6 +333,8 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
           </a>
         </div>
       </div>
+        </div>
+        <div class="os-car-dots" data-car-dots></div>
       </div>
     </div>
   </section>
