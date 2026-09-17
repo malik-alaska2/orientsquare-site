@@ -127,15 +127,27 @@ body{padding-top:64px;}
 .ti-check li:before{content:"";position:absolute;left:0;top:6px;width:16px;height:16px;border-radius:50%;background:var(--p);box-shadow:0 0 0 4px rgba(245,124,0,.18)}
 .ti-check li:after{content:"";position:absolute;left:5px;top:10px;width:5px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
 
-/* ---------- gallery ---------- */
-.ti-gal{display:grid;grid-template-columns:1fr;gap:14px;grid-auto-flow:dense}
-.ti-gal button{padding:0;border:0;background:none;display:block;text-align:left;cursor:pointer;font:inherit}
+/* ---------- gallery (horizontal carousel) ---------- */
+.ti-gal{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;padding:.25rem .25rem 1.25rem;cursor:grab;scroll-behavior:smooth}
+.ti-gal::-webkit-scrollbar{display:none}
+.ti-gal.os-car-dragging{cursor:grabbing;scroll-behavior:auto;scroll-snap-type:none;-webkit-user-select:none;user-select:none}
+.ti-gal button{flex:0 0 78%;max-width:78%;scroll-snap-align:start;padding:0;border:0;background:none;display:block;text-align:left;cursor:pointer;font:inherit}
 .ti-shot{position:relative;overflow:hidden;border-radius:18px;background:var(--g1);aspect-ratio:4/3}
 .ti-shot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.1s cubic-bezier(.2,.8,.3,1)}
 .ti-gal button:hover .ti-shot img{transform:scale(1.06)}
 .ti-shot span{position:absolute;left:0;right:0;bottom:0;padding:34px 18px 16px;color:#fff;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
   background:linear-gradient(180deg,transparent,rgba(0,0,0,.75))}
-.ti-gal .wide{grid-column:span 1}
+.ti-gal-wrap{position:relative}
+.os-car-arrow{position:absolute;top:38%;transform:translateY(-50%);width:2.75rem;height:2.75rem;border-radius:999px;background:#fff;
+  border:1px solid var(--g3);box-shadow:0 2px 10px rgba(0,0,0,.14);display:flex;align-items:center;justify-content:center;color:#333;
+  z-index:5;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.os-car-arrow:hover{background:var(--p);color:#fff;border-color:var(--p)}
+.os-car-arrow[disabled]{opacity:.35;cursor:default;pointer-events:none}
+.os-car-prev{left:-.5rem}
+.os-car-next{right:-.5rem}
+@media(min-width:1024px){.os-car-prev{left:-1.375rem}.os-car-next{right:-1.375rem}}
+@media(max-width:639px){.os-car-arrow{display:none}}
 /* lightbox */
 .ti-lb{position:fixed;inset:0;z-index:100;background:rgba(10,9,8,.94);display:none;align-items:center;justify-content:center;padding:24px}
 .ti-lb.open{display:flex}
@@ -175,15 +187,12 @@ body{padding-top:64px;}
   .ti-grid-2{grid-template-columns:repeat(2,1fr)}
   .ti-strip .ti-wrap{grid-template-columns:repeat(4,1fr)}
   .ti-sec{padding:90px 0}
-  .ti-gal{grid-template-columns:repeat(2,1fr)}
-  .ti-gal .wide{grid-column:span 2}
-  .ti-gal .wide .ti-shot{aspect-ratio:21/9}
+  .ti-gal button{flex-basis:48%;max-width:48%}
 }
 @media(min-width:980px){
   .ti-grid-3{grid-template-columns:repeat(3,1fr)}
   .ti-split{grid-template-columns:1.02fr .98fr;gap:56px}
-  .ti-gal{grid-template-columns:repeat(3,1fr)}
-  .ti-gal .wide{grid-column:span 3}
+  .ti-gal button{flex-basis:31%;max-width:31%}
 }
 
 </style>
@@ -191,6 +200,7 @@ body{padding-top:64px;}
 <script src="js/intro.js"></script>
 <script src="js/i18n-dict.js"></script>
 <script src="js/i18n.js"></script>
+<script src="js/carousel.js"></script>
 </head>
 <body class="antialiased">
 <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
@@ -384,7 +394,11 @@ body{padding-top:64px;}
         <h2>Taşkent'in yükselen silüeti</h2>
         <p class="ti-sub">Konut blokları, ticari galeriler, peyzaj ve ortak alanlar — projeden görseller.</p>
       </div>
-      <div class="ti-gal" id="gal"></div>
+      <div class="ti-gal-wrap" data-os-car>
+        <button type="button" class="os-car-arrow os-car-prev" data-car-prev aria-label="Önceki"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <button type="button" class="os-car-arrow os-car-next" data-car-next aria-label="Sonraki"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><polyline points="9 18 15 12 9 6"/></svg></button>
+        <div class="ti-gal" id="gal" data-car-track></div>
+      </div>
     </div>
   </section>
 
@@ -526,7 +540,6 @@ body{padding-top:64px;}
   if(gal){
     SHOTS.forEach(function(s,i){
       var b=document.createElement('button');
-      b.className='rv'+(s[2]?' wide':'')+(i%3===1?' rv-d1':(i%3===2?' rv-d2':''));
       b.type='button'; b.setAttribute('data-i',i);
       b.innerHTML='<div class="ti-shot"><img src="assets/renders/thumbs/'+s[0]+'.jpg" alt="'+s[1]+'" loading="lazy"><span>'+s[1]+'</span></div>';
       gal.appendChild(b);
