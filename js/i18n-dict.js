@@ -129,7 +129,7 @@ window.OS_DICT = {
 "4 + basement": {"tr":"4 + bodrum","en":"4 + basement"},
 "For sale": {"tr":"Satışta","en":"For sale"},
 "Showing 6 of 6 projects · 494 apartments available": {"tr":"6 projeden 6’sı gösteriliyor · 494 daire mevcut","en":"Showing 6 of 6 projects · 494 apartments available"},
-"Pick an apartment straight on the floor plan: layouts, areas, balconies and a 360° tour inside every unit.": {"tr":"Daireyi doğrudan kat planı üzerinden seçin: yerleşim, metrekareler, balkonlar ve her dairede 360° tur.","en":"Pick an apartment straight on the floor plan: layouts, areas, balconies and a 360° tour inside every unit."},
+"Pick an apartment straight on the floor plan: layouts, areas and balconies for every unit.": {"tr":"Daireyi doğrudan kat planı üzerinden seçin: her dairenin yerleşimini, metrekaresini ve balkonunu görün.","en":"Pick an apartment straight on the floor plan: layouts, areas and balconies for every unit."},
 
 /* ---------- каталог ---------- */
 "Premium Properties for Sale & Rent in Turkey": {"tr":"Türkiye’de Satılık ve Kiralık Premium Gayrimenkuller","en":"Premium Properties for Sale & Rent in Turkey"},

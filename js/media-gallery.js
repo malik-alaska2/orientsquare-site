@@ -26,7 +26,6 @@
   function render(){
     tabs.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.category===category)));
     document.querySelector('#media-description').textContent=hints[category];
-    document.querySelector('#media-tour-link').href='tour-gallery.html?category='+category;
     const q=search.value.trim().toLocaleLowerCase('ru');gridSlot.replaceChildren();
     let matchCount=0;
     if(category==='blocks'){

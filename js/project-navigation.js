@@ -15,5 +15,5 @@
     const home=header?.querySelector('nav a[href="index.html"]');if(home){home.classList.remove('text-primary-500');home.classList.add('text-gray-700')}
   }
   const foot=document.querySelector('body > footer');
-  if(foot){const list=foot.querySelector('ul');if(list){const li=document.createElement('li');const a=document.createElement('a');a.href='gallery.html';a.className='text-gray-300 hover:text-primary-500';a.textContent='Фото, интерьеры и 360°';li.append(a);list.append(li)}}
+  if(foot){const list=foot.querySelector('ul');if(list){const li=document.createElement('li');const a=document.createElement('a');a.href='gallery.html';a.className='text-gray-300 hover:text-primary-500';a.textContent='Фото и интерьеры';li.append(a);list.append(li)}}
 })();

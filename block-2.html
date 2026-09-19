@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blok 2 — kat planları ve daireler | OrientSquare</title>
-<meta name="description" content="2. bloğun interaktif planı: 82 daire, 4 kat ve bodrum katı. Plan üzerinden daire seçin, yerleşimi ve 360° turu görün.">
+<meta name="description" content="2. bloğun interaktif planı: 82 daire, 4 kat ve bodrum katı. Plan üzerinden daire seçin ve yerleşimini görün.">
 <link rel="icon" type="image/png" href="assets/brand/favicon.png">
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
 <link rel="stylesheet" href="styles.css">
@@ -129,11 +129,6 @@ h1.t{font-size:1.9rem;line-height:1.15;font-weight:700;margin:.6rem 0 .35rem}
 .chip.s-sold{background:var(--sold-bg);color:var(--g6)}
 .note{font-size:.72rem;color:var(--g5);line-height:1.5;margin-top:1rem;border-top:1px solid var(--g2);padding-top:.75rem}
 
-/* ---------- tour modal ---------- */
-.tourwrap{position:fixed;inset:0;z-index:80;background:#0d0f13;display:none}
-.tourwrap.on{display:block}
-.tourwrap iframe{width:100%;height:100%;border:0;display:block}
-.tclose{position:absolute;right:1rem;top:1rem;z-index:81;border:0;background:rgba(255,255,255,.92);width:2.5rem;height:2.5rem;border-radius:999px;cursor:pointer;font-size:1.2rem;box-shadow:0 6px 20px rgba(0,0,0,.3)}
 
 /* ---------- summary cards ---------- */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:.75rem}
@@ -229,7 +224,7 @@ h1.t{font-size:1.9rem;line-height:1.15;font-weight:700;margin:.6rem 0 .35rem}
       <div>
         <span class="badge" data-i18n="badgeSale">В продаже</span>
         <h1 class="t" data-i18n="h1">Блок №2 — выбор квартиры</h1>
-        <p class="sub" data-i18n="sub">Кликните по квартире на плане этажа или в шахматке — откроется планировка, площади и 360° тур по квартире.</p>
+        <p class="sub" data-i18n="sub">Кликните по квартире на плане этажа или в шахматке — откроется планировка и площади.</p>
       </div>
       <div class="stats" id="heroStats"></div>
     </div>
@@ -307,7 +302,7 @@ h1.t{font-size:1.9rem;line-height:1.15;font-weight:700;margin:.6rem 0 .35rem}
     <p style="font-size:.85rem;color:var(--g6);line-height:1.6" data-i18n="methS"></p>
   </div>
 </div>
-<div class="project-block-links"><a class="media-btn secondary" href="gallery.html#rooms">Фотографии интерьеров</a><a class="media-btn secondary" href="assets/project/block-2.pdf" target="_blank" rel="noopener">Планы блока 2 · PDF</a><a class="media-btn secondary" href="tour-gallery.html?category=rooms">Интерьеры в 360°-галерее</a></div>
+<div class="project-block-links"><a class="media-btn secondary" href="gallery.html#rooms">Фотографии интерьеров</a><a class="media-btn secondary" href="assets/project/block-2.pdf" target="_blank" rel="noopener">Планы блока 2 · PDF</a></div>
 </main>
 
 <!-- drawer -->
@@ -332,10 +327,6 @@ h1.t{font-size:1.9rem;line-height:1.15;font-weight:700;margin:.6rem 0 .35rem}
     <div class="dplan" id="dPlan" hidden></div>
     <div class="dsim" id="dSim" hidden></div>
     <div class="acts">
-      <button type="button" class="btn btn-p" id="dTour">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M2 12h20"/><path d="M12 2a14.5 14.5 0 0 1 0 20 14.5 14.5 0 0 1 0-20"/></svg>
-        <span data-i18n="tourBtn">360° тур по квартире</span>
-      </button>
       <a class="btn btn-o" id="dAsk" href="index.html#contact">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.94.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.87.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         <span data-i18n="askBtn">Запросить эту квартиру</span>
@@ -350,12 +341,6 @@ h1.t{font-size:1.9rem;line-height:1.15;font-weight:700;margin:.6rem 0 .35rem}
 </aside>
 
 <div class="tip" id="tip"></div>
-
-<!-- 360 tour -->
-<div class="tourwrap" id="tourWrap">
-  <button type="button" class="tclose" id="tClose" aria-label="Close">&times;</button>
-  <iframe id="tourFrame" title="360" allowfullscreen></iframe>
-</div>
 
 <footer class="bg-gray-900 text-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -458,21 +443,20 @@ var CONFIG = {
   pricePerM2:  {0:null, 1:null, 2:null, 3:null, 4:null},
   currency:    'USD',
   /* Статусы: 'sold' | 'reserved'. Anahtar — "kat-numara", örneğin '2-XIV': 'sold' */
-  statusOverrides: {},
-  tourFile: 'tour-360.html'
+  statusOverrides: {}
 };
 
 var FLOORS = {"0":{"f":0,"tr":"Bodrum kat","en":"Basement","lvl":"-3,450","kind":"storage","w":2100,"h":625,"units":[{"id":1,"n":"I","a":59.7,"row":"n","bb":[0.09344,0.23676,0.09256,0.22059],"p":7.0,"k":"storage"},{"id":2,"n":"II","a":61.6,"row":"n","bb":[0.21729,0.23676,0.0954,0.22059],"p":7.2,"k":"storage"},{"id":3,"n":"III","a":42.8,"row":"n","bb":[0.34967,0.20368,0.06127,0.28309],"p":4.6,"k":"storage"},{"id":4,"n":"IV","a":59.7,"row":"n","bb":[0.41379,0.20368,0.09278,0.25368],"p":7.0,"k":"storage"},{"id":5,"n":"V","a":61.6,"row":"n","bb":[0.53764,0.20368,0.0954,0.25368],"p":7.2,"k":"storage"},{"id":6,"n":"VI","a":61.6,"row":"n","bb":[0.70109,0.20368,0.09519,0.25368],"p":7.2,"k":"storage"},{"id":7,"n":"VII","a":59.7,"row":"n","bb":[0.82779,0.20368,0.09256,0.25368],"p":7.0,"k":"storage"},{"id":8,"n":"VIII","a":46.9,"row":"n","bb":[0.92298,0.20368,0.07418,0.28309],"p":4.8,"k":"storage"},{"id":9,"n":"IX","a":46.9,"row":"s","bb":[0.92298,0.49706,0.07418,0.28309],"p":5.0,"k":"storage"},{"id":10,"n":"X","a":59.1,"row":"s","bb":[0.82888,0.52647,0.09147,0.25368],"p":7.0,"k":"storage"},{"id":11,"n":"XI","a":38.6,"row":"s","bb":[0.76652,0.52647,0.0593,0.25368],"p":4.5,"k":"storage"},{"id":12,"n":"XII","a":98.5,"row":"s","bb":[0.66827,0.20368,0.0954,0.57647],"p":9.5,"k":"storage"},{"id":13,"n":"XIII","a":98.5,"row":"s","bb":[0.57024,0.20368,0.09562,0.57647],"p":9.5,"k":"storage"},{"id":14,"n":"XIV","a":38.6,"row":"s","bb":[0.50832,0.52647,0.05996,0.25368],"p":4.5,"k":"storage"},{"id":15,"n":"XV","a":59.1,"row":"s","bb":[0.41379,0.52647,0.09147,0.25368],"p":7.0,"k":"storage"},{"id":16,"n":"XVI","a":42.8,"row":"s","bb":[0.34923,0.49706,0.06171,0.28309],"p":4.8,"k":"storage"},{"id":17,"n":"XVII","a":96.1,"row":"s","bb":[0.24989,0.20294,0.09431,0.57868],"p":9.3,"k":"storage"},{"id":18,"n":"XVIII","a":38.6,"row":"s","bb":[0.18796,0.52647,0.0593,0.25515],"p":4.5,"k":"storage"},{"id":19,"n":"XIX","a":64.8,"row":"s","bb":[0.09322,0.46618,0.09168,0.31544],"p":7.2,"k":"storage"},{"id":20,"n":"XX","a":106.6,"row":"s","bb":[0.02626,0.20294,0.10131,0.57868],"k":"tech"}]},"1":{"f":1,"tr":"1. kat","en":"1st floor","lvl":"±0.000","kind":"flat","w":2100,"h":631,"units":[{"id":1,"n":"I","a":57.1,"row":"n","bb":[0.09131,0.21045,0.09545,0.26197],"r":2,"b":3.4,"k":"flat"},{"id":2,"n":"II","a":58.8,"row":"n","bb":[0.21726,0.21045,0.09566,0.25327],"r":2,"b":3.4,"k":"flat"},{"id":3,"n":"III","a":44.5,"row":"n","bb":[0.34866,0.20464,0.06232,0.28955],"r":2,"k":"flat"},{"id":4,"n":"IV","a":57.1,"row":"n","bb":[0.41338,0.20464,0.09261,0.25907],"r":2,"b":3.4,"k":"flat"},{"id":5,"n":"V","a":58.8,"row":"n","bb":[0.53672,0.21045,0.09566,0.25327],"r":2,"b":3.4,"k":"flat"},{"id":6,"n":"VI","a":58.8,"row":"n","bb":[0.69972,0.21045,0.09545,0.25327],"r":2,"b":3.4,"k":"flat"},{"id":7,"n":"VII","a":57.1,"row":"n","bb":[0.82567,0.21045,0.09283,0.25327],"r":2,"b":3.4,"k":"flat"},{"id":8,"n":"VIII","a":48.9,"row":"n","bb":[0.92068,0.20464,0.07671,0.2881],"r":2,"k":"flat"},{"id":9,"n":"IX","a":44.9,"row":"s","bb":[0.92068,0.50218,0.07714,0.26488],"r":2,"k":"flat"},{"id":10,"n":"X","a":59.8,"row":"s","bb":[0.82654,0.53193,0.09327,0.25327],"r":2,"b":1.5,"k":"flat"},{"id":11,"n":"XI","a":37.2,"row":"s","bb":[0.76465,0.53193,0.06014,0.25327],"r":2,"b":1.5,"k":"flat"},{"id":12,"n":"XII","a":97.0,"row":"s","bb":[0.66703,0.20464,0.09545,0.58926],"r":3,"k":"flat"},{"id":13,"n":"XIII","a":97.0,"row":"s","bb":[0.56941,0.21335,0.09545,0.56821],"r":3,"k":"flat"},{"id":14,"n":"XIV","a":37.2,"row":"s","bb":[0.5073,0.53193,0.05993,0.26197],"r":2,"b":1.5,"k":"flat"},{"id":15,"n":"XV","a":59.8,"row":"s","bb":[0.41229,0.53193,0.09305,0.25327],"r":2,"b":1.5,"k":"flat"},{"id":16,"n":"XVI","a":39.9,"row":"s","bb":[0.34866,0.50145,0.06232,0.25327],"r":2,"k":"flat"},{"id":17,"n":"XVII","a":95.1,"row":"s","bb":[0.24973,0.21335,0.09457,0.56894],"r":3,"k":"flat"},{"id":18,"n":"XVIII","a":37.2,"row":"s","bb":[0.18762,0.53193,0.06014,0.26197],"r":2,"b":1.5,"k":"flat"},{"id":19,"n":"XIX","a":59.8,"row":"s","bb":[0.09239,0.53193,0.09348,0.25327],"r":2,"b":1.5,"k":"flat"},{"id":20,"n":"XX","a":116.3,"row":"s","bb":[0.01765,0.21626,0.11092,0.55733],"k":"shop"}]},"2":{"f":2,"tr":"2. kat","en":"2nd floor","lvl":"+3.450","kind":"flat","w":2100,"h":586,"units":[{"id":1,"n":"I","a":53.0,"row":"n","bb":[0.00526,0.23645,0.07498,0.30558],"r":2,"k":"flat"},{"id":2,"n":"II","a":62.4,"row":"n","bb":[0.08266,0.23331,0.09362,0.27651],"r":2,"b":3.4,"k":"flat"},{"id":3,"n":"III","a":64.5,"row":"n","bb":[0.20763,0.23331,0.09669,0.27573],"r":2,"b":3.4,"k":"flat"},{"id":4,"n":"IV","a":48.7,"row":"n","bb":[0.34071,0.23645,0.06292,0.30558],"r":2,"k":"flat"},{"id":5,"n":"V","a":62.4,"row":"n","bb":[0.40627,0.22702,0.09362,0.2828],"r":2,"b":3.4,"k":"flat"},{"id":6,"n":"VI","a":64.5,"row":"n","bb":[0.53102,0.23331,0.09669,0.27573],"r":2,"b":3.4,"k":"flat"},{"id":7,"n":"VII","a":64.5,"row":"n","bb":[0.69612,0.23331,0.09625,0.27573],"r":2,"b":3.4,"k":"flat"},{"id":8,"n":"VIII","a":62.4,"row":"n","bb":[0.82394,0.23331,0.09318,0.27573],"r":2,"b":3.4,"k":"flat"},{"id":9,"n":"IX","a":53.0,"row":"n","bb":[0.92019,0.23645,0.07455,0.30479],"r":2,"k":"flat"},{"id":10,"n":"X","a":48.0,"row":"s","bb":[0.91756,0.55145,0.07718,0.28437],"r":2,"b":1.3,"k":"flat"},{"id":11,"n":"XI","a":65.0,"row":"s","bb":[0.82438,0.58288,0.09428,0.27651],"r":2,"b":1.5,"k":"flat"},{"id":12,"n":"XII","a":41.5,"row":"s","bb":[0.76211,0.58366,0.06051,0.27573],"r":2,"b":1.5,"k":"flat"},{"id":13,"n":"XIII","a":102.3,"row":"s","bb":[0.66301,0.23095,0.09625,0.63394],"r":3,"b":1.3,"k":"flat"},{"id":14,"n":"XIV","a":102.3,"row":"s","bb":[0.56435,0.23645,0.09603,0.61901],"r":3,"b":1.3,"k":"flat"},{"id":15,"n":"XV","a":41.5,"row":"s","bb":[0.50099,0.58288,0.06073,0.28201],"r":2,"b":1.5,"k":"flat"},{"id":16,"n":"XVI","a":65.0,"row":"s","bb":[0.40496,0.58288,0.09406,0.27651],"r":2,"b":1.5,"k":"flat"},{"id":17,"n":"XVII","a":44.1,"row":"s","bb":[0.34071,0.55067,0.06292,0.27573],"r":2,"b":1.3,"k":"flat"},{"id":18,"n":"XVIII","a":100.4,"row":"s","bb":[0.24096,0.23645,0.09515,0.61901],"r":3,"b":1.3,"k":"flat"},{"id":19,"n":"XIX","a":41.5,"row":"s","bb":[0.17759,0.58288,0.06073,0.28201],"r":2,"b":1.5,"k":"flat"},{"id":20,"n":"XX","a":65.0,"row":"s","bb":[0.08134,0.58288,0.09428,0.27651],"r":2,"b":1.5,"k":"flat"},{"id":21,"n":"XXI","a":48.0,"row":"s","bb":[0.00285,0.55067,0.07718,0.28672],"r":2,"b":1.3,"k":"flat"}]},"3":{"f":3,"tr":"3. kat","en":"3rd floor","lvl":"+6.900","kind":"flat","w":2100,"h":588,"units":[{"id":1,"n":"I","a":53.0,"row":"n","bb":[0.0052,0.2389,0.07482,0.30347],"r":2,"k":"flat"},{"id":2,"n":"II","a":62.4,"row":"n","bb":[0.0825,0.23487,0.09358,0.27522],"r":2,"b":3.4,"k":"flat"},{"id":3,"n":"III","a":64.5,"row":"n","bb":[0.2075,0.23487,0.09675,0.27522],"r":2,"b":3.4,"k":"flat"},{"id":4,"n":"IV","a":48.7,"row":"n","bb":[0.34064,0.23325,0.06284,0.30912],"r":2,"k":"flat"},{"id":5,"n":"V","a":62.4,"row":"n","bb":[0.40597,0.23245,0.09381,0.27764],"r":2,"b":3.4,"k":"flat"},{"id":6,"n":"VI","a":64.5,"row":"n","bb":[0.53097,0.23487,0.09675,0.27522],"r":2,"b":3.4,"k":"flat"},{"id":7,"n":"VII","a":64.5,"row":"n","bb":[0.69598,0.23487,0.09629,0.27522],"r":2,"b":3.4,"k":"flat"},{"id":8,"n":"VIII","a":62.4,"row":"n","bb":[0.82392,0.23487,0.09313,0.27522],"r":2,"b":3.4,"k":"flat"},{"id":9,"n":"IX","a":53.0,"row":"n","bb":[0.92021,0.23325,0.07459,0.30831],"r":2,"k":"flat"},{"id":10,"n":"X","a":48.0,"row":"s","bb":[0.9175,0.55206,0.08092,0.31477],"r":2,"b":1.3,"k":"flat"},{"id":11,"n":"XI","a":65.0,"row":"s","bb":[0.82437,0.58434,0.09426,0.27441],"r":2,"b":1.5,"k":"flat"},{"id":12,"n":"XII","a":41.5,"row":"s","bb":[0.76198,0.58434,0.06058,0.27441],"r":2,"b":1.5,"k":"flat"},{"id":13,"n":"XIII","a":102.3,"row":"s","bb":[0.6632,0.23325,0.09607,0.63358],"r":3,"b":1.3,"k":"flat"},{"id":14,"n":"XIV","a":102.3,"row":"s","bb":[0.56442,0.2389,0.09584,0.62793],"r":3,"b":1.3,"k":"flat"},{"id":15,"n":"XV","a":41.5,"row":"s","bb":[0.5009,0.58434,0.06058,0.27926],"r":2,"b":1.5,"k":"flat"},{"id":16,"n":"XVI","a":65.0,"row":"s","bb":[0.40484,0.58354,0.09426,0.27522],"r":2,"b":1.5,"k":"flat"},{"id":17,"n":"XVII","a":44.1,"row":"s","bb":[0.34064,0.55125,0.06284,0.31558],"r":2,"b":1.3,"k":"flat"},{"id":18,"n":"XVIII","a":100.4,"row":"s","bb":[0.24073,0.2389,0.09516,0.62793],"r":3,"b":1.3,"k":"flat"},{"id":19,"n":"XIX","a":41.5,"row":"s","bb":[0.17744,0.58434,0.06058,0.27441],"r":2,"b":1.5,"k":"flat"},{"id":20,"n":"XX","a":65.0,"row":"s","bb":[0.08115,0.58434,0.09426,0.27441],"r":2,"b":1.5,"k":"flat"},{"id":21,"n":"XXI","a":48.0,"row":"s","bb":[0.00203,0.55206,0.07776,0.31477],"r":2,"b":1.3,"k":"flat"}]},"4":{"f":4,"tr":"4. kat","en":"4th floor","lvl":"+10.350","kind":"flat","w":2100,"h":601,"units":[{"id":1,"n":"I","a":49.5,"row":"n","bb":[0.00555,0.27597,0.07522,0.27752],"r":2,"k":"flat"},{"id":2,"n":"II","a":60.9,"row":"n","bb":[0.0832,0.24884,0.09341,0.27364],"r":2,"b":3.4,"k":"flat"},{"id":3,"n":"III","a":62.8,"row":"n","bb":[0.2079,0.25271,0.09652,0.26977],"r":2,"b":3.4,"k":"flat"},{"id":4,"n":"IV","a":45.5,"row":"n","bb":[0.3408,0.26667,0.06257,0.28605],"r":2,"k":"flat"},{"id":5,"n":"V","a":62.4,"row":"n","bb":[0.40648,0.25271,0.09297,0.26977],"r":2,"b":3.4,"k":"flat"},{"id":6,"n":"VI","a":62.8,"row":"n","bb":[0.53117,0.25271,0.09629,0.26977],"r":2,"b":3.4,"k":"flat"},{"id":7,"n":"VII","a":62.8,"row":"n","bb":[0.69581,0.25271,0.09607,0.26977],"r":2,"b":3.4,"k":"flat"},{"id":8,"n":"VIII","a":60.9,"row":"n","bb":[0.82361,0.25271,0.09297,0.26977],"r":2,"b":3.4,"k":"flat"},{"id":9,"n":"IX","a":49.5,"row":"n","bb":[0.91968,0.26667,0.07588,0.28605],"r":2,"k":"flat"},{"id":10,"n":"X","a":48.0,"row":"s","bb":[0.91968,0.56279,0.07721,0.27752],"r":2,"k":"flat"},{"id":11,"n":"XI","a":61.8,"row":"s","bb":[0.82405,0.5938,0.09252,0.26899],"r":2,"b":1.7,"k":"flat"},{"id":12,"n":"XII","a":49.9,"row":"s","bb":[0.7617,0.59302,0.06013,0.26977],"r":2,"b":1.7,"k":"flat"},{"id":13,"n":"XIII","a":99.1,"row":"s","bb":[0.66297,0.26667,0.09585,0.5876],"r":3,"k":"flat"},{"id":14,"n":"XIV","a":99.1,"row":"s","bb":[0.56446,0.27597,0.09563,0.56899],"r":3,"k":"flat"},{"id":15,"n":"XV","a":39.9,"row":"s","bb":[0.50122,0.5938,0.06035,0.26899],"r":2,"b":1.7,"k":"flat"},{"id":16,"n":"XVI","a":61.8,"row":"s","bb":[0.40648,0.5938,0.09252,0.26899],"r":2,"b":1.7,"k":"flat"},{"id":17,"n":"XVII","a":44.0,"row":"s","bb":[0.3408,0.56279,0.06257,0.26744],"r":2,"k":"flat"},{"id":18,"n":"XVIII","a":97.3,"row":"s","bb":[0.24118,0.27597,0.09496,0.56899],"r":3,"k":"flat"},{"id":19,"n":"XIX","a":39.9,"row":"s","bb":[0.17817,0.59302,0.06035,0.26977],"r":2,"b":1.7,"k":"flat"},{"id":20,"n":"XX","a":61.8,"row":"s","bb":[0.08343,0.5938,0.09252,0.26899],"r":2,"b":1.7,"k":"flat"},{"id":21,"n":"XXI","a":48.0,"row":"s","bb":[0.00311,0.56279,0.07744,0.27752],"r":2,"k":"flat"}]}};
 
 var I18N = {
- tr:{"crumb":"Blok 2","badgeSale":"Satışta","h1":"Blok 2 — daire seçimi","swB1":"Blok 1","swB2":"Blok 2","swB3":"Blok 3","swB4":"Blok 4","swB5":"Blok 5","swB6":"Blok 6","sub":"Kat planında veya doluluk şemasında bir daireye dokunun — yerleşim, metrekareler ve 360° tur açılır.","vPlan":"Kat planı","vGrid":"Doluluk şeması","vList":"Liste","fType":"Tip","fArea":"Alan","reset":"Sıfırla","sumT":"Blokta neler var","sumS":"Tüm veriler projenin uygulama çizimlerinden alınmıştır.","methT":"Veriler nasıl okunur","methS":"Metrekareler, daire numaraları (Roma rakamları), balkon (Б) ve depo (П) alanları ile kat kotları doğrudan projenin uygulama kat planlarından alınmıştır. Tıklanabilir alanlar aynı çizimlerdeki renk dolgularına göre üretildiği için vurgulanan daire çizimle birebir örtüşür. 360° tur, dairenin alanına ve tipine göre hazırlanmış şematik bir 3D görselleştirmedir: oda oranlarını, pencereleri ve manzarayı gösterir, tamamlanmış bir iç mekânın fotoğrafı değildir. Fiyatlar ve satış durumları sayfa kaynağındaki CONFIG bölümünde tanımlanır.","tourBtn":"360° daire turu","askBtn":"Bu daireyi sor","favAdd":"Favorilere ekle","favRem":"Favorilerde","interiorCap":"Örnek iç mekân — temsilidir, bu dairenin fotoğrafı değildir","all":"Tümü","flat":"Daire","shop":"Ticari birim","storage":"Depo","tech":"Teknik hacim","r1":"Stüdyo","r2":"2 odalı","r3":"3 odalı","available":"Satışta","reserved":"Rezerve","sold":"Satıldı","onRequest":"Fiyat talep üzerine","perM2":"m² başına","kFloor":"Kat","kUnit":"Plandaki no","kType":"Tip","kArea":"Toplam alan","kBalc":"Balkon","kStore":"Depo (П)","kLevel":"Kot","kSide":"Plandaki konum","kTotal":"Balkon dahil","north":"üst sıra","south":"alt sıra","hintDesk":"Daireye gelin — vurgulanır, tıklayın — detaylar açılır","hintTouch":"Plan üzerinde bir daireye dokunun","cFlats":"Blokta daire","cFloors":"Kat","cRange":"Daire alanları","cStore":"Bodrumda depo","sum2":"2 odalı","sum3":"3 odalı","sumShop":"Ticari","sumStore":"Depolar","sumAvgTitle":"Ortalama alan","noteD":"Yerleşim, uygulama kat planının bir parçası olarak gösterilmiştir. Kesin alanlar teslimden sonraki resmi ölçümle netleşir.","thN":"No","thFloor":"Kat","thType":"Tip","thArea":"Alan","thBalc":"Balkon","thStatus":"Durum","thAct":"","view":"Aç","m2":"m²","fl":"kat","basement":"Bodrum"},
+ tr:{"crumb":"Blok 2","badgeSale":"Satışta","h1":"Blok 2 — daire seçimi","swB1":"Blok 1","swB2":"Blok 2","swB3":"Blok 3","swB4":"Blok 4","swB5":"Blok 5","swB6":"Blok 6","sub":"Kat planında veya doluluk şemasında bir daireye dokunun — yerleşim ve metrekareler görünür.","vPlan":"Kat planı","vGrid":"Doluluk şeması","vList":"Liste","fType":"Tip","fArea":"Alan","reset":"Sıfırla","sumT":"Blokta neler var","sumS":"Tüm veriler projenin uygulama çizimlerinden alınmıştır.","methT":"Veriler nasıl okunur","methS":"Metrekareler, daire numaraları (Roma rakamları), balkon (Б) ve depo (П) alanları ile kat kotları doğrudan projenin uygulama kat planlarından alınmıştır. Tıklanabilir alanlar aynı çizimlerdeki renk dolgularına göre üretildiği için vurgulanan daire çizimle birebir örtüşür. Fiyatlar ve satış durumları sayfa kaynağındaki CONFIG bölümünde tanımlanır.","askBtn":"Bu daireyi sor","favAdd":"Favorilere ekle","favRem":"Favorilerde","interiorCap":"Örnek iç mekân — temsilidir, bu dairenin fotoğrafı değildir","all":"Tümü","flat":"Daire","shop":"Ticari birim","storage":"Depo","tech":"Teknik hacim","r1":"Stüdyo","r2":"2 odalı","r3":"3 odalı","available":"Satışta","reserved":"Rezerve","sold":"Satıldı","onRequest":"Fiyat talep üzerine","perM2":"m² başına","kFloor":"Kat","kUnit":"Plandaki no","kType":"Tip","kArea":"Toplam alan","kBalc":"Balkon","kStore":"Depo (П)","kLevel":"Kot","kSide":"Plandaki konum","kTotal":"Balkon dahil","north":"üst sıra","south":"alt sıra","hintDesk":"Daireye gelin — vurgulanır, tıklayın — detaylar açılır","hintTouch":"Plan üzerinde bir daireye dokunun","cFlats":"Blokta daire","cFloors":"Kat","cRange":"Daire alanları","cStore":"Bodrumda depo","sum2":"2 odalı","sum3":"3 odalı","sumShop":"Ticari","sumStore":"Depolar","sumAvgTitle":"Ortalama alan","noteD":"Yerleşim, uygulama kat planının bir parçası olarak gösterilmiştir. Kesin alanlar teslimden sonraki resmi ölçümle netleşir.","thN":"No","thFloor":"Kat","thType":"Tip","thArea":"Alan","thBalc":"Balkon","thStatus":"Durum","thAct":"","view":"Aç","m2":"m²","fl":"kat","basement":"Bodrum"},
  en:{crumb:'Block 2',badgeSale:'For sale',h1:'Block 2 — pick your apartment',swB1:'Block 1',swB2:'Block 2',swB3:'Block 3',swB4:'Block 4',swB5:'Block 5',swB6:'Block 6',
-  sub:'Click an apartment on the floor plan or in the availability grid — you will get the layout, areas and a 360° tour.',
+  sub:'Click an apartment on the floor plan or in the availability grid to see the layout and areas.',
   vPlan:'Floor plan',vGrid:'Availability',vList:'List',fType:'Type',fArea:'Area',reset:'Reset',
   sumT:'What is inside the block',sumS:'All figures are taken from the project working drawings.',
   methT:'How to read this data',
-  methS:'Areas, apartment numbering (roman numerals), balcony (Б) and storage (П) areas and floor levels are taken directly from the project working floor plans. The clickable hotspots are generated from the colour fills of the same drawings, so the highlight matches the blueprint exactly. The 360° tour is a schematic 3D visualisation derived from the apartment area and type — it shows room proportions, windows and the view, but it is not a photo of a finished interior. Prices and sales status are set in the CONFIG block in the page source.',
-  tourBtn:'360° apartment tour',askBtn:'Request this apartment',favAdd:'Add to favourites',favRem:'In favourites',
+  methS:'Areas, apartment numbering (roman numerals), balcony (Б) and storage (П) areas and floor levels are taken directly from the project working floor plans. The clickable hotspots are generated from the colour fills of the same drawings, so the highlight matches the blueprint exactly. Prices and sales status are set in the CONFIG block in the page source.',
+  askBtn:'Request this apartment',favAdd:'Add to favourites',favRem:'In favourites',
   interiorCap:'Sample finish — illustrative, not a photo of this specific apartment',
   all:'All',flat:'Apartment',shop:'Retail unit',storage:'Storage',tech:'Technical room',
   r1:'Studio',r2:'2-room',r3:'3-room',
@@ -902,7 +886,7 @@ function closeDrawer(){
 }
 document.getElementById('dClose').addEventListener('click',closeDrawer);
 ov.addEventListener('click',closeDrawer);
-document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ closeDrawer(); closeTour(); } });
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ closeDrawer(); } });
 
 function drawCrop(f,u){
   var fl=FLOORS[f], cv=document.getElementById('dCrop');
@@ -953,25 +937,7 @@ document.getElementById('dFav').addEventListener('click',function(){
   syncFav();
 });
 
-/* ---------- 360 tour ---------- */
-function openTour(){
-  if(!curUnit) return;
-  var u=curUnit.u, f=curUnit.f;
-  var q='?lang='+lang+'&unit='+encodeURIComponent(u.n)+'&floor='+f+'&floorName='+encodeURIComponent(floorName(f))
-       +'&area='+u.a+'&rooms='+(u.r||(u.k==='shop'?0:1))+'&balcony='+(u.b||0)+'&kind='+u.k
-       +'&side='+(u.row==='n'?'court':'street')+'&block='+encodeURIComponent(CONFIG.blockName[lang]);
-  document.getElementById('tourFrame').src=CONFIG.tourFile+q;
-  document.getElementById('tourWrap').classList.add('on');
-  document.body.style.overflow='hidden';
-}
-function closeTour(){
-  document.getElementById('tourWrap').classList.remove('on');
-  document.getElementById('tourFrame').src='about:blank';
-  document.body.style.overflow='';
-}
-document.getElementById('dTour').addEventListener('click',openTour);
-document.getElementById('tClose').addEventListener('click',closeTour);
-window.addEventListener('message',function(e){ if(e.data==='closeTour') closeTour(); });
+
 
 /* ---------- view switch / i18n ---------- */
 function setView(v){
