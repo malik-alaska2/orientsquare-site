@@ -100,17 +100,17 @@
   /* ---- 3. Стили ---- */
   var css = [
     'html.os-intro-on,html.os-intro-on body{overflow:hidden!important}',
-    'html.os-intro-on{background:#FFF8B9}',
+    'html.os-intro-on{background:#0a0a0c}',
     'html.os-intro-on body{visibility:hidden}',
     '#osIntro{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;',
-    'background:#FFF8B9;background:radial-gradient(120% 90% at 50% 42%,#FFFDF0 0%,#FFF8B9 58%,#FBEFA4 100%);',
+    'background:#0a0a0c;background:radial-gradient(120% 90% at 50% 42%,#151517 0%,#0a0a0c 58%,#070708 100%);',
     'overflow:hidden;cursor:pointer;-webkit-user-select:none;user-select:none;',
     'transition:opacity ' + CFG.fadeOut + 'ms ease,transform ' + CFG.fadeOut + 'ms ease}',
     '#osIntro.os-out{opacity:0;transform:scale(1.045);pointer-events:none}',
 
-    /* мягкое оранжевое свечение за знаком */
+    /* мягкое приглушённое свечение за знаком */
     '#osIntro .osi-glow{position:absolute;left:50%;top:50%;width:900px;height:900px;margin:-450px 0 0 -450px;',
-    'background:radial-gradient(circle,rgba(240,126,1,.20) 0%,rgba(240,126,1,.07) 38%,rgba(240,126,1,0) 68%);',
+    'background:radial-gradient(circle,rgba(199,154,108,.16) 0%,rgba(199,154,108,.06) 38%,rgba(199,154,108,0) 68%);',
     'opacity:0;animation:osi-glow 1.6s ease-out forwards;pointer-events:none}',
 
     '#osIntro .osi-stage{position:relative;flex:0 0 auto;width:' + LOGO_W + 'px;min-width:' + LOGO_W + 'px;height:' + LOGO_H + 'px;',
@@ -126,18 +126,18 @@
     '#osIntro .osi-ring{position:absolute;left:' + (MARK.x - 26) + 'px;top:' + (MARK.y - 26) + 'px;',
     'width:' + (MARK.w + 52) + 'px;height:' + (MARK.h + 52) + 'px;opacity:0;',
     'animation:osi-ring 1.5s ease-out .1s forwards;pointer-events:none}',
-    '#osIntro .osi-ring circle{fill:none;stroke:#F07E01;stroke-width:3;stroke-linecap:round;',
+    '#osIntro .osi-ring circle{fill:none;stroke:#c79a6c;stroke-width:3;stroke-linecap:round;',
     'stroke-dasharray:0 900;animation:osi-dash 1.25s cubic-bezier(.32,.78,.3,1) .05s forwards}',
 
-    /* буквы */
-    '#osIntro .osi-l{position:absolute;background-image:url("' + CFG.base + 'logo-full.png");background-repeat:no-repeat;',
+    /* буквы — светлый вариант логотипа (читается на тёмном фоне) */
+    '#osIntro .osi-l{position:absolute;background-image:url("' + CFG.base + 'logo-full-light.png");background-repeat:no-repeat;',
     'background-size:' + LOGO_W + 'px ' + LOGO_H + 'px;opacity:0;will-change:transform,opacity,filter;',
     'animation:osi-letter .78s cubic-bezier(.18,.92,.26,1.06) forwards}',
 
     /* блик по логотипу */
     '#osIntro .osi-shine{position:absolute;inset:0;pointer-events:none;opacity:0;',
-    '-webkit-mask:url("' + CFG.base + 'logo-full.png") no-repeat 0 0/' + LOGO_W + 'px ' + LOGO_H + 'px;',
-    'mask:url("' + CFG.base + 'logo-full.png") no-repeat 0 0/' + LOGO_W + 'px ' + LOGO_H + 'px;',
+    '-webkit-mask:url("' + CFG.base + 'logo-full-light.png") no-repeat 0 0/' + LOGO_W + 'px ' + LOGO_H + 'px;',
+    'mask:url("' + CFG.base + 'logo-full-light.png") no-repeat 0 0/' + LOGO_W + 'px ' + LOGO_H + 'px;',
     'background:linear-gradient(105deg,rgba(255,255,255,0) 38%,rgba(255,255,255,.9) 50%,rgba(255,255,255,0) 62%);',
     'background-size:260% 100%;animation:osi-shine 1.05s ease-out 1.85s forwards}',
 
@@ -146,19 +146,19 @@
     'width:' + VID_W + 'px;height:' + VID_H + 'px;margin:' + (-VID_H / 2) + 'px 0 0 ' + (-VID_W / 2) + 'px;',
     'transform:scale(var(--osi-k,1));transform-origin:50% 50%;',
     'max-width:none;max-height:none;min-width:0;object-fit:fill;',
-    'opacity:0;transition:opacity .2s ease;pointer-events:none;background:#FFF8B9;display:block}',
-    '#osIntro.osi-has-video{background:#FFF8B9}',
+    'opacity:0;transition:opacity .2s ease;pointer-events:none;background:#0a0a0c;display:block}',
+    '#osIntro.osi-has-video{background:#0a0a0c}',
     '#osIntro.osi-has-video .osi-video{opacity:1}',
     '#osIntro.osi-has-video .osi-stage,#osIntro.osi-has-video .osi-glow{visibility:hidden}',
 
     /* полоса загрузки */
-    '#osIntro .osi-bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(112,33,122,.12)}',
-    '#osIntro .osi-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#F07E01,#70217A);',
+    '#osIntro .osi-bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.10)}',
+    '#osIntro .osi-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#c79a6c,#a997b4);',
     'animation:osi-bar ' + CFG.minShow + 'ms cubic-bezier(.3,.7,.3,1) forwards}',
 
     /* подсказка «пропустить» */
     '#osIntro .osi-skip{position:absolute;left:0;right:0;bottom:22px;text-align:center;font:600 11px/1 ui-sans-serif,system-ui,sans-serif;',
-    'letter-spacing:.14em;text-transform:uppercase;color:rgba(112,33,122,.45);opacity:0;animation:osi-fade .5s ease 2.2s forwards}',
+    'letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);opacity:0;animation:osi-fade .5s ease 2.2s forwards}',
 
     '@keyframes osi-glow{0%{opacity:0;transform:scale(.5)}45%{opacity:1}100%{opacity:.85;transform:scale(1)}}',
     '@keyframes osi-mark{0%{opacity:0;transform:perspective(1000px) rotateY(-450deg) scale(.32)}',
@@ -189,7 +189,7 @@
   (doc.head || html).appendChild(styleEl);
 
   // предзагрузка картинок логотипа
-  ['logo-mark.png', 'logo-full.png'].forEach(function (f) {
+  ['logo-mark.png', 'logo-full-light.png'].forEach(function (f) {
     var l = doc.createElement('link');
     l.rel = 'preload'; l.as = 'image'; l.href = CFG.base + f;
     (doc.head || html).appendChild(l);

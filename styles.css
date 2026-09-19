@@ -169,3 +169,122 @@ header a[href="auth.html"]{white-space:nowrap}
    перекрываем их с !important — hover на десктопе работает как раньше. */
 .os-dd-open > .os-dd-panel{opacity:1 !important;visibility:visible !important;pointer-events:auto}
 .os-dd-panel a,.os-dd-panel button{min-height:40px;display:flex;align-items:center}
+
+/* ==========================================================================
+   Glass Explorer — тёмная стеклянная тема (заменяет светлую identity-полосу)
+   Идёт последним слоем и переопределяет Tailwind-утилиты без правки HTML.
+   Оранжевый/фиолетовый остаются, но как один приглушённый, тихий акцент —
+   не заливка, а тонировка стекла (см. References/design-system-glass-explorer.md).
+   ========================================================================== */
+:root{
+  --ge-bg:#0a0a0c;
+  --ge-bg-soft:#111114;
+  --ge-surface:rgba(255,255,255,.055);
+  --ge-surface-strong:rgba(255,255,255,.09);
+  --ge-surface-press:rgba(255,255,255,.13);
+  --ge-border:rgba(255,255,255,.12);
+  --ge-border-soft:rgba(255,255,255,.08);
+  --ge-text:#f3f2ef;
+  --ge-text-soft:rgba(243,242,239,.72);
+  --ge-text-mute:rgba(243,242,239,.52);
+  --ge-blur:20px;
+
+  /* один приглушённый акцент в двух тонах — тёплый и холодный полюс одной семьи */
+  --ge-orange:#c79a6c;
+  --ge-orange-strong:#d9b287;
+  --ge-orange-fill:rgba(199,154,108,.20);
+  --ge-orange-fill-strong:rgba(199,154,108,.30);
+  --ge-orange-border:rgba(199,154,108,.42);
+
+  --ge-purple:#a997b4;
+  --ge-purple-strong:#bdaec7;
+  --ge-purple-fill:rgba(124,106,138,.26);
+  --ge-purple-fill-strong:rgba(124,106,138,.38);
+  --ge-purple-border:rgba(124,106,138,.48);
+}
+
+/* переиспользуем уже объявленные переменные Geist/Brand слоёв — этого
+   достаточно, чтобы заголовки, text-gray-500/600, рамки gray-100/200/300
+   и все .shadow-* переключились на тёмную стеклянную версию сами */
+:root{
+  --ds-gray-1000:var(--ge-text);
+  --ds-gray-900:var(--ge-text-soft);
+  --ds-gray-700:var(--ge-text-mute);
+  --ds-gray-400:var(--ge-border);
+  --ds-border:var(--ge-border-soft);
+  --ds-shadow-border:0 0 0 1px var(--ge-border-soft);
+  --ds-shadow-small:0 1px 2px rgba(0,0,0,.4);
+  --ds-shadow-menu:0 0 0 1px var(--ge-border-soft),0 24px 60px -14px rgba(0,0,0,.7);
+  --ds-radius-card:20px;
+  --ds-radius-control:12px;
+  --os-orange:var(--ge-orange);
+  --os-purple:var(--ge-purple);
+  --os-purple-600:var(--ge-purple-strong);
+  --os-cream:var(--ge-orange-fill);
+  --os-cream-soft:var(--ge-surface);
+}
+
+html{
+  background:
+    radial-gradient(1200px 640px at 12% -12%,rgba(199,154,108,.10),transparent 60%),
+    radial-gradient(1000px 720px at 112% 8%,rgba(124,106,138,.10),transparent 55%),
+    var(--ge-bg);
+  background-attachment:fixed,fixed,fixed;
+}
+body{background:transparent;color:var(--ge-text)}
+::selection{background:rgba(199,154,108,.35);color:#fff}
+h1,h2,h3,h4,h5,h6{color:var(--ge-text)}
+
+/* Стекло: любая белая поверхность (шапка, дропдауны, карточки, диалоги)
+   становится матовым тёмным стеклом с размытием фона за ней */
+.bg-white{background-color:var(--ge-surface);backdrop-filter:blur(var(--ge-blur)) saturate(1.4);-webkit-backdrop-filter:blur(var(--ge-blur)) saturate(1.4)}
+.bg-white\/70{background-color:rgba(255,255,255,.05);backdrop-filter:blur(var(--ge-blur));-webkit-backdrop-filter:blur(var(--ge-blur))}
+.bg-white\/90{background-color:rgba(16,16,18,.78);backdrop-filter:blur(var(--ge-blur));-webkit-backdrop-filter:blur(var(--ge-blur))}
+header.bg-white{background-color:rgba(12,12,14,.6);border-bottom:1px solid var(--ge-border-soft)}
+.bg-gray-50{background-color:var(--ge-surface)}
+.bg-gray-100{background-color:var(--ge-surface-strong)}
+.hover\:bg-gray-50:hover{background-color:var(--ge-surface-strong)}
+.hover\:bg-gray-100:hover{background-color:var(--ge-surface-press)}
+.bg-gray-900{background-color:#08080a}
+.border-gray-800{border-color:var(--ge-border)}
+
+.text-gray-900{color:var(--ge-text)}
+.text-gray-700{color:var(--ge-text-soft)}
+.text-gray-400{color:var(--ge-text-mute)}
+.text-gray-300{color:var(--ge-text-soft)}
+.hover\:text-gray-800:hover{color:var(--ge-text)}
+
+/* акцент: заливка ушла, остался только тонкий тонированный контур/подсветка */
+.bg-primary-500{background:var(--ge-orange-fill);border:1px solid var(--ge-orange-border);color:#fff}
+.hover\:bg-primary-600:hover{background:var(--ge-orange-fill-strong)}
+.bg-primary-50{background:rgba(199,154,108,.08)}
+.bg-primary-100{background:rgba(199,154,108,.14)}
+.hover\:bg-primary-50:hover{background:rgba(199,154,108,.12)}
+.text-primary-500,.text-primary-600,.text-primary-700,.text-primary-800{color:var(--ge-orange)}
+.hover\:text-primary-400:hover,.hover\:text-primary-500:hover,.hover\:text-primary-600:hover,
+.hover\:text-primary-700:hover,.hover\:text-primary-900:hover{color:var(--ge-orange-strong)}
+.border-primary-500{border-color:var(--ge-orange-border)}
+.focus\:border-primary-500:focus{border-color:var(--ge-orange-border)}
+.focus\:ring-primary-500:focus{--tw-ring-color:var(--ge-orange-border)}
+.from-primary-50{--tw-gradient-from:rgba(199,154,108,.10) var(--tw-gradient-from-position);--tw-gradient-to:rgba(199,154,108,0) var(--tw-gradient-to-position)}
+.to-white{--tw-gradient-to:var(--ge-bg-soft) var(--tw-gradient-to-position)}
+
+/* фирменная полоса над футером — было 3px яркий градиент, стало
+   волосяная линия из тех же двух приглушённых тонов */
+footer.bg-gray-900{
+  background-image:linear-gradient(90deg,var(--ge-orange-border) 0 50%,var(--ge-purple-border) 50% 100%);
+  background-size:100% 1px;background-repeat:no-repeat;background-position:top left;
+}
+
+.os-badge{background:var(--ge-purple-fill);border:1px solid var(--ge-purple-border);color:var(--ge-text)}
+.os-btn-purple{background:var(--ge-purple-fill);color:#fff;border:1px solid var(--ge-purple-border)}
+.os-btn-purple:hover{background:var(--ge-purple-fill-strong)}
+.os-accent{color:var(--ge-purple)}
+.os-cream-section{background:var(--ge-surface-strong)}
+
+/* инпуты на стекле */
+input[class],select[class],textarea[class]{background:var(--ge-surface);color:var(--ge-text)}
+input[class]::placeholder,textarea[class]::placeholder{color:var(--ge-text-mute)}
+
+@media(prefers-color-scheme:dark){:root{color-scheme:dark}}
+:root{color-scheme:dark}

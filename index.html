@@ -25,30 +25,30 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
 <script src="js/carousel.js"></script>
 
 <style>
-.osx{--p:#F57C00;--p7:#EF6C00;--v:#70217A;--g2:#EEE;--g6:#757575;--g3:#E0E0E0}
+.osx{--p:#c79a6c;--p7:#d9b287;--v:#a997b4;--g2:rgba(255,255,255,.12);--g6:rgba(243,242,239,.62);--g3:rgba(255,255,255,.16)}
 .osx-wrap{max-width:80rem;margin:0 auto;padding:0 1rem}
 @media(min-width:640px){.osx-wrap{padding:0 1.5rem}}
 @media(min-width:1024px){.osx-wrap{padding:0 2rem}}
 .osx-grid{display:grid;gap:1rem;grid-template-columns:1fr}
 @media(min-width:700px){.osx-grid{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:1050px){.osx-grid{grid-template-columns:repeat(4,1fr)}}
-.osx-card{background:#fff;border:1px solid var(--g2);border-radius:1rem;padding:1rem;box-shadow:0 1px 2px rgba(0,0,0,.05);display:flex;flex-direction:column;text-align:left}
-.osx-card h3{font-size:1rem;font-weight:700;margin:.15rem 0 .2rem;color:#333}
+.osx-card{background:rgba(255,255,255,.05);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--g2);border-radius:1.25rem;padding:1rem;box-shadow:0 10px 30px -12px rgba(0,0,0,.5);display:flex;flex-direction:column;text-align:left}
+.osx-card h3{font-size:1rem;font-weight:700;margin:.15rem 0 .2rem;color:var(--ge-text)}
 .osx-card p{font-size:.86rem;color:var(--g6);margin:0 0 .7rem}
-.osx-badge{display:inline-flex;align-items:center;gap:.35rem;background:var(--p);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.22rem .55rem;border-radius:999px;align-self:flex-start}
-.osx-badge.v{background:var(--v)}
+.osx-badge{display:inline-flex;align-items:center;gap:.35rem;background:var(--p);color:#1a1207;font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.22rem .55rem;border-radius:999px;align-self:flex-start}
+.osx-badge.v{background:var(--v);color:#1c1720}
 .osx-link{margin-top:auto;font-size:.85rem;font-weight:600;color:var(--p7);text-decoration:none}
 .osx-link:hover{text-decoration:underline}
-.osx-tool{display:flex;gap:.7rem;align-items:flex-start;background:#fff;border:1px solid var(--g2);border-radius:1rem;padding:1rem;text-decoration:none;color:inherit;box-shadow:0 1px 2px rgba(0,0,0,.05);text-align:left}
+.osx-tool{display:flex;gap:.7rem;align-items:flex-start;background:rgba(255,255,255,.05);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--g2);border-radius:1.25rem;padding:1rem;text-decoration:none;color:inherit;box-shadow:0 10px 30px -12px rgba(0,0,0,.5);text-align:left}
 .osx-tool:hover{border-color:var(--p)}
 .osx-tool svg{flex:0 0 auto;color:var(--p)}
-.osx-tool b{display:block;font-size:.95rem;color:#333}
+.osx-tool b{display:block;font-size:.95rem;color:var(--ge-text)}
 .osx-tool span{font-size:.82rem;color:var(--g6)}
-.osx-h2{font-size:1.5rem;font-weight:700;color:#111;margin:0 0 .3rem}
+.osx-h2{font-size:1.5rem;font-weight:700;color:var(--ge-text);margin:0 0 .3rem}
 .osx-sub{color:var(--g6);margin:0 0 1.2rem}
-.osx-unit{display:block;background:#fff;border:1px solid var(--g2);border-radius:1rem;padding:.9rem 1rem;text-decoration:none;color:inherit;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.osx-unit{display:block;background:rgba(255,255,255,.05);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--g2);border-radius:1.25rem;padding:.9rem 1rem;text-decoration:none;color:inherit;box-shadow:0 10px 30px -12px rgba(0,0,0,.5)}
 .osx-unit:hover{border-color:var(--p)}
-.osx-unit b{display:block;font-size:1rem}
+.osx-unit b{display:block;font-size:1rem;color:var(--ge-text)}
 .osx-unit span{display:block;font-size:.8rem;color:var(--g6);margin:.1rem 0 .35rem}
 .osx-unit i{font-style:normal;font-weight:700;color:var(--p7)}
 
@@ -60,8 +60,8 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
 .os-car-track>*{flex:0 0 calc(100% - 1.5rem);max-width:calc(100% - 1.5rem);scroll-snap-align:start}
 @media(min-width:700px){.os-car-track>*{flex:0 0 calc(50% - .75rem);max-width:calc(50% - .75rem)}}
 @media(min-width:1100px){.os-car-track>*{flex:0 0 calc(33.333% - 1rem);max-width:calc(33.333% - 1rem)}}
-.os-car-arrow{position:absolute;top:38%;transform:translateY(-50%);width:2.75rem;height:2.75rem;border-radius:999px;background:#fff;border:1px solid var(--g3);box-shadow:0 2px 10px rgba(0,0,0,.14);display:flex;align-items:center;justify-content:center;color:#333;z-index:5;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
-.os-car-arrow:hover{background:var(--p);color:#fff;border-color:var(--p)}
+.os-car-arrow{position:absolute;top:38%;transform:translateY(-50%);width:2.75rem;height:2.75rem;border-radius:999px;background:rgba(255,255,255,.08);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--g3);box-shadow:0 8px 24px -6px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;color:var(--ge-text);z-index:5;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.os-car-arrow:hover{background:var(--p);color:#1a1207;border-color:var(--p)}
 .os-car-arrow[disabled]{opacity:.35;cursor:default;pointer-events:none}
 .os-car-prev{left:-.5rem}
 .os-car-next{right:-.5rem}
@@ -72,13 +72,14 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
 .os-car-dot.active{background:var(--p);width:1.5rem}
 @media(prefers-reduced-motion:reduce){.os-car-track{scroll-behavior:auto}}
 </style>
+<link rel="stylesheet" href="media.css">
 </head>
 <body class="antialiased">
 <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <a href="index.html" class="flex items-center space-x-2">
-        <img src="assets/brand/logo-full.png" alt="Orient Square Real Estate" class="os-logo" width="720" height="230">
+        <img src="assets/brand/logo-full-light.png" alt="Orient Square Real Estate" class="os-logo" width="720" height="230">
       </a>
       <nav class="hidden md:flex items-center space-x-8">
         <a href="index.html" class="flex items-center space-x-1 text-primary-500 font-medium transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Home</span></a>
@@ -121,7 +122,7 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
 <main>
 <div class="min-h-screen">
   <section class="relative py-12 sm:py-16 lg:py-20 overflow-hidden">
-    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image:url('assets/hero-skyline.png'), url('https://orientsquare.com/IMG_5708-Photoroom.png');background-color:#FFF3E0;"></div>
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image:url('assets/project/photos-033.webp');background-color:#0c0c0d;"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center">
         <div class="bg-white/70 backdrop-blur-sm rounded-3xl p-6 sm:p-8 max-w-3xl mx-auto">
@@ -149,7 +150,7 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
         </div>
       </div>
     </div>
-  </section>
+  </section><section class="project-media-feature" aria-label="Project gallery"><div class="project-media-feature-inner"><img src="assets/project/photos-033.webp" alt="Архитектура и территория жилого комплекса" loading="lazy"><div class="project-media-feature-content"><h2>Проект в деталях</h2><p>79 изображений территории, 19 интерьеров и оригинальные планы шести блоков. Откройте фотографии или осмотритесь в галерее 360°.</p><div class="project-media-links"><a class="media-btn" href="gallery.html">Фото и планировки</a><a class="media-btn secondary" href="tour-gallery.html">Галерея 360°</a></div></div></div></section>
 
   <section class="py-8 sm:py-12 lg:py-16 bg-primary-500">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -517,6 +518,7 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
     </div>
   </section>
 </div>
+
 </main>
 <footer class="bg-gray-900 text-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -646,10 +648,11 @@ document.getElementById('chatClose').addEventListener('click',function(){documen
       return '<a class="osx-unit" href="block-'+u.block+'.html#'+u.hash+'"><b>&#8470; '+u.n+'</b>'+
              '<span>'+(ru?('Блок №'+u.block+' · '+u.f+' этаж'):('Block '+u.block+' · floor '+u.f))+
              ' · '+OS.num(u.a)+' '+(ru?'м²':'m²')+'</span>'+
-             '<i>'+OS.money(u.price)+'</i> <span style="display:inline;color:#757575">· '+(ru?'от ':'from ')+OS.money(p.monthly)+(ru?'/мес':'/mo')+'</span></a>';
+             '<i>'+OS.money(u.price)+'</i> <span style="display:inline;color:rgba(243,242,239,.55)">· '+(ru?'от ':'from ')+OS.money(p.monthly)+(ru?'/мес':'/mo')+'</span></a>';
     }).join('');
   });
 })();
 </script>
+<script src="js/project-navigation.js"></script>
 </body>
 </html>

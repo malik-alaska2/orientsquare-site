@@ -46,6 +46,7 @@ html,body{margin:0;height:100%;overflow:hidden;background:#0d0f13;
 @media(max-width:640px){#mini{display:none}#disc{display:none}#top h1{font-size:.92rem}}
 </style>
 <script src="js/intro.js"></script>
+<link rel="stylesheet" href="media.css">
 </head>
 <body>
 <canvas id="cv"></canvas>
@@ -73,13 +74,14 @@ html,body{margin:0;height:100%;overflow:hidden;background:#0d0f13;
   </button>
 </div>
 
-<div id="rooms" class="ui"></div>
+<a href="tour-gallery.html?category=rooms" style="position:absolute;left:1rem;top:6.2rem;z-index:6;background:#70217a;color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;font-size:12px">Фотографии интерьеров · 360°</a><div id="rooms" class="ui"></div>
 <div id="mini"><canvas id="miniCv" width="200" height="150"></canvas><div class="cap" id="miniCap">plan</div></div>
 <div id="hint">—</div>
 <div id="disc"></div>
 <div id="loader"><span><span class="spin"></span><span id="loadTxt">3D yükleniyor…</span></span></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/vendor/three.min.js"></script>
+<script src="js/project-media.js"></script>
 <script>
 /* ==========================================================================
    360° APARTMENT TOUR — schematic 3D interior generated from the floor plan
@@ -139,7 +141,7 @@ document.getElementById('meta').textContent =
   [P.block, P.floorName, (P.rooms>=2? P.rooms+(lang==='tr'?' odalı':'-room'):''), t(P.side==='court'?'view_court':'view_street')]
   .filter(Boolean).join(' · ');
 document.getElementById('bClose').addEventListener('click',function(){
-  if(window.parent!==window) window.parent.postMessage('closeTour','*'); else history.back();
+  if(window.parent!==window) window.parent.postMessage('closeTour','*'); else location.href="gallery.html";
 });
 
 if(!window.THREE){ document.getElementById('loader').innerHTML='<span style="color:#c9ced6">'+t('err')+'</span>'; return; }
@@ -455,6 +457,7 @@ function tvUnit(cx,cz,rot){
   var tv=new THREE.Mesh(new THREE.BoxGeometry(1.35,0.78,0.05),MAT.dark); tv.position.set(0,1.25,0.02); g.add(tv);
   var sc=new THREE.Mesh(new THREE.BoxGeometry(1.28,0.71,0.01),new THREE.MeshStandardMaterial({color:0x11161c,roughness:0.2,metalness:0.4}));
   sc.position.set(0,1.25,0.05); g.add(sc);
+  if(window.PROJECT_MEDIA){new THREE.TextureLoader().load(PROJECT_MEDIA.rooms[0].src,function(texture){texture.encoding=THREE.sRGBEncoding;sc.material=new THREE.MeshBasicMaterial({map:texture});});}
   g.traverse(function(o){ if(o.isMesh){o.castShadow=true;o.receiveShadow=true;} });
   g.position.set(cx,0,cz); g.rotation.y=rot||0; world.add(g); return g;
 }
@@ -705,5 +708,6 @@ document.getElementById('loader').style.display='none';
 syncAuto(); frame();
 })();
 </script>
+<script src="js/project-navigation.js"></script>
 </body>
 </html>

@@ -1,0 +1,1076 @@
+{
+  "photos": [
+    {
+      "id": "photos-001",
+      "src": "assets/project/photos-001.webp",
+      "thumb": "assets/project/photos-001-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Architectural_editorial_golden_h…_2K_202608052120.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 01"
+    },
+    {
+      "id": "photos-002",
+      "src": "assets/project/photos-002.webp",
+      "thumb": "assets/project/photos-002-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Architectural_editorial_photo_of…_2K_202608060232.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 02"
+    },
+    {
+      "id": "photos-003",
+      "src": "assets/project/photos-003.webp",
+      "thumb": "assets/project/photos-003-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Architectural_facade_at_golden_hour_202608051926.jpeg",
+      "width": 1488,
+      "height": 2666,
+      "label": "Фотография проекта 03"
+    },
+    {
+      "id": "photos-004",
+      "src": "assets/project/photos-004.webp",
+      "thumb": "assets/project/photos-004-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Architectural_facade_golden_hour…_2K_202608060312.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 04"
+    },
+    {
+      "id": "photos-005",
+      "src": "assets/project/photos-005.webp",
+      "thumb": "assets/project/photos-005-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Architectural_photograph_of_cloc…_2K_202608041952.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 05"
+    },
+    {
+      "id": "photos-006",
+      "src": "assets/project/photos-006.webp",
+      "thumb": "assets/project/photos-006-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Architectural_photograph_of_cloc…_2K_202608041955.jpeg",
+      "width": 2752,
+      "height": 1536,
+      "label": "Фотография проекта 06"
+    },
+    {
+      "id": "photos-007",
+      "src": "assets/project/photos-007.webp",
+      "thumb": "assets/project/photos-007-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Architectural_photograph_of_corn…_2K_202608041421.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 07"
+    },
+    {
+      "id": "photos-008",
+      "src": "assets/project/photos-008.webp",
+      "thumb": "assets/project/photos-008-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Architectural_photograph_of_cour…_2K_202608040752.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 08"
+    },
+    {
+      "id": "photos-009",
+      "src": "assets/project/photos-009.webp",
+      "thumb": "assets/project/photos-009-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Architectural_photograph_of_pede…_2K_202608041359.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 09"
+    },
+    {
+      "id": "photos-010",
+      "src": "assets/project/photos-010.webp",
+      "thumb": "assets/project/photos-010-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Architectural_photograph_of_resi…_2K_202608040525.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 10"
+    },
+    {
+      "id": "photos-011",
+      "src": "assets/project/photos-011.webp",
+      "thumb": "assets/project/photos-011-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Architectural_street_view_at_sunset_202608052053.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 11"
+    },
+    {
+      "id": "photos-012",
+      "src": "assets/project/photos-012.webp",
+      "thumb": "assets/project/photos-012-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/C15.jpg",
+      "width": 3000,
+      "height": 3000,
+      "label": "Фотография проекта 12"
+    },
+    {
+      "id": "photos-013",
+      "src": "assets/project/photos-013.webp",
+      "thumb": "assets/project/photos-013-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/C20.jpg",
+      "width": 2250,
+      "height": 3000,
+      "label": "Фотография проекта 13"
+    },
+    {
+      "id": "photos-014",
+      "src": "assets/project/photos-014.webp",
+      "thumb": "assets/project/photos-014-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/C25.jpg",
+      "width": 3072,
+      "height": 3840,
+      "label": "Фотография проекта 14"
+    },
+    {
+      "id": "photos-015",
+      "src": "assets/project/photos-015.webp",
+      "thumb": "assets/project/photos-015-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/C26.jpg",
+      "width": 3072,
+      "height": 3840,
+      "label": "Фотография проекта 15"
+    },
+    {
+      "id": "photos-016",
+      "src": "assets/project/photos-016.webp",
+      "thumb": "assets/project/photos-016-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/C27.jpg",
+      "width": 3072,
+      "height": 3840,
+      "label": "Фотография проекта 16"
+    },
+    {
+      "id": "photos-017",
+      "src": "assets/project/photos-017.webp",
+      "thumb": "assets/project/photos-017-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/C28.jpg",
+      "width": 2250,
+      "height": 3000,
+      "label": "Фотография проекта 17"
+    },
+    {
+      "id": "photos-018",
+      "src": "assets/project/photos-018.webp",
+      "thumb": "assets/project/photos-018-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Clock_tower_architectural_photog…_2K_202608042005.jpeg",
+      "width": 1792,
+      "height": 2400,
+      "label": "Фотография проекта 18"
+    },
+    {
+      "id": "photos-019",
+      "src": "assets/project/photos-019.webp",
+      "thumb": "assets/project/photos-019-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Clock_tower_architectural_photog…_2K_202608042006.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 19"
+    },
+    {
+      "id": "photos-020",
+      "src": "assets/project/photos-020.webp",
+      "thumb": "assets/project/photos-020-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Clock_tower_during_golden_hour_202608060101.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 20"
+    },
+    {
+      "id": "photos-021",
+      "src": "assets/project/photos-021.webp",
+      "thumb": "assets/project/photos-021-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Courtyard_cafe_golden_hour_lifes…_202608052318.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 21"
+    },
+    {
+      "id": "photos-022",
+      "src": "assets/project/photos-022.webp",
+      "thumb": "assets/project/photos-022-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Editorial_golden_hour_architectu…_2K_202608060324.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 22"
+    },
+    {
+      "id": "photos-023",
+      "src": "assets/project/photos-023.webp",
+      "thumb": "assets/project/photos-023-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Editorial_photograph_of_corner_a…_202608041429.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 23"
+    },
+    {
+      "id": "photos-024",
+      "src": "assets/project/photos-024.webp",
+      "thumb": "assets/project/photos-024-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Editorial_photograph_of_courtyar…_2K_202608040855.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 24"
+    },
+    {
+      "id": "photos-025",
+      "src": "assets/project/photos-025.webp",
+      "thumb": "assets/project/photos-025-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Editorial_photograph_of_garden_f…_202608041401.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 25"
+    },
+    {
+      "id": "photos-026",
+      "src": "assets/project/photos-026.webp",
+      "thumb": "assets/project/photos-026-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Fazl_.jpg",
+      "width": 2752,
+      "height": 1536,
+      "label": "Фотография проекта 26"
+    },
+    {
+      "id": "photos-027",
+      "src": "assets/project/photos-027.webp",
+      "thumb": "assets/project/photos-027-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Fazl__10.jpg",
+      "width": 4654,
+      "height": 2618,
+      "label": "Фотография проекта 27"
+    },
+    {
+      "id": "photos-028",
+      "src": "assets/project/photos-028.webp",
+      "thumb": "assets/project/photos-028-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Fazl__11.jpg",
+      "width": 2000,
+      "height": 1116,
+      "label": "Фотография проекта 28"
+    },
+    {
+      "id": "photos-029",
+      "src": "assets/project/photos-029.webp",
+      "thumb": "assets/project/photos-029-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Fazl__2.jpg",
+      "width": 5336,
+      "height": 3002,
+      "label": "Фотография проекта 29"
+    },
+    {
+      "id": "photos-030",
+      "src": "assets/project/photos-030.webp",
+      "thumb": "assets/project/photos-030-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Fazl__3.jpg",
+      "width": 4935,
+      "height": 2776,
+      "label": "Фотография проекта 30"
+    },
+    {
+      "id": "photos-031",
+      "src": "assets/project/photos-031.webp",
+      "thumb": "assets/project/photos-031-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Fazl__4.jpg",
+      "width": 5504,
+      "height": 3072,
+      "label": "Фотография проекта 31"
+    },
+    {
+      "id": "photos-032",
+      "src": "assets/project/photos-032.webp",
+      "thumb": "assets/project/photos-032-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Fazl__5.jpg",
+      "width": 5300,
+      "height": 2981,
+      "label": "Фотография проекта 32"
+    },
+    {
+      "id": "photos-033",
+      "src": "assets/project/photos-033.webp",
+      "thumb": "assets/project/photos-033-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Fazl__6.jpg",
+      "width": 2752,
+      "height": 1536,
+      "label": "Фотография проекта 33"
+    },
+    {
+      "id": "photos-034",
+      "src": "assets/project/photos-034.webp",
+      "thumb": "assets/project/photos-034-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Fazl__7.jpg",
+      "width": 5596,
+      "height": 3148,
+      "label": "Фотография проекта 34"
+    },
+    {
+      "id": "photos-035",
+      "src": "assets/project/photos-035.webp",
+      "thumb": "assets/project/photos-035-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Fazl__8.jpg",
+      "width": 5170,
+      "height": 2910,
+      "label": "Фотография проекта 35"
+    },
+    {
+      "id": "photos-036",
+      "src": "assets/project/photos-036.webp",
+      "thumb": "assets/project/photos-036-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Fazl__9.jpg",
+      "width": 5504,
+      "height": 3072,
+      "label": "Фотография проекта 36"
+    },
+    {
+      "id": "photos-037",
+      "src": "assets/project/photos-037.webp",
+      "thumb": "assets/project/photos-037-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Fazl_Makon_architectural_editori…_2K_202608051925.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 37"
+    },
+    {
+      "id": "photos-038",
+      "src": "assets/project/photos-038.webp",
+      "thumb": "assets/project/photos-038-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Fazl_Makon_architectural_editori…_2K_202608052352 copy.jpg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 38"
+    },
+    {
+      "id": "photos-039",
+      "src": "assets/project/photos-039.webp",
+      "thumb": "assets/project/photos-039-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Fazl_Makon_entrance_golden_hour_202608052140.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 39"
+    },
+    {
+      "id": "photos-040",
+      "src": "assets/project/photos-040.webp",
+      "thumb": "assets/project/photos-040-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Fazl_Makon_residential_entrance_…_202608041842.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 40"
+    },
+    {
+      "id": "photos-041",
+      "src": "assets/project/photos-041.webp",
+      "thumb": "assets/project/photos-041-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Golden_hour_architectural_arriva…_2K_202608052144.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 41"
+    },
+    {
+      "id": "photos-042",
+      "src": "assets/project/photos-042.webp",
+      "thumb": "assets/project/photos-042-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Golden_hour_architectural_editor…_2K_202608051914.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 42"
+    },
+    {
+      "id": "photos-043",
+      "src": "assets/project/photos-043.webp",
+      "thumb": "assets/project/photos-043-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Golden_hour_architectural_editor…_2K_202608052059_copy_—_копия.jpg",
+      "width": 1433,
+      "height": 2569,
+      "label": "Фотография проекта 43"
+    },
+    {
+      "id": "photos-044",
+      "src": "assets/project/photos-044.webp",
+      "thumb": "assets/project/photos-044-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Golden_hour_clock_tower_editorial_202608060408.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 44"
+    },
+    {
+      "id": "photos-045",
+      "src": "assets/project/photos-045.webp",
+      "thumb": "assets/project/photos-045-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Golden_hour_garden_courtyard_edi…_202608052258.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 45"
+    },
+    {
+      "id": "photos-046",
+      "src": "assets/project/photos-046.webp",
+      "thumb": "assets/project/photos-046-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Golden_hour_garden_walkway_edito…_202608060218.jpeg",
+      "width": 1463,
+      "height": 2622,
+      "label": "Фотография проекта 46"
+    },
+    {
+      "id": "photos-047",
+      "src": "assets/project/photos-047.webp",
+      "thumb": "assets/project/photos-047-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Golden_hour_residential_architec…_2K_202608060502.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 47"
+    },
+    {
+      "id": "photos-048",
+      "src": "assets/project/photos-048.webp",
+      "thumb": "assets/project/photos-048-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Golden_hour_residential_street_e…_202608060256.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 48"
+    },
+    {
+      "id": "photos-049",
+      "src": "assets/project/photos-049.webp",
+      "thumb": "assets/project/photos-049-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Issimo_courtyard_cafe_architectu…_2K_202608052337.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 49"
+    },
+    {
+      "id": "photos-050",
+      "src": "assets/project/photos-050.webp",
+      "thumb": "assets/project/photos-050-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Luxury_residential_campaign_key_…_202608040905.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 50"
+    },
+    {
+      "id": "photos-051",
+      "src": "assets/project/photos-051.webp",
+      "thumb": "assets/project/photos-051-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Luxury_residential_campaign_key_…_202608041335.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 51"
+    },
+    {
+      "id": "photos-052",
+      "src": "assets/project/photos-052.webp",
+      "thumb": "assets/project/photos-052-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Man_with_dog_walking_corner_202608060359.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 52"
+    },
+    {
+      "id": "photos-053",
+      "src": "assets/project/photos-053.webp",
+      "thumb": "assets/project/photos-053-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Mother_helping_child_on_horse_202608041825.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 53"
+    },
+    {
+      "id": "photos-054",
+      "src": "assets/project/photos-054.webp",
+      "thumb": "assets/project/photos-054-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/People_at_neighbourhood_shopping…_2K_202608041731.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 54"
+    },
+    {
+      "id": "photos-055",
+      "src": "assets/project/photos-055.webp",
+      "thumb": "assets/project/photos-055-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/photo_10_2026-09-08_10-55-32.jpg",
+      "width": 1280,
+      "height": 817,
+      "label": "Фотография проекта 55"
+    },
+    {
+      "id": "photos-056",
+      "src": "assets/project/photos-056.webp",
+      "thumb": "assets/project/photos-056-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/photo_11_2026-09-08_10-55-32.jpg",
+      "width": 1280,
+      "height": 959,
+      "label": "Фотография проекта 56"
+    },
+    {
+      "id": "photos-057",
+      "src": "assets/project/photos-057.webp",
+      "thumb": "assets/project/photos-057-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/photo_12_2026-09-08_10-55-32.jpg",
+      "width": 1280,
+      "height": 960,
+      "label": "Фотография проекта 57"
+    },
+    {
+      "id": "photos-058",
+      "src": "assets/project/photos-058.webp",
+      "thumb": "assets/project/photos-058-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/photo_13_2026-09-08_10-55-32.jpg",
+      "width": 1280,
+      "height": 960,
+      "label": "Фотография проекта 58"
+    },
+    {
+      "id": "photos-059",
+      "src": "assets/project/photos-059.webp",
+      "thumb": "assets/project/photos-059-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/photo_14_2026-09-08_10-55-32.jpg",
+      "width": 1219,
+      "height": 1280,
+      "label": "Фотография проекта 59"
+    },
+    {
+      "id": "photos-060",
+      "src": "assets/project/photos-060.webp",
+      "thumb": "assets/project/photos-060-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/photo_15_2026-09-08_10-55-32.jpg",
+      "width": 1280,
+      "height": 853,
+      "label": "Фотография проекта 60"
+    },
+    {
+      "id": "photos-061",
+      "src": "assets/project/photos-061.webp",
+      "thumb": "assets/project/photos-061-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/photo_16_2026-09-08_10-55-32.jpg",
+      "width": 1280,
+      "height": 960,
+      "label": "Фотография проекта 61"
+    },
+    {
+      "id": "photos-062",
+      "src": "assets/project/photos-062.webp",
+      "thumb": "assets/project/photos-062-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/photo_17_2026-09-08_10-55-32.jpg",
+      "width": 1280,
+      "height": 960,
+      "label": "Фотография проекта 62"
+    },
+    {
+      "id": "photos-063",
+      "src": "assets/project/photos-063.webp",
+      "thumb": "assets/project/photos-063-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/photo_18_2026-09-08_10-55-32.jpg",
+      "width": 1280,
+      "height": 960,
+      "label": "Фотография проекта 63"
+    },
+    {
+      "id": "photos-064",
+      "src": "assets/project/photos-064.webp",
+      "thumb": "assets/project/photos-064-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/photo_19_2026-09-08_10-55-32.jpg",
+      "width": 1280,
+      "height": 960,
+      "label": "Фотография проекта 64"
+    },
+    {
+      "id": "photos-065",
+      "src": "assets/project/photos-065.webp",
+      "thumb": "assets/project/photos-065-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/photo_1_2026-09-08_10-55-32.jpg",
+      "width": 1280,
+      "height": 913,
+      "label": "Фотография проекта 65"
+    },
+    {
+      "id": "photos-066",
+      "src": "assets/project/photos-066.webp",
+      "thumb": "assets/project/photos-066-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/photo_20_2026-09-08_10-55-32.jpg",
+      "width": 1219,
+      "height": 1280,
+      "label": "Фотография проекта 66"
+    },
+    {
+      "id": "photos-067",
+      "src": "assets/project/photos-067.webp",
+      "thumb": "assets/project/photos-067-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/photo_2_2026-09-08_10-55-32.jpg",
+      "width": 1280,
+      "height": 800,
+      "label": "Фотография проекта 67"
+    },
+    {
+      "id": "photos-068",
+      "src": "assets/project/photos-068.webp",
+      "thumb": "assets/project/photos-068-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/photo_3_2026-09-08_10-55-32.jpg",
+      "width": 1280,
+      "height": 853,
+      "label": "Фотография проекта 68"
+    },
+    {
+      "id": "photos-069",
+      "src": "assets/project/photos-069.webp",
+      "thumb": "assets/project/photos-069-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/photo_4_2026-09-08_10-55-32.jpg",
+      "width": 1280,
+      "height": 960,
+      "label": "Фотография проекта 69"
+    },
+    {
+      "id": "photos-070",
+      "src": "assets/project/photos-070.webp",
+      "thumb": "assets/project/photos-070-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/photo_5_2026-09-08_10-55-32.jpg",
+      "width": 1280,
+      "height": 853,
+      "label": "Фотография проекта 70"
+    },
+    {
+      "id": "photos-071",
+      "src": "assets/project/photos-071.webp",
+      "thumb": "assets/project/photos-071-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/photo_6_2026-09-08_10-55-32.jpg",
+      "width": 1280,
+      "height": 960,
+      "label": "Фотография проекта 71"
+    },
+    {
+      "id": "photos-072",
+      "src": "assets/project/photos-072.webp",
+      "thumb": "assets/project/photos-072-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/photo_7_2026-09-08_10-55-32.jpg",
+      "width": 1280,
+      "height": 913,
+      "label": "Фотография проекта 72"
+    },
+    {
+      "id": "photos-073",
+      "src": "assets/project/photos-073.webp",
+      "thumb": "assets/project/photos-073-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/photo_8_2026-09-08_10-55-32.jpg",
+      "width": 1280,
+      "height": 960,
+      "label": "Фотография проекта 73"
+    },
+    {
+      "id": "photos-074",
+      "src": "assets/project/photos-074.webp",
+      "thumb": "assets/project/photos-074-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/photo_9_2026-09-08_10-55-32.jpg",
+      "width": 1280,
+      "height": 853,
+      "label": "Фотография проекта 74"
+    },
+    {
+      "id": "photos-075",
+      "src": "assets/project/photos-075.webp",
+      "thumb": "assets/project/photos-075-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Photographing_Fazl_Makon_clock_t…_202608041952.jpeg",
+      "width": 2752,
+      "height": 1536,
+      "label": "Фотография проекта 75"
+    },
+    {
+      "id": "photos-076",
+      "src": "assets/project/photos-076.webp",
+      "thumb": "assets/project/photos-076-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Resident_looking_at_courtyard_ga…_202608041832.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 76"
+    },
+    {
+      "id": "photos-077",
+      "src": "assets/project/photos-077.webp",
+      "thumb": "assets/project/photos-077-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Resident_reading_on_garden_bench_202608041832.jpeg",
+      "width": 1536,
+      "height": 2752,
+      "label": "Фотография проекта 77"
+    },
+    {
+      "id": "photos-078",
+      "src": "assets/project/photos-078.webp",
+      "thumb": "assets/project/photos-078-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Scene 1N-.jpg",
+      "width": 1920,
+      "height": 2560,
+      "label": "Фотография проекта 78"
+    },
+    {
+      "id": "photos-079",
+      "src": "assets/project/photos-079.webp",
+      "thumb": "assets/project/photos-079-thumb.webp",
+      "source": "References/Tashkent Insha'at/pic/Scene 2N-.jpg",
+      "width": 1920,
+      "height": 2560,
+      "label": "Фотография проекта 79"
+    }
+  ],
+  "rooms": [
+    {
+      "id": "rooms-001",
+      "src": "assets/project/rooms-001.webp",
+      "thumb": "assets/project/rooms-001-thumb.webp",
+      "source": "References/Tashkent Insha'at/Rooms pick/1 (2).jpg",
+      "width": 3000,
+      "height": 3750,
+      "label": "Интерьер 01"
+    },
+    {
+      "id": "rooms-002",
+      "src": "assets/project/rooms-002.webp",
+      "thumb": "assets/project/rooms-002-thumb.webp",
+      "source": "References/Tashkent Insha'at/Rooms pick/1 (3).jpg",
+      "width": 3000,
+      "height": 3750,
+      "label": "Интерьер 02"
+    },
+    {
+      "id": "rooms-003",
+      "src": "assets/project/rooms-003.webp",
+      "thumb": "assets/project/rooms-003-thumb.webp",
+      "source": "References/Tashkent Insha'at/Rooms pick/1 (4).jpg",
+      "width": 2500,
+      "height": 3125,
+      "label": "Интерьер 03"
+    },
+    {
+      "id": "rooms-004",
+      "src": "assets/project/rooms-004.webp",
+      "thumb": "assets/project/rooms-004-thumb.webp",
+      "source": "References/Tashkent Insha'at/Rooms pick/1.jpg",
+      "width": 3000,
+      "height": 3750,
+      "label": "Интерьер 04"
+    },
+    {
+      "id": "rooms-005",
+      "src": "assets/project/rooms-005.webp",
+      "thumb": "assets/project/rooms-005-thumb.webp",
+      "source": "References/Tashkent Insha'at/Rooms pick/2 (2).jpg",
+      "width": 3000,
+      "height": 3750,
+      "label": "Интерьер 05"
+    },
+    {
+      "id": "rooms-006",
+      "src": "assets/project/rooms-006.webp",
+      "thumb": "assets/project/rooms-006-thumb.webp",
+      "source": "References/Tashkent Insha'at/Rooms pick/2 (3).jpg",
+      "width": 3000,
+      "height": 3750,
+      "label": "Интерьер 06"
+    },
+    {
+      "id": "rooms-007",
+      "src": "assets/project/rooms-007.webp",
+      "thumb": "assets/project/rooms-007-thumb.webp",
+      "source": "References/Tashkent Insha'at/Rooms pick/2 (4).jpg",
+      "width": 2500,
+      "height": 3125,
+      "label": "Интерьер 07"
+    },
+    {
+      "id": "rooms-008",
+      "src": "assets/project/rooms-008.webp",
+      "thumb": "assets/project/rooms-008-thumb.webp",
+      "source": "References/Tashkent Insha'at/Rooms pick/2.jpg",
+      "width": 3000,
+      "height": 3750,
+      "label": "Интерьер 08"
+    },
+    {
+      "id": "rooms-009",
+      "src": "assets/project/rooms-009.webp",
+      "thumb": "assets/project/rooms-009-thumb.webp",
+      "source": "References/Tashkent Insha'at/Rooms pick/3 (2).jpg",
+      "width": 3000,
+      "height": 3750,
+      "label": "Интерьер 09"
+    },
+    {
+      "id": "rooms-010",
+      "src": "assets/project/rooms-010.webp",
+      "thumb": "assets/project/rooms-010-thumb.webp",
+      "source": "References/Tashkent Insha'at/Rooms pick/3 (3).jpg",
+      "width": 2500,
+      "height": 3125,
+      "label": "Интерьер 10"
+    },
+    {
+      "id": "rooms-011",
+      "src": "assets/project/rooms-011.webp",
+      "thumb": "assets/project/rooms-011-thumb.webp",
+      "source": "References/Tashkent Insha'at/Rooms pick/3.jpg",
+      "width": 3000,
+      "height": 3750,
+      "label": "Интерьер 11"
+    },
+    {
+      "id": "rooms-012",
+      "src": "assets/project/rooms-012.webp",
+      "thumb": "assets/project/rooms-012-thumb.webp",
+      "source": "References/Tashkent Insha'at/Rooms pick/4 (2).jpg",
+      "width": 3000,
+      "height": 3750,
+      "label": "Интерьер 12"
+    },
+    {
+      "id": "rooms-013",
+      "src": "assets/project/rooms-013.webp",
+      "thumb": "assets/project/rooms-013-thumb.webp",
+      "source": "References/Tashkent Insha'at/Rooms pick/4 (3).jpg",
+      "width": 3000,
+      "height": 3750,
+      "label": "Интерьер 13"
+    },
+    {
+      "id": "rooms-014",
+      "src": "assets/project/rooms-014.webp",
+      "thumb": "assets/project/rooms-014-thumb.webp",
+      "source": "References/Tashkent Insha'at/Rooms pick/4 (4).jpg",
+      "width": 2500,
+      "height": 3125,
+      "label": "Интерьер 14"
+    },
+    {
+      "id": "rooms-015",
+      "src": "assets/project/rooms-015.webp",
+      "thumb": "assets/project/rooms-015-thumb.webp",
+      "source": "References/Tashkent Insha'at/Rooms pick/4.jpg",
+      "width": 3000,
+      "height": 3750,
+      "label": "Интерьер 15"
+    },
+    {
+      "id": "rooms-016",
+      "src": "assets/project/rooms-016.webp",
+      "thumb": "assets/project/rooms-016-thumb.webp",
+      "source": "References/Tashkent Insha'at/Rooms pick/5 (2).jpg",
+      "width": 3000,
+      "height": 3750,
+      "label": "Интерьер 16"
+    },
+    {
+      "id": "rooms-017",
+      "src": "assets/project/rooms-017.webp",
+      "thumb": "assets/project/rooms-017-thumb.webp",
+      "source": "References/Tashkent Insha'at/Rooms pick/5 (3).jpg",
+      "width": 3000,
+      "height": 3750,
+      "label": "Интерьер 17"
+    },
+    {
+      "id": "rooms-018",
+      "src": "assets/project/rooms-018.webp",
+      "thumb": "assets/project/rooms-018-thumb.webp",
+      "source": "References/Tashkent Insha'at/Rooms pick/5.jpg",
+      "width": 3000,
+      "height": 3750,
+      "label": "Интерьер 18"
+    },
+    {
+      "id": "rooms-019",
+      "src": "assets/project/rooms-019.webp",
+      "thumb": "assets/project/rooms-019-thumb.webp",
+      "source": "References/Tashkent Insha'at/Rooms pick/6.jpg",
+      "width": 3000,
+      "height": 3750,
+      "label": "Интерьер 19"
+    }
+  ],
+  "blocks": [
+    {
+      "number": 1,
+      "pdf": "assets/project/block-1.pdf",
+      "pages": [
+        {
+          "src": "assets/project/block-1-page-1.webp",
+          "thumb": "assets/project/block-1-page-1-thumb.webp",
+          "page": 1
+        },
+        {
+          "src": "assets/project/block-1-page-2.webp",
+          "thumb": "assets/project/block-1-page-2-thumb.webp",
+          "page": 2
+        },
+        {
+          "src": "assets/project/block-1-page-3.webp",
+          "thumb": "assets/project/block-1-page-3-thumb.webp",
+          "page": 3
+        },
+        {
+          "src": "assets/project/block-1-page-4.webp",
+          "thumb": "assets/project/block-1-page-4-thumb.webp",
+          "page": 4
+        },
+        {
+          "src": "assets/project/block-1-page-5.webp",
+          "thumb": "assets/project/block-1-page-5-thumb.webp",
+          "page": 5
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "pdf": "assets/project/block-2.pdf",
+      "pages": [
+        {
+          "src": "assets/project/block-2-page-1.webp",
+          "thumb": "assets/project/block-2-page-1-thumb.webp",
+          "page": 1
+        },
+        {
+          "src": "assets/project/block-2-page-2.webp",
+          "thumb": "assets/project/block-2-page-2-thumb.webp",
+          "page": 2
+        },
+        {
+          "src": "assets/project/block-2-page-3.webp",
+          "thumb": "assets/project/block-2-page-3-thumb.webp",
+          "page": 3
+        },
+        {
+          "src": "assets/project/block-2-page-4.webp",
+          "thumb": "assets/project/block-2-page-4-thumb.webp",
+          "page": 4
+        },
+        {
+          "src": "assets/project/block-2-page-5.webp",
+          "thumb": "assets/project/block-2-page-5-thumb.webp",
+          "page": 5
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "pdf": "assets/project/block-3.pdf",
+      "pages": [
+        {
+          "src": "assets/project/block-3-page-1.webp",
+          "thumb": "assets/project/block-3-page-1-thumb.webp",
+          "page": 1
+        },
+        {
+          "src": "assets/project/block-3-page-2.webp",
+          "thumb": "assets/project/block-3-page-2-thumb.webp",
+          "page": 2
+        },
+        {
+          "src": "assets/project/block-3-page-3.webp",
+          "thumb": "assets/project/block-3-page-3-thumb.webp",
+          "page": 3
+        },
+        {
+          "src": "assets/project/block-3-page-4.webp",
+          "thumb": "assets/project/block-3-page-4-thumb.webp",
+          "page": 4
+        },
+        {
+          "src": "assets/project/block-3-page-5.webp",
+          "thumb": "assets/project/block-3-page-5-thumb.webp",
+          "page": 5
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "pdf": "assets/project/block-4.pdf",
+      "pages": [
+        {
+          "src": "assets/project/block-4-page-1.webp",
+          "thumb": "assets/project/block-4-page-1-thumb.webp",
+          "page": 1
+        },
+        {
+          "src": "assets/project/block-4-page-2.webp",
+          "thumb": "assets/project/block-4-page-2-thumb.webp",
+          "page": 2
+        },
+        {
+          "src": "assets/project/block-4-page-3.webp",
+          "thumb": "assets/project/block-4-page-3-thumb.webp",
+          "page": 3
+        },
+        {
+          "src": "assets/project/block-4-page-4.webp",
+          "thumb": "assets/project/block-4-page-4-thumb.webp",
+          "page": 4
+        },
+        {
+          "src": "assets/project/block-4-page-5.webp",
+          "thumb": "assets/project/block-4-page-5-thumb.webp",
+          "page": 5
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "pdf": "assets/project/block-5.pdf",
+      "pages": [
+        {
+          "src": "assets/project/block-5-page-1.webp",
+          "thumb": "assets/project/block-5-page-1-thumb.webp",
+          "page": 1
+        },
+        {
+          "src": "assets/project/block-5-page-2.webp",
+          "thumb": "assets/project/block-5-page-2-thumb.webp",
+          "page": 2
+        },
+        {
+          "src": "assets/project/block-5-page-3.webp",
+          "thumb": "assets/project/block-5-page-3-thumb.webp",
+          "page": 3
+        },
+        {
+          "src": "assets/project/block-5-page-4.webp",
+          "thumb": "assets/project/block-5-page-4-thumb.webp",
+          "page": 4
+        },
+        {
+          "src": "assets/project/block-5-page-5.webp",
+          "thumb": "assets/project/block-5-page-5-thumb.webp",
+          "page": 5
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "pdf": "assets/project/block-6.pdf",
+      "pages": [
+        {
+          "src": "assets/project/block-6-page-1.webp",
+          "thumb": "assets/project/block-6-page-1-thumb.webp",
+          "page": 1
+        },
+        {
+          "src": "assets/project/block-6-page-2.webp",
+          "thumb": "assets/project/block-6-page-2-thumb.webp",
+          "page": 2
+        },
+        {
+          "src": "assets/project/block-6-page-3.webp",
+          "thumb": "assets/project/block-6-page-3-thumb.webp",
+          "page": 3
+        },
+        {
+          "src": "assets/project/block-6-page-4.webp",
+          "thumb": "assets/project/block-6-page-4-thumb.webp",
+          "page": 4
+        },
+        {
+          "src": "assets/project/block-6-page-5.webp",
+          "thumb": "assets/project/block-6-page-5-thumb.webp",
+          "page": 5
+        }
+      ]
+    }
+  ]
+}
