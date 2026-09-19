@@ -289,6 +289,8 @@ footer.bg-gray-900 .text-gray-400{color:rgba(255,255,255,.45)}
 footer.bg-gray-900 .border-gray-800{border-color:rgba(255,255,255,.14)}
 footer.bg-gray-900 .hover\:text-primary-400:hover,
 footer.bg-gray-900 .hover\:text-primary-500:hover{color:var(--ge-orange-on-dark)}
+footer.bg-gray-900 h1,footer.bg-gray-900 h2,footer.bg-gray-900 h3,
+footer.bg-gray-900 h4,footer.bg-gray-900 h5,footer.bg-gray-900 h6{color:#fff}
 
 .os-badge{background:var(--ge-purple-fill);border:1px solid var(--ge-purple-border);color:var(--ge-purple)}
 .os-btn-purple{background:var(--ge-purple-solid);color:#fff;border:1px solid var(--ge-purple-solid)}

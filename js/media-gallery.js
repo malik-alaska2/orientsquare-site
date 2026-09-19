@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const media = window.PROJECT_MEDIA;
-  const grid = document.querySelector('#media-grid');
+  const gridSlot = document.querySelector('#media-grid-slot');
   const tabs = [...document.querySelectorAll('[data-category]')];
   const search = document.querySelector('#media-search');
   const dialog = document.querySelector('#media-lightbox');
@@ -19,16 +19,21 @@
     const cap=document.createElement('figcaption');const title=document.createElement('h2');title.textContent=item.label;const sub=document.createElement('small');sub.textContent=names[category];cap.append(title,sub);
     figure.append(button,cap);return figure;
   }
+  const carPrevIcon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><polyline points="15 18 9 12 15 6"/></svg>';
+  const carNextIcon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><polyline points="9 18 15 12 9 6"/></svg>';
+  function emptyMessage(){const p=document.createElement('p');p.className='media-empty';p.textContent='Ничего не найдено. Попробуйте другой номер или очистите поиск.';return p}
+
   function render(){
     tabs.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.category===category)));
     document.querySelector('#media-description').textContent=hints[category];
     document.querySelector('#media-tour-link').href='tour-gallery.html?category='+category;
-    const q=search.value.trim().toLocaleLowerCase('ru');grid.replaceChildren();
+    const q=search.value.trim().toLocaleLowerCase('ru');gridSlot.replaceChildren();
     let matchCount=0;
     if(category==='blocks'){
       activeItems=media.blocks.flatMap(b=>b.pages.map(p=>({...p,label:`Блок ${b.number} · Лист ${p.page}`,pdf:b.pdf})));
       const matched=media.blocks.filter(b=>!q||('блок '+b.number).includes(q));
       matchCount=matched.length;
+      const grid=document.createElement('div');grid.className='media-grid';
       matched.forEach(b=>{
         const index=activeItems.findIndex(i=>i.pdf===b.pdf);const item=activeItems[index];const figure=imageItem(item,index);figure.classList.add('plan');
         figure.querySelector('h2').textContent='Блок '+b.number;figure.querySelector('small').textContent=b.pages.length+' листов · PDF';
@@ -37,22 +42,25 @@
         const plan=document.createElement('a');plan.href='block-'+b.number+'.html';plan.textContent='Выбрать квартиру';
         links.append(pdf,plan);figure.append(links);grid.append(figure);
       });
+      if(!matchCount) grid.append(emptyMessage());
+      gridSlot.append(grid);
     }else{
       activeItems=media[category].filter(i=>!q||(i.label+' '+i.source.split('/').pop()).toLocaleLowerCase('ru').includes(q));
       matchCount=activeItems.length;
-      const featured=!q&&activeItems.length>3;
-      const shown=featured?activeItems.slice(0,3):activeItems;
-      shown.forEach((item,i)=>grid.append(imageItem(item,i)));
-      if(featured){
-        const row=document.createElement('div');row.className='media-viewall-row';row.style.gridColumn='1/-1';
-        const btn=document.createElement('button');btn.type='button';btn.className='media-viewall';
-        btn.textContent='Смотреть все '+activeItems.length+' →';
-        btn.addEventListener('click',()=>open(0));
-        row.append(btn);grid.append(row);
+      if(!matchCount){
+        gridSlot.append(emptyMessage());
+      }else{
+        const car=document.createElement('div');car.className='os-car';car.setAttribute('data-os-car','');
+        const prev=document.createElement('button');prev.type='button';prev.className='os-car-arrow os-car-prev';prev.setAttribute('data-car-prev','');prev.setAttribute('aria-label','Предыдущие фото');prev.innerHTML=carPrevIcon;
+        const next=document.createElement('button');next.type='button';next.className='os-car-arrow os-car-next';next.setAttribute('data-car-next','');next.setAttribute('aria-label','Следующие фото');next.innerHTML=carNextIcon;
+        const track=document.createElement('div');track.className='os-car-track';track.setAttribute('data-car-track','');
+        activeItems.forEach((item,i)=>track.append(imageItem(item,i)));
+        car.append(prev,track,next);
+        gridSlot.append(car);
+        if(window.OSCarousel) window.OSCarousel.init(car);
       }
     }
     document.querySelector('#media-count').textContent=matchCount+' '+(category==='blocks'?'блоков':'изображений');
-    if(!matchCount){const empty=document.createElement('p');empty.className='media-empty';empty.textContent='Ничего не найдено. Попробуйте другой номер или очистите поиск.';grid.append(empty)}
   }
 
   /* ---------------- Glass Explorer stage: fan carousel, swipe, zoom ---------------- */

@@ -25,10 +25,21 @@
 .media-image:hover{border-color:rgba(168,83,10,.5);transform:translateY(-2px);box-shadow:0 20px 46px -16px rgba(28,23,18,.24)}
 .media-image img{width:100%;height:100%;object-fit:cover;transition:transform .4s}.media-image:hover img{transform:scale(1.04)}
 .media-card.plan .media-image{background:#fff;border-color:#e5e5e5}.media-card.plan img{object-fit:contain;padding:10px}
-.media-card figcaption{padding-top:12px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.media-card h2{font-size:15px;font-weight:650;margin:0 0 5px;color:var(--media-ink)}.media-card small{color:var(--media-muted);font-size:12px}.media-card a{color:var(--media-orange);text-underline-offset:3px;font-size:13px}.media-card-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px}.media-count{font-size:13px;color:var(--media-muted)}.media-empty{padding:40px 0;grid-column:1/-1;color:var(--media-muted)}
-.media-viewall-row{padding-bottom:56px}
-.media-viewall{display:inline-flex;align-items:center;gap:8px;background:none;border:0;padding:0;font:inherit;font-size:14px;font-weight:650;color:var(--media-orange);cursor:pointer;text-decoration:underline;text-underline-offset:4px}
-.media-viewall:hover{color:var(--media-orange-solid)}
+.media-card figcaption{padding-top:12px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.media-card h2{font-size:15px;font-weight:650;margin:0 0 5px;color:var(--media-ink)}.media-card small{color:var(--media-muted);font-size:12px}.media-card a{color:var(--media-orange);text-underline-offset:3px;font-size:13px}.media-card-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px}.media-count{font-size:13px;color:var(--media-muted)}.media-empty{padding:40px 0;color:var(--media-muted)}
+
+/* ================= карусель фото/интерьеров со стрелками ================= */
+.os-car{position:relative;padding-bottom:32px}
+.os-car-track{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:2px 2px 4px;cursor:grab}
+.os-car-track::-webkit-scrollbar{display:none}
+.os-car-track.os-car-dragging{cursor:grabbing;scroll-behavior:auto;scroll-snap-type:none;-webkit-user-select:none;user-select:none}
+.os-car-track>.media-card{flex:0 0 calc(33.333% - 15px);max-width:calc(33.333% - 15px);scroll-snap-align:start}
+.os-car-arrow{position:absolute;top:38%;transform:translateY(-50%);width:2.75rem;height:2.75rem;border-radius:999px;background:rgba(255,255,255,.75);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--media-line);box-shadow:0 8px 24px -6px rgba(28,23,18,.22);display:flex;align-items:center;justify-content:center;color:var(--media-ink);z-index:5;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.os-car-arrow:hover{background:var(--media-orange);color:#fff;border-color:var(--media-orange)}
+.os-car-arrow[disabled]{opacity:.35;cursor:default;pointer-events:none}
+.os-car-prev{left:-1.375rem}
+.os-car-next{right:-1.375rem}
+@media(max-width:900px){.os-car-track>.media-card{flex:0 0 calc(50% - 11px);max-width:calc(50% - 11px)}.os-car-prev{left:-.5rem}.os-car-next{right:-.5rem}}
+@media(max-width:639px){.os-car-arrow{display:none}.os-car-track>.media-card{flex:0 0 82%;max-width:82%}}
 
 /* ================= Glass Explorer — иммерсивный просмотрщик ================= */
 .ge-viewer{border:0;background:#050506;color:#fff;padding:0;width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0;inset:0;overflow:hidden}
@@ -46,6 +57,7 @@
 
 .ge-stage{position:relative;flex:1;min-height:0;overflow:hidden;touch-action:pan-y;-webkit-user-select:none;user-select:none}
 .ge-slide{position:absolute;top:50%;left:50%;width:min(78vw,900px);height:100%;max-height:78vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
   transform:translate(-50%,-50%) translateX(calc(var(--ge-x,0px) + var(--ge-drag,0px))) scale(var(--ge-s,1));
   filter:blur(var(--ge-blur-amt,0px)) brightness(var(--ge-bright,1));opacity:var(--ge-o,1);
   transition:transform .45s cubic-bezier(.22,.9,.32,1),filter .45s ease,opacity .45s ease;
@@ -53,12 +65,14 @@
 .ge-stage.dragging .ge-slide{transition:none}
 .ge-slide.is-current{cursor:grab}
 .ge-stage.dragging .ge-slide.is-current{cursor:grabbing}
-.ge-slide-frame{position:relative;flex:1;min-height:0;border-radius:24px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 70px -20px rgba(0,0,0,.7)}
-.ge-slide-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#0c0c0d;transition:transform .35s;-webkit-user-drag:none}
+/* Рамка облегает само изображение (fit-content), а не тянется до размеров
+   слота — так у портретных фото не остаётся чёрных полей по бокам. */
+.ge-slide-frame{position:relative;width:fit-content;height:fit-content;max-width:100%;max-height:100%;border-radius:24px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 70px -20px rgba(0,0,0,.7)}
+.ge-slide-frame img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;background:#0c0c0d;transition:transform .35s;-webkit-user-drag:none}
 .ge-slide-frame.zoomed{overflow:auto}
-.ge-slide-frame.zoomed img{position:static;object-fit:none;max-width:none;width:auto;height:auto;margin:auto;cursor:zoom-out}
-.ge-slide.plan .ge-slide-frame{background:#fff}
-.ge-slide.plan .ge-slide-frame img{object-fit:contain;background:#fff;padding:16px}
+.ge-slide-frame.zoomed img{position:static;max-width:none;width:auto;height:auto;margin:auto;cursor:zoom-out}
+.ge-slide.plan .ge-slide-frame{background:#fff;padding:16px}
+.ge-slide.plan .ge-slide-frame img{background:#fff}
 .ge-slide-scrim{position:absolute;left:0;right:0;bottom:0;padding:20px 22px 18px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.82) 78%);display:flex;align-items:flex-end;justify-content:space-between;gap:12px;opacity:0;transition:opacity .3s}
 .ge-slide.is-current .ge-slide-scrim{opacity:1}
 .ge-slide-label{font-size:22px;font-weight:700;letter-spacing:-.01em;margin:0;line-height:1.15}

@@ -74,12 +74,18 @@
       dragging = true; movedFar = false;
       startX = e.clientX; startScroll = track.scrollLeft;
       track.classList.add('os-car-dragging');
-      try { track.setPointerCapture(e.pointerId); } catch (err) {}
+      /* Захват указателя откладываем до реального движения: если поставить
+         его уже на pointerdown, браузер перенаправляет и синтетический
+         click на track, из-за чего клики по карточкам внутри перестают
+         срабатывать (карусель "съедала" открытие фото). */
     });
     track.addEventListener('pointermove', function (e) {
       if (!dragging) return;
       var dx = e.clientX - startX;
-      if (Math.abs(dx) > 4) movedFar = true;
+      if (Math.abs(dx) > 4) {
+        if (!movedFar) { try { track.setPointerCapture(e.pointerId); } catch (err) {} }
+        movedFar = true;
+      }
       track.scrollLeft = startScroll - dx;
     });
     function endDrag() {
@@ -126,4 +132,8 @@
 
   if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', boot);
   else boot();
+
+  /* Позволяет инициализировать карусель, добавленную в DOM позже
+     (например, галерея строит свою карусель динамически из JS). */
+  w.OSCarousel = { init: initCarousel };
 })(document, window);
