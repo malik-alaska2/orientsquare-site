@@ -24,9 +24,12 @@
     document.querySelector('#media-description').textContent=hints[category];
     document.querySelector('#media-tour-link').href='tour-gallery.html?category='+category;
     const q=search.value.trim().toLocaleLowerCase('ru');grid.replaceChildren();
+    let matchCount=0;
     if(category==='blocks'){
       activeItems=media.blocks.flatMap(b=>b.pages.map(p=>({...p,label:`Блок ${b.number} · Лист ${p.page}`,pdf:b.pdf})));
-      media.blocks.filter(b=>!q||('блок '+b.number).includes(q)).forEach(b=>{
+      const matched=media.blocks.filter(b=>!q||('блок '+b.number).includes(q));
+      matchCount=matched.length;
+      matched.forEach(b=>{
         const index=activeItems.findIndex(i=>i.pdf===b.pdf);const item=activeItems[index];const figure=imageItem(item,index);figure.classList.add('plan');
         figure.querySelector('h2').textContent='Блок '+b.number;figure.querySelector('small').textContent=b.pages.length+' листов · PDF';
         const links=document.createElement('div');links.className='media-card-links';
@@ -36,10 +39,20 @@
       });
     }else{
       activeItems=media[category].filter(i=>!q||(i.label+' '+i.source.split('/').pop()).toLocaleLowerCase('ru').includes(q));
-      activeItems.forEach((item,i)=>grid.append(imageItem(item,i)));
+      matchCount=activeItems.length;
+      const featured=!q&&activeItems.length>3;
+      const shown=featured?activeItems.slice(0,3):activeItems;
+      shown.forEach((item,i)=>grid.append(imageItem(item,i)));
+      if(featured){
+        const row=document.createElement('div');row.className='media-viewall-row';row.style.gridColumn='1/-1';
+        const btn=document.createElement('button');btn.type='button';btn.className='media-viewall';
+        btn.textContent='Смотреть все '+activeItems.length+' →';
+        btn.addEventListener('click',()=>open(0));
+        row.append(btn);grid.append(row);
+      }
     }
-    const count=grid.children.length;document.querySelector('#media-count').textContent=count+' '+(category==='blocks'?'блоков':'изображений');
-    if(!count){const empty=document.createElement('p');empty.className='media-empty';empty.textContent='Ничего не найдено. Попробуйте другой номер или очистите поиск.';grid.append(empty)}
+    document.querySelector('#media-count').textContent=matchCount+' '+(category==='blocks'?'блоков':'изображений');
+    if(!matchCount){const empty=document.createElement('p');empty.className='media-empty';empty.textContent='Ничего не найдено. Попробуйте другой номер или очистите поиск.';grid.append(empty)}
   }
 
   /* ---------------- Glass Explorer stage: fan carousel, swipe, zoom ---------------- */

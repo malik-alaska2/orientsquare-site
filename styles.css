@@ -171,41 +171,49 @@ header a[href="auth.html"]{white-space:nowrap}
 .os-dd-panel a,.os-dd-panel button{min-height:40px;display:flex;align-items:center}
 
 /* ==========================================================================
-   Glass Explorer — тёмная стеклянная тема (заменяет светлую identity-полосу)
+   Glass Explorer — светлая стеклянная тема: белый фон + оранжевый акцент,
+   тот же материал (размытие, прозрачность, мягкая глубина), что и раньше,
+   просто на белом, а не на чёрном (см. References/design-system-glass-explorer.md).
    Идёт последним слоем и переопределяет Tailwind-утилиты без правки HTML.
-   Оранжевый/фиолетовый остаются, но как один приглушённый, тихий акцент —
-   не заливка, а тонировка стекла (см. References/design-system-glass-explorer.md).
+   Футер сознательно остаётся тёмным (контраст/якорь) — для него ниже
+   отдельные, точечные исключения.
    ========================================================================== */
 :root{
-  --ge-bg:#0a0a0c;
-  --ge-bg-soft:#111114;
-  --ge-surface:rgba(255,255,255,.055);
-  --ge-surface-strong:rgba(255,255,255,.09);
-  --ge-surface-press:rgba(255,255,255,.13);
-  --ge-border:rgba(255,255,255,.12);
-  --ge-border-soft:rgba(255,255,255,.08);
-  --ge-text:#f3f2ef;
-  --ge-text-soft:rgba(243,242,239,.72);
-  --ge-text-mute:rgba(243,242,239,.52);
+  --ge-bg:#faf8f5;
+  --ge-bg-soft:#f2ede6;
+  --ge-surface:rgba(255,255,255,.62);
+  --ge-surface-strong:rgba(255,255,255,.85);
+  --ge-surface-press:rgba(255,255,255,.97);
+  --ge-border:rgba(28,23,18,.10);
+  --ge-border-soft:rgba(28,23,18,.07);
+  --ge-text:#1c1712;
+  --ge-text-soft:rgba(28,23,18,.68);
+  --ge-text-mute:rgba(28,23,18,.48);
   --ge-blur:20px;
 
-  /* один приглушённый акцент в двух тонах — тёплый и холодный полюс одной семьи */
-  --ge-orange:#c79a6c;
-  --ge-orange-strong:#d9b287;
-  --ge-orange-fill:rgba(199,154,108,.20);
-  --ge-orange-fill-strong:rgba(199,154,108,.30);
-  --ge-orange-border:rgba(199,154,108,.42);
+  /* монолитный акцент: один оранжевый тон и для текста/рамок, и для сплошной
+     заливки кнопок (проверено на контраст: >=4.5:1 и на белом, и с белым текстом) */
+  --ge-orange:#a8530a;
+  --ge-orange-strong:#8a4408;
+  --ge-orange-on-dark:#f0a868;
+  --ge-orange-solid:#a8530a;
+  --ge-orange-solid-hover:#8a4408;
+  --ge-orange-fill:rgba(168,83,10,.12);
+  --ge-orange-fill-strong:rgba(168,83,10,.20);
+  --ge-orange-border:rgba(168,83,10,.42);
 
-  --ge-purple:#a997b4;
-  --ge-purple-strong:#bdaec7;
-  --ge-purple-fill:rgba(124,106,138,.26);
-  --ge-purple-fill-strong:rgba(124,106,138,.38);
-  --ge-purple-border:rgba(124,106,138,.48);
+  --ge-purple:#6b4f7c;
+  --ge-purple-strong:#573d5c;
+  --ge-purple-solid:#7a5c8c;
+  --ge-purple-solid-hover:#664b76;
+  --ge-purple-fill:rgba(122,92,140,.12);
+  --ge-purple-fill-strong:rgba(122,92,140,.20);
+  --ge-purple-border:rgba(122,92,140,.42);
 }
 
 /* переиспользуем уже объявленные переменные Geist/Brand слоёв — этого
    достаточно, чтобы заголовки, text-gray-500/600, рамки gray-100/200/300
-   и все .shadow-* переключились на тёмную стеклянную версию сами */
+   и все .shadow-* переключились на светлую стеклянную версию сами */
 :root{
   --ds-gray-1000:var(--ge-text);
   --ds-gray-900:var(--ge-text-soft);
@@ -213,8 +221,8 @@ header a[href="auth.html"]{white-space:nowrap}
   --ds-gray-400:var(--ge-border);
   --ds-border:var(--ge-border-soft);
   --ds-shadow-border:0 0 0 1px var(--ge-border-soft);
-  --ds-shadow-small:0 1px 2px rgba(0,0,0,.4);
-  --ds-shadow-menu:0 0 0 1px var(--ge-border-soft),0 24px 60px -14px rgba(0,0,0,.7);
+  --ds-shadow-small:0 1px 2px rgba(28,23,18,.06);
+  --ds-shadow-menu:0 0 0 1px var(--ge-border-soft),0 24px 60px -20px rgba(28,23,18,.16);
   --ds-radius-card:20px;
   --ds-radius-control:12px;
   --os-orange:var(--ge-orange);
@@ -226,65 +234,68 @@ header a[href="auth.html"]{white-space:nowrap}
 
 html{
   background:
-    radial-gradient(1200px 640px at 12% -12%,rgba(199,154,108,.10),transparent 60%),
-    radial-gradient(1000px 720px at 112% 8%,rgba(124,106,138,.10),transparent 55%),
+    radial-gradient(1200px 640px at 12% -12%,rgba(168,83,10,.07),transparent 60%),
+    radial-gradient(1000px 720px at 112% 8%,rgba(122,92,140,.06),transparent 55%),
     var(--ge-bg);
   background-attachment:fixed,fixed,fixed;
 }
 body{background:transparent;color:var(--ge-text)}
-::selection{background:rgba(199,154,108,.35);color:#fff}
+::selection{background:rgba(168,83,10,.22);color:var(--ge-text)}
 h1,h2,h3,h4,h5,h6{color:var(--ge-text)}
 
 /* Стекло: любая белая поверхность (шапка, дропдауны, карточки, диалоги)
-   становится матовым тёмным стеклом с размытием фона за ней */
-.bg-white{background-color:var(--ge-surface);backdrop-filter:blur(var(--ge-blur)) saturate(1.4);-webkit-backdrop-filter:blur(var(--ge-blur)) saturate(1.4)}
-.bg-white\/70{background-color:rgba(255,255,255,.05);backdrop-filter:blur(var(--ge-blur));-webkit-backdrop-filter:blur(var(--ge-blur))}
-.bg-white\/90{background-color:rgba(16,16,18,.78);backdrop-filter:blur(var(--ge-blur));-webkit-backdrop-filter:blur(var(--ge-blur))}
-header.bg-white{background-color:rgba(12,12,14,.6);border-bottom:1px solid var(--ge-border-soft)}
+   становится матовым светлым стеклом с размытием фона за ней */
+.bg-white{background-color:var(--ge-surface);backdrop-filter:blur(var(--ge-blur)) saturate(1.15);-webkit-backdrop-filter:blur(var(--ge-blur)) saturate(1.15)}
+.bg-white\/70{background-color:rgba(255,255,255,.5);backdrop-filter:blur(var(--ge-blur));-webkit-backdrop-filter:blur(var(--ge-blur))}
+.bg-white\/90{background-color:rgba(255,255,255,.92);backdrop-filter:blur(var(--ge-blur));-webkit-backdrop-filter:blur(var(--ge-blur))}
+header.bg-white{background-color:rgba(255,255,255,.72);border-bottom:1px solid var(--ge-border-soft)}
 .bg-gray-50{background-color:var(--ge-surface)}
 .bg-gray-100{background-color:var(--ge-surface-strong)}
 .hover\:bg-gray-50:hover{background-color:var(--ge-surface-strong)}
 .hover\:bg-gray-100:hover{background-color:var(--ge-surface-press)}
-.bg-gray-900{background-color:#08080a}
-.border-gray-800{border-color:var(--ge-border)}
 
 .text-gray-900{color:var(--ge-text)}
 .text-gray-700{color:var(--ge-text-soft)}
 .text-gray-400{color:var(--ge-text-mute)}
-.text-gray-300{color:var(--ge-text-soft)}
 .hover\:text-gray-800:hover{color:var(--ge-text)}
 
-/* акцент: заливка ушла, остался только тонкий тонированный контур/подсветка */
-.bg-primary-500{background:var(--ge-orange-fill);border:1px solid var(--ge-orange-border);color:#fff}
-.hover\:bg-primary-600:hover{background:var(--ge-orange-fill-strong)}
-.bg-primary-50{background:rgba(199,154,108,.08)}
-.bg-primary-100{background:rgba(199,154,108,.14)}
-.hover\:bg-primary-50:hover{background:rgba(199,154,108,.12)}
+/* акцент: оранжевый — монолитная заливка кнопок (белый текст, ровный цвет,
+   не тон-в-тон со стеклом), а не полупрозрачная тонировка — так он остаётся
+   единственным "плотным" цветом на прозрачном сайте */
+.bg-primary-500{background:var(--ge-orange-solid);border:1px solid var(--ge-orange-solid);color:#fff}
+.hover\:bg-primary-600:hover{background:var(--ge-orange-solid-hover);border-color:var(--ge-orange-solid-hover)}
+.bg-primary-50{background:rgba(168,83,10,.08)}
+.bg-primary-100{background:rgba(168,83,10,.14)}
+.hover\:bg-primary-50:hover{background:rgba(168,83,10,.12)}
 .text-primary-500,.text-primary-600,.text-primary-700,.text-primary-800{color:var(--ge-orange)}
 .hover\:text-primary-400:hover,.hover\:text-primary-500:hover,.hover\:text-primary-600:hover,
 .hover\:text-primary-700:hover,.hover\:text-primary-900:hover{color:var(--ge-orange-strong)}
 .border-primary-500{border-color:var(--ge-orange-border)}
 .focus\:border-primary-500:focus{border-color:var(--ge-orange-border)}
 .focus\:ring-primary-500:focus{--tw-ring-color:var(--ge-orange-border)}
-.from-primary-50{--tw-gradient-from:rgba(199,154,108,.10) var(--tw-gradient-from-position);--tw-gradient-to:rgba(199,154,108,0) var(--tw-gradient-to-position)}
+.from-primary-50{--tw-gradient-from:rgba(168,83,10,.08) var(--tw-gradient-from-position);--tw-gradient-to:rgba(168,83,10,0) var(--tw-gradient-to-position)}
 .to-white{--tw-gradient-to:var(--ge-bg-soft) var(--tw-gradient-to-position)}
 
-/* фирменная полоса над футером — было 3px яркий градиент, стало
-   волосяная линия из тех же двух приглушённых тонов */
+/* фирменная полоса над футером — тонкая линия из тех же двух акцентов */
 footer.bg-gray-900{
-  background-image:linear-gradient(90deg,var(--ge-orange-border) 0 50%,var(--ge-purple-border) 50% 100%);
-  background-size:100% 1px;background-repeat:no-repeat;background-position:top left;
+  background-color:#171310;
+  background-image:linear-gradient(90deg,var(--ge-orange-solid) 0 50%,var(--ge-purple-solid) 50% 100%);
+  background-size:100% 2px;background-repeat:no-repeat;background-position:top left;
 }
+/* Футер намеренно остаётся тёмным для контраста — здесь серые/акцентные
+   классы нужно перечитать отдельно, иначе они унаследуют светлые значения */
+footer.bg-gray-900 .text-gray-300{color:rgba(255,255,255,.7)}
+footer.bg-gray-900 .text-gray-400{color:rgba(255,255,255,.45)}
+footer.bg-gray-900 .border-gray-800{border-color:rgba(255,255,255,.14)}
+footer.bg-gray-900 .hover\:text-primary-400:hover,
+footer.bg-gray-900 .hover\:text-primary-500:hover{color:var(--ge-orange-on-dark)}
 
-.os-badge{background:var(--ge-purple-fill);border:1px solid var(--ge-purple-border);color:var(--ge-text)}
-.os-btn-purple{background:var(--ge-purple-fill);color:#fff;border:1px solid var(--ge-purple-border)}
-.os-btn-purple:hover{background:var(--ge-purple-fill-strong)}
+.os-badge{background:var(--ge-purple-fill);border:1px solid var(--ge-purple-border);color:var(--ge-purple)}
+.os-btn-purple{background:var(--ge-purple-solid);color:#fff;border:1px solid var(--ge-purple-solid)}
+.os-btn-purple:hover{background:var(--ge-purple-solid-hover);border-color:var(--ge-purple-solid-hover)}
 .os-accent{color:var(--ge-purple)}
 .os-cream-section{background:var(--ge-surface-strong)}
 
 /* инпуты на стекле */
 input[class],select[class],textarea[class]{background:var(--ge-surface);color:var(--ge-text)}
 input[class]::placeholder,textarea[class]::placeholder{color:var(--ge-text-mute)}
-
-@media(prefers-color-scheme:dark){:root{color-scheme:dark}}
-:root{color-scheme:dark}
