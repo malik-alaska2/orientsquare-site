@@ -9,7 +9,6 @@ window.OS_DICT = {
 /* ---------- шапка, меню, подвал ---------- */
 "Home": {"tr":"Ana Sayfa","en":"Home"},
 "Real Estate": {"tr":"Gayrimenkul","en":"Real Estate"},
-"News": {"tr":"Haberler","en":"News"},
 "Sold Projects": {"tr":"Tamamlanan Projeler","en":"Sold Projects"},
 "Investment": {"tr":"Yatırım","en":"Investment"},
 "Tashkent Investment": {"tr":"Taşkent Yatırım","en":"Tashkent Investment"},

@@ -329,21 +329,42 @@
     }
   }
 
-  /* ---- 5. Повтор по клику на логотип в шапке ---- */
-  function replay() {
-    if (overlay) return;              // уже показывается
-    closed = false;
-    if (!doc.getElementById('osIntroStyle')) (doc.head || html).appendChild(styleEl);
-    html.classList.add('os-intro-lock');
-    clearTimeout(failsafe);
-    failsafe = setTimeout(unlock, CFG.maxShow + CFG.fadeOut + 1500);
-    build();
+  /* ---- 5. Логотип-видео в шапке ----
+     Сама заставка (осИнтро) показывается только один раз за сессию —
+     это отдельное, автоматическое событие «зашли на сайт». Логотип в
+     шапке — независимый, лёгкий элемент: он проигрывает тот же ролик
+     сам по себе на каждой странице и просто перематывается на начало
+     по клику, без большого оверлея, колец и полосы загрузки. */
+  function playHeaderLogo(v) {
+    try {
+      v.currentTime = 0;
+      var p = v.play();
+      if (p && typeof p['catch'] === 'function') p['catch'](function () {});
+    } catch (e) {}
+  }
+
+  function bootHeaderLogos() {
+    var vids = doc.querySelectorAll('header .os-logo-video');
+    for (var i = 0; i < vids.length; i++) {
+      var v = vids[i];
+      playHeaderLogo(v);
+      // часть браузеров откладывает автозапуск до готовности буфера
+      (function (vid) {
+        setTimeout(function () { if (vid.paused) playHeaderLogo(vid); }, 400);
+      })(v);
+    }
+  }
+
+  if (doc.readyState === 'loading') {
+    doc.addEventListener('DOMContentLoaded', bootHeaderLogos);
+  } else {
+    bootHeaderLogos();
   }
 
   doc.addEventListener('click', function (e) {
-    var logo = e.target.closest && e.target.closest('header .os-logo');
+    var logo = e.target.closest && e.target.closest('header .os-logo-video');
     if (!logo) return;
     e.preventDefault();
-    replay();
+    playHeaderLogo(logo);
   }, true);
 })();

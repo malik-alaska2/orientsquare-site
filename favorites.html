@@ -23,13 +23,12 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
 <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
-      <a href="index.html" class="flex items-center space-x-2">
-        <img src="assets/brand/logo-full.png" alt="Orient Square Real Estate" class="os-logo" width="720" height="230">
+      <a href="index.html" class="flex items-center space-x-2" aria-label="Orient Square Real Estate">
+        <video class="os-logo os-logo-video" autoplay muted playsinline poster="assets/brand/logo-full.png" width="800" height="400"><source src="assets/intro/intro.webm" type="video/webm"><source src="assets/intro/intro.mp4" type="video/mp4"></video>
       </a>
       <nav class="hidden md:flex items-center space-x-8">
         <a href="index.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Home</span></a>
         <a href="properties.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg><span>Real Estate</span></a>
-        <a href="news.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg><span>News</span></a>
         <a href="sold.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span>Sold Projects</span></a>
         <a href="investment.html" class="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><span>Investment</span></a>
         <a href="favorites.html" class="flex items-center space-x-1 text-primary-500 font-medium transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg><span>Favorites</span></a>
@@ -54,7 +53,7 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
     <div id="mobileMenu" class="md:hidden hidden border-t border-gray-200 py-4 space-y-2">
       <a href="index.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Home</a>
       <a href="properties.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Real Estate</a>
-      <a href="news.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">News</a>
+      
       <a href="sold.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Sold Projects</a>
       <a href="investment.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Investment</a>
       <a href="favorites.html" class="block px-2 py-2 text-gray-700 hover:text-primary-500">Favorites</a>
@@ -192,7 +191,7 @@ body{transition:opacity ease-in .2s; padding-top:64px;}
         <ul class="space-y-2">
           <li><a href="index.html" class="text-gray-300 hover:text-primary-500 transition-colors">Home</a></li>
           <li><a href="properties.html" class="text-gray-300 hover:text-primary-500 transition-colors">Properties</a></li>
-          <li><a href="news.html" class="text-gray-300 hover:text-primary-500 transition-colors">News</a></li>
+          
           <li><a href="sold.html" class="text-gray-300 hover:text-primary-500 transition-colors">Sold Projects</a></li>
           <li><a href="investment.html" class="text-gray-300 hover:text-primary-500 transition-colors">Tashkent Investment</a></li>
           <li><a href="about.html" class="text-gray-300 hover:text-primary-500 transition-colors">About Us</a></li><li><a href="calculator.html" class="text-gray-300 hover:text-primary-500 transition-colors">Calculator</a></li><li><a href="offers.html" class="text-gray-300 hover:text-primary-500 transition-colors">Offers</a></li><li><a href="progress.html" class="text-gray-300 hover:text-primary-500 transition-colors">Construction</a></li><li><a href="cabinet.html" class="text-gray-300 hover:text-primary-500 transition-colors">My cabinet</a></li>
