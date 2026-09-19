@@ -2,9 +2,11 @@
    OrientSquare — INTRO / загрузочный экран (splash)
    --------------------------------------------------------------------------
    Что делает: при первом заходе на сайт показывает фирменную заставку —
-   знак-домик раскручивается в 3D, из «разлёта» собираются буквы
-   ORIENT SQUARE REAL ESTATE, по логотипу проходит блик, снизу идёт полоса
-   загрузки. Потом заставка плавно уходит и открывается страница.
+   ролик (assets/intro/intro.mp4); если он не готов вовремя, логотип целиком
+   плавно проявляется и увеличивается (без нарезки на буквы — так нечему
+   выглядеть «сломанным»), кольцо обегает знак, по логотипу проходит блик,
+   снизу идёт полоса загрузки. Потом заставка плавно уходит и открывается
+   страница. Клик по логотипу в шапке проигрывает её заново.
 
    Особенности:
    • показывается ОДИН раз за сессию браузера (sessionStorage);
@@ -72,31 +74,6 @@
   var VID_W = 800, VID_H = 400;   // кадр ролика заставки (assets/intro/intro.mp4)
   var MARK = { x: 2, y: 2, w: 223, h: 227 };
 
-  // Буквы: [x, y, ширина, высота, задержка(мс), dx, dy, поворот(deg), стартовый масштаб]
-  var L1_Y = 21, L1_H = 104;   // строка ORIENT
-  var L2_Y = 147, L2_H = 59;   // строка SQUARE + REAL ESTATE
-
-  var LETTERS = [
-    // ORIENT — влетают сверху, с разлётом в стороны
-    [262, L1_Y, 83, L1_H,  750, -46, -70, -22, 0.45],
-    [358, L1_Y, 70, L1_H,  815,  34, -88,  26, 0.45],
-    [439, L1_Y, 22, L1_H,  880, -20, -96, -30, 0.45],
-    [478, L1_Y, 52, L1_H,  945,  40, -72,  20, 0.45],
-    [543, L1_Y, 71, L1_H, 1010, -30, -92, -18, 0.45],
-    [624, L1_Y, 60, L1_H, 1075,  44, -66,  28, 0.45],
-    // SQUARE — снизу
-    [268, L2_Y, 43, L2_H, 1090, -34,  66,  24, 0.5],
-    [315, L2_Y, 55, L2_H, 1145,  28,  78, -20, 0.5],
-    [376, L2_Y, 44, L2_H, 1200, -24,  62,  22, 0.5],
-    [423, L2_Y, 54, L2_H, 1255,  30,  84, -26, 0.5],
-    [481, L2_Y, 44, L2_H, 1310, -28,  58,  18, 0.5],
-    [532, L2_Y, 33, L2_H, 1365,  36,  74, -22, 0.5],
-    // REAL ESTATE — мелкий блок, спокойный выезд
-    [578, L2_Y, 117, L2_H, 1450, 26, 14, 0, 0.9],
-    // ®
-    [697, L1_Y, 23, L1_H, 1560, 0, 0, 0, 0.2]
-  ];
-
   /* ---- 3. Стили ---- */
   var css = [
     'html.os-intro-on,html.os-intro-on body{overflow:hidden!important}',
@@ -119,23 +96,21 @@
     '#osIntro .osi-stage{position:relative;flex:0 0 auto;width:' + LOGO_W + 'px;min-width:' + LOGO_W + 'px;height:' + LOGO_H + 'px;',
     'transform:scale(var(--osi-k,1));transform-origin:50% 50%}',
 
-    /* знак-домик */
-    '#osIntro .osi-mark{position:absolute;left:' + MARK.x + 'px;top:' + MARK.y + 'px;width:' + MARK.w + 'px;height:' + MARK.h + 'px;',
-    'background:url("' + CFG.base + 'logo-mark.png") no-repeat center/contain;opacity:0;',
-    'transform-style:preserve-3d;backface-visibility:hidden;will-change:transform,opacity;',
-    'animation:osi-mark 1.2s cubic-bezier(.16,.84,.26,1.02) .05s forwards}',
-
-    /* кольцо-обводка, которая обегает знак */
+    /* кольцо-обводка вокруг знака-домика — независимый декоративный элемент,
+       не зависит от того, как отрисовался сам логотип */
     '#osIntro .osi-ring{position:absolute;left:' + (MARK.x - 26) + 'px;top:' + (MARK.y - 26) + 'px;',
     'width:' + (MARK.w + 52) + 'px;height:' + (MARK.h + 52) + 'px;opacity:0;',
     'animation:osi-ring 1.5s ease-out .1s forwards;pointer-events:none}',
     '#osIntro .osi-ring circle{fill:none;stroke:#a8530a;stroke-width:3;stroke-linecap:round;',
     'stroke-dasharray:0 900;animation:osi-dash 1.25s cubic-bezier(.32,.78,.3,1) .05s forwards}',
 
-    /* буквы — цветной логотип (читается на белом фоне) */
-    '#osIntro .osi-l{position:absolute;background-image:url("' + CFG.base + 'logo-full.png");background-repeat:no-repeat;',
-    'background-size:' + LOGO_W + 'px ' + LOGO_H + 'px;opacity:0;will-change:transform,opacity,filter;',
-    'animation:osi-letter .78s cubic-bezier(.18,.92,.26,1.06) forwards}',
+    /* Логотип целиком — одной картинкой, без нарезки на буквы: раньше буквы
+       разлетались из 14 отдельных кусочков, и если анимация прерывалась
+       (например, видео перехватывало показ на середине), логотип выглядел
+       рассыпанным/перекошенным. Один плавный fade+scale ничего разбить не может. */
+    '#osIntro .osi-logo{position:absolute;inset:0;background:url("' + CFG.base + 'logo-full.png") no-repeat center/contain;',
+    'opacity:0;transform:translateY(10px) scale(.94);will-change:transform,opacity;',
+    'animation:osi-logo-in .9s cubic-bezier(.16,.84,.26,1) .15s forwards}',
 
     /* блик по логотипу */
     '#osIntro .osi-shine{position:absolute;inset:0;pointer-events:none;opacity:0;',
@@ -164,16 +139,10 @@
     'letter-spacing:.14em;text-transform:uppercase;color:rgba(28,23,18,.4);opacity:0;animation:osi-fade .5s ease 2.2s forwards}',
 
     '@keyframes osi-glow{0%{opacity:0;transform:scale(.5)}45%{opacity:1}100%{opacity:.85;transform:scale(1)}}',
-    '@keyframes osi-mark{0%{opacity:0;transform:perspective(1000px) rotateY(-450deg) scale(.32)}',
-    '18%{opacity:1}72%{transform:perspective(1000px) rotateY(16deg) scale(1.09)}',
-    '100%{opacity:1;transform:perspective(1000px) rotateY(0) scale(1)}}',
+    '@keyframes osi-logo-in{0%{opacity:0;transform:translateY(10px) scale(.94)}100%{opacity:1;transform:translateY(0) scale(1)}}',
     '@keyframes osi-ring{0%{opacity:0}25%{opacity:1}75%{opacity:1}100%{opacity:0;transform:scale(1.12)}}',
     '@keyframes osi-dash{0%{stroke-dasharray:0 900;stroke-dashoffset:210}',
     '70%{stroke-dasharray:640 900}100%{stroke-dasharray:840 900;stroke-dashoffset:-630}}',
-    '@keyframes osi-letter{0%{opacity:0;filter:blur(7px);',
-    'transform:translate3d(var(--dx),var(--dy),0) rotate(var(--rot)) scale(var(--sc))}',
-    '55%{opacity:1;filter:blur(0)}',
-    '100%{opacity:1;filter:blur(0);transform:translate3d(0,0,0) rotate(0deg) scale(1)}}',
     '@keyframes osi-shine{0%{opacity:0;background-position:170% 0}12%{opacity:1}100%{opacity:0;background-position:-70% 0}}',
     '@keyframes osi-bar{0%{width:0}55%{width:72%}100%{width:100%}}',
     '@keyframes osi-fade{to{opacity:1}}',
@@ -181,8 +150,8 @@
     /* короткий вариант для «уменьшить движение» */
     'html.osi-reduced #osIntro .osi-glow,html.osi-reduced #osIntro .osi-ring,',
     'html.osi-reduced #osIntro .osi-shine{display:none}',
-    'html.osi-reduced #osIntro .osi-mark,html.osi-reduced #osIntro .osi-l{animation:osi-fade .45s ease forwards;',
-    'transform:none!important;filter:none!important}',
+    'html.osi-reduced #osIntro .osi-logo{animation:osi-fade .45s ease forwards;',
+    'transform:none!important}',
     'html.osi-reduced #osIntro .osi-bar i{animation-duration:700ms}'
   ].join('');
 
@@ -215,15 +184,7 @@
     parts.push('<div class="osi-stage">');
     parts.push('<svg class="osi-ring" viewBox="0 0 ' + (MARK.w + 52) + ' ' + (MARK.h + 52) + '">');
     parts.push('<circle cx="' + ((MARK.w + 52) / 2) + '" cy="' + ((MARK.h + 52) / 2) + '" r="' + ((MARK.w + 44) / 2) + '"/></svg>');
-    parts.push('<div class="osi-mark"></div>');
-
-    for (var i = 0; i < LETTERS.length; i++) {
-      var d = LETTERS[i];
-      parts.push('<div class="osi-l" style="left:' + d[0] + 'px;top:' + d[1] + 'px;width:' + d[2] + 'px;height:' + d[3] +
-        'px;background-position:' + (-d[0]) + 'px ' + (-d[1]) + 'px;animation-delay:' + d[4] + 'ms;' +
-        '--dx:' + d[5] + 'px;--dy:' + d[6] + 'px;--rot:' + d[7] + 'deg;--sc:' + d[8] + '"></div>');
-    }
-
+    parts.push('<div class="osi-logo"></div>');
     parts.push('<div class="osi-shine"></div>');
     parts.push('</div>');
     if (CFG.video && !reduced) {
