@@ -29,7 +29,7 @@
     autoClose: true,      // false — заставка не закрывается сама (для записи ролика)
     base: 'assets/brand/',// папка с логотипами
     video: 'assets/intro/',// папка с роликом заставки ('' — выключить видео)
-    videoWait: 1200       // сколько ждём готовности видео, мс, потом — CSS-анимация
+    videoWait: 2200        // сколько ждём готовности видео, мс, потом — CSS-анимация
   };
 
   // Переопределение настроек со страницы: window.OS_INTRO_CFG = { minShow: 3200, ... }
@@ -52,8 +52,6 @@
     try { window[store].setItem(KEY, '1'); } catch (e) {}
   }
 
-  if (seen()) return;
-
   var doc = document;
   var html = doc.documentElement;
   var reduced = false;
@@ -61,11 +59,13 @@
     reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   } catch (e) {}
 
-  /* ---- 1. Мгновенная блокировка страницы (чтобы не было мигания контента) ---- */
-  html.classList.add('os-intro-on');
-
-  // Аварийный предохранитель ставим САМЫМ ПЕРВЫМ:
-  var failsafe = setTimeout(unlock, CFG.maxShow + CFG.fadeOut + 1500);
+  var failsafe;
+  if (!seen()) {
+    /* ---- 1. Мгновенная блокировка страницы (чтобы не было мигания контента) ---- */
+    html.classList.add('os-intro-on');
+    // Аварийный предохранитель ставим САМЫМ ПЕРВЫМ:
+    failsafe = setTimeout(unlock, CFG.maxShow + CFG.fadeOut + 1500);
+  }
 
   /* ---- 2. Геометрия логотипа (координаты сняты с assets/brand/logo-full.png, 720×230) ---- */
   var LOGO_W = 720, LOGO_H = 230;
@@ -100,10 +100,13 @@
   /* ---- 3. Стили ---- */
   var css = [
     'html.os-intro-on,html.os-intro-on body{overflow:hidden!important}',
-    'html.os-intro-on{background:#faf8f5}',
+    'html.os-intro-on{background:#FFF8B9}',
     'html.os-intro-on body{visibility:hidden}',
+    /* Фон заставки — тот же кремовый, что запечён в самом видеоролике
+       (assets/intro/intro.mp4 / .webm): если тут поставить другой цвет,
+       по краю кадра видна граница/шов между роликом и подложкой. */
     '#osIntro{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;',
-    'background:#faf8f5;background:radial-gradient(120% 90% at 50% 42%,#ffffff 0%,#faf8f5 58%,#f2ede6 100%);',
+    'background:#FFF8B9;background:radial-gradient(120% 90% at 50% 42%,#FFFDF0 0%,#FFF8B9 58%,#FBEFA4 100%);',
     'overflow:hidden;cursor:pointer;-webkit-user-select:none;user-select:none;',
     'transition:opacity ' + CFG.fadeOut + 'ms ease,transform ' + CFG.fadeOut + 'ms ease}',
     '#osIntro.os-out{opacity:0;transform:scale(1.045);pointer-events:none}',
@@ -146,8 +149,8 @@
     'width:' + VID_W + 'px;height:' + VID_H + 'px;margin:' + (-VID_H / 2) + 'px 0 0 ' + (-VID_W / 2) + 'px;',
     'transform:scale(var(--osi-k,1));transform-origin:50% 50%;',
     'max-width:none;max-height:none;min-width:0;object-fit:fill;',
-    'opacity:0;transition:opacity .2s ease;pointer-events:none;background:#faf8f5;display:block}',
-    '#osIntro.osi-has-video{background:#faf8f5}',
+    'opacity:0;transition:opacity .2s ease;pointer-events:none;background:#FFF8B9;display:block}',
+    '#osIntro.osi-has-video{background:#FFF8B9}',
     '#osIntro.osi-has-video .osi-video{opacity:1}',
     '#osIntro.osi-has-video .osi-stage,#osIntro.osi-has-video .osi-glow{visibility:hidden}',
 
@@ -296,11 +299,19 @@
     v.addEventListener('ended', function () { if (CFG.autoClose) close(); });
 
     var pr = v.play();
-    if (pr && typeof pr['catch'] === 'function') pr['catch'](useCss);
+    if (pr && typeof pr['catch'] === 'function') pr['catch'](function () {});
+
+    // Второй заход: если через полсекунды всё ещё не поехало, пробуем play()
+    // ещё раз — часть браузеров откладывает автозапуск до готовности буфера.
+    setTimeout(function () {
+      if (settled || (v.currentTime > 0 && !v.paused)) return;
+      var pr2 = v.play();
+      if (pr2 && typeof pr2['catch'] === 'function') pr2['catch'](function () {});
+    }, 500);
 
     setTimeout(function () {
       if (settled) return;
-      if (v.currentTime > 0 && !v.paused && !v.ended) useVideo(); else useCss();
+      if ((v.currentTime > 0 || v.readyState >= 2) && !v.paused && !v.ended) useVideo(); else useCss();
     }, CFG.videoWait);
   }
 
@@ -328,6 +339,7 @@
       overlay.classList.add('os-out');
       setTimeout(function () {
         if (overlay && overlay.parentNode) overlay.parentNode.removeChild(overlay);
+        overlay = null;   // иначе build() решит, что заставка ещё показывается, и повтор по клику не сработает
       }, CFG.fadeOut + 60);
     }
     unlock();
@@ -348,9 +360,29 @@
   lockCss.appendChild(doc.createTextNode('html.os-intro-lock,html.os-intro-lock body{overflow:hidden!important}'));
   (doc.head || html).appendChild(lockCss);
 
-  if (doc.readyState === 'loading') {
-    doc.addEventListener('DOMContentLoaded', build);
-  } else {
+  if (!seen()) {
+    if (doc.readyState === 'loading') {
+      doc.addEventListener('DOMContentLoaded', build);
+    } else {
+      build();
+    }
+  }
+
+  /* ---- 5. Повтор по клику на логотип в шапке ---- */
+  function replay() {
+    if (overlay) return;              // уже показывается
+    closed = false;
+    if (!doc.getElementById('osIntroStyle')) (doc.head || html).appendChild(styleEl);
+    html.classList.add('os-intro-lock');
+    clearTimeout(failsafe);
+    failsafe = setTimeout(unlock, CFG.maxShow + CFG.fadeOut + 1500);
     build();
   }
+
+  doc.addEventListener('click', function (e) {
+    var logo = e.target.closest && e.target.closest('header .os-logo');
+    if (!logo) return;
+    e.preventDefault();
+    replay();
+  }, true);
 })();
