@@ -81,12 +81,12 @@ button[type="submit"][class]:not([class*="rounded-full"]){
 @media(min-width:768px){.os-logo{height:42px}}
 .os-logo--footer{height:42px;margin-bottom:4px}
 
-/* Логотип-видео в шапке: та же кремовая подложка, что и у ролика заставки,
-   чтобы не было цветного шва вокруг маленького видео (см. assets/intro/).
-   object-fit:cover + aspect-ratio самого логотипа (не кадра видео 800×400,
-   где сам знак занимает только центр) — иначе в маленькой шапке видна почти
-   пустая кремовая рамка вместо логотипа. */
-.os-logo-video{aspect-ratio:720/230;object-fit:cover;background:#FFF8B9;border-radius:6px;cursor:pointer}
+/* Логотип-видео в шапке: кремовая подложка (#FFF8B9, тот же цвет, что и у
+   самого ролика) — на самой ССЫЛКЕ, с отступом, а не только на видео.
+   Если красить одно лишь видео вплотную, получается жёсткая кромка на белой
+   шапке; так фон вокруг логотипа сливается с фоном самого логотипа. */
+.os-logo-link{background:#FFF8B9;padding:5px 10px;border-radius:10px}
+.os-logo-video{aspect-ratio:720/230;object-fit:cover;display:block;cursor:pointer}
 
 /* Фирменная полоса над подвалом (оранжевый → фиолетовый) */
 footer.bg-gray-900{
