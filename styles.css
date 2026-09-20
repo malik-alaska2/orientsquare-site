@@ -255,7 +255,7 @@ h1,h2,h3,h4,h5,h6{color:var(--ge-text)}
 .bg-white{background-color:var(--ge-surface);backdrop-filter:blur(var(--ge-blur)) saturate(1.15);-webkit-backdrop-filter:blur(var(--ge-blur)) saturate(1.15)}
 .bg-white\/70{background-color:rgba(255,255,255,.5);backdrop-filter:blur(var(--ge-blur));-webkit-backdrop-filter:blur(var(--ge-blur))}
 .bg-white\/90{background-color:rgba(255,255,255,.92);backdrop-filter:blur(var(--ge-blur));-webkit-backdrop-filter:blur(var(--ge-blur))}
-header.bg-white{background-color:rgba(255,255,255,.72);border-bottom:1px solid var(--ge-border-soft)}
+header.bg-white{background-color:#FFF8B9;border-bottom:1px solid var(--ge-border-soft)}
 .bg-gray-50{background-color:var(--ge-surface)}
 .bg-gray-100{background-color:var(--ge-surface-strong)}
 .hover\:bg-gray-50:hover{background-color:var(--ge-surface-strong)}
